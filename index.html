@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackCellUA | Офіційний портал стрімера</title>
+    <meta name="description" content="Офіційний сайт стрімера BlackCellUA (En0T1k_UA). Трансляції World of Tanks та NFS українською.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+        :root { --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00; --bg: #050505; --glass: rgba(255, 255, 255, 0.03); }
+        body { margin: 0; background: var(--bg); color: #fff; font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
+        .ticker { background: var(--danger); color: white; padding: 10px 0; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+        nav { display: flex; justify-content: center; gap: 15px; padding: 20px; flex-wrap: wrap; background: rgba(255,255,255,0.02); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,255,204,0.2); position: sticky; top: 0; z-index: 1000; }
+        .btn { padding: 12px 25px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; transition: 0.3s; border: 1px solid var(--neon); color: var(--neon); text-transform: uppercase; }
+        .btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
+        .btn-donate { border-color: var(--gold); color: var(--gold); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .glass-panel { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px; margin-bottom: 40px; position: relative; }
+        .live-badge { position: absolute; top: 25px; right: 25px; padding: 6px 18px; border-radius: 6px; background: #1a1a1a; display: flex; align-items: center; gap: 10px; border: 1px solid #333; font-family: 'Orbitron', sans-serif; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #555; }
+        .active-live .dot { background: var(--danger); animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; }
+        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 15px; border: 1px solid rgba(0,255,204,0.2); }
+    </style>
+</head>
+<body>
+
+<div class="ticker">
+    <div class="ticker-text">ВІТАЄМО НА SOCIAL-UP.PP.UA! 🔥 КАНАЛ BLACKCELLUA 🔥 СТРІМИ УКРАЇНСЬКОЮ 🔥 WORLD OF TANKS & NFS 🔥</div>
+</div>
+
+<nav>
+    <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="btn">YouTube</a>
+    <a href="https://send.monobank.ua/" target="_blank" class="btn btn-donate">Донат (Mono)</a>
+    <a href="https://github.com/kolokqq" target="_blank" class="btn">GitHub</a>
+</nav>
+
+<div class="container">
+    <div class="glass-panel">
+        <div id="status-badge" class="live-badge">
+            <div class="dot"></div> <span id="status-text">ОФЛАЙН</span>
+        </div>
+        <h1 style="color: var(--neon); font-family: 'Orbitron'; margin-top: 0;">BLACKCELLUA</h1>
+        <p style="color: #aaa;">Setup: Xeon E3-1240 | GTX 1050 Ti 2GB | 16GB RAM</p>
+        <div id="main-video" style="margin-top: 25px;">Завантаження...</div>
+    </div>
+
+    <h2 style="font-family: 'Orbitron'; border-left: 5px solid var(--neon); padding-left: 15px;">🔥 ПОПУЛЯРНЕ</h2>
+    <div id="popular-grid" class="grid"></div>
+
+    <h2 style="font-family: 'Orbitron'; border-left: 5px solid var(--danger); padding-left: 15px; margin-top: 40px;">🎬 ОСТАННІ ВІДЕО</h2>
+    <div id="latest-grid" class="grid"></div>
+</div>
+
+<script>
+    // ВСТАВ СЮДИ НОВИЙ КЛЮЧ, ЯКИЙ ТИ СТВОРИВ У КОНСОЛІ
+    const ENCODED_KEY = 'QUI6YVN5QjBrTE42X2w2dXUxcno3dFZkuWZldnNRVXlKZ1IEQXNn';
+    const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
+
+    async function fetchData(url) {
+        const response = await fetch(url);
+        if (response.status === 403) {
+            throw new Error("API_KEY_BLOCKED");
+        }
+        return await response.json();
+    }
+
+    async function init() {
+        const mainVideo = document.getElementById('main-video');
+        try {
+            // 1. Перевірка на стрім
+            const liveData = await fetchData(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&eventType=live&key=${API_KEY}&t=${Date.now()}`);
+            
+            if(liveData.items && liveData.items.length > 0) {
+                document.getElementById('status-badge').classList.add('active-live');
+                document.getElementById('status-text').innerText = "LIVE";
+                renderVideo('main-video', liveData.items[0].id.videoId);
+            } else {
+                // 2. Якщо стріму немає - останнє відео
+                const lastData = await fetchData(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&order=date&type=video&maxResults=1&key=${API_KEY}`);
+                if(lastData.items && lastData.items.length > 0) {
+                    renderVideo('main-video', lastData.items[0].id.videoId);
+                }
+            }
+
+            // 3. Сітки відео
+            renderGrid('viewCount', 'popular-grid');
+            renderGrid('date', 'latest-grid');
+
+        } catch (e) {
+            console.error(e);
+            if(e.message === "AIzaSyB0kLN6_l6uu1rz7tVdQfHvsQUyJgYDAsg") {
+                mainVideo.innerHTML = "<p style='color:red'>Ключ заблоковано Google! Створи новий у Cloud Console та не публікуй його на GitHub.</p>";
+            } else {
+                mainVideo.innerHTML = "<p style='color:red'>Помилка API. Перевірте YouTube Data API v3 у консолі Google.</p>";
+            }
+        } 
+    }
+
+    function renderVideo(containerId, id) {
+        document.getElementById(containerId).innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
+    }
+
+    async function renderGrid(order, elementId) {
+        const data = await fetchData(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&order=${order}&type=video&maxResults=3&key=${API_KEY}`);
+        const grid = document.getElementById(elementId);
+        grid.innerHTML = data.items.map(v => `
+            <div>
+                <iframe src="https://www.youtube.com/embed/${v.id.videoId}" frameborder="0" allowfullscreen></iframe>
+                <p style="font-size:0.8rem; color:#aaa; margin-top:10px;">${v.snippet.title}</p>
+            </div>
+        `).join('');
+    }
+
+    init();
+</script>
+</body>
+</html>
