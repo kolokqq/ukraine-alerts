@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks  Українською 🔥</title>
+    <title>BlackCellUA | Стріми World of Tanks та NFS Українською 🔥</title>
     <meta name="description" content="Дивись прямі трансляції WOT та NFS на порталі BlackCellUA. Топові стріми українською, технічні огляди та Shorts. Залізо: Xeon E3-1240, GTX 1050 Ti.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, NFS стрім, танки українською, Xeon E3-1240, GTX 1050 Ti, ігровий портал, En0T1k_UA">
     <meta name="author" content="BlackCellUA">
@@ -172,5 +172,97 @@
         <div class="player-viewport" itemscope itemtype="http://schema.org/VideoObject">
             <iframe id="main-player" src="" title="BlackCellUA Player" allow="autoplay; fullscreen" allowfullscreen></iframe>
             <meta itemprop="name" content="BlackCellUA Live Stream">
-            <meta itemprop="description" content="Пряма трансляція ігрового процесу World of Tanks">
-            <meta itemprop="thumbnailUrl" content="
+            <meta itemprop="description" content="Пряма трансляція ігрового процесу World of Tanks та NFS">
+            <meta itemprop="thumbnailUrl" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
+            <meta itemprop="uploadDate" content="2026-05-10">
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-fire-flame-curved"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
+        <div id="video-grid">Завантаження...</div>
+    </main>
+
+    <aside class="shorts-container">
+        <section class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #1</h3>
+            <div class="short-wrapper">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen title="Short 1"></iframe>
+            </div>
+        </section>
+
+        <section class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #2</h3>
+            <div class="short-wrapper">
+                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" allowfullscreen title="Short 2"></iframe>
+            </div>
+        </section>
+
+        <section class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #3</h3>
+            <div class="short-wrapper">
+                <iframe src="https://www.youtube.com/embed/m9lEIIB4nPA" allowfullscreen title="Short 3"></iframe>
+            </div>
+        </section>
+        
+        <div class="glass-panel">
+            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate" rel="noopener">ПІДТРИМАТИ КАНАЛ</a>
+        </div>
+    </aside>
+</div>
+
+<script>
+    function createFireDust() {
+        const container = document.getElementById('ash-particles');
+        const particle = document.createElement('div');
+        const colors = ['#ff4d00', '#ff8c00', '#ffcc00', '#00d4ff'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 4 + 2 + 'px';
+        particle.style.position = 'absolute';
+        particle.style.background = color;
+        particle.style.width = size; particle.style.height = size;
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = '-20px'; particle.style.borderRadius = '50%';
+        particle.style.filter = 'blur(1px)';
+        particle.style.boxShadow = `0 0 10px ${color}`;
+        particle.style.opacity = Math.random();
+        container.appendChild(particle);
+        const duration = Math.random() * 3000 + 3000;
+        const animation = particle.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 0.8 },
+            { transform: `translate(${Math.random() * 200 - 100}px, 100vh) scale(0)`, opacity: 0 }
+        ], { duration: duration, easing: 'linear' });
+        animation.onfinish = () => particle.remove();
+    }
+    setInterval(createFireDust, 80);
+
+    async function loadYouTubeData() {
+        const grid = document.getElementById('video-grid');
+        const mainPlayer = document.getElementById('main-player');
+        const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
+        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+        const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
+
+        try {
+            const response = await fetch(apiFetch);
+            const data = await response.json();
+            if (data.status === 'ok' && data.items.length > 0) {
+                const latestId = data.items[0].link.split('v=')[1]?.split('&')[0] || data.items[0].guid.split(':').pop();
+                mainPlayer.src = `https://www.youtube.com/embed/${latestId}?autoplay=1&mute=1&rel=0`;
+                let html = '';
+                data.items.forEach((item) => {
+                    let vId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split(':').pop();
+                    if (vId) {
+                        html += `
+                        <article class="v-card" itemscope itemtype="http://schema.org/VideoObject">
+                            <iframe src="https://www.youtube.com/embed/${vId}" title="${item.title}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px; border:none;"></iframe>
+                            <p itemprop="name" style="font-size:0.85rem; margin-top:12px; font-weight:700; line-height:1.4;">${item.title}</p>
+                        </article>`;
+                    }
+                });
+                grid.innerHTML = html;
+            }
+        } catch (e) { grid.innerHTML = "<p>Помилка YouTube.</p>"; }
+    }
+    window.onload = loadYouTubeData;
+</script>
+</body>
+</html>
