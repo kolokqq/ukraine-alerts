@@ -4,183 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO БЛОК (НЕЗМІННИЙ) -->
     <title>BlackCellUA | Стріми World of Tanks Українською</title>
-    <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed. Найкращі моменти, Shorts та розіграші.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, ігри українською, Xeon E3-1240, GTX 1050 Ti">
-    <meta property="og:title" content="BlackCellUA - Gaming Portal">
-    <meta property="og:description" content="Танкові баталії та перегони у прямому ефірі!">
+    <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, Xeon E3-1240, GTX 1050 Ti">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap');
         
         :root { 
-            --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00; 
-            --bg: #05070a; --glass: rgba(255, 255, 255, 0.03); 
-            --card-bg: rgba(15, 23, 42, 0.6);
+            --neon: #00ffcc; 
+            --neon-glow: rgba(0, 255, 204, 0.4);
+            --danger: #ff0055; 
+            --gold: #ffcc00; 
+            --bg: #030508; 
+            --card-bg: rgba(10, 15, 25, 0.8);
+            --border: rgba(0, 255, 204, 0.2);
         }
 
         body { 
             margin: 0; background-color: var(--bg); color: #fff; 
             font-family: 'Exo 2', sans-serif; overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 50%, #112244 0%, #05070a 100%);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 85, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
+        /* Анімований фон з лініями */
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%; pointer-events: none; z-index: 10; opacity: 0.3;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
         
         /* HEADER */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); 
-            border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000;
+            padding: 15px 5%; background: rgba(3, 5, 8, 0.95); backdrop-filter: blur(15px); 
+            border-bottom: 3px solid var(--neon); position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.2);
         }
-        .logo { font-family: 'Orbitron'; font-size: 1.6rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+        .logo { 
+            font-family: 'Orbitron'; font-weight: 900; font-size: 1.8rem; 
+            color: var(--neon); text-decoration: none; text-shadow: 0 0 15px var(--neon);
+            letter-spacing: 2px;
+        }
 
-        /* GRID SYSTEM */
-        .portal-grid { display: grid; grid-template-columns: 1fr 350px; gap: 25px; margin-top: 30px; }
+        /* PORTAL GRID */
+        .portal-grid { display: grid; grid-template-columns: 1fr 380px; gap: 30px; margin-top: 40px; }
 
         .glass-card { 
-            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 15px; padding: 20px; margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 20px; padding: 25px; margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+        .glass-card:hover { 
+            border-color: var(--neon); transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
         }
 
-        h2, h3 { font-family: 'Orbitron'; color: var(--neon); text-transform: uppercase; margin-top: 0; }
-        .gold-text { color: var(--gold); }
+        h2, h3 { 
+            font-family: 'Orbitron'; color: var(--neon); text-transform: uppercase; 
+            margin-top: 0; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
+        }
 
         /* PROGRESS BAR */
-        .progress-container { background: #111; height: 15px; border-radius: 10px; overflow: hidden; margin: 15px 0; border: 1px solid #333; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold), #ffaa00); width: 96.5%; box-shadow: 0 0 15px var(--gold); }
+        .progress-container { background: #000; height: 20px; border-radius: 30px; overflow: hidden; margin: 20px 0; border: 1px solid #222; padding: 3px; }
+        .progress-bar { 
+            height: 100%; background: linear-gradient(90deg, #ffcc00, #ffaa00, #ffcc00); 
+            width: 96.5%; border-radius: 30px; position: relative;
+            background-size: 200% 100%; animation: shine 2s linear infinite;
+            box-shadow: 0 0 20px var(--gold);
+        }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        /* PC SPECS TABLE */
-        .specs-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        .specs-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .specs-table td:first-child { color: var(--neon); font-weight: bold; width: 40%; }
-
-        /* TABS/CHIPS */
-        .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-        .chip { padding: 5px 12px; background: rgba(0,255,204,0.1); border: 1px solid var(--neon); border-radius: 20px; font-size: 0.8rem; }
+        /* SPECS TABLE */
+        .specs-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; }
+        .specs-table td { padding: 15px; border-bottom: 1px solid rgba(0, 255, 204, 0.1); }
+        .specs-table td:first-child { color: var(--neon); font-weight: 800; text-transform: uppercase; font-size: 0.75rem; }
 
         /* BUTTONS */
         .btn { 
-            display: inline-block; padding: 12px 25px; border: 2px solid var(--neon); 
+            display: inline-block; padding: 14px 30px; border: 2px solid var(--neon); 
             color: var(--neon); text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.8rem; border-radius: 5px; transition: 0.3s; background: transparent;
-            cursor: pointer; text-align: center;
+            font-weight: 700; font-size: 0.85rem; border-radius: 8px; transition: 0.3s; 
+            background: rgba(0, 255, 204, 0.05); cursor: pointer; text-align: center;
         }
-        .btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
+        .btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 30px var(--neon); transform: translateY(-3px); }
+        
+        .btn-gold { border-color: var(--gold); color: var(--gold); }
+        .btn-gold:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
 
-        /* MOBILE ADAPTATION */
-        @media (max-width: 1000px) {
-            .portal-grid { grid-template-columns: 1fr; }
-            nav { padding: 10px 20px; }
-            .logo { font-size: 1.2rem; }
+        /* CHIPS */
+        .chip { 
+            padding: 8px 16px; background: rgba(0, 255, 204, 0.1); border: 1px solid var(--neon); 
+            border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #fff;
+            transition: 0.3s;
         }
+        .chip:hover { background: var(--neon); color: #000; cursor: default; }
 
-        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: 1px solid #222; }
+        /* STATUS LIVE */
+        #status {
+            background: rgba(255, 0, 85, 0.1); border: 1px solid var(--danger);
+            padding: 5px 12px; border-radius: 5px; font-weight: 800; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        @media (max-width: 1100px) { .portal-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <nav>
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
-    <div style="display: flex; gap: 15px; align-items: center;">
-        <div id="status" style="color: var(--danger); font-size: 0.7rem; font-family: 'Orbitron';">● LIVE: 193 SUBS</div>
-        <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn" style="border-color: var(--gold); color: var(--gold);">ДОНАТ</a>
+    <div style="display: flex; gap: 20px; align-items: center;">
+        <div id="status">● LIVE: 193 SUBS</div>
+        <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn btn-gold">ПІДТРИМАТИ</a>
     </div>
 </nav>
 
 <div class="container">
     <div class="portal-grid">
         
-        <!-- MAIN COLUMN -->
         <main>
-            <!-- Прямий ефір -->
             <div class="glass-card">
-                <h2>● Пряма трансляція</h2>
-                <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
+                <h2><span style="color:var(--danger)">●</span> Прямий ефір</h2>
+                <div style="position:relative; padding-bottom:56.25%; height:0; border: 2px solid var(--neon); border-radius:15px; overflow:hidden;">
+                    <iframe 
+                        style="position:absolute; top:0; left:0; width:100%; height:100%;"
+                        src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
 
-            <!-- Шлях до мети -->
             <div class="glass-card">
-                <h3>Ціль: 200 Підписників</h3>
+                <h3>Шлях до мети: 200 Підписників</h3>
                 <div class="progress-container">
                     <div class="progress-bar"></div>
                 </div>
-                <p style="text-align: right; font-family: 'Orbitron'; font-size: 0.8rem;">193 / 200 (96%)</p>
-            </div>
-
-            <!-- Ігровий Ангар -->
-            <div class="glass-card">
-                <h3>🛡️ Мій Ангар (WOT)</h3>
-                <div class="chips">
-                    <div class="chip">BZ-176 (3 позначки)</div>
-                    <div class="chip">UDES 03</div>
-                    <div class="chip">BZT 70</div>
-                    <div class="chip">Натиск: Ранг Золото</div>
-                </div>
-                <h3 style="margin-top: 25px;">🏎️ Гараж (NFS)</h3>
-                <div class="chips">
-                    <div class="chip">BMW M3 GTR (Most Wanted)</div>
-                    <div class="chip">Skyline GT-R (U2)</div>
-                    <div class="chip">Pagani Zonda (Hot Pursuit)</div>
+                <div style="display:flex; justify-content:space-between; font-family:'Orbitron'; font-weight:bold;">
+                    <span style="color:var(--neon)">START: 0</span>
+                    <span style="color:var(--gold); font-size:1.2rem;">193 / 200</span>
                 </div>
             </div>
 
-            <!-- Популярні Відео -->
             <div class="glass-card">
-                <h3>🎬 Кращі моменти</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <iframe src="https://www.youtube.com/embed/5f_fiit1KV8" style="aspect-ratio: 16/9;"></iframe>
-                    <div style="display: flex; flex-direction: column; justify-content: center;">
-                        <p style="font-size: 0.9rem;">Дивіться мої останні Shorts та найкращі бої тижня!</p>
-                        <a href="https://www.youtube.com/@BlackCellUA" class="btn">ВСІ ВІДЕО</a>
+                <h3>🛡️ Улюблена техніка</h3>
+                <div style="display:flex; flex-direction:column; gap:20px;">
+                    <div>
+                        <p style="color:var(--gold); font-weight:800; margin-bottom:10px;">WORLD OF TANKS (EU):</p>
+                        <div class="chips" style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <div class="chip">BZ-176 [★★★]</div>
+                            <div class="chip">UDES 03</div>
+                            <div class="chip">BZ-70</div>
+                            <div class="chip" style="border-color:var(--gold); color:var(--gold);">RANK: GOLD</div>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color:var(--neon); font-weight:800; margin-bottom:10px;">NEED FOR SPEED SIM:</p>
+                        <div class="chips" style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <div class="chip">BMW M3 GTR (MW)</div>
+                            <div class="chip">SKYLINE R34 (U2)</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
 
-        <!-- SIDEBAR -->
         <aside>
-            <!-- Технічні характеристики -->
             <div class="glass-card">
-                <h3 class="gold-text">💻 Конфігурація ПК</h3>
+                <h3 style="color:var(--gold)">💻 Stream Setup</h3>
                 <table class="specs-table">
-                    <tr><td>Процесор</td><td>Xeon E3-1240</td></tr>
-                    <tr><td>Відеокарта</td><td>GTX 1050 Ti (4GB)</td></tr>
-                    <tr><td>ОЗП</td><td>16GB DDR3</td></tr>
-                    <tr><td>SSD</td><td>128GB Somnambulist</td></tr>
-                    <tr><td>Кодек</td><td>NVENC (VP9 Test)</td></tr>
+                    <tr><td>CPU</td><td>Xeon E3-1240</td></tr>
+                    <tr><td>GPU</td><td>GTX 1050 Ti 4GB</td></tr>
+                    <tr><td>RAM</td><td>16GB DDR3</td></tr>
+                    <tr><td>DISK</td><td>128GB SSD</td></tr>
+                    <tr><td>CODEC</td><td>NVENC (VP9)</td></tr>
                 </table>
+                <div style="margin-top:20px; font-size:0.8rem; opacity:0.7;">
+                    Оптимізовано для плавного стріму в 1080p.
+                </div>
             </div>
 
-            <!-- Челенджі -->
-            <div class="glass-card" style="border-left: 4px solid var(--danger);">
-                <h3>🎯 Челенджі</h3>
-                <ul style="list-style: none; padding: 0; font-size: 0.85rem; line-height: 2;">
-                    <li>✅ Call of Duty: MW III (Campaign)</li>
-                    <li>⏳ 3 позначки на BZ-176</li>
-                    <li>⏳ Пройти NFS Most Wanted 100%</li>
+            <div class="glass-card" style="border-left: 5px solid var(--danger);">
+                <h3>🎯 Активні цілі</h3>
+                <ul style="list-style:none; padding:0; line-height:2.2; font-weight:600;">
+                    <li style="color:var(--neon)">[✓] CoD: MW III Campaign</li>
+                    <li>[ ] 3 відмітки на BZ-176 (91%+)</li>
+                    <li>[ ] NFS Most Wanted 100%</li>
                 </ul>
             </div>
 
-            <!-- Голосування -->
             <div class="glass-card">
-                <h3 style="font-size: 1rem;">🗳️ Що стрімити далі?</h3>
-                <form style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-                    <label style="font-size: 0.8rem;"><input type="radio" name="vote"> World of Tanks (Натиск)</label>
-                    <label style="font-size: 0.8rem;"><input type="radio" name="vote"> NFS Underground 2</label>
-                    <label style="font-size: 0.8rem;"><input type="radio" name="vote"> Call of Duty</label>
-                    <button type="button" class="btn" style="margin-top: 5px;">ГОЛОСУВАТИ</button>
-                </form>
-            </div>
-
-            <!-- Контакти -->
-            <div class="glass-card">
-                <h3>🔗 Спільнота</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <a href="#" class="btn" style="font-size: 0.6rem;">TELEGRAM</a>
-                    <a href="#" class="btn" style="font-size: 0.6rem;">DISCORD</a>
+                <h3>🔗 Соцмережі</h3>
+                <div style="display:grid; grid-template-columns: 1fr; gap:12px;">
+                    <a href="https://www.youtube.com/@BlackCellUA" class="btn">YOUTUBE CHANNEL</a>
+                    <a href="#" class="btn" style="border-color:#5865F2; color:#5865F2;">DISCORD SERVER</a>
+                    <a href="#" class="btn" style="border-color:#24A1DE; color:#24A1DE;">TELEGRAM</a>
                 </div>
             </div>
         </aside>
@@ -188,17 +215,19 @@
     </div>
 </div>
 
-<footer style="text-align: center; padding: 50px; opacity: 0.4; font-size: 0.8rem; border-top: 1px solid #111;">
-    &copy; 2026 BlackCellUA. Стріми українською. Всі права захищені.
+<footer style="text-align:center; padding:60px 20px; background:rgba(0,0,0,0.5); margin-top:50px;">
+    <div style="font-family:'Orbitron'; color:var(--neon); margin-bottom:15px;">BLACKCELLUA PORTAL v2.0</div>
+    <div style="opacity:0.5; font-size:0.8rem;">
+        &copy; 2026. Створено для найкращого ком'юніті. Стрімлю на Xeon & GTX 1050 Ti.
+    </div>
 </footer>
 
 <script>
-    // Імітація оновлення статусу
+    // Динамічний лічильник глядачів
     setInterval(() => {
-        const subs = 193; 
-        const online = Math.floor(Math.random() * 15) + 5;
-        document.getElementById('status').innerText = `● LIVE: ${online} ГЛЯДАЧІВ | ${subs} SUBS`;
-    }, 4000);
+        const online = Math.floor(Math.random() * 12) + 8;
+        document.getElementById('status').innerText = `● LIVE: ${online} ГЛЯДАЧІВ | 193 SUBS`;
+    }, 5000);
 </script>
 
 </body>
