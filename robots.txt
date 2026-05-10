@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://sky-monitor.fun/sitemap.xml
+Sitemap: https://social-up.pp.ua/sitemap.xml
