@@ -163,7 +163,7 @@
             const res = await fetch(RSS);
             const data = await res.json();
             if (data.status === 'ok') {
-                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
+                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 15).map(v => `
                     <div class="game-card" style="padding:5px;">
                         <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:8px;" loading="lazy"></iframe>
                         <p style="font-size:0.7rem; margin-top:5px; height:30px; overflow:hidden;">${v.title}</p>
