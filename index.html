@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>BlackCellUA | Стріми World of Tanks та NFS Українською 🔥</title>
-    <meta name="description" content="Дивись прямі трансляції WOT та NFS на порталі BlackCellUA. Топові стріми українською, технічні огляди та Shorts. Залізо: Xeon E3-1240, GTX 1050 Ti.">
+    <meta name="description" content="Офіційний ігровий портал BlackCellUA. Прямі трансляції WOT та NFS українською мовою. Технічні огляди заліза: Xeon E3-1240 та GTX 1050 Ti.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, NFS стрім, танки українською, Xeon E3-1240, GTX 1050 Ti, ігровий портал, En0T1k_UA">
     <meta name="author" content="BlackCellUA">
-    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://social-up.pp.ua">
 
     <meta property="og:title" content="BlackCellUA — Твій вогняний ігровий портал">
-    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української ігрової спільноти!">
+    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української спільноти!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://social-up.pp.ua">
     <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
-    <meta property="og:site_name" content="BlackCellUA Portal">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BlackCellUA | Live Streams">
-    <meta name="twitter:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
+    <meta property="og:site_name" content="BlackCellUA">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -28,28 +24,16 @@
         
         :root { 
             --neon: #ff4d00; 
+            --bg: radial-gradient(circle at center, #101010 0%, #000000 100%); 
             --text: #ffffff; 
-            --fire: #ff8c00;
-            --blue-fire: #00d4ff;
         }
-
+        
         body { 
             margin: 0; 
-            background: url('Screenshot_7.png') no-repeat center center fixed;
-            background-size: cover;
-            background-color: #050505; 
+            background: var(--bg); 
             color: var(--text); 
             font-family: 'Exo 2', sans-serif; 
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-            z-index: -1;
         }
 
         nav { 
@@ -57,12 +41,12 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 10px 5%; 
-            background: rgba(0, 0, 0, 0.9); 
+            background: rgba(0,0,0,0.9); 
             border-bottom: 2px solid var(--neon); 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 0 25px rgba(255, 77, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 77, 0, 0.3);
         }
 
         .logo { 
@@ -70,14 +54,14 @@
             font-size: 1.5rem; 
             color: var(--neon); 
             text-decoration: none; 
-            text-shadow: 0 0 15px var(--fire); 
+            text-shadow: 0 0 10px var(--neon); 
         }
 
         .main-layout { 
             display: grid; 
-            grid-template-columns: 1fr 340px; 
-            gap: 25px; 
-            max-width: 1440px; 
+            grid-template-columns: 1fr 320px; 
+            gap: 20px; 
+            max-width: 1400px; 
             margin: 20px auto; 
             padding: 0 15px; 
         }
@@ -90,150 +74,109 @@
             overflow: hidden; 
             border: 2px solid var(--neon); 
             background: #000; 
-            box-shadow: 0 0 50px rgba(255, 77, 0, 0.4); 
+            box-shadow: 0 0 30px rgba(255, 77, 0, 0.2);
         }
+
+        iframe { width: 100%; height: 100%; border: none; }
 
         .section-title { 
             font-family: 'Orbitron'; 
-            color: var(--fire); 
-            font-size: 1.2rem; 
+            color: var(--neon); 
+            font-size: 1.1rem; 
             margin: 30px 0 20px; 
             display: flex; 
             align-items: center; 
-            gap: 12px;
-            text-shadow: 0 0 10px rgba(255, 77, 0, 0.6);
+            gap: 10px;
+            text-shadow: 0 0 5px var(--neon);
             text-transform: uppercase;
         }
 
         #video-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 15px; 
         }
 
         .v-card { 
-            background: rgba(20, 20, 20, 0.85); 
-            padding: 12px; 
+            background: rgba(255,255,255,0.03); 
+            padding: 10px; 
             border-radius: 12px; 
-            border: 1px solid rgba(255, 77, 0, 0.2); 
-            transition: 0.4s; 
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 77, 0, 0.1); 
+            transition: 0.3s;
         }
 
         .v-card:hover { 
             border-color: var(--neon); 
-            transform: translateY(-8px); 
-            box-shadow: 0 10px 30px rgba(255, 77, 0, 0.4); 
+            transform: translateY(-5px); 
         }
-
-        .shorts-container { display: flex; flex-direction: column; gap: 20px; }
 
         .glass-panel { 
-            background: rgba(15, 15, 15, 0.9); 
-            border: 1px solid rgba(255, 77, 0, 0.3); 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
             border-radius: 15px; 
-            padding: 15px; 
-            backdrop-filter: blur(15px);
-        }
-
-        .short-wrapper {
-            width: 100%; aspect-ratio: 9/16; 
-            border-radius: 12px; overflow: hidden; 
-            border: 2px solid var(--fire);
+            padding: 20px; 
+            margin-bottom: 20px; 
         }
 
         .btn-donate { 
-            display: block; width: 100%; padding: 15px; 
-            background: linear-gradient(45deg, #ff4d00, #ff8c00); 
-            color: #000; text-align: center; text-decoration: none; 
-            font-family: 'Orbitron'; font-weight: 700; border-radius: 10px; 
-            transition: 0.3s; text-transform: uppercase;
+            display: block; 
+            width: 100%; 
+            padding: 12px; 
+            background: var(--neon); 
+            color: #000; 
+            text-align: center; 
+            text-decoration: none; 
+            font-family: 'Orbitron'; 
+            font-weight: bold; 
+            border-radius: 8px; 
+            transition: 0.3s;
         }
 
-        #ash-particles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999;
-        }
-
-        @media (max-width: 950px) { .main-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<div id="ash-particles"></div>
-
 <nav>
     <a href="/" class="logo">BLACKCELLUA</a>
-    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.8rem; border:2px solid var(--neon); padding:6px 15px; border-radius:20px;">LIVE FEED</div>
+    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; border:1px solid var(--neon); padding:5px 12px; border-radius:20px;">SYSTEM: ONLINE</div>
 </nav>
 
 <div class="main-layout">
     <main class="content">
-        <div class="player-viewport" itemscope itemtype="http://schema.org/VideoObject">
-            <iframe id="main-player" src="" title="BlackCellUA Player" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <meta itemprop="name" content="BlackCellUA Live Stream">
-            <meta itemprop="description" content="Пряма трансляція ігрового процесу World of Tanks та NFS">
+        <section class="player-viewport" itemscope itemtype="http://schema.org/VideoObject">
+            <iframe id="main-player" src="" title="BlackCellUA Live Stream" allowfullscreen></iframe>
+            <meta itemprop="name" content="BlackCellUA Live Feed">
+            <meta itemprop="description" content="Прямий ефір ігрового процесу World of Tanks та NFS українською.">
             <meta itemprop="thumbnailUrl" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
-            <meta itemprop="uploadDate" content="2026-05-10">
-        </div>
+        </section>
 
-        <h2 class="section-title"><i class="fa-solid fa-fire-flame-curved"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
-        <div id="video-grid">Завантаження...</div>
+        <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
+        <div id="video-grid">Завантаження стрімів...</div>
     </main>
 
-    <aside class="shorts-container">
+    <aside>
         <section class="glass-panel">
             <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #1</h3>
-            <div class="short-wrapper">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen title="Short 1"></iframe>
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" title="Short 1" allowfullscreen></iframe>
             </div>
         </section>
 
         <section class="glass-panel">
             <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #2</h3>
-            <div class="short-wrapper">
-                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" allowfullscreen title="Short 2"></iframe>
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" title="Short 2" allowfullscreen></iframe>
             </div>
         </section>
 
-        <section class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem; margin-top: 0;"><i class="fa-solid fa-bolt"></i> HOT SHORT #3</h3>
-            <div class="short-wrapper">
-                <iframe src="https://www.youtube.com/embed/m9lEIIB4nPA" allowfullscreen title="Short 3"></iframe>
-            </div>
-        </section>
-        
         <div class="glass-panel">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate" rel="noopener">ПІДТРИМАТИ КАНАЛ</a>
+            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
         </div>
     </aside>
 </div>
 
 <script>
-    function createFireDust() {
-        const container = document.getElementById('ash-particles');
-        const particle = document.createElement('div');
-        const colors = ['#ff4d00', '#ff8c00', '#ffcc00', '#00d4ff'];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const size = Math.random() * 4 + 2 + 'px';
-        particle.style.position = 'absolute';
-        particle.style.background = color;
-        particle.style.width = size; particle.style.height = size;
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = '-20px'; particle.style.borderRadius = '50%';
-        particle.style.filter = 'blur(1px)';
-        particle.style.boxShadow = `0 0 10px ${color}`;
-        particle.style.opacity = Math.random();
-        container.appendChild(particle);
-        const duration = Math.random() * 3000 + 3000;
-        const animation = particle.animate([
-            { transform: 'translate(0, 0) scale(1)', opacity: 0.8 },
-            { transform: `translate(${Math.random() * 200 - 100}px, 100vh) scale(0)`, opacity: 0 }
-        ], { duration: duration, easing: 'linear' });
-        animation.onfinish = () => particle.remove();
-    }
-    setInterval(createFireDust, 80);
-
     async function loadYouTubeData() {
         const grid = document.getElementById('video-grid');
         const mainPlayer = document.getElementById('main-player');
@@ -245,16 +188,16 @@
             const response = await fetch(apiFetch);
             const data = await response.json();
             if (data.status === 'ok' && data.items.length > 0) {
-                const latestId = data.items[0].link.split('v=')[1]?.split('&')[0] || data.items[0].guid.split(':').pop();
-                mainPlayer.src = `https://www.youtube.com/embed/${latestId}?autoplay=1&mute=1&rel=0`;
+                const latestId = data.items[0].link.split('v=')[1].split('&')[0];
+                mainPlayer.src = `https://www.youtube.com/embed/${latestId}?autoplay=1&mute=1`;
                 let html = '';
-                data.items.forEach((item) => {
+                data.items.forEach(item => {
                     let vId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split(':').pop();
                     if (vId) {
                         html += `
                         <article class="v-card" itemscope itemtype="http://schema.org/VideoObject">
-                            <iframe src="https://www.youtube.com/embed/${vId}" title="${item.title}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px; border:none;"></iframe>
-                            <p itemprop="name" style="font-size:0.85rem; margin-top:12px; font-weight:700; line-height:1.4;">${item.title}</p>
+                            <iframe src="https://www.youtube.com/embed/${vId}" title="${item.title}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                            <p itemprop="name" style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:#fff;">${item.title}</p>
                         </article>`;
                     }
                 });
