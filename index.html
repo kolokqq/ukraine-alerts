@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks та NFS Українською</title>
-    <meta name="description" content="Офіційний ігровий портал BlackCellUA. Дивись прямі трансляції WOT, NFS та технічні гайди українською. Стріми на Xeon E3-1240 та GTX 1050 Ti.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks, WOT UA, NFS стрім, Xeon E3-1240, GTX 1050 Ti, ігровий портал, танки українською, En0T1k_UA">
+    <title>BlackCellUA | Стріми World of Tanks  Українською 🔥</title>
+    <meta name="description" content="Дивись прямі трансляції WOT та NFS на порталі BlackCellUA. Топові стріми українською, технічні огляди та Shorts. Залізо: Xeon E3-1240, GTX 1050 Ti.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, NFS стрім, танки українською, Xeon E3-1240, GTX 1050 Ti, ігровий портал, En0T1k_UA">
     <meta name="author" content="BlackCellUA">
-    <link rel="canonical" href="https://social-up.pp.ua"> <meta property="og:title" content="BlackCellUA — Твій ігровий простір">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="BlackCellUA — Твій вогняний ігровий портал">
     <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української ігрової спільноти!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://social-up.pp.ua">
-    <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
+    <meta property="og:site_name" content="BlackCellUA Portal">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BlackCellUA | Live Streams">
+    <meta name="twitter:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
@@ -21,6 +30,7 @@
             --neon: #ff4d00; 
             --text: #ffffff; 
             --fire: #ff8c00;
+            --blue-fire: #00d4ff;
         }
 
         body { 
@@ -37,7 +47,7 @@
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             pointer-events: none;
             z-index: -1;
         }
@@ -65,9 +75,9 @@
 
         .main-layout { 
             display: grid; 
-            grid-template-columns: 1fr 320px; 
-            gap: 20px; 
-            max-width: 1400px; 
+            grid-template-columns: 1fr 340px; 
+            gap: 25px; 
+            max-width: 1440px; 
             margin: 20px auto; 
             padding: 0 15px; 
         }
@@ -80,72 +90,72 @@
             overflow: hidden; 
             border: 2px solid var(--neon); 
             background: #000; 
-            box-shadow: 0 0 40px rgba(255, 77, 0, 0.3); 
+            box-shadow: 0 0 50px rgba(255, 77, 0, 0.4); 
         }
 
         .section-title { 
             font-family: 'Orbitron'; 
             color: var(--fire); 
-            font-size: 1.1rem; 
+            font-size: 1.2rem; 
             margin: 30px 0 20px; 
             display: flex; 
             align-items: center; 
-            gap: 10px;
-            text-shadow: 0 0 10px rgba(255, 77, 0, 0.5);
+            gap: 12px;
+            text-shadow: 0 0 10px rgba(255, 77, 0, 0.6);
+            text-transform: uppercase;
         }
 
         #video-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 15px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
         }
 
         .v-card { 
-            background: rgba(20, 20, 20, 0.8); 
-            padding: 10px; 
+            background: rgba(20, 20, 20, 0.85); 
+            padding: 12px; 
             border-radius: 12px; 
             border: 1px solid rgba(255, 77, 0, 0.2); 
-            transition: 0.3s; 
-            backdrop-filter: blur(8px);
+            transition: 0.4s; 
+            backdrop-filter: blur(10px);
         }
 
         .v-card:hover { 
             border-color: var(--neon); 
-            transform: translateY(-5px); 
-            box-shadow: 0 5px 25px rgba(255, 77, 0, 0.4); 
+            transform: translateY(-8px); 
+            box-shadow: 0 10px 30px rgba(255, 77, 0, 0.4); 
         }
 
+        .shorts-container { display: flex; flex-direction: column; gap: 20px; }
+
         .glass-panel { 
-            background: rgba(15, 15, 15, 0.85); 
-            border: 1px solid rgba(255, 77, 0, 0.2); 
+            background: rgba(15, 15, 15, 0.9); 
+            border: 1px solid rgba(255, 77, 0, 0.3); 
             border-radius: 15px; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            backdrop-filter: blur(10px);
+            padding: 15px; 
+            backdrop-filter: blur(15px);
+        }
+
+        .short-wrapper {
+            width: 100%; aspect-ratio: 9/16; 
+            border-radius: 12px; overflow: hidden; 
+            border: 2px solid var(--fire);
         }
 
         .btn-donate { 
-            display: block; 
-            width: 100%; 
-            padding: 12px; 
+            display: block; width: 100%; padding: 15px; 
             background: linear-gradient(45deg, #ff4d00, #ff8c00); 
-            color: #000; 
-            text-align: center; 
-            text-decoration: none; 
-            font-family: 'Orbitron'; 
-            font-weight: bold; 
-            border-radius: 8px; 
-            transition: 0.3s; 
+            color: #000; text-align: center; text-decoration: none; 
+            font-family: 'Orbitron'; font-weight: 700; border-radius: 10px; 
+            transition: 0.3s; text-transform: uppercase;
         }
 
         #ash-particles {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999;
         }
 
-        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 950px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -153,103 +163,14 @@
 <div id="ash-particles"></div>
 
 <nav>
-    <a href="#" class="logo">BLACKCELLUA</a>
-    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; border:1px solid var(--neon); padding:5px 12px; border-radius:20px;">LIVE FEED</div>
+    <a href="/" class="logo">BLACKCELLUA</a>
+    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.8rem; border:2px solid var(--neon); padding:6px 15px; border-radius:20px;">LIVE FEED</div>
 </nav>
 
 <div class="main-layout">
     <main class="content">
-        <div class="player-viewport">
-            <iframe id="main-player" src="" title="BlackCellUA Live Stream" allowfullscreen></iframe>
-        </div>
-
-        <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
-        <div id="video-grid">Завантаження...</div>
-    </main>
-
-    <aside>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #1</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" title="Shorts 1" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #2</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" title="Shorts 2" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #3</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/m9lEIIB4nPA" title="Shorts 3" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #4</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/vNDuWb1zZ_k" title="Shorts 4" allowfullscreen></iframe>
-            </div>
-        </div>
-        
-        <div class="glass-panel">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate" rel="noopener">ПІДТРИМАТИ</a>
-        </div>
-    </aside>
-</div>
-
-<script>
-    function createAsh() {
-        const container = document.getElementById('ash-particles');
-        const particle = document.createElement('div');
-        const size = Math.random() * 3 + 'px';
-        particle.style.position = 'absolute';
-        particle.style.background = 'rgba(255, 255, 255, 0.5)';
-        particle.style.width = size; particle.style.height = size;
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = '-10px'; particle.style.borderRadius = '50%';
-        particle.style.opacity = Math.random();
-        container.appendChild(particle);
-        const animation = particle.animate([
-            { transform: `translate(0, 0)`, opacity: 0.8 },
-            { transform: `translate(${Math.random() * 100 - 50}px, 100vh)`, opacity: 0 }
-        ], { duration: Math.random() * 3000 + 4000, easing: 'linear' });
-        animation.onfinish = () => particle.remove();
-    }
-    setInterval(createAsh, 100);
-
-    async function loadYouTubeData() {
-        const grid = document.getElementById('video-grid');
-        const mainPlayer = document.getElementById('main-player');
-        const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
-
-        try {
-            const response = await fetch(apiFetch);
-            const data = await response.json();
-            if (data.status === 'ok' && data.items.length > 0) {
-                const latestId = data.items[0].link.split('v=')[1].split('&')[0];
-                mainPlayer.src = `https://www.youtube.com/embed/${latestId}?autoplay=1&mute=1`;
-                let html = '';
-                data.items.forEach(item => {
-                    let videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split(':').pop();
-                    if (videoId) {
-                        html += `<article class="v-card">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" title="${item.title}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                            <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:#fff;">${item.title}</p>
-                        </article>`;
-                    }
-                });
-                grid.innerHTML = html;
-            }
-        } catch (e) { grid.innerHTML = "<p>Помилка завантаження контенту.</p>"; }
-    }
-    window.onload = loadYouTubeData;
-</script>
-</body>
-</html>
+        <div class="player-viewport" itemscope itemtype="http://schema.org/VideoObject">
+            <iframe id="main-player" src="" title="BlackCellUA Player" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <meta itemprop="name" content="BlackCellUA Live Stream">
+            <meta itemprop="description" content="Пряма трансляція ігрового процесу World of Tanks">
+            <meta itemprop="thumbnailUrl" content="
