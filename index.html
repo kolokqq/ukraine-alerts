@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks та NFS Українською 🔥</title>
-    <meta name="description" content="Ігровий портал BlackCellUA. Дивись прямі трансляції WOT та NFS українською. Shorts, огляди заліза Xeon E3-1240 та GTX 1050 Ti.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, NFS стрім, танки українською, Xeon E3-1240, GTX 1050 Ti, ігровий портал">
-    <meta name="author" content="BlackCellUA">
-
+    <title>BlackCellUA | Стріми World of Tanks та NFS 🔥</title>
+    <meta name="description" content="Ігровий портал BlackCellUA. Стріми WOT та NFS українською.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, WOT UA, NFS, Xeon E3-1240, GTX 1050 Ti">
     <meta property="og:title" content="BlackCellUA — Твій ігровий портал">
-    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української спільноти!">
-    <meta property="og:type" content="website">
     <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
-    <meta property="og:site_name" content="BlackCellUA">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -21,11 +16,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #ff4d00; /* Оригінальний помаранчевий зі скріншоту */
-            --bg: #000000; 
-            --panel: rgba(15, 15, 15, 0.95);
+            --neon: #ff4d00; /* Твій помаранчевий неон */
+            --bg: #000000; /* ТІЛЬКИ ЧИСТИЙ ЧОРНИЙ */
         }
-
+        
         body { 
             margin: 0; 
             background-color: var(--bg); 
@@ -33,13 +27,11 @@
             font-family: 'Exo 2', sans-serif; 
         }
 
-        /* Навігація як на скріншоті 8 */
         nav { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 12px 30px; 
-            background: #000; 
+            padding: 10px 30px; 
             border-bottom: 1px solid var(--neon); 
         }
 
@@ -47,97 +39,68 @@
             font-family: 'Orbitron'; 
             color: var(--neon); 
             text-decoration: none; 
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .live-tag {
-            color: var(--neon);
-            font-family: 'Orbitron';
-            font-size: 0.65rem;
-            border: 1px solid var(--neon);
-            padding: 4px 12px;
-            border-radius: 20px;
+            font-size: 1.2rem;
             text-transform: uppercase;
         }
 
         .main-layout { 
             display: grid; 
             grid-template-columns: 1fr 310px; 
-            gap: 25px; 
+            gap: 20px; 
             max-width: 1500px; 
             margin: 20px auto; 
             padding: 0 20px; 
         }
 
-        /* Контейнер головного плеєра з помаранчевою рамкою */
-        .player-box {
+        /* Рамка плеєра точно як на Screenshot_8 */
+        .main-frame {
             border: 2px solid var(--neon);
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 10px;
             aspect-ratio: 16/9;
+            overflow: hidden;
             background: #000;
-            box-shadow: 0 0 15px rgba(255, 77, 0, 0.1);
         }
 
         iframe { width: 100%; height: 100%; border: none; }
 
-        .header-text {
+        .section-label {
             font-family: 'Orbitron';
             color: var(--neon);
-            font-size: 1rem;
-            margin: 30px 0 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.9rem;
+            margin: 25px 0 15px;
             text-transform: uppercase;
         }
 
-        /* Сітка відео знизу */
-        .video-grid { 
+        .video-list { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 15px; 
         }
 
-        .v-card { 
-            background: var(--panel); 
-            border: 1px solid rgba(255, 77, 0, 0.15);
-            border-radius: 10px;
-            padding: 8px;
-            transition: 0.3s;
+        .v-item { 
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            border-radius: 8px;
+            padding: 5px;
         }
 
-        .v-card:hover { border-color: var(--neon); }
-
-        /* Бокова панель Shorts */
-        .side-bar { display: flex; flex-direction: column; gap: 20px; }
+        /* Блок Shorts справа як у макеті */
+        .shorts-sidebar { display: flex; flex-direction: column; gap: 15px; }
 
         .short-card {
             border: 1px solid var(--neon);
-            border-radius: 12px;
-            padding: 12px;
-            background: rgba(5, 5, 5, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            background: #000;
         }
 
-        .short-label {
-            font-family: 'Orbitron';
-            font-size: 0.75rem;
-            color: var(--neon);
-            margin-bottom: 12px;
-            display: block;
-            text-transform: uppercase;
-        }
-
-        .short-box {
+        .short-video {
             width: 100%;
             aspect-ratio: 9/16;
-            border-radius: 8px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 950px) {
             .main-layout { grid-template-columns: 1fr; }
         }
     </style>
@@ -146,75 +109,56 @@
 
 <nav>
     <a href="/" class="logo">BLACKCELLUA</a>
-    <div class="live-tag">LIVE FEED</div>
+    <div style="color:var(--neon); border:1px solid var(--neon); padding:3px 10px; border-radius:15px; font-size:0.7rem; font-family:'Orbitron';">LIVE FEED</div>
 </nav>
 
 <div class="main-layout">
     <main>
-        <section class="player-box" itemscope itemtype="http://schema.org/VideoObject">
-            <iframe id="main-player" src="https://www.youtube.com/embed/xC29GvadLBs" title="BlackCellUA Live Stream" allowfullscreen></iframe>
-            <meta itemprop="name" content="BlackCellUA Live Stream">
-            <meta itemprop="description" content="Пряма трансляція World of Tanks та NFS українською.">
-            <meta itemprop="thumbnailUrl" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
-        </section>
+        <div class="main-frame">
+            <iframe id="main-player" src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
+        </div>
 
-        <h2 class="header-text"><i class="fa-solid fa-fire-flame-curved"></i> Останні трансляції</h2>
-        
-        <div class="video-grid" id="youtube-grid">
-            <div class="v-card">Завантаження контенту...</div>
+        <div class="section-label">ОСТАННІ ТРАНСЛЯЦІЇ</div>
+        <div class="video-list" id="feed">
+            <div class="v-item">Оновлення...</div>
         </div>
     </main>
 
-    <aside class="side-bar">
+    <aside class="shorts-sidebar">
         <div class="short-card">
-            <span class="short-label"><i class="fa-solid fa-bolt"></i> SHORTS #1</span>
-            <div class="short-box">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" title="Short 1" allowfullscreen></iframe>
+            <span style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; display:block; margin-bottom:10px;">⚡ SHORTS #1</span>
+            <div class="short-video">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
-
         <div class="short-card">
-            <span class="short-label"><i class="fa-solid fa-bolt"></i> SHORTS #2</span>
-            <div class="short-box">
-                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" title="Short 2" allowfullscreen></iframe>
+            <span style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; display:block; margin-bottom:10px;">⚡ SHORTS #2</span>
+            <div class="short-video">
+                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" allowfullscreen></iframe>
             </div>
         </div>
-
-        <a href="https://skif.donatik.ua" target="_blank" style="text-decoration:none;">
-            <div style="background:var(--neon); color:#000; text-align:center; padding:15px; font-family:'Orbitron'; font-weight:bold; border-radius:10px; text-transform:uppercase;">
-                Підтримати канал
-            </div>
-        </a>
     </aside>
 </div>
 
 <script>
-    async function fetchVideos() {
-        const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-        const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
-        const feedUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
-        
+    async function load() {
+        const cid = 'UC29hev1ElIOHYG9oFm9dieQ';
+        const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + cid)}`;
         try {
-            const res = await fetch(proxyUrl + feedUrl);
-            const data = await res.json();
-            if(data.status === 'ok') {
-                const grid = document.getElementById('youtube-grid');
-                grid.innerHTML = '';
-                
-                data.items.forEach(item => {
-                    const vidId = item.link.split('v=')[1];
-                    grid.innerHTML += `
-                        <article class="v-card" itemscope itemtype="http://schema.org/VideoObject">
-                            <iframe src="https://www.youtube.com/embed/${vidId}" title="${item.title}" style="aspect-ratio:16/9; border-radius:5px;"></iframe>
-                            <p itemprop="name" style="font-size:0.8rem; margin:10px 5px; font-weight:bold; line-height:1.4;">${item.title}</p>
-                        </article>
-                    `;
+            const r = await fetch(url);
+            const d = await r.json();
+            if(d.status === 'ok') {
+                const f = document.getElementById('feed');
+                f.innerHTML = '';
+                d.items.forEach(i => {
+                    const id = i.link.split('v=')[1];
+                    // БЕЗ АВТОЗАПУСКУ В СІТЦІ
+                    f.innerHTML += `<div class="v-item"><iframe src="https://www.youtube.com/embed/${id}" style="aspect-ratio:16/9; border-radius:5px;"></iframe></div>`;
                 });
             }
-        } catch(e) { console.error("YouTube Load Error"); }
+        } catch(e) {}
     }
-    window.onload = fetchVideos;
+    window.onload = load;
 </script>
-
 </body>
 </html>
