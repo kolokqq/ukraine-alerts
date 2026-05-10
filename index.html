@@ -14,39 +14,42 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { --neon: #00ffcc; --red: #ff4444; --bg: #020617; --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
         
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.9); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
         
-        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; display: flex; align-items: center; gap: 8px; border: 1px solid var(--red); color: var(--red); transition: 0.3s; }
+        /* СТАТУС ТА ОНЛАЙН */
+        .status-container { display: flex; align-items: center; gap: 15px; }
+        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; display: flex; align-items: center; gap: 8px; border: 1px solid var(--red); color: var(--red); }
         .online { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 10px var(--neon); }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
         .online .dot { animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* ОНЛАЙН ЛІЧИЛЬНИК */
-        .viewer-count { font-size: 0.8rem; font-family: 'Orbitron'; color: var(--neon); margin-left: 10px; display: none; }
-        .online .viewer-count { display: inline; }
+        .viewer-count { font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); display: none; align-items: center; gap: 5px; }
+        .online + .viewer-count { display: flex; }
 
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; flex: 1; }
+        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
+        
         .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 1px solid rgba(0, 255, 204, 0.2); background: #000; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
+        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 20px; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
 
-        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
-        .game-card { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 10px; border: 1px solid transparent; transition: 0.3s; }
-        .game-card:hover { border-color: var(--neon); transform: translateY(-3px); }
-        .game-card p { font-size: 0.75rem; margin-top: 8px; height: 32px; overflow: hidden; }
-        
-        .shorts-container { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); }
-        .spec-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 20px; }
+        .game-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid transparent; transition: 0.3s; }
+        .game-card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        .game-card p { font-size: 0.8rem; margin: 10px 0 0; line-height: 1.4; height: 2.8em; overflow: hidden; }
 
-        /* ФУТЕР - АВТОРСЬКІ ПРАВА */
-        footer { padding: 30px 5%; background: rgba(0,0,0,0.9); border-top: 1px solid rgba(0, 255, 204, 0.2); text-align: center; margin-top: 40px; }
-        .copyright { font-size: 0.8rem; opacity: 0.6; font-family: 'Orbitron'; letter-spacing: 1px; }
+        .shorts-container { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 1px solid var(--neon); }
+        .spec-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+
+        /* АВТОРСЬКІ ПРАВА */
+        footer { background: rgba(0,0,0,0.8); padding: 20px; text-align: center; border-top: 1px solid rgba(0, 255, 204, 0.1); margin-top: 50px; }
+        .copyright { font-family: 'Orbitron'; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
         .copyright span { color: var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
@@ -56,20 +59,24 @@
 
 <nav>
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
-    <div id="stream-status" class="status-badge">
-        <span class="dot"></span> 
-        <span id="status-text">ОЧІКУВАННЯ</span>
-        <span class="viewer-count"><i class="fa-solid fa-eye"></i> <span id="live-viewers">0</span></span>
+    <div class="status-container">
+        <div id="stream-status" class="status-badge">
+            <span class="dot"></span> <span id="status-text">OFFLINE</span>
+        </div>
+        <div class="viewer-count">
+            <i class="fa-solid fa-eye"></i> <span id="live-viewers">0</span>
+        </div>
     </div>
 </nav>
 
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
+            <iframe id="main-stream" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
         </div>
+        
         <h2 class="section-title" style="margin-top:30px;"><i class="fa-solid fa-video"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid">Завантаження...</div>
+        <div id="popular-grid">Завантаження контенту...</div>
     </div>
 
     <aside class="sidebar">
@@ -81,7 +88,7 @@
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-bolt"></i> КРАЩІ МОМЕНТИ</h3>
+            <h3 class="section-title"><i class="fa-solid fa-fire"></i> КРАЩІ МОМЕНТИ</h3>
             <div class="shorts-container">
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
@@ -90,27 +97,27 @@
         <div class="glass-panel">
             <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> МОЇ ІГРИ</h3>
             <div class="spec-item"><span>World of Tanks</span> <i class="fa-solid fa-shield-tank"></i></div>
+            <div class="spec-item"><span>Need For Speed</span> <i class="fa-solid fa-car"></i></div>
         </div>
 
         <div class="glass-panel">
             <h3 class="section-title"><i class="fa-solid fa-microchip"></i> ЗАЛІЗО</h3>
             <div class="spec-item"><span>CPU:</span> <span>Xeon E3-1240</span></div>
             <div class="spec-item"><span>GPU:</span> <span>GTX 1050 Ti</span></div>
-            <div class="spec-item"><span>RAM:</span> <span>16GB DDR3</span></div>
         </div>
 
         <div class="glass-panel">
             <h3 class="section-title"><i class="fa-solid fa-link"></i> КОНТАКТИ</h3>
             <a href="https://t.me/blackcellua" target="_blank" style="color:var(--neon); text-decoration:none; display:block; margin-bottom:10px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-            <a href="https://social-up.pp.ua" style="color:var(--neon); text-decoration:none; display:block;"><i class="fa-solid fa-globe"></i> Website</a>
+            <a href="https://social-up.pp.ua" style="color:var(--neon); text-decoration:none; display:block;"><i class="fa-solid fa-globe"></i> Веб-сайт</a>
         </div>
     </aside>
 </div>
 
 <footer>
     <div class="copyright">
-        © 2026 <span>BlackCellUA</span>. Всі права захищені. <br>
-        <small style="opacity: 0.5; font-size: 0.6rem;">Контент створено для української ігрової спільноти.</small>
+        © 2026 <span>BlackCellUA</span>. Всі права захищені.
+        <br><small style="opacity:0.4">Контент для української ігрової спільноти</small>
     </div>
 </footer>
 
@@ -121,28 +128,31 @@
         const grid = document.getElementById('popular-grid');
         const badge = document.getElementById('stream-status');
         const statusText = document.getElementById('status-text');
-        const viewersCount = document.getElementById('live-viewers');
+        const viewers = document.getElementById('live-viewers');
 
         try {
             const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`);
             const data = await res.json();
             
             if (data.status === 'ok') {
-                grid.innerHTML = data.items.slice(0, 25).map(v => `
-                    <div class="game-card">
-                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" loading="lazy"></iframe>
-                        <p>${v.title}</p>
-                    </div>
-                `).join('');
+                // Відображаємо відео
+                grid.innerHTML = data.items.slice(0, 25).map(v => {
+                    const videoId = v.link.split('v=')[1];
+                    return `
+                        <div class="game-card">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" loading="lazy"></iframe>
+                            <p>${v.title}</p>
+                        </div>
+                    `;
+                }).join('');
 
-                // Логіка статусу та лічильника
-                // Примітка: Точний онлайн без API Key отримати важко, 
-                // тому скрипт перевіряє мітку LIVE у назві останнього відео.
-                if (data.items[0].title.toLowerCase().includes('live')) {
+                // Логіка перевірки онлайну
+                const isLive = data.items[0].title.toLowerCase().includes('live');
+                if (isLive) {
                     badge.classList.add('online');
                     statusText.innerText = 'В ЕФІРІ';
-                    // Емуляція лічильника (або можна додати запит до стороннього сервісу)
-                    viewersCount.innerText = Math.floor(Math.random() * (50 - 5 + 1)) + 5; 
+                    // Випадкове число глядачів для вигляду (або залиш 0)
+                    viewers.innerText = Math.floor(Math.random() * 40) + 10;
                 } else {
                     badge.classList.remove('online');
                     statusText.innerText = 'OFFLINE';
@@ -154,7 +164,8 @@
     }
 
     loadContent();
-    setInterval(loadContent, 300000);
+    setInterval(loadContent, 300000); // Оновлювати раз на 5 хв
 </script>
+
 </body>
 </html>
