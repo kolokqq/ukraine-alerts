@@ -6,7 +6,7 @@
     
     <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
     <meta name="description" content="Офіційний сайт BlackCellUA. Прямі трансляції WOT, NFS та технічні гайди українською мовою. Дивись стріми, Shorts та найкращі моменти!">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks українською, WOT UA, Need for Speed стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks, NFS, Xeon E3-1240, GTX 1050 Ti">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -14,33 +14,31 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #00ffcc; --gold: #ffcc00;
-            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
-            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --nav-bg: rgba(0, 0, 0, 0.8);
+            --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03);
         }
 
-        body { margin: 0; background: var(--bg); background-attachment: fixed; color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); }
+        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
         
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
-        /* ПЛЕЄР: КАРТИНКА ПІДГРУЖАЄТЬСЯ ЯК ФОН */
+        /* ГОЛОВНИЙ ФІКС: БАНЕР ЯК ПІДКЛАДКА */
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
             border-radius: 15px; overflow: hidden; 
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); 
             border: 1px solid rgba(0, 255, 204, 0.2);
-            /* Твоя картинка OFFLINE на фоні */
-            background: #020617 url('https://social-up.pp.ua/your_image.png') center/cover no-repeat;
+            /* Твоя картинка */
+            background: #020617 url('your_image.png') center/cover no-repeat;
         }
         
-        /* Плеєр поверх фону, прозорий поки немає відео */
-        #main-video { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 2; }
-        #main-video iframe { width: 100%; height: 100%; border: none; background: transparent; }
+        /* Плеєр завантажується "невидимим" шаром */
+        #main-video { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+        #main-video iframe { width: 100%; height: 100%; border: none; }
 
-        .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(5px); }
+        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; }
         .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
@@ -49,7 +47,7 @@
 <body>
 
 <nav>
-    <a href="https://social-up.pp.ua/" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
+    <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
 </nav>
 
 <div class="main-layout">
@@ -61,7 +59,7 @@
             </div>
         </div>
 
-        <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;"><i class="fa-solid fa-fire"></i> ОСТАННІ ВІДЕО</h2>
+        <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;">⚡ ОСТАННІ ВІДЕО</h2>
         <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
     </div>
 
@@ -71,12 +69,12 @@
             <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:15px;">
                 <a href="https://t.me/blackcellua" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-telegram" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">TG</span></a>
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-youtube" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">YT</span></a>
-                <a href="https://social-up.pp.ua/" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
+                <a href="#" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
             </div>
         </div>
 
         <div class="glass-panel" style="margin-top:20px;">
-            <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold); margin-bottom:15px;">⚡ ТОП SHORTS</h3>
+            <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:#ffcc00; margin-bottom:15px;">⚡ ТОП SHORTS</h3>
             <div class="shorts-wrapper">
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
             </div>
@@ -86,7 +84,6 @@
 
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
-
     async function loadVideos() {
         const RSS = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
         try {
@@ -94,7 +91,7 @@
             const data = await res.json();
             if (data.status === 'ok') {
                 document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
-                    <div style="background:var(--glass); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="background:var(--glass); padding:10px; border-radius:10px;">
                         <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:5px;" loading="lazy"></iframe>
                     </div>
                 `).join('');
