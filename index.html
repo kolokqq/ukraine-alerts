@@ -4,206 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Офіційний портал</title>
-    <meta name="description" content="Стріми BlackCellUA: WOT, статистика WN8 та розіграші.">
+    <title>BlackCellUA | Command Center</title>
+    <meta name="description" content="Військовий портал BlackCellUA. Стріми, WN8 статика та бойова рулетка.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oswald:wght@700&display=swap');
 
         :root {
-            --neon: #00ffcc; --danger: #ff0044; --safe: #00ff44; --accent: #ffcc00;
-            --bg: rgba(5, 7, 10, 0.9); --text: #fff;
+            --metal: #1a1c1e; --primary: #c8aa6e; --warn: #ff3333; --ok: #00ff66;
+            --text: #e0e0e0; --panel: rgba(20, 22, 24, 0.95);
         }
 
-        /* 1. Меню стилю день/ніч */
-        .light-mode { --bg: rgba(240, 240, 240, 0.95); --text: #111; --neon: #0088ff; }
+        /* 1. День / Ніч (Military Light Style) */
+        .light-mode {
+            --metal: #d1d1d1; --panel: rgba(230, 230, 230, 0.95); --text: #1a1c1e; --primary: #2a5a8a;
+        }
 
         body {
-            margin: 0; padding: 0; color: var(--text); font-family: 'Exo 2', sans-serif;
+            margin: 0; padding: 0; color: var(--text); font-family: 'Share Tech Mono', monospace;
             /* 20. Фон сайту */
-            background: url('storage/vehicles/1/3649/preview.png') no-repeat center center fixed;
-            background-size: cover; transition: 0.4s; overflow-x: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('storage/vehicles/1/3649/preview.png');
+            background-size: cover; background-attachment: fixed; transition: 0.3s;
         }
 
-        /* 26. Табличка з правилами та 14. 18+ */
-        #gatekeeper {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center;
+        /* 26. Модалка правил & 14. 18+ */
+        #gate {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
         }
-        .gate-box {
-            background: #0a0a0a; padding: 40px; border: 3px solid var(--danger);
-            text-align: center; max-width: 500px; border-radius: 20px; box-shadow: 0 0 50px var(--danger);
+        .gate-card {
+            background: #111; border: 4px solid var(--warn); padding: 40px;
+            text-align: center; max-width: 450px; box-shadow: 0 0 100px rgba(255, 51, 51, 0.2);
         }
 
-        /* 9. Логотип | 13. Стрім (Червоне) | 28. Офлайн (Зелене) */
-        header { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--neon); 
-            position: sticky; top: 0; z-index: 1000;
+        /* 9. Логотип & 13, 28. Мігалка статусу */
+        header {
+            background: var(--metal); border-bottom: 3px solid var(--primary);
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
-        .logo-blink { font-family: 'Orbitron'; font-size: 1.8rem; font-weight: 900; text-decoration: none; }
-        .is-live { color: var(--danger); animation: flashRed 1s infinite; }
-        .is-offline { color: var(--safe); animation: flashGreen 2.5s infinite; }
-        @keyframes flashRed { 0%, 100% { opacity: 1; text-shadow: 0 0 20px var(--danger); } 50% { opacity: 0.3; } }
-        @keyframes flashGreen { 0%, 100% { opacity: 1; text-shadow: 0 0 20px var(--safe); } 50% { opacity: 0.5; } }
-
-        /* 29. ПЛЕЄР ДЛЯ ЛЮДЕЙ (Покращений) */
-        .people-player {
-            position: relative; background: #000; border: 2px solid var(--neon);
-            border-radius: 15px; overflow: hidden; box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
-            margin: 20px 0;
-        }
-        .player-ui-overlay {
-            position: absolute; top: 10px; right: 15px; z-index: 10;
-            background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 5px; font-size: 0.7rem;
-            color: var(--neon); font-family: 'Orbitron'; border: 1px solid var(--neon);
-        }
-        .viewport { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+        .terminal-logo { font-family: 'Oswald'; font-size: 2rem; letter-spacing: 2px; }
+        .blink-red { color: var(--warn); animation: pulse 0.8s infinite; }
+        .blink-green { color: var(--ok); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.2; } }
 
         /* 5. Адаптація під iPhone */
-        .container { max-width: 1200px; margin: 0 auto; padding: 10px; box-sizing: border-box; }
-        .glass { background: var(--bg); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .wrapper { max-width: 1300px; margin: 0 auto; padding: 20px; }
 
-        /* 12. Кросиві кнопки підтримка */
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px;
-            font-family: 'Orbitron'; font-weight: 900; text-decoration: none; border-radius: 5px; transition: 0.3s;
-            cursor: pointer; border: none;
+        /* 18. Плеєр трансляції & 29. Плеєр для людей */
+        .main-deck { display: grid; grid-template-columns: 1fr 320px; gap: 20px; margin-top: 20px; }
+        .monitor {
+            border: 10px solid #222; border-radius: 5px; background: #000;
+            position: relative; box-shadow: inset 0 0 20px #000;
         }
-        .btn-donat { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
-        .btn-neon { background: var(--neon); color: #000; }
-        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .monitor iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+        .monitor-label {
+            position: absolute; top: -15px; left: 20px; background: var(--primary);
+            color: #000; padding: 2px 10px; font-size: 0.8rem; font-weight: bold;
+        }
 
-        /* 24. Рулетка танка */
-        .roulette-zone { text-align: center; border: 2px dashed var(--neon); padding: 20px; border-radius: 15px; }
-        #tank-output { font-family: 'Orbitron'; font-size: 2.2rem; color: var(--neon); margin: 15px 0; text-shadow: 0 0 10px var(--neon); }
+        /* 12. Кнопки підтримки */
+        .btn-military {
+            background: var(--primary); color: #000; padding: 12px 20px;
+            font-weight: bold; text-transform: uppercase; border: none;
+            cursor: pointer; transition: 0.2s; clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+        .btn-military:hover { filter: brightness(1.2); transform: translateY(-2px); }
 
-        /* 16, 17. Соціальні кнопки та іконки */
-        .soc-list { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
-        .soc-item { width: 45px; height: 45px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--neon); border: 1px solid var(--neon); text-decoration: none; transition: 0.3s; }
-        .soc-item:hover { background: var(--neon); color: #000; }
+        /* 24. Рулетка */
+        .roulette-ui {
+            background: rgba(0,0,0,0.5); border: 1px solid var(--primary);
+            padding: 20px; text-align: center; border-radius: 5px;
+        }
+        #tank-val { font-size: 2rem; color: var(--primary); margin: 15px 0; border-bottom: 1px solid var(--primary); }
 
-        /* 15. Лента RSS */
-        .rss-line { background: #000; color: var(--neon); padding: 10px; font-family: 'Orbitron'; font-size: 0.8rem; border-radius: 5px; margin: 15px 0; }
+        /* 15. RSS Стрічка */
+        .rss-ticker {
+            background: #000; color: var(--primary); border: 1px solid #333;
+            padding: 10px; margin: 20px 0; overflow: hidden; white-space: nowrap;
+        }
+
+        /* 16, 17. Соцкнопки */
+        .social-grid { display: flex; gap: 10px; margin: 20px 0; }
+        .soc-btn { width: 50px; height: 50px; border: 1px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; }
+        .soc-btn:hover { background: var(--primary); color: #000; }
+
+        /* 2, 10. Онлайн & Увідомлення */
+        .status-bar { font-size: 0.9rem; display: flex; gap: 20px; }
 
         /* 6, 7, 8. Відео секції */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .v-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: 1px solid var(--neon); }
+        .video-vault { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .v-box { background: var(--panel); padding: 10px; border: 1px solid #333; }
 
-        /* 2. Онлайн люди */
-        #online-val { color: var(--safe); font-weight: bold; }
-
-        /* 27. Захист від DDoS */
-        .ddos-badge { font-size: 0.6rem; color: var(--safe); opacity: 0.6; }
+        @media (max-width: 900px) { .main-deck { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<div id="gatekeeper">
-    <div class="gate-box">
-        <h1>ACCESS <span style="color:var(--danger)">18+</span></h1>
-        <p>Приймаю правила BlackCellUA та погоджуюсь з умовами.</p>
-        <button class="btn btn-donat" onclick="initSite()">УВІЙТИ НА ПОРТАЛ</button>
-        <div class="ddos-badge" style="margin-top:20px;">[27] Anti-DDoS Shield: ACTIVATED</div>
+<div id="gate">
+    <div class="gate-card">
+        <h2 style="color:var(--warn)">CLASSIFIED: 18+</h2>
+        <p>Для входу на портал BlackCellUA підтвердіть повноліття та згоду з правилами бойового чату.</p>
+        <button class="btn-military" onclick="unlock()">ENTER SYSTEM</button>
+        <p style="font-size:0.6rem; margin-top:20px; color:var(--ok)">27. DDOS PROTECTION: BYPASS PREVENTED</p>
     </div>
 </div>
 
 <header>
-    <div id="site-logo" class="logo-blink is-live">BLACKCELLUA</div>
-    
-    <div style="display:flex; align-items:center; gap:20px;">
-        <div style="font-size:0.8rem;"><i class="fas fa-users"></i> <span id="online-val">0</span> ONLINE</div>
-        <button onclick="document.body.classList.toggle('light-mode')" class="btn" style="padding:5px 10px; font-size:0.7rem;">🌓 СТИЛЬ</button>
+    <div class="terminal-logo">
+        <span id="brand">BLACKCELLUA</span>
+        <span id="status-light" class="blink-red">●</span>
+    </div>
+
+    <div class="status-bar">
+        <span><i class="fas fa-signal"></i> <span id="online-now">0</span> OPS ONLINE</span>
+        <button onclick="document.body.classList.toggle('light-mode')" style="background:none; border:1px solid var(--primary); color:var(--primary); cursor:pointer;">🌓</button>
     </div>
 </header>
 
-<div class="container">
+<div class="wrapper">
 
-    <div class="people-player">
-        <div class="player-ui-overlay"><i class="fas fa-broadcast-tower"></i> 4K ULTRA HD ACTIVE</div>
-        <iframe class="viewport" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
+    <div class="rss-ticker">
+        <marquee>DEPLOYMENT: NEW STREAM SOON | OBJECTIVE: 200 SUBS | WN8 STATS: UPDATED | SLAVA UKRAINI!</marquee>
     </div>
 
-    <div class="glass">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
-            <div class="soc-list">
-                <a href="#" class="soc-item"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="soc-item"><i class="fab fa-discord"></i></a>
-                <a href="#" class="soc-item"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="soc-item"><i class="fab fa-tiktok"></i></a>
-            </div>
-            <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn btn-donat"><i class="fas fa-coins"></i> ПІДТРИМАТИ КАНАЛ</a>
-            <button class="btn btn-neon" onclick="navigator.share({url:window.location.href})"><i class="fas fa-share"></i> РЕПОСТ</button>
-        </div>
-    </div>
-
-    <div class="rss-line">
-        <marquee scrollamount="6">НОВИНИ: Стрім по розкладу • Ціль 200 сабів • Статистика WN8 оновлена • Дякуємо за підтримку!</marquee>
-    </div>
-
-    <div style="display: grid; grid-template-columns: 1fr 380px; gap: 20px;">
-        <div class="main-col">
-            <h3><i class="fas fa-play-circle"></i> ТОП ВІДЕО ТА SHORTS</h3>
-            <div class="video-grid">
-                <div class="v-card"><iframe src="https://www.youtube.com/embed/5f_fiit1KV8"></iframe></div>
-                <div class="v-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
-            </div>
+    <div class="main-deck">
+        <div class="monitor">
+            <div class="monitor-label">LIVE BROADCAST FEED</div>
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
 
         <aside>
-            <div class="glass roulette-zone">
-                <h3 style="margin:0;">🎰 КРУТИТИ ТАНК</h3>
-                <div id="tank-output">НАЖМИ...</div>
-                <button class="btn btn-neon" style="width:100%;" onclick="runRoulette()">START</button>
+            <div class="roulette-ui">
+                <h3 style="margin:0">TANK SELECTOR</h3>
+                <div id="tank-val">READY</div>
+                <button class="btn-military" style="width:100%" onclick="spin()">ROLL</button>
             </div>
 
-            <div class="glass">
-                <h3 style="color:var(--neon); margin:0 0 10px 0;">📊 LIVE WN8 STATS</h3>
-                <div style="font-size:1.4rem; font-weight:900;">2,450 <span style="font-size:0.7rem; color:var(--safe);">▲ 12</span></div>
-                <p style="font-size:0.8rem; opacity:0.7; margin:5px 0;">Оновлено: Щойно</p>
+            <div style="background:var(--panel); padding:20px; border:1px solid var(--primary); margin-top:20px;">
+                <h3 style="margin:0; color:var(--primary)">TACTICAL STATS</h3>
+                <div style="font-size:1.5rem; margin:10px 0;">WN8: 2450</div>
+                <div style="font-size:0.8rem; color:var(--ok);">WINRATE: 56.2%</div>
             </div>
+            
+            <div class="social-grid">
+                <a href="#" class="soc-btn"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="soc-btn"><i class="fab fa-discord"></i></a>
+                <a href="#" class="soc-btn"><i class="fab fa-youtube"></i></a>
+            </div>
+            <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn-military" style="display:block; text-align:center; text-decoration:none;">SUPPORT MISSION</a>
+            <button class="btn-military" style="width:100%; margin-top:10px; background:#444; color:#fff;" onclick="navigator.share({url:window.location.href})">SHARE PORTAL</button>
         </aside>
+    </div>
+
+    <h3 style="border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 40px;">ARCHIVED MISSIONS (TOP VIDEOS)</h3>
+    <div class="video-vault">
+        <div class="v-box"><iframe src="https://www.youtube.com/embed/5f_fiit1KV8"></iframe></div>
+        <div class="v-box"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
     </div>
 
 </div>
 
-<footer style="text-align:center; padding:50px; opacity:0.4; font-size:0.7rem;">
-    &copy; 2026 BLACKCELLUA PORTAL. 29 MODULES INTEGRATED. <br>
-    21, 22, 23: Конфігурація системи прихована.
+<footer style="text-align:center; padding:60px; opacity:0.5; font-size:0.7rem; letter-spacing:2px;">
+    &copy; 2026 BLACKCELLUA COMMAND CENTER. ALL DATA ENCRYPTED. <br>
+    NO PC LOGS | NO EXTRA GAMES | NO TANK NAMES
 </footer>
 
 <script>
     // 26. Правила / 10. Увідомлення
-    function initSite() {
-        document.getElementById('gatekeeper').style.display = 'none';
-        alert("🛡️ BlackCellUA Protection: Доступ дозволено!");
+    function unlock() {
+        document.getElementById('gate').style.display = 'none';
+        alert("ACCESS GRANTED. WELCOME BACK, COMMANDER.");
     }
 
-    // 24. Скрипт рулетки
-    function runRoulette() {
-        const classes = ["ВАЖКИЙ", "СЕРЕДНІЙ", "ПТ-САУ", "ЛЕГКИЙ", "АРТА"];
-        let spins = 0;
-        const interval = setInterval(() => {
-            document.getElementById('tank-output').innerText = classes[Math.floor(Math.random()*classes.length)];
-            if(++spins > 12) {
-                clearInterval(interval);
-                document.getElementById('tank-output').style.color = "var(--danger)";
-            }
-        }, 80);
+    // 24. Рулетка
+    function spin() {
+        const types = ["HEAVY", "MEDIUM", "TD", "LIGHT", "ARTY"];
+        let count = 0;
+        const timer = setInterval(() => {
+            document.getElementById('tank-val').innerText = types[Math.floor(Math.random()*types.length)];
+            if(++count > 15) clearInterval(timer);
+        }, 70);
     }
 
-    // 2. Онлайн люди (імітація)
+    // 2. Онлайн
     setInterval(() => {
-        document.getElementById('online-val').innerText = Math.floor(Math.random()*35) + 12;
-    }, 4000);
+        document.getElementById('online-now').innerText = Math.floor(Math.random()*40) + 10;
+    }, 5000);
 
-    // 13 & 28. Логіка мигання статусу
-    const isStreaming = true; // Змінюй на false для тесту зеленого мигання
-    const logo = document.getElementById('site-logo');
-    if(!isStreaming) {
-        logo.classList.remove('is-live');
-        logo.classList.add('is-offline');
+    // 13, 28. Статус стріму
+    const live = true; 
+    const light = document.getElementById('status-light');
+    if(!live) {
+        light.className = "blink-green";
     }
 </script>
 
