@@ -1,209 +1,273 @@
 <!DOCTYPE html>
+
 <html lang="uk">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BlackCellUA | Портал</title>
+
     
-    <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
-    <meta name="description" content="Офіційний ігровий портал BlackCellUA. Дивись прямі трансляції WOT, NFS та технічні гайди українською. Стріми на Xeon E3-1240 та GTX 1050 Ti.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks, WOT UA, NFS стрім, Xeon E3-1240, GTX 1050 Ti, ігровий портал, танки українською">
-    <meta name="author" content="BlackCellUA">
-    
-    <meta property="og:title" content="BlackCellUA - Твій ігровий простір">
-    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до спільноти!">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     
+
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+
+        :root { --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; }
+
         
-        :root { 
-            --neon: #ff4d00; 
-            --bg: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); 
-            --text: #e5e5e5; 
-            --fire: #ff8c00;
-        }
-        
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; position: relative; }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-            opacity: 0.2;
-            pointer-events: none;
-            z-index: -1;
-        }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
 
-        nav { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px 5%; 
-            background: rgba(0,0,0,0.9); 
-            border-bottom: 2px solid var(--neon); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 0 20px rgba(255, 77, 0, 0.3);
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
 
-        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 15px var(--fire); }
+        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+
+
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
-        .player-viewport { 
-            position: relative; 
-            width: 100%; 
-            aspect-ratio: 16/9; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 2px solid rgba(255, 77, 0, 0.4); 
-            background: #000; 
-            box-shadow: 0 0 30px rgba(255, 77, 0, 0.15);
-        }
+
+
+        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
 
         iframe { width: 100%; height: 100%; border: none; }
 
-        .section-title { 
-            font-family: 'Orbitron'; 
-            color: var(--fire); 
-            font-size: 1.1rem; 
-            margin: 30px 0 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px;
-            text-shadow: 0 0 10px rgba(255, 77, 0, 0.3);
-        }
+
+
+        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.1rem; margin: 30px 0 20px; display: flex; align-items: center; gap: 10px; }
+
+
 
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
 
-        .v-card { 
-            background: rgba(30, 30, 30, 0.7); 
-            padding: 10px; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255, 77, 0, 0.1); 
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
-        }
+        .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
 
-        .v-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: 0 5px 20px rgba(255, 77, 0, 0.2); }
 
-        .glass-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
 
-        .btn-donate { 
-            display: block; 
-            width: 100%; 
-            padding: 12px; 
-            background: linear-gradient(45deg, #ff4d00, #ff8c00); 
-            color: #000; 
-            text-align: center; 
-            text-decoration: none; 
-            font-family: 'Orbitron'; 
-            font-weight: bold; 
-            border-radius: 8px; 
-            transition: 0.3s;
-        }
+        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
 
-        #ash-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; }
+
+
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
+
     </style>
+
 </head>
+
 <body>
 
-<div id="ash-particles"></div>
+
 
 <nav>
+
     <a href="#" class="logo">BLACKCELLUA</a>
-    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; border:1px solid var(--neon); padding:5px 12px; border-radius:20px;">SYSTEM: BURNING</div>
+
+    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem; border:1px solid var(--neon); padding:5px 12px; border-radius:20px;">LIVE FEED</div>
+
 </nav>
 
+
+
 <div class="main-layout">
+
     <div class="content">
+
         <div class="player-viewport">
-            <iframe id="main-player" src="" allowfullscreen></iframe>
+
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
+
         </div>
 
-        <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
+
+
+        <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
+
         <div id="video-grid">Завантаження...</div>
+
     </div>
 
+
+
     <aside>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #1</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #2</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #3</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/m9lEIIB4nPA" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #4</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/vNDuWb1zZ_k" allowfullscreen></iframe>
-            </div>
-        </div>
+
         
-        <div class="glass-panel">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
+
+
+
+     <div class="glass-panel">
+
+            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #1</h3>
+
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
+
+            </div>
+
         </div>
+
+
+
+        <div class="glass-panel">
+
+            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #2</h3>
+
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+
+                <iframe src="https://www.youtube.com/embed/wdS_GgBYDZQ" allowfullscreen></iframe>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="glass-panel">
+
+            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #3</h3>
+
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+
+                <iframe src="https://www.youtube.com/embed/m9lEIIB4nPA" allowfullscreen></iframe>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="glass-panel">
+
+            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS #4</h3>
+
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon);">
+
+                <iframe src="https://www.youtube.com/embed/vNDuWb1zZ_k" allowfullscreen></iframe>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="glass-panel">
+
+            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
+
+        </div>
+
     </aside>
+
 </div>
 
-<script>
-    // Анімація попелу
-    function createAsh() {
-        const container = document.getElementById('ash-particles');
-        const particle = document.createElement('div');
-        const size = Math.random() * 3 + 'px';
-        particle.style.position = 'absolute';
-        particle.style.background = 'rgba(255, 255, 255, 0.4)';
-        particle.style.width = size; particle.style.height = size;
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = '-10px'; particle.style.borderRadius = '50%';
-        particle.style.opacity = Math.random(); particle.style.filter = 'blur(1px)';
-        container.appendChild(particle);
-        const animation = particle.animate([
-            { transform: `translate(0, 0)`, opacity: 0.8 },
-            { transform: `translate(${Math.random() * 60 - 30}px, 100vh)`, opacity: 0 }
-        ], { duration: Math.random() * 3000 + 5000, easing: 'linear' });
-        animation.onfinish = () => particle.remove();
-    }
-    setInterval(createAsh, 150);
 
-    // Завантаження YouTube RSS
+
+<script>
+
     async function loadYouTubeData() {
+
         const grid = document.getElementById('video-grid');
-        const mainPlayer = document.getElementById('main-player');
+
         const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
+
+        
+
+        // Використовуємо прямий RSS фід YouTube
+
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+        
+
+        // Сервіс-проксі з випадковим параметром t для ігнорування кешу
+
         const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
 
+
+
         try {
+
             const response = await fetch(apiFetch);
+
             const data = await response.json();
+
+
+
             if (data.status === 'ok' && data.items.length > 0) {
-                const latestId = data.items[0].link.split('v=')[1].split('&')[0];
-                mainPlayer.src = `https://www.youtube.com/embed/${latestId}?autoplay=1&mute=1`;
+
                 let html = '';
+
+                
+
                 data.items.forEach(item => {
-                    let videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split(':').pop();
+
+                    // НАЙВАЖЛИВІШЕ: Витягуємо ID відео
+
+                    let videoId = '';
+
+                    
+
+                    if (item.link.includes('v=')) {
+
+                        videoId = item.link.split('v=')[1].split('&')[0];
+
+                    } else if (item.guid.includes('video:')) {
+
+                        videoId = item.guid.split('video:')[1];
+
+                    }
+
+
+
                     if (videoId) {
-                        html += `<div class="v-card">
+
+                        html += `
+
+                        <div class="v-card">
+
                             <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                            <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:#fff;">${item.title}</p>
+
+                            <p style="font-size:0.75rem; margin-top:10px; font-weight:bold;">${item.title}</p>
+
                         </div>`;
+
+                    }
+
+                });
+
+                
+
+                grid.innerHTML = html;
+
+            } else {
+
+                grid.innerHTML = "<p>Відео поки не знайдено. Оновіть сторінку пізніше.</p>";
+
+            }
+
+        } catch (error) {
+
+            grid.innerHTML = "<p>Помилка завантаження. Спробуйте ще раз.</p>";
+
+        }
+
+    }
+
+
+
+    window.onload = loadYouTubeData;
+
+</script>
+
+</body>
+
+</html> 
