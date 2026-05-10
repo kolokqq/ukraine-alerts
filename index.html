@@ -37,7 +37,7 @@
             justify-content: space-between; 
             align-items: center; 
             padding: 10px 30px; 
-            border-bottom: 1px solid var(--neon); 
+            border-bottom: 2px solid var(--neon); 
         }
 
         .logo { 
@@ -57,7 +57,6 @@
             padding: 0 20px; 
         }
 
-        /* Помаранчева рамка як на макеті */
         .main-frame {
             border: 2px solid var(--neon);
             border-radius: 10px;
@@ -118,8 +117,7 @@
         </div>
 
         <div class="section-label">ОСТАННІ ТРАНСЛЯЦІЇ</div>
-        <div id="feed" class="video-list">
-            </div>
+        <div id="feed" class="video-list"></div>
     </main>
 
     <aside class="shorts-sidebar">
@@ -139,7 +137,7 @@
 </div>
 
 <script>
-    // Завантажуємо ТІЛЬКИ нижню сітку, щоб не чіпати головний плеєр
+    // Скрипт вантажить ТІЛЬКИ нижні маленькі відео, головний плеєр не чіпає взагалі
     async function loadArchive() {
         const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ')}`;
         try {
