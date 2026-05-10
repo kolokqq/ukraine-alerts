@@ -17,7 +17,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00; 
+            --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00; --online: #00ff66;
             --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
             --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --nav-bg: rgba(0, 0, 0, 0.8);
         }
@@ -37,30 +37,39 @@
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         
-        /* МОДУЛЬ 18: ПЛЕЄР ТРАНСЛЯЦІЇ (СТИЛЬ) */
-        .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; box-shadow: 0 0 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
-        .player-container iframe { width: 100%; height: 100%; border: none; }
-        .live-badge { position: absolute; top: 15px; left: 15px; background: var(--danger); color: white; padding: 4px 10px; border-radius: 4px; font-family: 'Orbitron'; font-size: 0.7rem; font-weight: bold; animation: pulse 2s infinite; z-index: 10; }
+        /* МОДУЛЬ 29: ОПТИМІЗОВАНИЙ ПЛЕЄР */
+        .player-viewport { 
+            position: relative; width: 100%; aspect-ratio: 16/9; 
+            background: #000; border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); 
+            border: 1px solid rgba(0, 255, 204, 0.2); 
+        }
+        .player-viewport iframe { width: 100%; height: 100%; border: none; }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        /* МОДУЛЬ 28: СТАТУС СТРІМА */
+        .status-badge { 
+            position: absolute; top: 15px; left: 15px; 
+            padding: 5px 12px; border-radius: 4px; 
+            font-family: 'Orbitron'; font-size: 0.7rem; font-weight: bold; 
+            z-index: 10; pointer-events: none; text-transform: uppercase;
+        }
+        .status-live { background: var(--danger); color: white; animation: blink-red 1.5s infinite; }
+        .status-waiting { background: var(--online); color: #000; animation: blink-green 2s infinite; }
+
+        @keyframes blink-red { 0% { opacity: 1; box-shadow: 0 0 5px var(--danger); } 50% { opacity: 0.6; box-shadow: 0 0 15px var(--danger); } 100% { opacity: 1; } }
+        @keyframes blink-green { 0% { opacity: 1; box-shadow: 0 0 5px var(--online); } 50% { opacity: 0.5; box-shadow: 0 0 15px var(--online); } 100% { opacity: 1; } }
 
         .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(5px); }
         .section-title { font-family: 'Orbitron'; color: var(--neon); margin: 30px 0 15px 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
 
-        /* МОДУЛЬ 17: ІКОНКИ СОЦМЕРЕЖ */
         .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
         .social-link { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; text-decoration: none; color: var(--text); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
         .social-link i { font-size: 1.5rem; margin-bottom: 5px; color: var(--neon); }
         .social-link:hover { background: rgba(0, 255, 204, 0.1); border-color: var(--neon); transform: translateY(-3px); }
-        .social-link span { font-size: 0.6rem; font-family: 'Orbitron'; text-transform: uppercase; }
 
-        /* МОДУЛЬ 10/11: СПОВІЩЕННЯ ТА РЕПОСТИ */
         #notification-toast { position: fixed; bottom: 20px; left: 20px; background: var(--nav-bg); border-left: 4px solid var(--neon); padding: 15px 25px; border-radius: 8px; z-index: 2000; transform: translateX(-150%); transition: 0.5s; }
         #notification-toast.show { transform: translateX(0); }
         
-        .share-btn-mini { padding: 8px; border-radius: 5px; background: rgba(255,255,255,0.05); color: #fff; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
-        .share-btn-mini:hover { color: var(--neon); border-color: var(--neon); }
-
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .video-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: 1px solid #333; }
         
@@ -80,8 +89,8 @@
 
 <div class="main-layout">
     <div class="content">
-        <div class="player-container">
-            <div class="live-badge">● LIVE</div>
+        <div class="player-viewport">
+            <div id="stream-status" class="status-badge status-waiting">Очікування</div>
             <div id="main-video"></div>
         </div>
 
@@ -98,17 +107,16 @@
         <div class="glass-panel">
             <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--neon); margin-bottom:15px;">🔗 СОЦМЕРЕЖІ</h3>
             <div class="social-grid">
-                <a href="https://t.me/blackcellua" class="social-link"><i class="fa-brands fa-telegram"></i><span>TG</span></a>
-                <a href="https://www.youtube.com/@BlackCellUA" class="social-link"><i class="fa-brands fa-youtube"></i><span>YT</span></a>
+                <a href="https://t.me/blackcellua" target="_blank" class="social-link"><i class="fa-brands fa-telegram"></i><span>TG</span></a>
+                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-link"><i class="fa-brands fa-youtube"></i><span>YT</span></a>
                 <a href="#" class="social-link"><i class="fa-brands fa-discord"></i><span>DS</span></a>
             </div>
             
             <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.05); padding-top:15px;">
-                <p style="font-size:0.6rem; font-family:'Orbitron'; color:var(--gold);">ПОДІЛИТИСЯ:</p>
+                <p style="font-size:0.6rem; font-family:'Orbitron'; color:var(--gold);">SHARE:</p>
                 <div style="display:flex; gap:8px;">
-                    <button onclick="share('tg')" class="share-btn-mini"><i class="fa-brands fa-telegram"></i></button>
-                    <button onclick="share('fb')" class="share-btn-mini"><i class="fa-brands fa-facebook"></i></button>
-                    <button onclick="share('copy')" class="share-btn-mini"><i class="fa-solid fa-link"></i></button>
+                    <button onclick="share('tg')" class="btn" style="padding:5px 10px;"><i class="fa-brands fa-telegram"></i></button>
+                    <button onclick="share('copy')" class="btn" style="padding:5px 10px;"><i class="fa-solid fa-link"></i></button>
                 </div>
             </div>
         </div>
@@ -127,18 +135,7 @@
 
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
-    let currentLang = 'uk';
-
-    // МОДУЛЬ 19: ОПТИМІЗАЦІЯ (Кешування завантажених даних)
-    let cachedData = null;
-
-    function toggleLang() {
-        currentLang = currentLang === 'uk' ? 'en' : 'uk';
-        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
-        showNotify("Мову змінено / Language updated");
-    }
-
-    function toggleTheme() { document.body.classList.toggle('light-theme'); showNotify("Тему оновлено"); }
+    let isLive = false;
 
     function showNotify(msg) {
         const toast = document.getElementById('notification-toast');
@@ -147,14 +144,18 @@
         setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
-    function share(platform) {
-        const url = window.location.href;
-        if(platform === 'tg') window.open(`https://t.me/share/url?url=${url}`);
-        if(platform === 'fb') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
-        if(platform === 'copy') {
-            navigator.clipboard.writeText(url);
-            showNotify("Посилання скопійовано!");
-        }
+    function toggleTheme() { document.body.classList.toggle('light-theme'); showNotify("Тему змінено"); }
+
+    async function checkStreamStatus() {
+        // Перевірка чи йде стрім (логіка на основі RSS або API)
+        // Для демонстрації змінюємо статус через 5 секунд після завантаження
+        setTimeout(() => {
+            const badge = document.getElementById('stream-status');
+            badge.innerText = "В ЕФІРІ";
+            badge.classList.remove('status-waiting');
+            badge.classList.add('status-live');
+            showNotify("BlackCellUA в ефірі! Приєднуйся!");
+        }, 8000);
     }
 
     async function loadContent() {
@@ -163,33 +164,32 @@
             const response = await fetch(RSS_URL);
             const data = await response.json();
             if (data.status === 'ok') {
-                cachedData = data.items;
-                renderContent();
+                const items = data.items;
+                document.getElementById('popular-grid').innerHTML = items.slice(0, 4).map(v => `
+                    <div class="video-card"><iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" loading="lazy"></iframe></div>
+                `).join('');
+                
+                document.getElementById('rss-feed').innerHTML = items.map(item => `
+                    <a href="${item.link}" target="_blank" style="display:block; padding:10px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:inherit;">
+                        <span style="font-size:0.6rem; color:var(--neon);">${new Date(item.pubDate).toLocaleDateString()}</span>
+                        <h5 style="margin:5px 0; font-size:0.8rem;">${item.title}</h5>
+                    </a>
+                `).join('');
+
+                document.getElementById('shorts-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${items[0].link.split('v=')[1]}" style="aspect-ratio:9/16;" loading="lazy"></iframe>`;
             }
-        } catch (e) { showNotify("Помилка завантаження контенту"); }
-    }
-
-    function renderContent() {
-        if(!cachedData) return;
-        document.getElementById('popular-grid').innerHTML = cachedData.slice(0, 4).map(v => `
-            <div class="video-card"><iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" loading="lazy"></iframe></div>
-        `).join('');
-        
-        document.getElementById('rss-feed').innerHTML = cachedData.map(item => `
-            <a href="${item.link}" target="_blank" style="display:block; padding:10px; border-bottom:1px solid rgba(255,255,255,0.05); text-decoration:none; color:inherit;">
-                <span style="font-size:0.6rem; color:var(--neon);">${new Date(item.pubDate).toLocaleDateString()}</span>
-                <h5 style="margin:5px 0; font-size:0.8rem;">${item.title}</h5>
-            </a>
-        `).join('');
-
-        document.getElementById('shorts-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${cachedData[0].link.split('v=')[1]}" style="aspect-ratio:9/16;" loading="lazy"></iframe>`;
+        } catch (e) { console.error("RSS Error"); }
     }
 
     function init() {
-        // МОДУЛЬ 18: Плеєр трансляції
         document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}" allowfullscreen></iframe>`;
         loadContent();
-        setTimeout(() => showNotify("BlackCellUA: В ефірі щодня о 19:00!"), 2000);
+        checkStreamStatus();
+    }
+
+    function share(p) {
+        if(p==='copy') { navigator.clipboard.writeText(window.location.href); showNotify("Скопійовано!"); }
+        else window.open(`https://t.me/share/url?url=${window.location.href}`);
     }
 
     init();
