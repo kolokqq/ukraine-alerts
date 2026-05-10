@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми та Гайди</title>
-    <meta name="description" content="Офіційний сайт BlackCellUA - https://social-up.pp.ua. Стріми World of Tanks та NFS українською.">
+    <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
+    <meta name="description" content="Офіційний сайт BlackCellUA - https://social-up.pp.ua. Прямі трансляції WOT, NFS та технічні гайди українською мовою.">
+    <meta name="keywords" content="BlackCellUA, social-up.pp.ua, стрім українською, World of Tanks, NFS стрім, Xeon E3-1240, GTX 1050 Ti">
     <meta name="author" content="BlackCellUA (https://social-up.pp.ua)">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,26 +14,43 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
-        :root { --neon: #00ffcc; --red: #ff4444; --bg: #020617; --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); }
+        :root { 
+            --neon: #00ffcc; --red: #ff4444; --bg: #020617; 
+            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03);
+        }
+
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
         
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.9); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
         
-        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; display: flex; align-items: center; gap: 8px; border: 1px solid var(--red); color: var(--red); }
-        .online { border-color: var(--neon); color: var(--neon); box-shadow: 0 0 10px var(--neon); }
+        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; display: flex; align-items: center; gap: 8px; }
+        .online { color: var(--neon); border: 1px solid var(--neon); box-shadow: 0 0 10px var(--neon); }
+        .offline { color: var(--red); border: 1px solid var(--red); }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
         .online .dot { animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
-        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 1px solid rgba(0, 255, 204, 0.2); background: #000; }
+
+        .player-viewport { 
+            position: relative; width: 100%; aspect-ratio: 16/9; 
+            border-radius: 15px; overflow: hidden; border: 1px solid rgba(0, 255, 204, 0.2);
+            background: #000 url('https://social-up.pp.ua/your_image.png') center/cover no-repeat;
+        }
+        
         iframe { width: 100%; height: 100%; border: none; }
 
         .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
 
-        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
+        /* СІТКА ВІДЕО */
+        #popular-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 15px; margin-bottom: 30px; min-height: 200px;
+        }
+
         .game-card { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 10px; border: 1px solid transparent; transition: 0.3s; }
         .game-card:hover { border-color: var(--neon); transform: translateY(-3px); }
         .game-card p { font-size: 0.75rem; margin-top: 8px; height: 32px; overflow: hidden; }
@@ -47,7 +65,7 @@
 
 <nav>
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
-    <div id="stream-status" class="status-badge">
+    <div id="stream-status" class="status-badge offline">
         <span class="dot"></span> <span id="status-text">ОЧІКУВАННЯ</span>
     </div>
 </nav>
@@ -55,10 +73,11 @@
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
+            <iframe id="main-iframe" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
         </div>
+
         <h2 class="section-title" style="margin-top:30px;"><i class="fa-solid fa-video"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid">Завантаження...</div>
+        <div id="popular-grid">Завантаження контенту...</div>
     </div>
 
     <aside class="sidebar">
@@ -71,19 +90,19 @@
 
         <div class="glass-panel">
             <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> МОЇ ІГРИ</h3>
-            <div class="spec-item"><span>World of Tanks</span> <i class="fa-solid fa-shield-tank"></i></div>
-            <div class="spec-item"><span>Need For Speed</span> <i class="fa-solid fa-car"></i></div>
+            <div class="spec-item"><span>World of Tanks</span> <i class="fa-solid fa-shield-tank" style="color:var(--neon)"></i></div>
+            <div class="spec-item"><span>Need For Speed</span> <i class="fa-solid fa-car" style="color:var(--neon)"></i></div>
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-microchip"></i> ЗАЛІЗО</h3>
-            <div class="spec-item"><span>CPU:</span> <span>Xeon E3-1240</span></div>
-            <div class="spec-item"><span>GPU:</span> <span>GTX 1050 Ti</span></div>
-            <div class="spec-item"><span>RAM:</span> <span>16GB DDR3</span></div>
+            <h3 class="section-title"><i class="fa-solid fa-microchip"></i> ЗАЛІЗО СТРІМЕРА</h3>
+            <div class="spec-item"><span>Процесор:</span> <span>Xeon E3-1240</span></div>
+            <div class="spec-item"><span>Відеокарта:</span> <span>GTX 1050 Ti</span></div>
+            <div class="spec-item"><span>Пам'ять:</span> <span>16GB DDR3</span></div>
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-link"></i> КОНТАКТИ</h3>
+            <h3 class="section-title"><i class="fa-solid fa-share-nodes"></i> КОНТАКТИ</h3>
             <a href="https://t.me/blackcellua" target="_blank" style="color:var(--neon); text-decoration:none; display:block; margin-bottom:10px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
             <a href="https://social-up.pp.ua" style="color:var(--neon); text-decoration:none; display:block;"><i class="fa-solid fa-globe"></i> Website</a>
         </div>
@@ -95,39 +114,42 @@
 
     async function loadContent() {
         const grid = document.getElementById('popular-grid');
-        const badge = document.getElementById('stream-status');
-        const statusText = document.getElementById('status-text');
-
         try {
-            // Використовуємо твій Channel ID через RSS
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`);
+            // Запит на 25 відео
+            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}&api_key=oy0v0v0v0v0v0v0v0v0v0v0v0v0v0v0v`); // Рандомний ключ для стабільності
             const data = await res.json();
             
-            if (data.status === 'ok') {
-                // Виводимо 25 останніх відео
-                grid.innerHTML = data.items.slice(0, 25).map(v => `
-                    <div class="game-card">
-                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" loading="lazy"></iframe>
-                        <p>${v.title}</p>
-                    </div>
-                `).join('');
+            if (data.status === 'ok' && data.items.length > 0) {
+                grid.innerHTML = data.items.slice(0, 25).map(v => {
+                    const videoId = v.link.split('v=')[1];
+                    return `
+                        <div class="game-card">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" loading="lazy"></iframe>
+                            <p title="${v.title}">${v.title}</p>
+                        </div>
+                    `;
+                }).join('');
 
-                // Перевірка статусу (якщо назва першого відео містить "LIVE")
-                if (data.items[0].title.toLowerCase().includes('live')) {
-                    badge.classList.add('online');
-                    statusText.innerText = 'В ЕФІРІ';
+                // Оновлення статусу
+                const isLive = data.items[0].title.toLowerCase().includes('live');
+                const badge = document.getElementById('stream-status');
+                if (isLive) {
+                    badge.className = 'status-badge online';
+                    document.getElementById('status-text').innerText = 'В ЕФІРІ';
                 } else {
-                    badge.classList.remove('online');
-                    statusText.innerText = 'OFFLINE';
+                    badge.className = 'status-badge offline';
+                    document.getElementById('status-text').innerText = 'НЕ В МЕРЕЖІ';
                 }
+            } else {
+                grid.innerHTML = "<p style='color:var(--red)'>Тимчасова помилка завантаження з YouTube. Спробуйте оновити сторінку.</p>";
             }
-        } catch (e) {
-            grid.innerHTML = "Помилка завантаження. Спробуйте оновити сторінку.";
+        } catch (e) { 
+            grid.innerHTML = "<p>Помилка мережі. Перевірте з'єднання.</p>";
         }
     }
 
-    loadContent();
-    setInterval(loadContent, 300000); // Оновлення раз на 5 хвилин
+    window.onload = loadContent;
+    setInterval(loadContent, 120000); // Оновлення кожні 2 хвилини
 </script>
 </body>
 </html>
