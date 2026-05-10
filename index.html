@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackCellUA | Gaming Portal</title>
+    
+    <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
+    <meta name="description" content="Офіційний сайт BlackCellUA. Прямі трансляції WOT, NFS та технічні гайди українською мовою. Дивись стріми, Shorts та найкращі моменти!">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks, WOT UA, NFS стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <meta name="author" content="BlackCellUA">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -11,61 +15,52 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00;
-            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
-            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03);
+            --neon: #00ffcc; --red: #ff4444; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --gold: #ffcc00;
         }
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
         
+        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .online { color: var(--neon); border: 1px solid var(--neon); box-shadow: 0 0 10px var(--neon); background: rgba(0, 255, 204, 0.1); }
+        .offline { color: var(--red); border: 1px solid var(--red); background: rgba(255, 68, 68, 0.1); }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .online .dot { background: var(--neon); animation: pulse 1.5s infinite; }
+        .offline .dot { background: var(--red); }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
-        /* КОНТЕЙНЕР ПЛЕЄРА */
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
             border-radius: 15px; overflow: hidden; 
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); 
             border: 1px solid rgba(0, 255, 204, 0.2);
-            background: #000;
-        }
-
-        /* ТВОЯ КАРТИНКА OFFLINE ЯК ЗАГЛУШКА */
-        .player-placeholder {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 10; /* ПОВНІСТЮ ЗАКРИВАЄ ЮТУБ */
-            text-align: center;
-            /* ВИКОРИСТОВУЄМО ТВОЮ КАРТИНКУ ЯК ФОН */
-            background: #020617 url('https://social-up.pp.ua/banner-offline.jpg') center/cover no-repeat;
-            cursor: pointer; transition: 0.5s ease;
+            background: #020617 url('https://social-up.pp.ua/your_image.png') center/cover no-repeat;
         }
         
-        .player-placeholder:hover { filter: brightness(1.2); }
-        
-        /* КНОПКА ПЕРЕВІРКИ ПОВЕРХ КАРТИНКИ */
-        .play-btn {
-            background: rgba(0, 255, 204, 0.2);
-            border: 2px solid var(--neon);
-            color: var(--neon);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-family: 'Orbitron';
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px var(--neon);
-            margin-top: 120px; /* Опускаємо кнопку під текст на картинці */
-        }
-
-        #main-video { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+        #main-video { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
         #main-video iframe { width: 100%; height: 100%; border: none; }
 
-        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(5px); }
-        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); }
-        .shorts-wrapper iframe { width: 100%; height: 100%; border: none; }
+        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        /* ГРАФІК ТА ІГРИ */
+        .game-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid transparent; transition: 0.3s; }
+        .game-card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        
+        /* SHORTS БЛОК */
+        .shorts-container { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); box-shadow: 0 0 15px rgba(0,255,204,0.3); }
+
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        .spec-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .spec-label { color: var(--neon); font-weight: bold; }
+
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; margin-top: 10px; transition: 0.3s; }
+        .btn-donate:hover { filter: brightness(1.2); box-shadow: 0 0 20px var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -74,28 +69,69 @@
 
 <nav>
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
+    <div id="stream-status" class="status-badge offline">
+        <span class="dot"></span> <span id="status-text">НЕ В МЕРЕЖІ</span>
+    </div>
 </nav>
 
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
-            <div id="main-video"></div>
-
-            <div class="player-placeholder" id="placeholder" onclick="startStream()">
-                <div class="play-btn"><i class="fa-solid fa-play"></i> ПЕРЕВІРИТИ ЕФІР</div>
+            <div id="main-video">
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" 
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
 
-        <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;">⚡ ОСТАННІ ВІДЕО</h2>
+        <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
         <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
+
+        <div class="info-grid">
+            <div class="glass-panel">
+                <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> МОЇ ОСНОВНІ ІГРИ</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="game-card">
+                        <i class="fa-solid fa-shield-tank" style="font-size: 2rem; color: var(--neon);"></i>
+                        <p style="font-size: 0.8rem; margin-top: 5px;">World of Tanks</p>
+                    </div>
+                    <div class="game-card">
+                        <i class="fa-solid fa-car-side" style="font-size: 2rem; color: var(--neon);"></i>
+                        <p style="font-size: 0.8rem; margin-top: 5px;">Need For Speed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h3 class="section-title"><i class="fa-solid fa-microchip"></i> ЗАЛІЗО СТРІМЕРА</h3>
+                <div class="spec-item"><span class="spec-label">Процесор:</span> <span>Intel Xeon E3-1240</span></div>
+                <div class="spec-item"><span class="spec-label">Відеркарта:</span> <span>NVIDIA GTX 1050 Ti</span></div>
+                <div class="spec-item"><span class="spec-label">Пам'ять:</span> <span>16GB DDR3</span></div>
+                <div class="spec-item"><span class="spec-label">Кодування:</span> <span>NVENC (NVIDIA App)</span></div>
+            </div>
+        </div>
     </div>
 
     <aside class="sidebar">
         <div class="glass-panel">
-            <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold); margin-bottom:15px;">⚡ ТОП SHORTS</h3>
-            <div class="shorts-wrapper">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs?modestbranding=1" allowfullscreen></iframe>
+            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt" style="color: var(--gold);"></i> ТОП SHORTS</h3>
+            <div class="shorts-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ" frameborder="0" allowfullscreen></iframe>
             </div>
+        </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem;">🔗 ПРИЄДНУЙСЯ</h3>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+                <a href="https://t.me/blackcellua" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-telegram" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">TG</span></a>
+                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-youtube" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">YT</span></a>
+                <a href="#" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem;"><i class="fa-solid fa-heart" style="color: var(--red);"></i> ПІДТРИМКА</h3>
+            <p style="font-size: 0.75rem; opacity: 0.8;">Підтримай розвиток україномовного контенту!</p>
+            <a href="https://skif.donatik.ua" class="btn-donate">ДОНАТ</a>
         </div>
     </aside>
 </div>
@@ -103,10 +139,22 @@
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
 
-    function startStream() {
-        // При кліку видаляємо картинку і вантажимо стрім
-        document.getElementById('placeholder').style.display = 'none';
-        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1" allowfullscreen></iframe>`;
+    async function checkStreamStatus() {
+        try {
+            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`);
+            const data = await response.json();
+            const statusBadge = document.getElementById('stream-status');
+            const statusText = document.getElementById('status-text');
+
+            const lastVideo = data.items[0];
+            if (lastVideo && (lastVideo.title.toLowerCase().includes('live') || lastVideo.link.includes('live'))) {
+                statusBadge.className = 'status-badge online';
+                statusText.innerText = 'В ЕФІРІ';
+            } else {
+                statusBadge.className = 'status-badge offline';
+                statusText.innerText = 'НЕ В МЕРЕЖІ';
+            }
+        } catch (e) { console.log('Status error'); }
     }
 
     async function loadVideos() {
@@ -115,16 +163,21 @@
             const res = await fetch(RSS);
             const data = await res.json();
             if (data.status === 'ok') {
-                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
-                    <div style="background:var(--glass); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
-                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:5px;" loading="lazy"></iframe>
+                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 15).map(v => `
+                    <div class="game-card" style="padding:5px;">
+                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:8px;" loading="lazy"></iframe>
+                        <p style="font-size:0.7rem; margin-top:5px; height:30px; overflow:hidden;">${v.title}</p>
                     </div>
                 `).join('');
             }
         } catch (e) {}
     }
 
-    window.onload = loadVideos;
+    window.onload = () => {
+        loadVideos();
+        checkStreamStatus();
+        setInterval(checkStreamStatus, 60000);
+    };
 </script>
 </body>
 </html>
