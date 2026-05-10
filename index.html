@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
-    <meta name="description" content="Офіційний сайт BlackCellUA - https://social-up.pp.ua. Дивись стріми WOT, NFS та ігри українською. Технічні гайди та налаштування Xeon.">
-    <meta name="keywords" content="BlackCellUA, social-up.pp.ua, стрім українською, World of Tanks, NFS стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
-    <meta name="author" content="BlackCellUA">
+    <title>BlackCellUA | Головний ігровий портал</title>
+    <meta name="description" content="Дивись стріми BlackCellUA на весь екран. World of Tanks, NFS та гайди українською.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -15,60 +13,69 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #00ffcc; --red: #ff4444; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
-            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --gold: #ffcc00;
+            --neon: #00ffcc; --red: #ff4444; --bg: #020617; 
+            --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); 
         }
 
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.9); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
         
-        /* СТАТУС ТА ОНЛАЙН */
-        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px; border: 1px solid var(--red); color: var(--red); }
+        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; display: flex; align-items: center; gap: 8px; border: 1px solid var(--red); color: var(--red); }
         .online { color: var(--neon); border-color: var(--neon); box-shadow: 0 0 10px var(--neon); }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
         .online .dot { animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        .viewer-count { font-size: 0.8rem; font-family: 'Orbitron'; color: var(--neon); margin-left: 10px; display: none; }
-        .online .viewer-count { display: inline; }
-
-        /* ОСНОВНА СІТКА - ТЕПЕР ПЛЕЄР БІЛЬШЕ */
-        .main-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; max-width: 1600px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-
-        /* ФІКС: ГОЛОВНИЙ ПЛЕЄР ЗДЕЛАНО ШИРЕ */
-        .player-viewport { 
-            position: relative; width: 100%; aspect-ratio: 16/9; 
-            border-radius: 15px; overflow: hidden; 
-            border: 2px solid rgba(0, 255, 204, 0.4); 
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.2); 
+        /* ГОЛОВНИЙ ПЛЕЄР НА ВЕСЬ ЕКРАН */
+        .hero-section {
+            width: 100%;
             background: #000;
-            margin-bottom: 30px; /* Відступ від сітки відео */
+            border-bottom: 2px solid var(--neon);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
         }
-        #main-frame { width: 100%; height: 100%; border: none; }
+
+        .hero-player-container {
+            max-width: 1600px; /* Щоб на надвеликих моніторах не розповзалося в кашу */
+            margin: 0 auto;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .hero-player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* КОНТЕНТ ПІД ПЛЕЄРОМ */
+        .main-layout { 
+            display: grid; 
+            grid-template-columns: 1fr 320px; 
+            gap: 25px; 
+            max-width: 1600px; 
+            margin: 30px auto; 
+            padding: 0 15px; 
+        }
 
         .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 
-        /* ВІДЕО-СІТКА: ФІКС НАКЛАДАННЯ НАЗВ */
-        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .game-card { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; border: 1px solid transparent; transition: 0.3s; display: flex; flex-direction: column; height: 100%; }
-        .game-card:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1); }
+        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .game-card { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; display: flex; flex-direction: column; transition: 0.3s; }
+        .game-card:hover { transform: translateY(-5px); border-color: var(--neon); }
         .game-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin-bottom: 12px; border: none; }
-        .game-card p { font-size: 0.85rem; margin: 0; line-height: 1.4; color: #fff; font-weight: 500; height: 2.8em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .game-card p { font-size: 0.85rem; margin: 0; line-height: 1.4; height: 2.8em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); background: #000; position: relative; }
+        .shorts-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        footer { background: rgba(0,0,0,0.9); padding: 30px; text-align: center; border-top: 1px solid rgba(0, 255, 204, 0.2); margin-top: 50px; }
         
-        /* SHORTS БЛОК: ФІКС ПОРОЖНЕЧІ ЗНИЗУ */
-        .shorts-container { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); background: #000; }
-        .shorts-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        .spec-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
-
-        /* ФУТЕР */
-        footer { background: rgba(0,0,0,0.9); padding: 20px; text-align: center; border-top: 1px solid rgba(0, 255, 204, 0.2); margin-top: auto; }
-        .copyright { font-family: 'Orbitron'; font-size: 0.8rem; color: rgba(255,255,255,0.6); }
-
-        @media (max-width: 1000px) { .main-layout { grid-template-columns: 1fr; } .player-viewport { border-width: 1px; box-shadow: none; } }
+        @media (max-width: 1000px) { 
+            .main-layout { grid-template-columns: 1fr; } 
+        }
     </style>
 </head>
 <body>
@@ -77,52 +84,42 @@
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
     <div id="stream-status" class="status-badge offline">
         <span class="dot"></span> <span id="status-text">OFFLINE</span>
-        <span class="viewer-count"><i class="fa-solid fa-eye"></i> <span id="live-viewers">0</span></span>
     </div>
 </nav>
 
+<section class="hero-section">
+    <div class="hero-player-container">
+        <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
+    </div>
+</section>
+
 <div class="main-layout">
     <div class="content">
-        <div class="player-viewport">
-            <iframe id="main-frame" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
-        </div>
-        
         <h2 class="section-title"><i class="fa-solid fa-video"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid">Завантаження контенту...</div>
+        <div id="popular-grid">Завантаження...</div>
     </div>
 
     <aside class="sidebar">
         <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-bolt"></i>SHORTS</h3>
-            <div class="shorts-container">
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ"></iframe>
+            <h3 class="section-title"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
+            <div class="shorts-wrapper">
+                <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
             </div>
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-fire"></i>SHORTS</h3>
-            <div class="shorts-container">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
+            <h3 class="section-title"><i class="fa-solid fa-microchip"></i> КОНФІГ</h3>
+            <div style="font-size: 0.85rem; line-height: 1.8;">
+                <div>CPU: Xeon E3-1240</div>
+                <div>GPU: GTX 1050 Ti</div>
+                <div>RAM: 16GB</div>
             </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-microchip"></i> ЗАЛІЗО</h3>
-            <div class="spec-item"><span>CPU:</span> <span>Xeon E3-1240</span></div>
-            <div class="spec-item"><span>GPU:</span> <span>GTX 1050 Ti</span></div>
-            <div class="spec-item"><span>RAM:</span> <span>16GB DDR3</span></div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title"><i class="fa-solid fa-link"></i> КОНТАКТИ</h3>
-            <a href="https://t.me/blackcellua" target="_blank" style="color:var(--neon); text-decoration:none; display:block; margin-bottom:10px;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-            <a href="https://social-up.pp.ua" style="color:var(--neon); text-decoration:none; display:block;"><i class="fa-solid fa-globe"></i> Website</a>
         </div>
     </aside>
 </div>
 
 <footer>
-    <div class="copyright">© 2026 BlackCellUA. Всі права захищені.</div>
+    <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: rgba(255,255,255,0.5);">© 2026 BlackCellUA. Стріми українською.</div>
 </footer>
 
 <script>
@@ -132,40 +129,28 @@
         const grid = document.getElementById('popular-grid');
         const badge = document.getElementById('stream-status');
         const statusText = document.getElementById('status-text');
-        const viewers = document.getElementById('live-viewers');
 
         try {
             const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`);
             const data = await res.json();
             
             if (data.status === 'ok') {
-                // Відображаємо відео (назви не накладаються)
-                grid.innerHTML = data.items.slice(0, 20).map(v => `
+                grid.innerHTML = data.items.slice(0, 12).map(v => `
                     <div class="game-card">
                         <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" loading="lazy"></iframe>
-                        <p title="${v.title}">${v.title}</p>
+                        <p>${v.title}</p>
                     </div>
                 `).join('');
 
-                // Логіка перевірки онлайну
                 const isLive = data.items[0].title.toLowerCase().includes('live') || data.items[0].title.toLowerCase().includes('стрім');
                 if (isLive) {
                     badge.className = 'status-badge online';
                     statusText.innerText = 'В ЕФІРІ';
-                    viewers.innerText = Math.floor(Math.random() * 30) + 10;
-                } else {
-                    badge.className = 'status-badge offline';
-                    statusText.innerText = 'OFFLINE';
                 }
             }
-        } catch (e) {
-            grid.innerHTML = "Помилка завантаження контенту.";
-        }
+        } catch (e) { console.error(e); }
     }
-
     loadContent();
-    setInterval(loadContent, 300000); // Оновлення раз на 5 хвилин
 </script>
-
 </body>
 </html>
