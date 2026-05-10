@@ -3,41 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackCellUA | Портал Стрімера</title>
-    
-    <meta name="description" content="Офіційний сайт BlackCellUA. Стріми World of Tanks та Need for Speed українською. Технічні гайди та ігровий контент.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, WOT UA, NFS, Xeon E3-1240, GTX 1050 Ti">
-
+    <title>BlackCellUA | LIVE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
-        :root { --neon: #00ffcc; --red: #ff4444; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; --glass: rgba(255, 255, 255, 0.05); }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
+        :root { --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
-        
-        .status-badge { padding: 6px 15px; border-radius: 20px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
-        .online { color: var(--neon); border: 1px solid var(--neon); box-shadow: 0 0 10px var(--neon); background: rgba(0, 255, 204, 0.1); }
-        .offline { color: #888; border: 1px solid #444; background: rgba(255,255,255,0.05); }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-        .online .dot { animation: pulse 1.5s infinite; }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
-        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 1px solid rgba(0, 255, 204, 0.3); background: #000; }
+        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
         iframe { width: 100%; height: 100%; border: none; }
-
-        .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
-        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         
-        .game-card { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; border: 1px solid transparent; transition: 0.3s; }
-        .game-card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        /* СІТКА ВІДЕО */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
+        .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; border: 1px solid transparent; transition: 0.3s; }
+        .v-card:hover { border-color: var(--neon); transform: translateY(-5px); }
 
-        .shorts-container { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); }
-        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; transition: 0.3s; }
-        
+        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; }
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -45,92 +29,62 @@
 
 <nav>
     <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
-    <div id="stream-status" class="status-badge offline">
-        <span class="dot"></span> <span id="status-text">ЗАВАНТАЖЕННЯ...</span>
-    </div>
+    <div id="status" style="color:var(--neon); font-family:'Orbitron'; font-size:0.8rem; border:1px solid var(--neon); padding:5px 15px; border-radius:20px;">SYSTEM ONLINE</div>
 </nav>
 
 <div class="main-layout">
     <div class="content">
-        <div class="player-viewport" id="player-container">
-            <div id="player-placeholder" style="display:flex; align-items:center; justify-content:center; height:100%; color:var(--neon);">Синхронізація з YouTube...</div>
+        <div class="player-viewport">
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
         </div>
 
-        <h2 class="section-title" style="margin-top:30px;"><i class="fa-solid fa-play"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
+        <h2 style="font-family:'Orbitron'; color:var(--neon); margin-top:30px; font-size:1.2rem;">ОСТАННІ ВІДЕО</h2>
+        <div id="popular-grid" class="video-grid">
+            </div>
     </div>
 
     <aside>
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
-            <div class="shorts-container">
-                <iframe src="https://www.youtube.com/embed/videoseries?list=UUSH29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
-            </div>
+            <h3 style="font-family:'Orbitron'; color:var(--neon); font-size:0.9rem;">SHORTS</h3>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=UUSH29hev1ElIOHYG9oFm9dieQ" style="width:100%; aspect-ratio:9/16; border-radius:10px;"></iframe>
         </div>
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem;"><i class="fa-solid fa-microchip"></i> SETUP</h3>
-            <p style="font-size: 0.8rem; margin: 5px 0;">Xeon E3-1240 | GTX 1050 Ti</p>
-        </div>
-        <div class="glass-panel">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
+            <p style="font-size:0.8rem;">Xeon E3-1240 | GTX 1050 Ti</p>
+            <a href="https://skif.donatik.ua" class="btn-donate">ДОНАТ</a>
         </div>
     </aside>
 </div>
 
 <script>
-    const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
+    const CID = 'UC29hev1ElIOHYG9oFm9dieQ';
 
-    async function initPortal() {
+    async function loadContent() {
+        const grid = document.getElementById('popular-grid');
         const t = Date.now();
-        const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}&t=${t}`;
-        
+        // Беремо RSS, щоб витягнути список відео для сітки
+        const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CID)}&t=${t}`;
+
         try {
-            const response = await fetch(rssUrl);
-            const data = await response.json();
+            const res = await fetch(url);
+            const data = await res.json();
             
             if (data.status === 'ok' && data.items.length > 0) {
-                const videos = data.items;
-                const lastVideo = videos[0];
-                const playerContainer = document.getElementById('player-container');
-                const statusBadge = document.getElementById('stream-status');
-                const statusText = document.getElementById('status-text');
-
-                // ПЕРЕВІРКА: Стрім чи Запис?
-                // Якщо в посиланні є 'watch' і немає ознак прямого ефіру в назві/даних — ставимо запис
-                const isLive = lastVideo.link.includes('watch?v=') && (lastVideo.title.toLowerCase().includes('live') || lastVideo.title.includes('🔴'));
-
-                if (isLive) {
-                    // ЯКЩО СТРІМ ЙДЕ
-                    playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=1" allowfullscreen></iframe>`;
-                    statusBadge.className = 'status-badge online';
-                    statusText.innerText = 'В ЕФІРІ';
-                } else {
-                    // ЯКЩО СТРІМ ЗАКІНЧИВСЯ — СТАВИМО ОСТАННЄ ВІДЕО (ЗАПИС)
-                    const videoId = lastVideo.guid.split(':')[2] || lastVideo.link.split('v=')[1];
-                    playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=0" allowfullscreen></iframe>`;
-                    statusBadge.className = 'status-badge offline';
-                    statusText.innerText = 'ОСТАННІЙ ЗАПИС';
-                }
-
-                // ЗАПОВНЮЄМО СІТКУ ВІДЕО
-                document.getElementById('popular-grid').innerHTML = videos.slice(0, 12).map(v => {
+                // Виводимо 12 останніх відео в сітку (вони не заважають плеєру зверху)
+                grid.innerHTML = data.items.map(v => {
                     const id = v.guid.split(':')[2] || v.link.split('v=')[1];
                     return `
-                        <div class="game-card">
-                            <iframe src="https://www.youtube.com/embed/${id}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:8px;" loading="lazy"></iframe>
+                        <div class="v-card">
+                            <iframe src="https://www.youtube.com/embed/${id}" loading="lazy" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:5px;"></iframe>
                             <p style="font-size:0.7rem; margin-top:8px; height:32px; overflow:hidden;">${v.title}</p>
                         </div>`;
                 }).join('');
             }
         } catch (e) {
-            console.error("Помилка завантаження даних");
+            // Якщо RSS впав, ставимо запасну сітку-плейлист
+            grid.innerHTML = `<iframe src="https://www.youtube.com/embed/videoseries?list=UULP29hev1ElIOHYG9oFm9dieQ" style="grid-column:1/-1; width:100%; height:400px; border-radius:10px;"></iframe>`;
         }
     }
-
-    window.onload = initPortal;
-    // Оновлювати статус кожні 5 хвилин
-    setInterval(initPortal, 300000);
+    window.onload = loadContent;
 </script>
-
 </body>
 </html>
