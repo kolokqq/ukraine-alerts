@@ -23,7 +23,7 @@
             --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --nav-bg: rgba(0, 0, 0, 0.8);
         }
 
-        body { margin: 0; background: var(--bg); background-attachment: fixed; color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; transition: 0.4s ease; }
+        body { margin: 0; background: var(--bg); background-attachment: fixed; color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
@@ -33,19 +33,22 @@
         /* ПЛЕЄР ТА ЗАГЛУШКА */
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
-            background: #000; border-radius: 15px; overflow: hidden; 
+            border-radius: 15px; overflow: hidden; 
             box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); 
-            border: 1px solid rgba(0, 255, 204, 0.2); 
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            background: #020617;
         }
-        .player-viewport iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; }
-
+        
         .player-placeholder {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: linear-gradient(45deg, #020617, #0f172a);
             z-index: 1; text-align: center;
         }
-        .player-placeholder i { font-size: 3rem; color: var(--neon); margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--neon)); }
+        
+        .player-placeholder i { font-size: 4rem; color: var(--neon); margin-bottom: 20px; text-shadow: 0 0 20px var(--neon); }
+        .player-placeholder h3 { font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; color: #ffffff; }
+        
+        .player-viewport iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: transparent; }
 
         .status-badge { 
             position: absolute; top: 15px; left: 15px; 
@@ -62,11 +65,8 @@
         .btn { padding: 8px 12px; border-radius: 5px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.65rem; border: 1px solid var(--neon); color: var(--neon); background: transparent; cursor: pointer; transition: 0.3s; }
         .btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon); }
 
-        #notification-toast { position: fixed; bottom: 20px; left: 20px; background: var(--nav-bg); border-left: 4px solid var(--neon); padding: 15px 25px; border-radius: 8px; z-index: 2000; transform: translateX(-150%); transition: 0.5s; }
-        #notification-toast.show { transform: translateX(0); }
-
-        /* SHORTS VERTICAL STYLE */
-        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--neon); }
+        /* SHORTS STYLE */
+        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
         .shorts-wrapper iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
@@ -85,17 +85,16 @@
             <div id="stream-status" class="status-badge status-waiting">Очікування</div>
             
             <div class="player-placeholder">
-                <i class="fa-solid fa-satellite-dish"></i>
-                <h3 style="font-family:'Orbitron';">BLACKCELLUA ОФЛАЙН</h3>
-                <p style="font-size:0.7rem; color:var(--gold); margin-top:5px;">Перевір розділ "ТОП ВІДЕО" або заходь ввечері!</p>
+                <i class="fa-solid fa-headset"></i>
+                <h3>BLACKCELLUA ОФЛАЙН</h3>
+                <p style="font-size:0.7rem; color:var(--gold); margin-top:5px; font-family: 'Orbitron';">Стрім щодня о 19:00 за Києвом</p>
             </div>
 
             <div id="main-video"></div>
         </div>
 
         <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;"><i class="fa-solid fa-fire"></i> ТОП ВІДЕО КАНАЛУ</h2>
-        <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;">
-            </div>
+        <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
     </div>
 
     <aside class="sidebar">
@@ -106,104 +105,46 @@
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-youtube" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">YT</span></a>
                 <a href="https://social-up.pp.ua/" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
             </div>
-            
-            <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.05); padding-top:15px;">
-                <p style="font-size:0.6rem; font-family:'Orbitron'; color:var(--gold);">ПОШИРИТИ САЙТ:</p>
-                <div style="display:flex; gap:8px;">
-                    <button onclick="share('tg')" class="btn" style="padding:5px 10px;"><i class="fa-brands fa-telegram"></i></button>
-                    <button onclick="share('copy')" class="btn" style="padding:5px 10px;"><i class="fa-solid fa-link"></i></button>
-                </div>
-            </div>
         </div>
 
         <div class="glass-panel" style="margin-top:20px;">
             <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold); margin-bottom:15px;">⚡ ТОП SHORTS</h3>
-            <div id="shorts-container">
-                <div class="shorts-wrapper">
-                    </div>
+            <div class="shorts-wrapper">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs?modestbranding=1&rel=0" allowfullscreen></iframe>
             </div>
         </div>
     </aside>
 </div>
 
-<div id="notification-toast">
-    <div id="notify-msg"></div>
-</div>
+<div id="notification-toast"><div id="notify-msg"></div></div>
 
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
     const SITE_URL = 'https://social-up.pp.ua/';
 
-    function showNotify(msg) {
-        const toast = document.getElementById('notification-toast');
-        document.getElementById('notify-msg').innerText = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-    // Функція отримання ID відео з посилання
-    function extractVideoId(url) {
-        const match = url.match(/(?:v=|vi\/|shorts\/|embed\/|be\/|video\/)([^#&?]*)/);
-        return (match && match[1]) ? match[1] : null;
-    }
-
-    async function loadYouTubeContent() {
-        const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
-        
+    async function loadVideos() {
+        const RSS = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
         try {
-            const response = await fetch(RSS_URL);
-            const data = await response.json();
-            
-            if (data.status === 'ok' && data.items.length > 0) {
-                const items = data.items;
-                
-                // 1. ТОП ВІДЕО
-                document.getElementById('popular-grid').innerHTML = items.slice(0, 4).map(v => {
-                    const id = extractVideoId(v.link);
-                    return `
-                        <div style="background:var(--glass); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
-                            <iframe src="https://www.youtube.com/embed/${id}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:5px;" loading="lazy"></iframe>
-                        </div>
-                    `;
-                }).join('');
-
-                // 2. SHORTS (Останнє відео як Shorts)
-                const latestId = extractVideoId(items[0].link);
-                document.getElementById('shorts-container').innerHTML = `
-                    <div class="shorts-wrapper">
-                        <iframe src="https://www.youtube.com/embed/${latestId}?modestbranding=1&rel=0" allowfullscreen></iframe>
+            const res = await fetch(RSS);
+            const data = await res.json();
+            if (data.status === 'ok') {
+                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
+                    <div style="background:var(--glass); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:5px;" loading="lazy"></iframe>
                     </div>
-                `;
+                `).join('');
             }
-        } catch (e) {
-            console.error("Помилка завантаження RSS:", e);
-        }
+        } catch (e) {}
     }
 
     function init() {
-        // Запуск основного плеєра
-        document.getElementById('main-video').innerHTML = `
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=1" 
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        `;
-        
-        loadYouTubeContent();
-
-        // Емуляція детекту статусу
+        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=0&mute=1" allowfullscreen></iframe>`;
+        loadVideos();
         setTimeout(() => {
             const badge = document.getElementById('stream-status');
             badge.innerText = "В ЕФІРІ";
             badge.className = "status-badge status-live";
-        }, 7000);
-    }
-
-    function share(p) {
-        if(p==='copy') { 
-            navigator.clipboard.writeText(SITE_URL); 
-            showNotify("Посилання скопійовано!"); 
-        } else {
-            window.open(`https://t.me/share/url?url=${SITE_URL}`);
-        }
+        }, 10000);
     }
 
     window.onload = init;
