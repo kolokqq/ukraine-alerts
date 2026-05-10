@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO БЛОК ПОВЕРНУТО -->
-    <title>BlackCellUA | Стріми World of Tanks Українською</title>
+    <!-- SEO БЛОК -->
+    <title>BlackCellUA | Стріми World of Tanks та NFS Українською</title>
     <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed. Найкращі моменти, Shorts та розіграші.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, ігри українською, Xeon E3-1240, GTX 1050 Ti">
     <meta property="og:title" content="BlackCellUA - Gaming Portal">
@@ -18,206 +17,145 @@
             --neon: #00ffcc; 
             --danger: #ff0055; 
             --gold: #ffcc00; 
-            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
-            --text: #ffffff;
+            --bg: #050505; 
             --glass: rgba(255, 255, 255, 0.03); 
-            --nav-bg: rgba(0, 0, 0, 0.8);
         }
 
-        body.light-theme {
-            --bg: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
-            --text: #0f172a;
-            --glass: rgba(15, 23, 42, 0.05);
-            --nav-bg: rgba(255, 255, 255, 0.9);
-        }
-
-        body { 
-            margin: 0; background: var(--bg); background-attachment: fixed;
-            color: var(--text); font-family: 'Exo 2', sans-serif; 
-            overflow-x: hidden; transition: 0.4s ease;
-        }
+        body { margin: 0; background: var(--bg); color: #fff; font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+        /* ЛОГОТИП */
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
-        .ticker { background: var(--danger); color: white; padding: 10px 0; font-family: 'Orbitron'; font-size: 0.7rem; overflow: hidden; }
-        .ticker-text { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker { background: var(--danger); color: white; padding: 10px 0; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 10px 5%; background: var(--nav-bg); backdrop-filter: blur(10px); 
-            border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000;
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         
-        .nav-links { display: flex; gap: 8px; align-items: center; }
-        .btn { 
-            padding: 8px 12px; border-radius: 5px; text-decoration: none; 
-            font-family: 'Orbitron'; font-size: 0.65rem; border: 1px solid var(--neon); 
-            color: var(--neon); background: transparent; cursor: pointer;
-        }
+        .nav-links { display: flex; gap: 15px; }
+        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.7rem; border: 1px solid var(--neon); color: var(--neon); transition: 0.3s; }
+        .btn:hover { background: var(--neon); color: #000; }
 
-        .main-layout { 
-            display: grid; grid-template-columns: 1fr 320px; gap: 20px; 
-            max-width: 1400px; margin: 20px auto; padding: 0 15px; 
-        }
+        .main-layout { display: grid; grid-template-columns: 1fr 300px; gap: 30px; max-width: 1400px; margin: 20px auto; padding: 0 20px; }
 
-        .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; }
+        .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 25px; position: relative; }
         
-        .section-title { font-family: 'Orbitron'; color: var(--neon); margin: 30px 0 15px 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        /* МИГОТЛИВИЙ ЕФІР */
+        .live-status { color: var(--danger); font-family: 'Orbitron'; font-weight: bold; animation: blink 1.5s infinite; display: flex; align-items: center; gap: 8px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
 
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .info-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 3px solid var(--neon); }
-        .info-card h4 { margin: 0 0 10px 0; font-family: 'Orbitron'; font-size: 0.8rem; color: var(--gold); }
-        .info-card ul { margin: 0; padding: 0; list-style: none; font-size: 0.8rem; opacity: 0.9; }
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .side-card { background: var(--glass); border-radius: 15px; padding: 15px; border-left: 3px solid var(--gold); }
 
-        .social-row { display: flex; gap: 10px; margin-top: 15px; }
-        .soc-btn { flex: 1; text-align: center; padding: 10px; border-radius: 8px; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: #fff; font-size: 0.8rem; transition: 0.3s; }
-        .soc-btn:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
         iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: 1px solid #333; }
-
-        /* МОБІЛЬНА АДАПТАЦІЯ */
+        
+        /* МОБІЛЬНА ВЕРСІЯ */
         @media (max-width: 900px) {
             .main-layout { grid-template-columns: 1fr; }
-            .logo { font-size: 1.2rem; }
-            .nav-links { gap: 5px; }
-            .btn { padding: 6px 8px; font-size: 0.6rem; }
-            .info-grid { grid-template-columns: 1fr; }
-            #online-count { display: none; }
+            .nav-links { display: none; } /* Для мобілок краще сховати або зробити бургер */
         }
 
-        .footer { text-align: center; padding: 30px; color: #555; font-size: 0.7rem; border-top: 1px solid #111; margin-top: 40px; }
+        .footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; border-top: 1px solid #111; }
     </style>
 </head>
-<body id="body">
+<body>
 
 <div class="ticker">
-    <div class="ticker-text" id="ticker-text">🔥 ПРЯМИЙ ЕФІР: WORLD OF TANKS 🔥 ГРАЄМО З ПІДПИСНИКАМИ 🔥 BLACKCELLUA ОФІЦІЙНИЙ САЙТ 🔥</div>
+    <div class="ticker-text">🔥 ПРЯМИЙ ЕФІР: WORLD OF TANKS 🔥 ГРАЄМО З ПІДПИСНИКАМИ 🔥 BLACKCELLUA ОФІЦІЙНИЙ САЙТ 🔥</div>
 </div>
 
 <nav>
-    <a href="#" class="logo">BLACKCELL<span style="color:var(--text)">UA</span></a>
+    <a href="#" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
     <div class="nav-links">
-        <button class="btn" onclick="toggleLang()">🌐 <span id="lang-btn">EN</span></button>
-        <button class="btn" onclick="toggleTheme()">🌓</button>
-        <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn" style="border-color:var(--gold); color:var(--gold)">$</a>
-        <div id="online-count" style="color:var(--neon); font-size: 0.7rem; font-family: 'Orbitron'; margin-left: 5px;">ОНЛАЙН: 12</div>
+        <a href="https://www.youtube.com/@BlackCellUA" class="btn">YOUTUBE</a>
+        <a href="https://send.monobank.ua/" class="btn" style="border-color:var(--gold); color:var(--gold)">ДОНАТ</a>
+        <div id="online-count" style="color:var(--neon); font-size: 0.8rem; font-family: 'Orbitron';">ОНЛАЙН: 12</div>
     </div>
 </nav>
 
 <div class="main-layout">
     <div class="content">
         <div class="glass-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <div style="color: var(--danger); font-family: 'Orbitron'; font-weight: bold; animation: blink 1.5s infinite;">● LIVE</div>
-                <div style="font-size: 0.7rem; opacity: 0.6;">YOUTUBE GAMING</div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="live-status">● ПРЯМИЙ ЕФІР</div>
+                <div style="font-size: 0.8rem; color: #777;">Xeon E3-1240 | GTX 1050 Ti</div>
             </div>
-            <div id="main-video"></div>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <h4 id="pc-title">💻 МІЙ ПК</h4>
-                <ul>
-                    <li>CPU: Intel Xeon E3-1240</li>
-                    <li>GPU: NVIDIA GTX 1050 Ti (4GB)</li>
-                    <li>RAM: 16GB DDR3</li>
-                    <li>SSD: 128GB Somnambulist</li>
-                </ul>
-            </div>
-            <div class="info-card" style="border-left-color: var(--gold);">
-                <h4 id="schedule-title">📅 ГРАФІК СТРІМІВ</h4>
-                <ul>
-                    <li id="sch-1">ПН-ПТ: 19:00 (WOT)</li>
-                    <li id="sch-2">СБ-НД: 15:00 (NFS / Random)</li>
-                </ul>
+            <div id="main-video" style="margin-top: 20px;">
+                <!-- Тут буде авто-стрім -->
             </div>
         </div>
 
-        <h2 class="section-title" id="popular-heading">🔥 ПОПУЛЯРНІ ВІДЕО</h2>
+        <h2 style="font-family: 'Orbitron'; color: var(--neon); margin-top: 40px;">🔥 ПОПУЛЯРНІ ВІДЕО</h2>
         <div id="popular-grid" class="grid"></div>
     </div>
 
     <aside class="sidebar">
-        <div class="glass-panel side-card">
-            <h3 id="shorts-heading" style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--gold); margin-bottom: 15px;">⚡ SHORTS</h3>
-            <div id="shorts-container"></div>
-        </div>
-
-        <div class="glass-panel side-card" style="margin-top: 20px;">
-            <h3 id="social-title" style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 15px;">🔗 СОЦМЕРЕЖІ</h3>
-            <div class="social-row">
-                <a href="#" class="soc-btn">TG</a>
-                <a href="#" class="soc-btn">DC</a>
-                <a href="https://www.youtube.com/@BlackCellUA" class="soc-btn">YT</a>
+        <div class="side-card">
+            <h3 style="font-family: 'Orbitron'; font-size: 0.9rem; color: var(--gold);">⚡ ПОПУЛЯРНИЙ SHORTS</h3>
+            <div id="shorts-container">
+                <!-- Сюди завантажимо shorts -->
             </div>
-            <p id="about-text" style="font-size: 0.75rem; margin-top: 15px; opacity: 0.8;">Підписуйся на канал BlackCellUA — танкові бої та драйвові перегони українською!</p>
+        </div>
+        <div class="side-card" style="border-color: var(--neon);">
+            <p style="font-size: 0.8rem; line-height: 1.6;">Стріми кожен день! Підпишись, щоб не пропустити нові танкові баталії українською мовою.</p>
         </div>
     </aside>
 </div>
 
 <div class="footer">
-    &copy; 2026 BlackCellUA. <span id="rights-text">Всі авторські права захищені.</span>
+    &copy; 2026 BlackCellUA. Всі авторські права захищені. <br>
+    Контент створено виключно для розважальних цілей.
 </div>
 
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
-    const MY_FIXED_SHORTS_ID = '5f_fiit1KV8'; 
-    let currentLang = 'uk';
-
-    const langData = {
-        uk: {
-            pc: "💻 МІЙ ПК", schedule: "📅 ГРАФІК", 
-            popular: "🔥 ПОПУЛЯРНІ ВІДЕО", shorts: "⚡ SHORTS",
-            social: "🔗 СОЦМЕРЕЖІ", langBtn: "EN", online: "ОНЛАЙН"
-        },
-        en: {
-            pc: "💻 PC SPECS", schedule: "📅 SCHEDULE", 
-            popular: "🔥 POPULAR VIDEOS", shorts: "⚡ TOP SHORTS",
-            social: "🔗 SOCIALS", langBtn: "UA", online: "ONLINE"
-        }
-    };
-
-    function toggleLang() {
-        currentLang = currentLang === 'uk' ? 'en' : 'uk';
-        const data = langData[currentLang];
-        document.getElementById('pc-title').innerText = data.pc;
-        document.getElementById('schedule-title').innerText = data.schedule;
-        document.getElementById('popular-heading').innerText = data.popular;
-        document.getElementById('shorts-heading').innerText = data.shorts;
-        document.getElementById('social-title').innerText = data.social;
-        document.getElementById('lang-btn').innerText = data.langBtn;
-    }
-
-    function toggleTheme() {
-        document.getElementById('body').classList.toggle('light-theme');
-    }
+    const liveEmbedUrl = `https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}`;
 
     function init() {
-        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}" frameborder="0" allowfullscreen></iframe>`;
-        
+        // Головне відео
+        document.getElementById('main-video').innerHTML = `
+            <iframe src="${liveEmbedUrl}" frameborder="0" allowfullscreen></iframe>
+        `;
+
+        // Імітація лічильника онлайну (для атмосфери)
         setInterval(() => {
-            const random = Math.floor(Math.random() * 10) + 10;
-            document.getElementById('online-count').innerText = `${langData[currentLang].online}: ${random}`;
+            const random = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+            document.getElementById('online-count').innerText = `ОНЛАЙН: ${random}`;
         }, 5000);
 
-        loadRSS();
+        loadRSSVideos();
     }
 
-    async function loadRSS() {
-        const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
+    async function loadRSSVideos() {
+        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+
         try {
-            const response = await fetch(RSS_URL);
+            const response = await fetch(API_URL);
             const data = await response.json();
+
             if (data.status === 'ok') {
-                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `<div><iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" frameborder="0" allowfullscreen></iframe></div>`).join('');
-                document.getElementById('shorts-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${MY_FIXED_SHORTS_ID}" frameborder="0" allowfullscreen style="aspect-ratio: 9/16; border: 1px solid var(--neon);"></iframe>`;
+                // Популярні (перші 4 відео)
+                const gridHtml = data.items.slice(0, 4).map(v => {
+                    const id = v.link.split('v=')[1];
+                    return `<div><iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe></div>`;
+                }).join('');
+                document.getElementById('popular-grid').innerHTML = gridHtml;
+
+                // Shorts (беремо останнє відео в бічну панель)
+                const shortsId = data.items[0].link.split('v=')[1];
+                document.getElementById('shorts-container').innerHTML = `
+                    <iframe src="https://www.youtube.com/embed/${shortsId}" frameborder="0" allowfullscreen style="aspect-ratio: 9/16;"></iframe>
+                `;
             }
-        } catch (e) { console.error("Load error"); }
+        } catch (e) {
+            console.error("RSS Error");
+        }
     }
 
     init();
 </script>
+
 </body>
 </html>
