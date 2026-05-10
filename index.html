@@ -7,11 +7,7 @@
     <title>BlackCellUA | Стріми World of Tanks Українською</title>
     <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed. Найкращі моменти, Shorts та розіграші.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, ігри українською, Xeon E3-1240, GTX 1050 Ti">
-    <meta property="og:title" content="BlackCellUA - Gaming Portal">
-    <meta property="og:description" content="Танкові баталії та перегони у прямому ефірі!">
-    <meta property="og:url" content="https://social-up.pp.ua/">
     
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -30,7 +26,7 @@
         
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
-        /* ПЛЕЄР ТА ЗАГЛУШКА */
+        /* КОНТЕЙНЕР ПЛЕЄРА */
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
             border-radius: 15px; overflow: hidden; 
@@ -39,16 +35,19 @@
             background: #020617;
         }
         
+        /* ЗАГЛУШКА З ТВОЄЇ КАРТИНКИ */
         .player-placeholder {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 1; text-align: center;
+            z-index: 5; text-align: center;
+            /* ВСТАВ СЮДИ ПОСИЛАННЯ НА СВОЮ КАРТИНКУ */
+            background: #020617 url('https://social-up.pp.ua/your_image.png') center/cover;
+            cursor: pointer; transition: 0.3s;
         }
         
-        .player-placeholder i { font-size: 4rem; color: var(--neon); margin-bottom: 20px; text-shadow: 0 0 20px var(--neon); }
-        .player-placeholder h3 { font-family: 'Orbitron'; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; color: #ffffff; }
-        
-        .player-viewport iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: transparent; }
+        /* Щоб показати заглушку, коли iframe порожній */
+        #main-video:empty + .player-placeholder { display: flex; }
+        #main-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: #000; }
 
         .status-badge { 
             position: absolute; top: 15px; left: 15px; 
@@ -57,16 +56,12 @@
             z-index: 10; pointer-events: none; text-transform: uppercase;
         }
         .status-live { background: var(--danger); color: white; animation: blink 1.5s infinite; }
-        .status-waiting { background: var(--online); color: #000; animation: blink 2s infinite; }
+        .status-waiting { background: var(--online); color: #000; }
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
         .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(5px); }
-        .btn { padding: 8px 12px; border-radius: 5px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.65rem; border: 1px solid var(--neon); color: var(--neon); background: transparent; cursor: pointer; transition: 0.3s; }
-        .btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon); }
-
-        /* SHORTS STYLE */
-        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+        .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); }
         .shorts-wrapper iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
@@ -76,7 +71,6 @@
 
 <nav>
     <a href="https://social-up.pp.ua/" class="logo">BLACKCELL<span style="color:#fff">UA</span></a>
-    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.7rem;"><i class="fa-solid fa-eye"></i> 12</div>
 </nav>
 
 <div class="main-layout">
@@ -84,13 +78,11 @@
         <div class="player-viewport" id="player-container">
             <div id="stream-status" class="status-badge status-waiting">Очікування</div>
             
-            <div class="player-placeholder">
-                <i class="fa-solid fa-headset"></i>
-                <h3>BLACKCELLUA ОФЛАЙН</h3>
-                <p style="font-size:0.7rem; color:var(--gold); margin-top:5px; font-family: 'Orbitron';">Стрім щодня о 19:00 за Києвом</p>
-            </div>
-
             <div id="main-video"></div>
+
+            <div class="player-placeholder" id="placeholder" onclick="startStream()">
+                <div style="margin-top:150px; font-size:0.6rem; color:var(--neon); font-family: Orbitron; z-index: 6;">НАТИСНИ ЩОБ ПЕРЕВІРИТИ ЕФІР</div>
+            </div>
         </div>
 
         <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;"><i class="fa-solid fa-fire"></i> ТОП ВІДЕО КАНАЛУ</h2>
@@ -116,11 +108,16 @@
     </aside>
 </div>
 
-<div id="notification-toast"><div id="notify-msg"></div></div>
-
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
-    const SITE_URL = 'https://social-up.pp.ua/';
+
+    function startStream() {
+        document.getElementById('placeholder').style.display = 'none';
+        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=0" allowfullscreen></iframe>`;
+        
+        const badge = document.getElementById('stream-status');
+        badge.innerText = "ПЕРЕВІРКА...";
+    }
 
     async function loadVideos() {
         const RSS = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
@@ -137,17 +134,7 @@
         } catch (e) {}
     }
 
-    function init() {
-        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=0&mute=1" allowfullscreen></iframe>`;
-        loadVideos();
-        setTimeout(() => {
-            const badge = document.getElementById('stream-status');
-            badge.innerText = "В ЕФІРІ";
-            badge.className = "status-badge status-live";
-        }, 10000);
-    }
-
-    window.onload = init;
+    window.onload = loadVideos;
 </script>
 </body>
 </html>
