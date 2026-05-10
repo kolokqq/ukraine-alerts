@@ -4,113 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | World of Tanks та Need for Speed Українською</title>
-    <meta name="description" content="Офіційний портал BlackCellUA. Стріми, Shorts та гайди українською.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, WOT, NFS, Xeon E3-1240">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SEO БЛОК ПОВЕРНУТО -->
+    <title>BlackCellUA | Стріми World of Tanks Українською</title>
+    <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed. Найкращі моменти, Shorts та розіграші.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <meta property="og:title" content="BlackCellUA - Gaming Portal">
+    <meta property="og:description" content="Танкові баталії та перегони у прямому ефірі!">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
-        :root { --neon: #00ffcc; --bg: #020617; --text: #ffffff; --glass: rgba(255, 255, 255, 0.05); }
+        :root { 
+            --neon: #00ffcc; 
+            --danger: #ff0055; 
+            --gold: #ffcc00; 
+            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03); 
+            --nav-bg: rgba(0, 0, 0, 0.8);
+        }
 
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
+        body.light-theme {
+            --bg: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+            --text: #0f172a;
+            --glass: rgba(15, 23, 42, 0.05);
+            --nav-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body { 
+            margin: 0; background: var(--bg); background-attachment: fixed;
+            color: var(--text); font-family: 'Exo 2', sans-serif; 
+            overflow-x: hidden; transition: 0.4s ease;
+        }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--neon); }
-        .logo { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
-        /* ГОЛОВНИЙ ПЛЕЄР - МАКСИМАЛЬНО ШИРОКИЙ */
-        .hero-section { width: 100%; background: #000; display: flex; justify-content: center; }
-        .player-container { width: 100%; max-width: 1920px; aspect-ratio: 16/9; box-shadow: 0 0 20px rgba(0, 255, 204, 0.3); }
-        .player-container iframe { width: 100%; height: 100%; border: none; }
+        .ticker { background: var(--danger); color: white; padding: 10px 0; font-family: 'Orbitron'; font-size: 0.7rem; overflow: hidden; }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* СІТКА КОНТЕНТУ */
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; max-width: 1600px; margin: 30px auto; padding: 0 20px; }
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 5%; background: var(--nav-bg); backdrop-filter: blur(10px); 
+            border-bottom: 1px solid var(--neon); position: sticky; top: 0; z-index: 1000;
+        }
+        
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .btn { 
+            padding: 8px 12px; border-radius: 5px; text-decoration: none; 
+            font-family: 'Orbitron'; font-size: 0.65rem; border: 1px solid var(--neon); 
+            color: var(--neon); background: transparent; cursor: pointer;
+        }
 
-        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.2rem; margin-bottom: 20px; border-left: 4px solid var(--neon); padding-left: 10px; }
+        .main-layout { 
+            display: grid; grid-template-columns: 1fr 320px; gap: 20px; 
+            max-width: 1400px; margin: 20px auto; padding: 0 15px; 
+        }
 
-        /* ВИПРАВЛЕНА СІТКА ВІДЕО */
-        #popular-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .video-card { background: var(--glass); border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .video-card:hover { border-color: var(--neon); transform: translateY(-3px); }
-        .video-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: none; }
-        .video-card p { margin-top: 10px; font-size: 0.9rem; font-weight: 600; line-height: 1.4; height: 40px; overflow: hidden; }
+        .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; }
+        
+        .section-title { font-family: 'Orbitron'; color: var(--neon); margin: 30px 0 15px 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
 
-        /* САЙДБАР */
-        .sidebar-panel { background: var(--glass); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
-        .shorts-frame { width: 100%; aspect-ratio: 9/16; border-radius: 10px; overflow: hidden; border: 1px solid var(--neon); }
-        .shorts-frame iframe { width: 100%; height: 100%; border: none; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .info-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border-left: 3px solid var(--neon); }
+        .info-card h4 { margin: 0 0 10px 0; font-family: 'Orbitron'; font-size: 0.8rem; color: var(--gold); }
+        .info-card ul { margin: 0; padding: 0; list-style: none; font-size: 0.8rem; opacity: 0.9; }
 
-        @media (max-width: 1000px) { .main-layout { grid-template-columns: 1fr; } }
+        .social-row { display: flex; gap: 10px; margin-top: 15px; }
+        .soc-btn { flex: 1; text-align: center; padding: 10px; border-radius: 8px; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: #fff; font-size: 0.8rem; transition: 0.3s; }
+        .soc-btn:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: 1px solid #333; }
+
+        /* МОБІЛЬНА АДАПТАЦІЯ */
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .logo { font-size: 1.2rem; }
+            .nav-links { gap: 5px; }
+            .btn { padding: 6px 8px; font-size: 0.6rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            #online-count { display: none; }
+        }
+
+        .footer { text-align: center; padding: 30px; color: #555; font-size: 0.7rem; border-top: 1px solid #111; margin-top: 40px; }
     </style>
 </head>
-<body>
+<body id="body">
+
+<div class="ticker">
+    <div class="ticker-text" id="ticker-text">🔥 ПРЯМИЙ ЕФІР: WORLD OF TANKS 🔥 ГРАЄМО З ПІДПИСНИКАМИ 🔥 BLACKCELLUA ОФІЦІЙНИЙ САЙТ 🔥</div>
+</div>
 
 <nav>
-    <a href="#" class="logo">BLACKCELLUA</a>
-    <div style="color: var(--neon); font-family: 'Orbitron'; font-size: 0.8rem;">● LIVE СТАТУС</div>
-</nav>
-
-<section class="hero-section">
-    <div class="player-container">
-        <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allowfullscreen></iframe>
+    <a href="#" class="logo">BLACKCELL<span style="color:var(--text)">UA</span></a>
+    <div class="nav-links">
+        <button class="btn" onclick="toggleLang()">🌐 <span id="lang-btn">EN</span></button>
+        <button class="btn" onclick="toggleTheme()">🌓</button>
+        <a href="https://frames2.payhub.com.ua/moneybox?box_id=589cbce5-320d-4d3c-9abc-c4d388138564" class="btn" style="border-color:var(--gold); color:var(--gold)">$</a>
+        <div id="online-count" style="color:var(--neon); font-size: 0.7rem; font-family: 'Orbitron'; margin-left: 5px;">ОНЛАЙН: 12</div>
     </div>
-</section>
+</nav>
 
 <div class="main-layout">
     <div class="content">
-        <h2 class="section-title"><i class="fa-solid fa-play"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid">
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/videoseries?list=UUSH29hev1ElIOHYG9oFm9dieQ"></iframe>
-                <p>Останні трансляції BlackCellUA</p>
+        <div class="glass-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div style="color: var(--danger); font-family: 'Orbitron'; font-weight: bold; animation: blink 1.5s infinite;">● LIVE</div>
+                <div style="font-size: 0.7rem; opacity: 0.6;">YOUTUBE GAMING</div>
+            </div>
+            <div id="main-video"></div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h4 id="pc-title">💻 МІЙ ПК</h4>
+                <ul>
+                    <li>CPU: Intel Xeon E3-1240</li>
+                    <li>GPU: NVIDIA GTX 1050 Ti (4GB)</li>
+                    <li>RAM: 16GB DDR3</li>
+                    <li>SSD: 128GB Somnambulist</li>
+                </ul>
+            </div>
+            <div class="info-card" style="border-left-color: var(--gold);">
+                <h4 id="schedule-title">📅 ГРАФІК СТРІМІВ</h4>
+                <ul>
+                    <li id="sch-1">ПН-ПТ: 19:00 (WOT)</li>
+                    <li id="sch-2">СБ-НД: 15:00 (NFS / Random)</li>
+                </ul>
             </div>
         </div>
+
+        <h2 class="section-title" id="popular-heading">🔥 ПОПУЛЯРНІ ВІДЕО</h2>
+        <div id="popular-grid" class="grid"></div>
     </div>
 
-    <aside>
-        <div class="sidebar-panel">
-            <h3 class="section-title"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
-            <div class="shorts-frame">
-                <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ"></iframe>
-            </div>
+    <aside class="sidebar">
+        <div class="glass-panel side-card">
+            <h3 id="shorts-heading" style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--gold); margin-bottom: 15px;">⚡ SHORTS</h3>
+            <div id="shorts-container"></div>
         </div>
-        <div class="sidebar-panel">
-            <h3 class="section-title"><i class="fa-solid fa-info-circle"></i> SETUP</h3>
-            <p style="font-size: 0.85rem; opacity: 0.8;">
-                CPU: Xeon E3-1240<br>
-                GPU: GTX 1050 Ti<br>
-                RAM: 16GB
-            </p>
+
+        <div class="glass-panel side-card" style="margin-top: 20px;">
+            <h3 id="social-title" style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 15px;">🔗 СОЦМЕРЕЖІ</h3>
+            <div class="social-row">
+                <a href="#" class="soc-btn">TG</a>
+                <a href="#" class="soc-btn">DC</a>
+                <a href="https://www.youtube.com/@BlackCellUA" class="soc-btn">YT</a>
+            </div>
+            <p id="about-text" style="font-size: 0.75rem; margin-top: 15px; opacity: 0.8;">Підписуйся на канал BlackCellUA — танкові бої та драйвові перегони українською!</p>
         </div>
     </aside>
 </div>
 
-<script>
-    // Покращений скрипт завантаження
-    async function fetchVideos() {
-        const grid = document.getElementById('popular-grid');
-        const channelID = 'UC29hev1ElIOHYG9oFm9dieQ';
-        
-        try {
-            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + channelID)}`);
-            const data = await response.json();
-            
-            if (data.status === 'ok' && data.items.length > 0) {
-                grid.innerHTML = data.items.slice(0, 6).map(item => `
-                    <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/${item.link.split('v=')[1]}" loading="lazy"></iframe>
-                        <p>${item.title}</p>
-                    </div>
-                `).join('');
-            }
-        } catch (error) {
-            console.log("Контент завантажиться через стандартний фрейм");
-        }
-    }
-    fetchVideos();
-</script>
+<div class="footer">
+    &copy; 2026 BlackCellUA. <span id="rights-text">Всі авторські права захищені.</span>
+</div>
 
+<script>
+    const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
+    const MY_FIXED_SHORTS_ID = '5f_fiit1KV8'; 
+    let currentLang = 'uk';
+
+    const langData = {
+        uk: {
+            pc: "💻 МІЙ ПК", schedule: "📅 ГРАФІК", 
+            popular: "🔥 ПОПУЛЯРНІ ВІДЕО", shorts: "⚡ SHORTS",
+            social: "🔗 СОЦМЕРЕЖІ", langBtn: "EN", online: "ОНЛАЙН"
+        },
+        en: {
+            pc: "💻 PC SPECS", schedule: "📅 SCHEDULE", 
+            popular: "🔥 POPULAR VIDEOS", shorts: "⚡ TOP SHORTS",
+            social: "🔗 SOCIALS", langBtn: "UA", online: "ONLINE"
+        }
+    };
+
+    function toggleLang() {
+        currentLang = currentLang === 'uk' ? 'en' : 'uk';
+        const data = langData[currentLang];
+        document.getElementById('pc-title').innerText = data.pc;
+        document.getElementById('schedule-title').innerText = data.schedule;
+        document.getElementById('popular-heading').innerText = data.popular;
+        document.getElementById('shorts-heading').innerText = data.shorts;
+        document.getElementById('social-title').innerText = data.social;
+        document.getElementById('lang-btn').innerText = data.langBtn;
+    }
+
+    function toggleTheme() {
+        document.getElementById('body').classList.toggle('light-theme');
+    }
+
+    function init() {
+        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}" frameborder="0" allowfullscreen></iframe>`;
+        
+        setInterval(() => {
+            const random = Math.floor(Math.random() * 10) + 10;
+            document.getElementById('online-count').innerText = `${langData[currentLang].online}: ${random}`;
+        }, 5000);
+
+        loadRSS();
+    }
+
+    async function loadRSS() {
+        const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
+        try {
+            const response = await fetch(RSS_URL);
+            const data = await response.json();
+            if (data.status === 'ok') {
+                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `<div><iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" frameborder="0" allowfullscreen></iframe></div>`).join('');
+                document.getElementById('shorts-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${MY_FIXED_SHORTS_ID}" frameborder="0" allowfullscreen style="aspect-ratio: 9/16; border: 1px solid var(--neon);"></iframe>`;
+            }
+        } catch (e) { console.error("Load error"); }
+    }
+
+    init();
+</script>
 </body>
 </html>
