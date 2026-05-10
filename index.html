@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks Українською</title>
-    <meta name="description" content="Офіційний сайт стрімера BlackCellUA. Прямі трансляції WOT та Need for Speed. Найкращі моменти, Shorts та розіграші.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks стрім, NFS Most Wanted, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
+    <meta name="description" content="Офіційний сайт BlackCellUA. Прямі трансляції WOT, NFS та технічні гайди українською мовою. Дивись стріми, Shorts та найкращі моменти!">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks українською, WOT UA, Need for Speed стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <meta name="author" content="BlackCellUA">
     
+    <meta property="og:title" content="BlackCellUA - Gaming Portal">
+    <meta property="og:description" content="Танкові баталії та драйвові перегони у прямому ефірі!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://social-up.pp.ua/">
+    <meta property="og:image" content="banner-offline.jpg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #00ffcc; --danger: #ff0055; --gold: #ffcc00; --online: #00ff66;
+            --neon: #00ffcc; --gold: #ffcc00;
             --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
             --text: #ffffff; --glass: rgba(255, 255, 255, 0.03); --nav-bg: rgba(0, 0, 0, 0.8);
         }
@@ -26,43 +33,21 @@
         
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
-        /* КОНТЕЙНЕР ПЛЕЄРА */
+        /* ПЛЕЄР З КАРТИНКОЮ НА ФОНІ */
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
             border-radius: 15px; overflow: hidden; 
             box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); 
             border: 1px solid rgba(0, 255, 204, 0.2);
-            background: #020617;
+            /* Твій банер офлайн */
+            background: #020617 url('banner-offline.jpg') center/cover no-repeat;
         }
         
-        /* ЗАГЛУШКА З ТВОЄЇ КАРТИНКИ */
-        .player-placeholder {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 5; text-align: center;
-            /* ВСТАВ СЮДИ ПОСИЛАННЯ НА СВОЮ КАРТИНКУ */
-            background: #020617 url('https://social-up.pp.ua/your_image.png') center/cover;
-            cursor: pointer; transition: 0.3s;
-        }
-        
-        /* Щоб показати заглушку, коли iframe порожній */
-        #main-video:empty + .player-placeholder { display: flex; }
-        #main-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 2; background: #000; }
-
-        .status-badge { 
-            position: absolute; top: 15px; left: 15px; 
-            padding: 5px 12px; border-radius: 4px; 
-            font-family: 'Orbitron'; font-size: 0.7rem; font-weight: bold; 
-            z-index: 10; pointer-events: none; text-transform: uppercase;
-        }
-        .status-live { background: var(--danger); color: white; animation: blink 1.5s infinite; }
-        .status-waiting { background: var(--online); color: #000; }
-
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        #main-video { width: 100%; height: 100%; position: relative; z-index: 2; }
+        #main-video iframe { width: 100%; height: 100%; border: none; }
 
         .glass-panel { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(5px); }
         .shorts-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden; border: 2px solid var(--neon); }
-        .shorts-wrapper iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -75,17 +60,14 @@
 
 <div class="main-layout">
     <div class="content">
-        <div class="player-viewport" id="player-container">
-            <div id="stream-status" class="status-badge status-waiting">Очікування</div>
-            
-            <div id="main-video"></div>
-
-            <div class="player-placeholder" id="placeholder" onclick="startStream()">
-                <div style="margin-top:150px; font-size:0.6rem; color:var(--neon); font-family: Orbitron; z-index: 6;">НАТИСНИ ЩОБ ПЕРЕВІРИТИ ЕФІР</div>
+        <div class="player-viewport">
+            <div id="main-video">
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" 
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
 
-        <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;"><i class="fa-solid fa-fire"></i> ТОП ВІДЕО КАНАЛУ</h2>
+        <h2 style="font-family:'Orbitron'; color:var(--neon); font-size:1.1rem; margin:25px 0 15px;"><i class="fa-solid fa-fire"></i> ОСТАННІ ВІДЕО</h2>
         <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
     </div>
 
@@ -102,7 +84,7 @@
         <div class="glass-panel" style="margin-top:20px;">
             <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold); margin-bottom:15px;">⚡ ТОП SHORTS</h3>
             <div class="shorts-wrapper">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs?modestbranding=1&rel=0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
     </aside>
@@ -110,14 +92,6 @@
 
 <script>
     const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
-
-    function startStream() {
-        document.getElementById('placeholder').style.display = 'none';
-        document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=0" allowfullscreen></iframe>`;
-        
-        const badge = document.getElementById('stream-status');
-        badge.innerText = "ПЕРЕВІРКА...";
-    }
 
     async function loadVideos() {
         const RSS = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
@@ -133,7 +107,6 @@
             }
         } catch (e) {}
     }
-
     window.onload = loadVideos;
 </script>
 </body>
