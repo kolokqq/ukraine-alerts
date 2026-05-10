@@ -57,6 +57,7 @@
             padding: 0 20px; 
         }
 
+        /* Помаранчева рамка як на макеті */
         .main-frame {
             border: 2px solid var(--neon);
             border-radius: 10px;
@@ -101,10 +102,6 @@
             border-radius: 5px;
             overflow: hidden;
         }
-
-        @media (max-width: 950px) {
-            .main-layout { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -117,11 +114,12 @@
 <div class="main-layout">
     <main>
         <div class="main-frame">
-            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
 
         <div class="section-label">ОСТАННІ ТРАНСЛЯЦІЇ</div>
-        <div id="feed" class="video-list">Завантаження архіву...</div>
+        <div id="feed" class="video-list">
+            </div>
     </main>
 
     <aside class="shorts-sidebar">
@@ -141,16 +139,16 @@
 </div>
 
 <script>
+    // Завантажуємо ТІЛЬКИ нижню сітку, щоб не чіпати головний плеєр
     async function loadArchive() {
-        const cid = 'UC29hev1ElIOHYG9oFm9dieQ';
-        const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + cid)}`;
+        const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ')}`;
         try {
             const r = await fetch(url);
             const d = await r.json();
             if(d.status === 'ok') {
                 const f = document.getElementById('feed');
                 f.innerHTML = '';
-                d.items.forEach(i => {
+                d.items.slice(0, 6).forEach(i => {
                     const id = i.link.split('v=')[1];
                     f.innerHTML += `<div class="v-item"><iframe src="https://www.youtube.com/embed/${id}" style="aspect-ratio:16/9; border-radius:5px;"></iframe></div>`;
                 });
