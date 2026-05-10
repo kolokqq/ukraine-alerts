@@ -51,7 +51,7 @@
 
         <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСТАННІ ПОДІЇ ТА СТРІМИ</h2>
         <div id="video-grid">
-            <p style="text-align:center; color:var(--neon); grid-column:1/-1;">Оновлення списку відео...</p>
+            <p style="text-align:center; color:var(--neon); grid-column:1/-1;">Завантаження стрічки...</p>
         </div>
     </div>
 
@@ -80,9 +80,10 @@
         const grid = document.getElementById('video-grid');
         const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
         
+        // Генеруємо унікальний ключ для запиту, щоб скинути кеш
+        const antiCache = Math.random().toString(36).substring(7);
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        // Додаємо параметр count=20 та випадковий час, щоб скинути кеш
-        const finalUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&api_key=your_api_key_if_you_have_one&count=20&t=${Date.now()}`;
+        const finalUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=20&t=${antiCache}`;
 
         try {
             const response = await fetch(finalUrl);
@@ -90,22 +91,37 @@
             
             if (data.status === 'ok' && data.items.length > 0) {
                 grid.innerHTML = data.items.map(v => {
-                    // Витягуємо ID відео більш надійним способом
-                    const id = v.link.split('v=')[1] || v.guid.split(':').pop();
+                    // Витягуємо чистий ID відео (після v= або з guid)
+                    let id = "";
+                    if (v.link.includes('v=')) {
+                        id = v.link.split('v=')[1].split('&')[0];
+                    } else {
+                        id = v.guid.split(':').pop();
+                    }
+                    
                     return `
                         <div class="v-card">
-                            <iframe src="https://www.youtube.com/embed/${id}" loading="lazy" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                            <iframe src="https://www.youtube.com/embed/${id}" 
+                                    loading="lazy" 
+                                    allowfullscreen 
+                                    style="width:100%; aspect-ratio:16/9; border-radius:8px;">
+                            </iframe>
                             <p style="font-size:0.75rem; margin-top:10px; height:32px; overflow:hidden; font-weight:bold; color:#fff;">${v.title}</p>
                         </div>`;
                 }).join('');
             } else {
-                throw new Error("No items");
+                showBackup();
             }
         } catch (e) {
-            grid.innerHTML = `<div style="grid-column:1/-1; height:450px; width:100%; border-radius:15px; overflow:hidden;">
-                <iframe src="https://www.youtube.com/embed/videoseries?list=UULP29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
-            </div>`;
+            showBackup();
         }
+    }
+
+    function showBackup() {
+        const grid = document.getElementById('video-grid');
+        grid.innerHTML = `<div style="grid-column:1/-1; height:450px; width:100%; border-radius:15px; overflow:hidden; border:1px solid var(--neon);">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=UULP29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
+        </div>`;
     }
     
     window.onload = updateVideoList;
