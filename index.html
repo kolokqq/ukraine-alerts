@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>BlackCellUA | Стріми World of Tanks та Need for Speed Українською</title>
-    <meta name="description" content="Офіційний сайт BlackCellUA. Прямі трансляції WOT, NFS та технічні гайди українською мовою. Дивись стріми, Shorts та найкращі моменти!">
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks, WOT UA, NFS стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
-    <meta name="author" content="BlackCellUA">
+    <meta name="description" content="Офіційний сайт BlackCellUA - https://social-up.pp.ua. Прямі трансляції WOT, NFS та технічні гайди українською мовою. Дивись стріми, Shorts та найкращі моменти!">
+    <meta name="keywords" content="BlackCellUA, social-up.pp.ua, стрім українською, World of Tanks, WOT UA, NFS стрім, ігри українською, Xeon E3-1240, GTX 1050 Ti">
+    <meta name="author" content="BlackCellUA (https://social-up.pp.ua)">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -48,11 +48,18 @@
         .glass-panel { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 
-        /* ГРАФІК ТА ІГРИ */
-        .game-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid transparent; transition: 0.3s; }
-        .game-card:hover { border-color: var(--neon); transform: translateY(-5px); }
+        /* СЕТКА ВІДЕО (10 ПЛИТОК) */
+        #popular-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 15px; 
+            margin-bottom: 30px; 
+        }
+
+        .game-card { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 10px; border: 1px solid transparent; transition: 0.3s; }
+        .game-card:hover { border-color: var(--neon); transform: translateY(-3px); }
+        .game-card p { font-size: 0.75rem; margin-top: 8px; height: 32px; overflow: hidden; line-height: 1.2; text-align: left; }
         
-        /* SHORTS БЛОК */
         .shorts-container { position: relative; width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; border: 2px solid var(--neon); box-shadow: 0 0 15px rgba(0,255,204,0.3); }
 
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
@@ -84,7 +91,7 @@
         </div>
 
         <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСТАННІ ВІДЕО ТА ГАЙДИ</h2>
-        <div id="popular-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;"></div>
+        <div id="popular-grid"></div>
 
         <div class="info-grid">
             <div class="glass-panel">
@@ -92,11 +99,11 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     <div class="game-card">
                         <i class="fa-solid fa-shield-tank" style="font-size: 2rem; color: var(--neon);"></i>
-                        <p style="font-size: 0.8rem; margin-top: 5px;">World of Tanks</p>
+                        <p style="text-align: center;">World of Tanks</p>
                     </div>
                     <div class="game-card">
                         <i class="fa-solid fa-car-side" style="font-size: 2rem; color: var(--neon);"></i>
-                        <p style="font-size: 0.8rem; margin-top: 5px;">Need For Speed</p>
+                        <p style="text-align: center;">Need For Speed</p>
                     </div>
                 </div>
             </div>
@@ -124,7 +131,7 @@
             <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
                 <a href="https://t.me/blackcellua" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-telegram" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">TG</span></a>
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-youtube" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">YT</span></a>
-                <a href="#" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
+                <a href="https://social-up.pp.ua" style="text-align:center; color:#fff; text-decoration:none;"><i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--neon);"></i><br><span style="font-size:0.6rem;">WEB</span></a>
             </div>
         </div>
 
@@ -145,9 +152,7 @@
             const data = await response.json();
             const statusBadge = document.getElementById('stream-status');
             const statusText = document.getElementById('status-text');
-
             const lastVideo = data.items[0];
-            // Логіка: якщо в заголовку останнього відео є "LIVE" або це пряма трансляція
             if (lastVideo && (lastVideo.title.toLowerCase().includes('live') || lastVideo.link.includes('live'))) {
                 statusBadge.className = 'status-badge online';
                 statusText.innerText = 'В ЕФІРІ';
@@ -164,10 +169,10 @@
             const res = await fetch(RSS);
             const data = await res.json();
             if (data.status === 'ok') {
-                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
-                    <div class="game-card" style="padding:5px;">
+                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 10).map(v => `
+                    <div class="game-card">
                         <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:8px;" loading="lazy"></iframe>
-                        <p style="font-size:0.7rem; margin-top:5px; height:30px; overflow:hidden;">${v.title}</p>
+                        <p title="${v.title}">${v.title}</p>
                     </div>
                 `).join('');
             }
