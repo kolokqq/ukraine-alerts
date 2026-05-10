@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA | Стріми World of Tanks та NFS 🔥</title>
-    <meta name="description" content="Ігровий портал BlackCellUA. Стріми WOT та NFS українською.">
-    <meta name="keywords" content="BlackCellUA, стрім українською, WOT UA, NFS, Xeon E3-1240, GTX 1050 Ti">
+    <title>BlackCellUA | Стріми World of Tanks та NFS Українською 🔥</title>
+    <meta name="description" content="Ігровий портал BlackCellUA. Дивись прямі трансляції WOT та NFS українською. Shorts, огляди заліза Xeon E3-1240 та GTX 1050 Ti.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, NFS стрім, танки українською, Xeon E3-1240, GTX 1050 Ti, ігровий портал">
+    <meta name="author" content="BlackCellUA">
+
     <meta property="og:title" content="BlackCellUA — Твій ігровий портал">
+    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української спільноти!">
+    <meta property="og:type" content="website">
     <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
+    <meta property="og:site_name" content="BlackCellUA">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,8 +21,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         
         :root { 
-            --neon: #ff4d00; /* Твій помаранчевий неон */
-            --bg: #000000; /* ТІЛЬКИ ЧИСТИЙ ЧОРНИЙ */
+            --neon: #ff4d00; 
+            --bg: #000000; 
         }
         
         body { 
@@ -52,7 +57,6 @@
             padding: 0 20px; 
         }
 
-        /* Рамка плеєра точно як на Screenshot_8 */
         .main-frame {
             border: 2px solid var(--neon);
             border-radius: 10px;
@@ -83,14 +87,12 @@
             padding: 5px;
         }
 
-        /* Блок Shorts справа як у макеті */
         .shorts-sidebar { display: flex; flex-direction: column; gap: 15px; }
 
         .short-card {
             border: 1px solid var(--neon);
             border-radius: 10px;
             padding: 10px;
-            background: #000;
         }
 
         .short-video {
@@ -115,13 +117,11 @@
 <div class="main-layout">
     <main>
         <div class="main-frame">
-            <iframe id="main-player" src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
+            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
 
         <div class="section-label">ОСТАННІ ТРАНСЛЯЦІЇ</div>
-        <div class="video-list" id="feed">
-            <div class="v-item">Оновлення...</div>
-        </div>
+        <div id="feed" class="video-list">Завантаження архіву...</div>
     </main>
 
     <aside class="shorts-sidebar">
@@ -141,7 +141,7 @@
 </div>
 
 <script>
-    async function load() {
+    async function loadArchive() {
         const cid = 'UC29hev1ElIOHYG9oFm9dieQ';
         const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + cid)}`;
         try {
@@ -152,13 +152,12 @@
                 f.innerHTML = '';
                 d.items.forEach(i => {
                     const id = i.link.split('v=')[1];
-                    // БЕЗ АВТОЗАПУСКУ В СІТЦІ
                     f.innerHTML += `<div class="v-item"><iframe src="https://www.youtube.com/embed/${id}" style="aspect-ratio:16/9; border-radius:5px;"></iframe></div>`;
                 });
             }
         } catch(e) {}
     }
-    window.onload = load;
+    window.onload = loadArchive;
 </script>
 </body>
 </html>
