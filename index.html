@@ -64,6 +64,9 @@
         #notification-toast { position: fixed; bottom: 20px; left: 20px; background: var(--nav-bg); border-left: 4px solid var(--neon); padding: 15px 25px; border-radius: 8px; z-index: 2000; transform: translateX(-150%); transition: 0.5s; }
         #notification-toast.show { transform: translateX(0); }
 
+        /* SHORTS STYLE */
+        #shorts-container iframe { width: 100%; border-radius: 10px; border: 1px solid var(--neon); aspect-ratio: 9/16; }
+
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -109,6 +112,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="glass-panel" style="margin-top:20px;">
+            <h3 style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold); margin-bottom:15px;">⚡ ТОП SHORTS</h3>
+            <div id="shorts-container">Завантаження...</div>
+        </div>
     </aside>
 </div>
 
@@ -128,44 +136,18 @@
     }
 
     async function init() {
-        // Вставляємо плеєр
+        // Плеєр
         document.getElementById('main-video').innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&mute=1" allowfullscreen></iframe>`;
         
-        loadVideos();
+        loadContent();
         
-        // Імітація перевірки ефіру
+        // Імітація детекту стріму
         setTimeout(() => {
             const badge = document.getElementById('stream-status');
             badge.innerText = "В ЕФІРІ";
             badge.className = "status-badge status-live";
-        }, 10000);
+        }, 8000);
     }
 
-    async function loadVideos() {
-        const RSS = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}`;
-        try {
-            const res = await fetch(RSS);
-            const data = await res.json();
-            if (data.status === 'ok') {
-                document.getElementById('popular-grid').innerHTML = data.items.slice(0, 4).map(v => `
-                    <div style="background:var(--glass); padding:10px; border-radius:10px;">
-                        <iframe src="https://www.youtube.com/embed/${v.link.split('v=')[1]}" style="width:100%; aspect-ratio:16/9; border:none; border-radius:5px;"></iframe>
-                    </div>
-                `).join('');
-            }
-        } catch (e) {}
-    }
-
-    function share(p) {
-        if(p==='copy') { 
-            navigator.clipboard.writeText(SITE_URL); 
-            showNotify("Посилання на сайт скопійовано!"); 
-        } else {
-            window.open(`https://t.me/share/url?url=${SITE_URL}`);
-        }
-    }
-
-    init();
-</script>
-</body>
-</html>
+    async function loadContent() {
+        const RSS = `https://api.rss2json.com/v1/api.
