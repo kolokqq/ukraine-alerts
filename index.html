@@ -32,6 +32,25 @@
         
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
+        /* Адаптивна заглушка підписки */
+        #sub-lock {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a, #000);
+            z-index: 10000; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: white; font-family: 'Orbitron', sans-serif;
+            text-align: center; padding: 15px; box-sizing: border-box;
+        }
+        .lock-title { color: #00ffcc; text-shadow: 0 0 10px #00ffcc; margin-bottom: 10px; line-height: 1.2; }
+        .lock-text { margin: 10px 0 25px; line-height: 1.5; }
+        
+        @media (max-width: 600px) {
+            .lock-title { font-size: 1.3rem !important; }
+            .lock-text { font-size: 0.85rem !important; }
+            .main-layout { grid-template-columns: 1fr !important; }
+            .logo { font-size: 1rem !important; }
+        }
+
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
@@ -54,19 +73,30 @@
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-sizing: border-box; transition: 0.3s; }
-        .btn-donate:hover { background: #fff; box-shadow: 0 0 15px #fff; }
-
-        @media (max-width: 800px) {
-            .main-layout { grid-template-columns: 1fr; }
-            .logo { font-size: 1rem; }
-        }
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
+<div id="sub-lock">
+    <h1 class="lock-title">ДОСТУП ОБМЕЖЕНО! 🔒</h1>
+    <p class="lock-text">Щоб дивитися трансляції на порталі <br><b>BlackCellUA</b>, підпишись на канал!</p>
+    
+    <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
+       target="_blank" 
+       onclick="document.getElementById('unlock-btn').style.display = 'block';"
+       style="background: #ff0000; color: white; padding: 12px 25px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 15px; font-size: 0.9rem; font-family: sans-serif;">
+       1. ПІДПИСАТИСЯ
+    </a>
+
+    <button id="unlock-btn" onclick="unlockSite()" 
+            style="display: none; background: #00ffcc; color: black; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px; font-family: 'Orbitron';">
+       2. УВІЙТИ
+    </button>
+</div>
+
 <nav>
-    <a href="https://blackcellua.pp.ua/" class="logo">BlackCellUA | WOT 🔥</a>
+    <a href="#" class="logo">World of Tanks 🔥</a>
     <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.6rem; border:1px solid var(--neon); padding:4px 10px; border-radius:20px;">LIVE FEED</div>
 </nav>
 
@@ -81,7 +111,7 @@
         </div>
 
         <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ВІДЕО</h2>
-        <div id="video-grid">Завантаження відео з YouTube...</div>
+        <div id="video-grid">Завантаження...</div>
     </div>
 
     <aside>
@@ -100,6 +130,11 @@
 <script>
     const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
 
+    function unlockSite() {
+        document.getElementById('sub-lock').style.display = 'none';
+        localStorage.setItem('isSubscribed', 'true');
+    }
+
     async function loadYouTubeData() {
         const grid = document.getElementById('video-grid');
         const indicator = document.getElementById('live-indicator');
@@ -114,20 +149,18 @@
 
             if (data.status === 'ok' && data.items.length > 0) {
                 const latest = data.items[0];
-                const isLiveNow = latest.link.includes('watch?v=live') || 
-                                 latest.title.includes('🔴') || 
-                                 latest.title.toLowerCase().includes('live');
+                const isLiveNow = latest.title.toLowerCase().includes('live') || latest.title.toLowerCase().includes('стрім');
 
                 if (isLiveNow) {
                     indicator.className = 'live-status-tag is-live';
                     statusText.innerText = 'LIVE NOW';
                 } else {
                     indicator.className = 'live-status-tag';
-                    statusText.innerText = 'ОФЛАЙН';
+                    statusText.innerText = 'OFFLINE';
                 }
 
                 let html = '';
-                data.items.slice(0, 6).forEach(item => {
+                data.items.forEach(item => {
                     let videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split('video:')[1];
                     if (videoId) {
                         html += `
@@ -139,12 +172,13 @@
                 });
                 grid.innerHTML = html;
             }
-        } catch (e) { 
-            grid.innerHTML = "Помилка завантаження контенту.";
-        }
+        } catch (e) { console.error("Update error"); }
     }
 
     window.onload = () => {
+        if (localStorage.getItem('isSubscribed') === 'true') {
+            document.getElementById('sub-lock').style.display = 'none';
+        }
         loadYouTubeData();
         setInterval(loadYouTubeData, 60000);
     };
