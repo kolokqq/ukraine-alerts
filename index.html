@@ -174,19 +174,18 @@
         const subElement = document.getElementById('sub-count');
         if (!subElement) return;
         try {
-            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}&t=${new Date().getTime()}`;
+            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`;
             const res = await fetch(url);
             const data = await res.json();
             if (data.items && data.items.length > 0) {
                 const subs = data.items[0].statistics.subscriberCount;
                 subElement.innerText = Number(subs).toLocaleString();
             }
-        } catch (e) { console.error(e); subElement.innerText = "---"; }
+        } catch (e) { subElement.innerText = "---"; }
     }
 
     function updateLiveCount() {
         const el = document.getElementById('user-count');
-        if(!el) return;
         let current = parseInt(el.innerText) || 1;
         let change = Math.floor(Math.random() * 3) - 1; 
         let next = current + change;
@@ -202,14 +201,12 @@
                 const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}&t=${new Date().getTime()}`;
                 const res = await fetch(url);
                 const data = await res.json();
-                
                 if (data.items && data.items.length > 0) {
                     const videoId = data.items[0].id.videoId;
                     html += `<div style="margin-bottom:10px; padding:10px; border:1px solid #ff4444; border-radius:10px; background:rgba(255,0,0,0.05);">
                         <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
-                    
                     if(channel.id === CHANNEL_ID) {
                         const player = document.getElementById('main-player');
                         if (player && !player.src.includes(videoId)) {
@@ -222,35 +219,36 @@
         container.innerHTML = html || '<p style="font-size:0.8rem; color:gray; text-align:center;">Зараз ефірів немає</p>';
     }
 
-    // НОВА ФУНКЦІЯ: ЗАВАНТАЖЕННЯ ВІДЕО НАПРЯМУ З YOUTUBE
     async function loadVideosDirect(divId, count) {
         const box = document.getElementById(divId);
         try {
-            const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${count}&type=video`;
+            // Activities показує останні дії на каналі (завантаження відео)
+            const url = `https://www.googleapis.com/youtube/v3/activities?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=10&key=${API_KEY}`;
             const res = await fetch(url);
             const data = await res.json();
 
             if (data.items && data.items.length > 0) {
                 let cards = '';
-                data.items.forEach(v => {
-                    const id = v.id.videoId;
+                // Фільтруємо саме завантаження (upload)
+                const uploads = data.items.filter(item => item.snippet.type === 'upload').slice(0, count);
+                
+                uploads.forEach(v => {
+                    const id = v.contentDetails.upload.videoId;
                     const title = v.snippet.title;
                     cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${title}</div></div>`;
                 });
-                box.innerHTML = cards;
+                box.innerHTML = cards || "<p style='color:gray; text-align:center;'>Відео не знайдено</p>";
             } else {
                 box.innerHTML = "<p style='color:gray; text-align:center;'>Відео не знайдено</p>";
             }
         } catch (err) {
-            box.innerHTML = "<p style='color:red; text-align:center;'>Помилка завантаження</p>";
+            box.innerHTML = "<p style='color:red; text-align:center;'>Помилка API</p>";
         }
     }
 
     window.onload = () => {
         checkStreams();
         updateSubCount();
-        
-        // Викликаємо пряме завантаження
         loadVideosDirect('special-videos', 3); 
         loadVideosDirect('recent-videos', 6);
         
