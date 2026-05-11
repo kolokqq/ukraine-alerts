@@ -95,7 +95,6 @@
         .s-tt:hover { background: #000000; border-color: #ff0050; }
         .s-yt:hover { background: #FF0000; }
 
-        /* REPOST BUTTONS STYLES */
         .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
         .share-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 2px; border-radius: 6px; text-decoration: none; color: white; font-size: 0.6rem; font-weight: bold; transition: 0.2s; border: 1px solid rgba(255,255,255,0.1); }
         .share-btn i { font-size: 1.1rem; margin-bottom: 3px; }
@@ -103,14 +102,22 @@
         .sh-fb { background: #1877F2; } .sh-tw { background: #1DA1F2; } .sh-cp { background: #444; }
         .share-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
-        .btn-donate-sm { 
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            width: 100%; box-sizing: border-box; padding: 12px; 
-            background: linear-gradient(90deg, #00ffcc, #00cca3); color: #000; 
-            text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 10px; 
-            font-size: 0.9rem; transition: 0.3s; border: none;
+        /* NEW DONATION STYLES */
+        .donation-container { display: flex; flex-direction: column; gap: 8px; }
+        .don-item { 
+            display: flex; align-items: center; gap: 10px; padding: 12px; 
+            border-radius: 10px; text-decoration: none; transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02);
+            cursor: pointer;
         }
-        .btn-donate-sm:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); }
+        .don-item i { font-size: 1.2rem; width: 25px; text-align: center; }
+        .don-info { display: flex; flex-direction: column; }
+        .don-name { font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; color: #fff; }
+        .don-sub { font-size: 0.6rem; color: var(--neon); }
+
+        .d-donatello:hover { background: #6347ff; border-color: #fff; }
+        .d-privat:hover { background: #70b33e; border-color: #fff; }
+        .d-pumb:hover { background: #f44336; border-color: #fff; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -163,110 +170,18 @@
                 <a href="javascript:void(0)" onclick="copyLink()" class="share-btn sh-cp"><i class="fa-solid fa-link"></i> Link</a>
             </div>
         </div>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
-            </div>
-        </div>
 
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bullseye"></i> ЦІЛЬ</h3>
-            <div class="goal-bar"><div class="goal-progress" style="width: 75%;"></div></div>
-            <p style="font-size:0.7rem; text-align:center; margin-top:5px; color:#aaa;">До 1,000 підписників!</p>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-users"></i> СПІЛЬНОТА</h3>
-            <div class="social-grid-v2">
-                <a href="https://discord.gg/cdyRSHqD" class="s-btn s-dc"><i class="fa-brands fa-discord"></i> Discord</a>
-                <a href="https://www.tiktok.com/@lstm5" class="s-btn s-tt"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="https://www.youtube.com/@BlackCellUA" class="s-btn s-yt"><i class="fa-brands fa-youtube"></i> YouTube</a>
-            </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-calendar-day"></i> ГРАФІК</h3>
-            <div class="schedule-item">Пн - Пт: <span>19:00</span></div>
-            <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
-        </div>
-
-        <div class="glass-panel" style="border: 1px solid var(--neon);">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate-sm">
-                <i class="fa-solid fa-coins"></i> ПІДТРИМАТИ КАНАЛ
-            </a>
-        </div>
-    </aside>
-</div>
-
-<script>
-    const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
-    const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
-
-    function changeLang(lang, el) {
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        el.classList.add('active');
-    }
-
-    function toggleTheme() {
-        const body = document.body;
-        const icon = document.querySelector('.theme-toggle i');
-        body.classList.toggle('light-mode');
-        if(body.classList.contains('light-mode')) {
-            icon.classList.replace('fa-moon', 'fa-sun');
-        } else {
-            icon.classList.replace('fa-sun', 'fa-moon');
-        }
-    }
-
-    function copyLink() {
-        navigator.clipboard.writeText('https://blackcellua.pp.ua/');
-        alert('Посилання скопійовано!');
-    }
-
-    setInterval(() => {
-        const count = Math.floor(Math.random() * (25 - 8 + 1)) + 8;
-        document.getElementById('online-count').innerText = count;
-    }, 5000);
-
-    async function fetchFeed(url, elementId, limit) {
-        const grid = document.getElementById(elementId);
-        const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&t=${new Date().getTime()}`;
-        try {
-            const res = await fetch(api);
-            const data = await res.json();
-            if (data.status === 'ok') {
-                let html = '';
-                data.items.slice(0, limit).forEach(item => {
-                    let vId = item.link.includes('v=') ? item.link.split('v=')[1]?.split('&')[0] : item.link.split('/').pop();
-                    html += `
-                    <div class="v-card">
-                        <div style="position:relative; width:100%; aspect-ratio:16/9;">
-                            <iframe src="https://www.youtube.com/embed/${vId}?rel=0" allowfullscreen style="width:100%; height:100%; border-radius:8px;"></iframe>
-                        </div>
-                        <p style="font-size:0.75rem; margin-top:10px; font-weight:600; color:var(--neon); text-align:center;">${item.title}</p>
-                    </div>`;
-                });
-                grid.innerHTML = html;
-                return data.items[0]; 
-            }
-        } catch (e) { grid.innerHTML = "Помилка."; }
-    }
-
-    async function updateAll() {
-        const lastVideo = await fetchFeed(rssRecent, 'grid-recent', 6);
-        await fetchFeed(rssSpecial, 'grid-special', 3);
-        if (lastVideo) {
-            const isLive = lastVideo.title.toLowerCase().includes('live') || lastVideo.title.toLowerCase().includes('стрім');
-            document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
-            document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
-        }
-    }
-
-    window.onload = () => {
-        updateAll();
-        setInterval(updateAll, 180000);
-    };
-</script>
-</body>
-</html>
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-wallet"></i> ПІДТРИМКА</h3>
+            <div class="donation-container">
+                <a href="https://donatello.to/BlackCellUA" target="_blank" class="don-item d-donatello">
+                    <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                    <div class="don-info">
+                        <span class="don-name">DONATELLO</span>
+                        <span class="don-sub">Підтримати стрім</span>
+                    </div>
+                </a>
+                <div class="don-item d-privat" onclick="copyCard('НОМЕР_ТВОЄЇ_КАРТИ_ПРИВАТ', 'ПриватБанк')">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <div class="don-info">
+                        <span class="don-name">ПРИВАТ
