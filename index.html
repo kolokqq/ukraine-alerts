@@ -18,10 +18,7 @@
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
-    <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="favicon_144_v2.png">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
@@ -45,12 +42,20 @@
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
         
+        .live-status-tag {
+            position: absolute; top: 15px; left: 15px; z-index: 10;
+            padding: 5px 12px; border-radius: 5px; font-family: 'Orbitron';
+            font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; gap: 8px;
+            background: rgba(0,0,0,0.85); border: 1px solid var(--neon);
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
+
         iframe { width: 100%; height: 100%; border: none; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
         
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
-        .v-card p { font-size: 0.7rem; margin-top: 10px; font-weight: bold; color: var(--neon); height: 2.5em; overflow: hidden; text-align: center; }
+        .v-card p { font-size: 0.75rem; margin-top: 10px; font-weight: bold; color: var(--neon); text-align: center; height: 2.4em; overflow: hidden; }
 
         .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
         .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; }
@@ -75,11 +80,26 @@
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
+            <div class="live-status-tag"><div class="dot"></div><span>LIVE FEED</span></div>
             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
 
         <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
-        <div id="video-grid">Завантаження...</div>
+        
+        <div id="video-grid">
+            <div class="v-card">
+                <iframe src="https://www.youtube.com/embed/P66f6oB6xYI" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                <p>НАЗВА СТРІМА #1</p>
+            </div>
+            <div class="v-card">
+                <iframe src="https://www.youtube.com/embed/5m0X_rV57pY" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                <p>НАЗВА СТРІМА #2</p>
+            </div>
+            <div class="v-card">
+                <iframe src="https://www.youtube.com/embed/U7hIIn00vRE" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                <p>НАЗВА СТРІМА #3</p>
+            </div>
+        </div>
     </div>
 
     <aside>
@@ -94,58 +114,15 @@
 </div>
 
 <script>
-    const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-
     function unlockSite() {
         document.getElementById('sub-lock').style.display = 'none';
         localStorage.setItem('isSubscribed', 'true');
-    }
-
-    async function loadAutoVideos() {
-        const grid = document.getElementById('video-grid');
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        
-        try {
-            const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`);
-            const data = await res.json();
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data.contents, "text/xml");
-            const entries = xml.querySelectorAll("entry");
-
-            if (entries.length > 0) {
-                let html = '';
-                let count = 0;
-
-                entries.forEach((el) => {
-                    if (count >= 6) return; // Беремо 6 останніх
-
-                    const title = el.querySelector("title").textContent;
-                    const link = el.querySelector("link").getAttribute("href");
-                    const vId = link.split('v=')[1];
-
-                    // ФІЛЬТР: YouTube Shorts зазвичай короткі, але RSS не дає довжину.
-                    // Проте ми можемо відсіяти їх, якщо в заголовку є #Shorts (часто) 
-                    // або просто виводити все, але в плеєрі 16:9 вони будуть з чорними краями.
-                    
-                    html += `
-                    <div class="v-card">
-                        <iframe src="https://www.youtube.com/embed/${vId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                        <p>${title}</p>
-                    </div>`;
-                    count++;
-                });
-                grid.innerHTML = html;
-            }
-        } catch (e) {
-            grid.innerHTML = "Помилка завантаження.";
-        }
     }
 
     window.onload = () => {
         if (localStorage.getItem('isSubscribed') === 'true') {
             document.getElementById('sub-lock').style.display = 'none';
         }
-        loadAutoVideos();
     };
 </script>
 
