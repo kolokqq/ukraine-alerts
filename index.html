@@ -33,32 +33,44 @@
             --bg: #020617; 
             --panel-bg: rgba(13, 17, 23, 0.9);
             --text: #ffffff; 
+            /* Кольори прапора */
+            --ua-blue: #0057B7;
+            --ua-yellow: #FFD700;
         }
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
 
+        /* НАВІГАЦІЯ У ВИГЛЯДІ ПРАПОРА */
         nav { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             padding: 10px 5%; 
-            background: #000; 
+            /* Градієнт прапора з плавним переходом по центру */
+            background: linear-gradient(180deg, var(--ua-blue) 0%, var(--ua-blue) 45%, var(--ua-yellow) 55%, var(--ua-yellow) 100%);
             border-bottom: 2px solid var(--neon);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .nav-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
         .action-btn { 
-            display: flex; align-items: center; gap: 6px; padding: 6px 12px; 
+            display: flex; align-items: center; gap: 8px; padding: 8px 16px; 
             border-radius: 6px; text-decoration: none; color: white; 
-            font-family: 'Orbitron'; font-size: 0.7rem; font-weight: bold; 
-            transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); 
+            font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; 
+            transition: 0.3s; 
+            border: none;
+            /* Тінь для кращої читаємості кнопок на прапорі */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        .btn-sub { background: #ff0000; }
-        .btn-like { background: #2563eb; }
-        .btn-comm { background: #059669; }
-        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        /* Кольори кнопок, як на скріншоті */
+        .btn-sub { background: #ff0000; } /* Червона */
+        .btn-like { background: #3b82f6; } /* Синя */
+        .btn-comm { background: #10b981; } /* Зелена */
+        
+        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
 
         .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
@@ -90,6 +102,11 @@
         .btn-shorts:hover { background: var(--neon); color: #000; }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
+        /* Медіазапит для компактного розміщення кнопок на мобільних */
+        @media (max-width: 600px) {
+            .nav-buttons { gap: 5px; }
+            .action-btn { padding: 6px 10px; font-size: 0.65rem; gap: 5px; }
+        }
         
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
