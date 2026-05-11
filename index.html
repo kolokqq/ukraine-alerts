@@ -150,6 +150,11 @@
             </div>
         </div>
 
+        <div class="side-block" style="border: 2px solid #ffcc00;">
+            <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
+            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
+        </div>
+
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
             <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
@@ -163,6 +168,8 @@
 <div id="scrollUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
 
 <script>
+    // ТВОЇ ДАНІ ДЛЯ РЕАЛЬНОГО ЧАСУ
+    const CLIENT_ID = 'cli_24117ebca78dc362abaa2dfb';
     const JWT_TOKEN = 'e2f3748295467d55e5d567fef6d0e8e87ee8fd82c67ecb6403d0e3571fe3d2a';
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [
@@ -170,20 +177,18 @@
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
 
-    // ПІДКЛЮЧЕННЯ РЕАЛЬНОГО ЛІЧИЛЬНИКА
     const socket = io('https://realtime.streamelements.com', { transports: ['websocket'] });
     socket.on('connect', () => { socket.emit('authenticate', { method: 'jwt', token: JWT_TOKEN }); });
     
     socket.on('authenticated', (data) => {
-        const channelId = data.channelId;
-        fetch(`https://api.streamelements.com/v2/channels/${channelId}/stats`).then(r => r.json()).then(stats => {
-            if(stats.subscriberCount) document.getElementById('real-sub-count').innerText = stats.subscriberCount;
+        fetch(`https://api.streamelements.com/v2/channels/${data.channelId}/stats`).then(r => r.json()).then(stats => {
+            document.getElementById('real-sub-count').innerText = stats.subscriberCount || stats.followers || "0";
         });
     });
 
     socket.on('event', (event) => {
-        if (event.type === 'subscriber') {
-            let count = parseInt(document.getElementById('real-sub-count').innerText);
+        if (event.type === 'subscriber' || event.type === 'follower') {
+            let count = parseInt(document.getElementById('real-sub-count').innerText) || 0;
             document.getElementById('real-sub-count').innerText = count + 1;
         }
     });
