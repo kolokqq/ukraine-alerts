@@ -134,6 +134,19 @@
             </div>
         </div>
 
+    <div class="side-block" style="border: 2px solid #ffcc00; background: rgba(255, 204, 0, 0.05);">
+    <h3 class="section-header" style="color: #ffcc00;">
+        <i class="fa-solid fa-box-open"></i> MODPACK World of tanks
+    </h3>
+    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 15px;">
+        Збірка модифікацій від Armor для комфортної WG EU.
+    </p>
+    <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">
+        <i class="fa-solid fa-download"></i>
+        <span>ЗАВАНТАЖИТИ МОДПАК</span>
+    </a>
+</div>
+
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
             <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
@@ -150,6 +163,37 @@
         </div>
     </aside>
 </div>
+
+ <style>
+    /* Стилі для кнопки модпаку */
+    .btn-mod {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 15px;
+        background: #ffcc00;
+        border-radius: 12px;
+        color: #000;
+        text-decoration: none;
+        font-family: 'Orbitron';
+        font-size: 0.85rem;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+    }
+
+    .btn-mod:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+        background: #ffe066;
+    }
+
+    .btn-mod i {
+        font-size: 1.2rem;
+    }
+     
+</style>   
 
 <script>
     async function loadYT(url, divId, count) {
