@@ -1,74 +1,168 @@
-<title>World of Tanks Українською 🔥 | BlackCellUA</title>
-<meta name="description" content="Ігровий портал BlackCellUA. Дивись стріми World of Tanks українською, Shorts та огляди танків. Приєднуйся до нашої спільноти!">
-<meta name="keywords" content="BlackCellUA, World of Tanks українською, WOT стрім UA, танки стрім, ігровий портал, En0T1k_UA, танки українською">
-<meta name="author" content="BlackCellUA">
-<link rel="canonical" href="https://social-up.pp.ua">
-
-<meta property="og:title" content="BlackCellUA — Стріми World of Tanks Українською 🔥">
-<meta property="og:description" content="Прямі ефіри, танки та крута атмосфера. Підписуйся та заходь на портал!">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://social-up.pp.ua">
-<meta property="og:image" content="https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg">
-<meta property="og:site_name" content="BlackCellUA Portal">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BlackCellUA — Твій портал WOT">
-<meta name="twitter:image" content="https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg">
-
-<div id="sub-lock" style="
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    /* Епічний фон із танками */
-    background: url('https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg') center/cover no-repeat;
-    z-index: 10000; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    color: white; font-family: 'Orbitron', sans-serif;
-    text-align: center; padding: 15px; box-sizing: border-box;">
-
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: -1;"></div>
-
-    <h1 class="lock-title" style="color: #00ffcc; text-shadow: 0 0 20px #00ffcc; margin-bottom: 10px; line-height: 1.2;">ДОСТУП ОБМЕЖЕНО! 🔒</h1>
-    <p class="lock-text" style="margin: 10px 0 25px; line-height: 1.5; font-family: 'Exo 2', sans-serif;">Щоб дивитися трансляції на порталі <br><b style="color: #00ffcc;">BlackCellUA</b>, підпишись на канал!</p>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
-       target="_blank" 
-       onclick="document.getElementById('unlock-btn').style.display = 'block';"
-       style="background: #ff0000; color: white; padding: 15px 35px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 20px; font-size: 0.95rem; box-shadow: 0 0 20px rgba(255,0,0,0.6); transition: 0.3s;">
-       1. ПІДПИСАТИСЯ
-    </a>
+    <title>ДОСТУП ОБМЕЖЕНО! 🔥 | BlackCellUA</title>
+    <meta name="description" content="Пройдіть шлях до трьох позначок! Підпишіться на BlackCellUA для доступу до порталу World of Tanks українською.">
+    <meta name="keywords" content="BlackCellUA, Skoda T56, три позначки, World of Tanks українською, social-up.pp.ua, En0T1k_UA">
+    <meta name="author" content="BlackCellUA">
+    <link rel="canonical" href="https://social-up.pp.ua/join.html">
 
-    <button id="unlock-btn" onclick="unlockSite()" 
-            style="display: none; background: #00ffcc; color: black; border: none; padding: 15px 35px; font-weight: bold; cursor: pointer; border-radius: 5px; box-shadow: 0 0 20px #00ffcc; font-family: 'Orbitron'; font-size: 0.95rem;">
-       2. УВІЙТИ НА ПОРТАЛ
-    </button>
-
+    <meta property="og:title" content="Вхід до порталу BlackCellUA 🔥">
+    <meta property="og:description" content="Пройдіть перевірку на підписку. Шлях до трьох позначок починається тут!">
+    <meta property="og:image" content="https://i.ibb.co/3s6C7fG/image-3.png">
+    
     <style>
-        /* Адаптація під телефони */
-        @media (max-width: 600px) {
-            .lock-title { font-size: 1.5rem !important; }
-            .lock-text { font-size: 0.9rem !important; }
-            #sub-lock a, #sub-lock button { padding: 12px 25px !important; font-size: 0.8rem !important; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap');
+
+        :root {
+            --w-glow: rgba(255, 255, 255, 0.6);
+            --y-glow: rgba(255, 200, 0, 0.6);
+            --r-glow: rgba(255, 0, 0, 0.6);
         }
-        @media (min-width: 601px) {
-            .lock-title { font-size: 3rem; }
-            .lock-text { font-size: 1.2rem; }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: #000; overflow: hidden;
+            color: white; font-family: 'Exo 2', sans-serif;
+        }
+
+        #join-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            /* ВИКОРИСТОВУЄМО ТВОЄ ЗОБРАЖЕННЯ НА ФОН */
+            background: url('https://i.ibb.co/3s6C7fG/image-3.png') center/cover no-repeat;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 20px; box-sizing: border-box;
+        }
+
+        /* Напівпрозора накладка для тексту та ефектів */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        .content {
+            position: relative; z-index: 2; max-width: 800px;
+            width: 100%;
+        }
+
+        /* Стилізуємо логотип під зразок */
+        .logo-block {
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;
+        }
+        .logo-img { width: 60px; margin-bottom: 5px; }
+        .channel-title {
+            font-family: 'Orbitron', sans-serif; font-size: 1rem; color: #fff;
+            background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 5px;
+            text-shadow: 0 0 10px var(--w-glow);
+        }
+
+        /* Основний заголовок - ДОСТУП ОБМЕЖЕНО - Текст з білим контуром та світінням */
+        .w-title {
+            font-family: 'Exo 2', sans-serif; font-weight: 800; text-transform: uppercase;
+            font-size: 2rem; color: #fff; -webkit-text-stroke: 1px rgba(0,0,0,0.5);
+            text-shadow: 0 0 20px var(--w-glow), 0 0 10px var(--w-glow); margin: 0;
+        }
+        .y-accent {
+            font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2.2rem;
+            color: #ffc800; text-shadow: 0 0 20px var(--y-glow), 0 0 10px var(--y-glow);
+            letter-spacing: -2px; margin-top: -10px;
+        }
+
+        /* Опис - Exo 2 */
+        .desc-text {
+            margin: 25px 0 40px; line-height: 1.5; font-weight: 400; font-size: 1rem;
+            background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;
+        }
+
+        /* Кнопки - Стилізовані під світіння та зразок */
+        .btn-container {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+        }
+        .btn {
+            display: block; width: 100%; max-width: 300px; padding: 18px;
+            font-family: 'Orbitron', sans-serif; font-weight: 700; text-transform: uppercase;
+            text-decoration: none; border-radius: 5px; font-size: 1rem; transition: 0.3s;
+            cursor: pointer; border: none; letter-spacing: -1px;
+        }
+
+        .btn-yt {
+            background: #ff0000; color: white;
+            box-shadow: 0 0 30px var(--r-glow), 0 0 10px var(--r-glow);
+        }
+
+        .btn-enter {
+            background: #ffc800; color: black;
+            box-shadow: 0 0 30px var(--y-glow), 0 0 10px var(--y-glow);
+            display: none; /* Прихована спочатку */
+        }
+
+        /* Адаптація під мобільні - Важливо! */
+        @media (max-width: 600px) {
+            .w-title { font-size: 1.3rem !important; }
+            .y-accent { font-size: 1.5rem !important; }
+            .logo-img { width: 40px !important; }
+            .btn { font-size: 0.85rem !important; padding: 15px !important; }
         }
     </style>
+</head>
+<body>
+
+<div id="join-container">
+    <div class="overlay"></div>
+
+    <div class="content">
+        <div class="logo-block">
+            <img src="https://i.ibb.co/68Z7n7s/logo.png" alt="BlackCellUA" class="logo-img">
+            <span class="channel-title">BlackCellUA 🔥</span>
+        </div>
+
+        <h1 class="w-title">ДОСТУП ОБМЕЖЕНО!</h1>
+        <div class="y-accent">ШЛЯХ ДО ТРЬОХ ПОЗНАЧОК</div>
+
+        <p class="desc-text">
+            Щоб потрапити на ігровий портал <b style="color:#ffc800;">BlackCellUA</b>, <br>
+            вам потрібно підтвердити підписку!
+        </p>
+        
+        <div class="btn-container">
+            <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
+               target="_blank" 
+               id="yt-btn"
+               class="btn btn-yt"
+               onclick="showUnlockBtn()">
+               1. ПІДПИСАТИСЯ НА КАНАЛ
+            </a>
+
+            <button id="unlock-btn" class="btn btn-enter" onclick="finishJoin()">
+               2. Я ПІДПИСАВСЯ — УВІЙТИ
+            </button>
+        </div>
+    </div>
 </div>
 
 <script>
-// Функція розблокування
-function unlockSite() {
-    const lock = document.getElementById('sub-lock');
-    lock.style.transition = 'opacity 0.5s ease';
-    lock.style.opacity = '0';
-    setTimeout(() => {
-        lock.remove();
-    }, 500);
-    localStorage.setItem('isSubscribed', 'true');
-}
+    function showUnlockBtn() {
+        document.getElementById('unlock-btn').style.display = 'block';
+        document.getElementById('yt-btn').style.opacity = '0.5';
+    }
 
-// Автоматичне приховування, якщо вже підписаний
-if (localStorage.getItem('isSubscribed') === 'true') {
-    document.getElementById('sub-lock').style.display = 'none';
-}
+    function finishJoin() {
+        // Зберігаємо статус підписки
+        localStorage.setItem('isSubscribed', 'true');
+        // Перенаправляємо на головну сторінку
+        window.location.href = "index.html"; 
+    }
+
+    // Якщо користувач вже підписаний, не пускаємо його на цю сторінку знову
+    if (localStorage.getItem('isSubscribed') === 'true') {
+        window.location.href = "index.html";
+    }
 </script>
+
+</body>
+</html>
