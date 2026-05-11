@@ -28,11 +28,38 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
-        :root { --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; }
         
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
+        :root { 
+            --neon: #00ffcc; 
+            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+            --panel: rgba(255,255,255,0.03);
+            --text: #ffffff; 
+        }
+
+        /* LIGHT MODE THEME */
+        body.light-mode { 
+            --bg: #f0f2f5; 
+            --panel: #ffffff; 
+            --text: #1a1a1a; 
+            --neon: #008f7a;
+        }
+        
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; transition: 0.3s; }
+        
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 5%; background: rgba(0,0,0,0.9); 
+            border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; 
+        }
+        
+        .nav-tools { display: flex; align-items: center; gap: 15px; }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
+
+        /* LANGUAGE SELECTOR */
+        .lang-select { background: rgba(255,255,255,0.1); border: 1px solid var(--neon); color: white; border-radius: 5px; padding: 2px 5px; font-size: 0.8rem; cursor: pointer; }
+
+        /* THEME TOGGLE */
+        .theme-toggle { cursor: pointer; color: var(--neon); font-size: 1.2rem; }
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; margin-bottom: 20px; }
@@ -47,64 +74,39 @@
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
         
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
+        .v-card { background: var(--panel); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         
-        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
+        .glass-panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
         
+        /* REALTIME ONLINE BLOCK */
+        .online-box { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Orbitron'; font-size: 0.8rem; color: #00ff00; margin-bottom: 10px; }
+        .online-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; }
+
         .goal-bar { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; overflow: hidden; margin-top: 8px; border: 1px solid rgba(0,255,204,0.2); }
         .goal-progress { background: var(--neon); height: 100%; width: 75%; box-shadow: 0 0 10px var(--neon); }
         
         .schedule-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
         .schedule-item span { color: var(--neon); font-weight: bold; }
 
-        /* КРАСИВІ КНОПКИ СОЦМЕРЕЖ */
-        .color-social-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
-        .c-btn { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 10px; text-decoration: none; color: white; font-weight: 600; font-size: 0.85rem; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; }
-        .c-btn i { font-size: 1.2rem; width: 25px; text-align: center; }
+        /* SOCIAL MEDIA BUTTONS */
+        .social-grid-v2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+        .s-btn { display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 8px; text-decoration: none; color: white; font-size: 0.75rem; transition: 0.3s; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
         
-        .btn-dc { background: rgba(88, 101, 242, 0.15); }
-        .btn-dc:hover { background: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.5); border-color: #5865F2; }
-        
-        .btn-tt { background: rgba(0, 0, 0, 0.4); }
-        .btn-tt:hover { background: #000; box-shadow: 0 0 20px rgba(255, 0, 80, 0.4); border-color: #ff0050; }
-        
-        .btn-yt { background: rgba(255, 0, 0, 0.1); }
-        .btn-yt:hover { background: #FF0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); border-color: #FF0000; }
-        
-        .c-btn:hover { transform: translateX(5px); }
+        .s-tg:hover { background: #229ED9; }
+        .s-dc:hover { background: #5865F2; }
+        .s-tt:hover { background: #000000; border-color: #ff0050; }
+        .s-yt:hover { background: #FF0000; }
+        .s-ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .s-fb:hover { background: #1877F2; }
 
-        /* КРАСИВА КНОПКА ДОНАТУ */
-        .btn-donate { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px;
-            width: 100%; 
-            padding: 15px; 
-            background: linear-gradient(90deg, #00ffcc, #00cca3, #00ffcc);
-            background-size: 200% auto;
-            color: #000; 
-            text-align: center; 
-            text-decoration: none; 
-            font-family: 'Orbitron'; 
-            font-weight: 800; 
-            border-radius: 12px; 
-            transition: 0.5s; 
-            box-shadow: 0 0 15px rgba(0,255,204,0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: shine 3s linear infinite;
+        /* SMALL DONATE BUTTON */
+        .btn-donate-sm { 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 10px; background: var(--neon); color: #000; 
+            text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; 
+            font-size: 0.8rem; transition: 0.3s;
         }
-
-        .btn-donate:hover { 
-            transform: scale(1.02); 
-            box-shadow: 0 0 30px var(--neon);
-            filter: brightness(1.1);
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        .btn-donate-sm:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -113,7 +115,15 @@
 
 <nav>
     <a href="https://blackcellua.pp.ua" class="logo">BlackCellUA 🔥</a>
-    
+    <div class="nav-tools">
+        <select class="lang-select">
+            <option>🇺🇦 UA</option>
+            <option>🇺🇸 EN</option>
+            <option>🇵🇱 PL</option>
+            <option>🇩🇪 DE</option>
+        </select>
+        <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
+    </div>
 </nav>
 
 <div class="main-layout">
@@ -134,6 +144,13 @@
 
     <aside>
         <div class="glass-panel">
+            <div class="online-box">
+                <div class="online-dot"></div>
+                ЗАРАЗ НА САЙТІ: <span id="online-count">12</span>
+            </div>
+        </div>
+
+        <div class="glass-panel">
             <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
             <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
@@ -147,23 +164,26 @@
         </div>
 
         <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СПІЛЬНОТА</h3>
+            <div class="social-grid-v2">
+                <a href="https://discord.gg/cdyRSHqD" class="s-btn s-dc"><i class="fa-brands fa-discord"></i> Discord</a>
+                <a href="https://www.tiktok.com/@lstm5" class="s-btn s-tt"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://www.youtube.com/@BlackCellUA" class="s-btn s-yt"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                <a href="#" class="s-btn s-ig"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" class="s-btn s-fb"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="#" class="s-btn s-tg"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            </div>
+        </div>
+
+        <div class="glass-panel">
             <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-calendar-day"></i> ГРАФІК</h3>
             <div class="schedule-item">Пн - Пт: <span>19:00</span></div>
             <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СПІЛЬНОТА</h3>
-            <div class="color-social-grid">
-                <a href="https://discord.gg/cdyRSHqD" target="_blank" class="c-btn btn-dc"><i class="fa-brands fa-discord"></i> Discord</a>
-                <a href="https://www.tiktok.com/@lstm5" target="_blank" class="c-btn btn-tt"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="c-btn btn-yt"><i class="fa-brands fa-youtube"></i> YouTube</a>
-            </div>
-        </div>
-
-        <div class="glass-panel" style="background: transparent; border: none; padding: 0;">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">
-                <i class="fa-solid fa-heart-pulse"></i> ПІДТРИМАТИ
+            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate-sm">
+                <i class="fa-solid fa-coins"></i> ПІДТРИМАТИ
             </a>
         </div>
     </aside>
@@ -172,6 +192,24 @@
 <script>
     const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
     const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
+
+    // THEME TOGGLE FUNCTION
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.querySelector('.theme-toggle i');
+        body.classList.toggle('light-mode');
+        if(body.classList.contains('light-mode')) {
+            icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+    }
+
+    // RANDOM ONLINE SIMULATOR
+    setInterval(() => {
+        const count = Math.floor(Math.random() * (25 - 8 + 1)) + 8;
+        document.getElementById('online-count').innerText = count;
+    }, 5000);
 
     async function fetchFeed(url, elementId, limit) {
         const grid = document.getElementById(elementId);
