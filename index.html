@@ -54,6 +54,7 @@
 
         .side-block { background: var(--panel-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
         
+        /* Стиль ОНЛАЙН БЛОКУ */
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
         
@@ -70,9 +71,11 @@
         .btn-shorts { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; padding: 12px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--neon); border-radius: 12px; color: var(--neon); text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .btn-shorts:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
 
+        /* Анімація LIVE */
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
 
+        /* WOT / Modpack styles */
         .wot-official-border { border-left: 4px solid #ff4500 !important; }
         .btn-wot { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 12px; background: linear-gradient(180deg, #ff6a00 0%, #ee4d00 100%); border-radius: 8px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
         .btn-mod { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; background: #ffcc00; border-radius: 12px; color: #000; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
@@ -82,12 +85,12 @@
 </head>
 <body>
 
-<nav><a href="https://blackcellua.pp.ua" class="logo">🔥 BLACKCELLUA 🔥</a></nav>
+<nav><a href="#" class="logo">BLACKCELLUA 🔥</a></nav>
 
 <div class="wrapper">
     <div class="main-content">
         <div class="player-box">
-            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
         <h2 class="section-header"><i class="fa-solid fa-star"></i> ОСОБЛИВЕ ВІДЕО</h2>
         <div id="special-videos" class="video-grid">Завантаження...</div>
@@ -100,21 +103,21 @@
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
                 <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
             </div>
+            
             <div class="online-number" id="user-count">1</div>
-            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">Користувачів</div>
-        </div>
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Користувачів</div>
 
-        <div class="side-block" style="border: 1px solid #ff0000; background: rgba(255, 0, 0, 0.05); text-align: center;">
-            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: #ff4444; margin-bottom: 10px;">
-                <i class="fa-brands fa-youtube"></i> ПІДПИСНИКІВ
+            <div style="display: none;">
+                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
+                <script async src="https://waust.at/c.js"></script>
             </div>
-            <div class="online-number" id="sub-count" style="text-shadow: 0 0 10px #ff0000;">...</div>
-            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">На YouTube каналі</div>
         </div>
 
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> СТРІМЕРИ ОНЛАЙН</h3>
-            <div id="online-streamers"><p style="font-size: 0.8rem; color: gray;">Перевірка ефірів...</p></div>
+            <div id="online-streamers">
+                <p style="font-size: 0.8rem; color: gray;">Перевірка ефірів...</p>
+            </div>
         </div>
 
         <div class="side-block">
@@ -164,40 +167,29 @@
 
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
-    const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
+        { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
 
-    async function updateSubCount() {
-        const subElement = document.getElementById('sub-count');
-        if (!subElement) return;
-        try {
-            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`;
-            const res = await fetch(url);
-            const data = await res.json();
-            if (data.items && data.items.length > 0) {
-                const subs = data.items[0].statistics.subscriberCount;
-                subElement.innerText = Number(subs).toLocaleString();
-            }
-        } catch (e) { subElement.innerText = "---"; }
-    }
-
+    // Функція живої статистики
     function updateLiveCount() {
         const el = document.getElementById('user-count');
-        let current = parseInt(el.innerText) || 1;
+        let current = parseInt(el.innerText);
+        // Невеликий рандом для ефекту життя, поки сайт новий
         let change = Math.floor(Math.random() * 3) - 1; 
         let next = current + change;
         if (next < 1) next = 1; 
         el.innerText = next;
     }
+    setInterval(updateLiveCount, 15000);
 
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
         let html = '';
         for (const channel of CHANNELS) {
             try {
-                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}&t=${new Date().getTime()}`;
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}`;
                 const res = await fetch(url);
                 const data = await res.json();
                 if (data.items && data.items.length > 0) {
@@ -206,54 +198,32 @@
                         <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
-                    if(channel.id === CHANNEL_ID) {
-                        const player = document.getElementById('main-player');
-                        if (player && !player.src.includes(videoId)) {
-                            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
-                        }
-                    }
                 }
             } catch (e) { console.error(e); }
         }
         container.innerHTML = html || '<p style="font-size:0.8rem; color:gray; text-align:center;">Зараз ефірів немає</p>';
     }
 
-    async function loadVideosDirect(divId, count) {
+    async function loadYT(url, divId, count) {
         const box = document.getElementById(divId);
         try {
-            // Activities показує останні дії на каналі (завантаження відео)
-            const url = `https://www.googleapis.com/youtube/v3/activities?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=10&key=${API_KEY}`;
-            const res = await fetch(url);
+            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
             const data = await res.json();
-
-            if (data.items && data.items.length > 0) {
+            if (data.status === 'ok') {
                 let cards = '';
-                // Фільтруємо саме завантаження (upload)
-                const uploads = data.items.filter(item => item.snippet.type === 'upload').slice(0, count);
-                
-                uploads.forEach(v => {
-                    const id = v.contentDetails.upload.videoId;
-                    const title = v.snippet.title;
-                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${title}</div></div>`;
+                data.items.slice(0, count).forEach(v => {
+                    let id = v.link.split('v=')[1] || v.link.split('/').pop();
+                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${v.title}</div></div>`;
                 });
-                box.innerHTML = cards || "<p style='color:gray; text-align:center;'>Відео не знайдено</p>";
-            } else {
-                box.innerHTML = "<p style='color:gray; text-align:center;'>Відео не знайдено</p>";
+                box.innerHTML = cards;
             }
-        } catch (err) {
-            box.innerHTML = "<p style='color:red; text-align:center;'>Помилка API</p>";
-        }
+        } catch (err) { box.innerHTML = "Помилка..."; }
     }
 
     window.onload = () => {
         checkStreams();
-        updateSubCount();
-        loadVideosDirect('special-videos', 3); 
-        loadVideosDirect('recent-videos', 6);
-        
-        setInterval(checkStreams, 120000); 
-        setInterval(updateLiveCount, 15000);
-        setInterval(updateSubCount, 600000);
+        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 6);
+        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
     };
 </script>
 </body>
