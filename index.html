@@ -168,6 +168,7 @@
                 <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
             </div>
         </div>
+
  
         <div class="side-block" style="border-left: 4px solid #ffcc00;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
@@ -223,6 +224,12 @@
             <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-shorts">ДИВИТИСЯ УСІ</a>
         </div>
 
+        <div class="side-block" style="text-align: center;">
+    <button onclick="toggleFocus()" id="focusBtn" style="width: 100%; padding: 10px; background: none; border: 1px solid var(--neon); color: var(--neon); font-family: 'Orbitron'; cursor: pointer; border-radius: 8px; transition: 0.3s;">
+        <i class="fa-solid fa-eye-slash"></i> РЕЖИМ КОНЦЕНТРАЦІЇ
+    </button>
+</div>
+
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
             <div class="social-grid">
@@ -253,6 +260,20 @@
     <i class="fa-solid fa-arrow-up"></i>
 </div>
 
+<script>
+function toggleFocus() {
+    const sidebar = document.querySelector('.sidebar');
+    const nav = document.querySelector('nav');
+    const isHidden = sidebar.style.opacity === '0.1';
+    
+    sidebar.style.opacity = isHidden ? '1' : '0.1';
+    nav.style.opacity = isHidden ? '1' : '0.1';
+    document.getElementById('focusBtn').innerHTML = isHidden ? 
+        '<i class="fa-solid fa-eye-slash"></i> РЕЖИМ КОНЦЕНТРАЦІЇ' : 
+        '<i class="fa-solid fa-eye"></i> ВИЙТИ З РЕЖИМУ';
+}
+</script>
+    
 <style>
 @keyframes ping {
   75%, 100% { transform: scale(2); opacity: 0; }
