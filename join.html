@@ -1,1 +1,26 @@
 
+<div id="sub-lock" style="
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, #1a1a1a, #000);
+    z-index: 9999;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: white; font-family: 'Orbitron', sans-serif;
+    text-align: center; padding: 20px;">
+
+    <h1 style="color: #00ffcc; text-shadow: 0 0 10px #00ffcc;">ДОСТУП ОБМЕЖЕНО! 🔒</h1>
+    <p style="font-size: 1.2rem; margin: 20px 0;">Щоб дивитися трансляції на порталі **BlackCellUA**, підпишись на канал!</p>
+    
+    <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
+       target="_blank" 
+       onclick="document.getElementById('unlock-btn').style.display = 'block';"
+       style="background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(255,0,0,0.5);">
+       1. ПІДПИСАТИСЯ НА YOUTUBE
+    </a>
+
+    <button id="unlock-btn" onclick="unlockSite()" 
+            style="display: none; background: #00ffcc; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; box-shadow: 0 0 15px #00ffcc;">
+       2. Я ПІДПИСАВСЯ — УВІЙТИ
+    </button>
+</div>
