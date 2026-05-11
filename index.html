@@ -36,7 +36,6 @@
             --text: #ffffff; 
         }
 
-        /* LIGHT MODE THEME */
         body.light-mode { 
             --bg: #f0f2f5; 
             --panel: #ffffff; 
@@ -55,10 +54,12 @@
         .nav-tools { display: flex; align-items: center; gap: 15px; }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
-        /* LANGUAGE SELECTOR */
-        .lang-select { background: rgba(255,255,255,0.1); border: 1px solid var(--neon); color: white; border-radius: 5px; padding: 2px 5px; font-size: 0.8rem; cursor: pointer; }
+        /* LANGUAGE SELECTOR WITH FLAGS */
+        .lang-container { display: flex; gap: 8px; }
+        .lang-btn { cursor: pointer; font-size: 1.2rem; filter: grayscale(1); transition: 0.3s; opacity: 0.6; }
+        .lang-btn.active { filter: grayscale(0); opacity: 1; transform: scale(1.2); }
+        .lang-btn:hover { opacity: 1; filter: grayscale(0.5); }
 
-        /* THEME TOGGLE */
         .theme-toggle { cursor: pointer; color: var(--neon); font-size: 1.2rem; }
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
@@ -78,7 +79,6 @@
         
         .glass-panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
         
-        /* REALTIME ONLINE BLOCK */
         .online-box { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Orbitron'; font-size: 0.8rem; color: #00ff00; margin-bottom: 10px; }
         .online-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; }
 
@@ -88,7 +88,6 @@
         .schedule-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
         .schedule-item span { color: var(--neon); font-weight: bold; }
 
-        /* SOCIAL MEDIA BUTTONS */
         .social-grid-v2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
         .s-btn { display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 8px; text-decoration: none; color: white; font-size: 0.75rem; transition: 0.3s; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
         
@@ -96,17 +95,16 @@
         .s-dc:hover { background: #5865F2; }
         .s-tt:hover { background: #000000; border-color: #ff0050; }
         .s-yt:hover { background: #FF0000; }
-        .s-ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-        .s-fb:hover { background: #1877F2; }
 
-        /* SMALL DONATE BUTTON */
+        /* FIXED COMPACT DONATE BUTTON */
         .btn-donate-sm { 
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 10px; background: var(--neon); color: #000; 
-            text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; 
-            font-size: 0.8rem; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; box-sizing: border-box; padding: 12px; 
+            background: linear-gradient(90deg, #00ffcc, #00cca3); color: #000; 
+            text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 10px; 
+            font-size: 0.9rem; transition: 0.3s; border: none;
         }
-        .btn-donate-sm:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--neon); }
+        .btn-donate-sm:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 255, 204, 0.6); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -116,12 +114,11 @@
 <nav>
     <a href="https://blackcellua.pp.ua" class="logo">BlackCellUA 🔥</a>
     <div class="nav-tools">
-        <select class="lang-select">
-            <option>🇺🇦 UA</option>
-            <option>🇺🇸 EN</option>
-            <option>🇵🇱 PL</option>
-            <option>🇩🇪 DE</option>
-        </select>
+        <div class="lang-container">
+            <span class="lang-btn active" onclick="changeLang('uk', this)" title="Українська">🇺🇦</span>
+            <span class="lang-btn" onclick="changeLang('en', this)" title="English">🇺🇸</span>
+            <span class="lang-btn" onclick="changeLang('pl', this)" title="Polski">🇵🇱</span>
+        </div>
         <div class="theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></div>
     </div>
 </nav>
@@ -178,9 +175,9 @@
             <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
         </div>
 
-        <div class="glass-panel">
+        <div class="glass-panel" style="border: 1px solid var(--neon);">
             <a href="https://skif.donatik.ua" target="_blank" class="btn-donate-sm">
-                <i class="fa-solid fa-coins"></i> ПІДТРИМАТИ
+                <i class="fa-solid fa-coins"></i> ПІДТРИМАТИ КАНАЛ
             </a>
         </div>
     </aside>
@@ -190,7 +187,14 @@
     const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
     const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
 
-    // THEME TOGGLE FUNCTION
+    // LANGUAGE SWITCHER
+    function changeLang(lang, el) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        el.classList.add('active');
+        console.log("Мову змінено на: " + lang);
+        // Тут можна додати логіку перекладу тексту на сторінці
+    }
+
     function toggleTheme() {
         const body = document.body;
         const icon = document.querySelector('.theme-toggle i');
@@ -202,7 +206,6 @@
         }
     }
 
-    // RANDOM ONLINE SIMULATOR
     setInterval(() => {
         const count = Math.floor(Math.random() * (25 - 8 + 1)) + 8;
         document.getElementById('online-count').innerText = count;
