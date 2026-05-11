@@ -169,6 +169,12 @@
             </div>
         </div>
 
+        <div class="side-block" style="border: 1px solid #00ffcc; text-align: center; cursor: pointer;" onclick="calcLuck()">
+    <h3 class="section-header" style="justify-content: center;"><i class="fa-solid fa-dice"></i> ШАНС НА WIN</h3>
+    <div id="luck-percent" style="font-size: 2rem; font-family: 'Orbitron'; color: #00ffcc; margin: 10px 0;">??%</div>
+    <div style="font-size: 0.7rem; color: gray;">Натисни, щоб розрахувати ВБР</div>
+</div>
+
  
         <div class="side-block" style="border-left: 4px solid #ffcc00;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
@@ -246,16 +252,6 @@
         </div>
 
 
-        <div class="side-block" style="text-align: center;">
-    <button onclick="showSurprise()" style="background: none; border: 1px dashed #444; color: #444; padding: 5px 10px; cursor: pointer; font-size: 0.7rem;">
-        [ СЕКРЕТНИЙ ПРОТОКОЛ ]
-    </button>
-</div>
-<div id="surprise-box" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10000;">
-    <img src="https://i.ibb.co/3s6C7fG/image-3.png" style="width:300px; filter: drop-shadow(0 0 20px var(--neon));">
-</div>
-
-
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
             <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
@@ -302,6 +298,16 @@ function toggleFocus() {
     box.style.display = 'block';
     setTimeout(() => { box.style.display = 'none'; }, 2000);
 }
+
+function calcLuck() {
+    const luck = document.getElementById('luck-percent');
+    luck.innerText = "...";
+    setTimeout(() => {
+        const val = Math.floor(Math.random() * 100);
+        luck.innerText = val + "%";
+        luck.style.color = val > 50 ? "#00ff00" : "#ff0000";
+    }, 500);
+}    
 
     // Керування кнопкою "Вгору"
     window.onscroll = function() {
