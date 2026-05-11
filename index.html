@@ -66,7 +66,6 @@
         
         .glass-panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
         
-        /* DONATION STYLES */
         .don-list { display: flex; flex-direction: column; gap: 8px; }
         .don-link { 
             display: flex; align-items: center; gap: 12px; padding: 12px; 
@@ -79,16 +78,19 @@
         .don-desc { font-size: 0.6rem; opacity: 0.7; color: var(--neon); }
         .don-link:hover { background: rgba(0, 255, 204, 0.1); border-color: var(--neon); transform: translateX(5px); }
 
-        /* SHARE & SOCIAL */
         .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
         .sh-btn { display: flex; flex-direction: column; align-items: center; padding: 8px 2px; border-radius: 6px; text-decoration: none; color: white; font-size: 0.6rem; transition: 0.2s; border: 1px solid rgba(255,255,255,0.1); }
         .sh-tg { background: #229ED9; } .sh-wa { background: #25D366; } .sh-fb { background: #1877F2; }
         .sh-tw { background: #000; } .sh-cp { background: #444; }
         .sh-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
 
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .soc-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; text-decoration: none; color: white; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); }
-        .soc-btn:hover { background: var(--neon); color: #000; }
+        .social-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .soc-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; text-decoration: none; color: white; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .soc-btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 15px var(--neon); }
+
+        /* Progress Bar Styles */
+        .progress-track { background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--neon), #00ff88); box-shadow: 0 0 10px var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -126,6 +128,30 @@
             </div>
         </div>
 
+        <div class="glass-panel" style="border-left: 3px solid var(--neon);">
+            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-calendar-day"></i> РОЗКЛАД</h3>
+            <div style="font-size: 0.75rem; opacity: 0.9;">
+                <p style="display:flex; justify-content:space-between; margin: 5px 0;"><span>ПН - ПТ:</span> <b>19:00 - 23:00</b></p>
+                <p style="display:flex; justify-content:space-between; margin: 5px 0;"><span>СБ - НД:</span> <b>Гнучкий графік</b></p>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-crosshairs"></i> ЦІЛЬ: 3 ВІДМІТКИ</h3>
+            <div style="margin-bottom: 15px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:3px;">
+                    <span>Об'єкт 277</span> <span>92.4%</span>
+                </div>
+                <div class="progress-track"><div class="progress-bar" style="width: 92.4%;"></div></div>
+            </div>
+            <div>
+                <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:3px;">
+                    <span>Manticore</span> <span>88.1%</span>
+                </div>
+                <div class="progress-track"><div class="progress-bar" style="width: 88.1%;"></div></div>
+            </div>
+        </div>
+
         <div class="glass-panel">
             <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-share-nodes"></i> РЕПОСТ САЙТУ</h3>
             <div class="share-grid">
@@ -136,10 +162,10 @@
                 <a href="javascript:void(0)" onclick="copyLink()" class="sh-btn sh-cp"><i class="fa-solid fa-link"></i> Link</a>
             </div>
         </div>
-<div class="glass-panel" style="border: 1px solid var(--neon);">
+
+        <div class="glass-panel" style="border: 1px solid var(--neon);">
             <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-wallet"></i> ПІДТРИМКА</h3>
             <div class="don-list">
-
                 <div class="don-link" style="cursor:pointer;" onclick="copyCard('5168745035521035', 'Приват24')">
                     <i class="fa-solid fa-credit-card"></i>
                     <div class="don-info">
@@ -170,76 +196,8 @@
                 </a>
             </div>
         </div>
+
         <div class="glass-panel">
             <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
             <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="glass-panel">
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-users"></i> СПІЛЬНОТА</h3>
-            <div class="social-grid">
-                <a href="https://discord.gg/cdyRSHqD" class="soc-btn"><i class="fa-brands fa-discord"></i> Discord</a>
-                <a href="https://www.youtube.com/@BlackCellUA" class="soc-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
-            </div>
-        </div>
-    </aside>
-</div>
-
-<script>
-    const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
-    const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
-
-    function copyLink() {
-        navigator.clipboard.writeText('https://blackcellua.pp.ua/');
-        alert('Посилання скопійовано!');
-    }
-
-    function copyCard(num, name) {
-        if(num.includes('ТВОЯ_КАРТА')) {
-            alert('Помилка: Спочатку впишіть номер карти в коді!');
-        } else {
-            navigator.clipboard.writeText(num);
-            alert(name + ': Номер карти скопійовано!');
-        }
-    }
-
-    async function fetchFeed(url, elementId, limit) {
-        const grid = document.getElementById(elementId);
-        try {
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-            const data = await res.json();
-            if (data.status === 'ok') {
-                let html = '';
-                data.items.slice(0, limit).forEach(item => {
-                    let vId = item.link.split('v=')[1]?.split('&')[0] || item.link.split('/').pop();
-                    html += `
-                    <div class="v-card">
-                        <iframe src="https://www.youtube.com/embed/${vId}" style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                        <p style="font-size:0.65rem; margin-top:8px; text-align:center; font-weight:bold; color:var(--neon);">${item.title}</p>
-                    </div>`;
-                });
-                grid.innerHTML = html;
-                return data.items[0];
-            }
-        } catch (e) { grid.innerHTML = "Помилка."; }
-    }
-
-    async function updateAll() {
-        const last = await fetchFeed(rssRecent, 'grid-recent', 6);
-        await fetchFeed(rssSpecial, 'grid-special', 3);
-        if (last) {
-            const isLive = last.title.toLowerCase().includes('live') || last.title.toLowerCase().includes('стрім');
-            document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
-            document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
-        }
-    }
-
-    window.onload = updateAll;
-    setInterval(() => {
-        document.getElementById('online-count').innerText = Math.floor(Math.random() * 10) + 7;
-    }, 5000);
-</script>
-</body>
-</html>
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allow
