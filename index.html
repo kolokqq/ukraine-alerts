@@ -1,519 +1,206 @@
 <!DOCTYPE html>
-
 <html lang="uk">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     
-
-    <title>BlackCellUA | World of Tanks</title>
-
-    <meta name="description" content="Ігровий портал BlackCellUA 🔥. Дивись прямі трансляції WOT українською.">
-
-    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, танки українською">
-
+    <title>BlackCellUA 🔥 | World of Tanks стрім українською</title>
+    <meta name="description" content="BlackCellUA — ігровий портал про World of Tanks. Прямі ефіри, шлях до 3 відміток на техніці, гайди та топовий контент українською! 🇺🇦">
+    <meta name="keywords" content="BlackCellUA, Блекцел, стрім танки, World of Tanks українською, WOT UA, 3 відмітки, Об'єкт 277, Manticore, стрім зараз">
     <meta name="author" content="BlackCellUA">
-
-    
-
-    <link rel="canonical" href="https://blackcellua.pp.ua/">
-
-
-
-    <meta property="og:url" content="https://blackcellua.pp.ua/">
-
-    <meta property="og:title" content="BlackCellUA 🔥 — Твій ігровий портал">
-
-    <meta property="og:description" content="Прямі ефіри World of Tanks та шлях до трьох позначок.">
-
-    <meta property="og:image" content="https://i.ibb.co/3s6C7fG/image-3.png">
+    <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
-
-
-
-    <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
-
+    <meta property="og:url" content="https://blackcellua.pp.ua/">
+    <meta property="og:title" content="BlackCellUA 🔥 — Твій ігровий портал">
+    <meta property="og:description" content="Дивись прямі трансляції World of Tanks та стеж за прогресом 3 відміток у реальному часі!">
+    <meta property="og:image" content="https://i.ibb.co/3s6C7fG/image-3.png">
+    
+    <link rel="canonical" href="https://blackcellua.pp.ua/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-
-
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
-
         
-
         :root { 
-
             --neon: #00ffcc; 
-
             --bg: #020617; 
-
             --panel: rgba(255,255,255,0.03);
-
             --text: #ffffff; 
-
+            --radius-lg: 20px; 
+            --radius-sm: 12px;
         }
 
-
-
-        body.light-mode { 
-
-            --bg: #f0f2f5; 
-
-            --panel: #ffffff; 
-
-            --text: #1a1a1a; 
-
-            --neon: #008f7a;
-
-        }
-
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; transition: 0.3s; }
-
-        
-
         nav { 
-
             display: flex; justify-content: space-between; align-items: center; 
-
-            padding: 10px 5%; background: rgba(0,0,0,0.9); 
-
+            padding: 15px 5%; background: rgba(0,0,0,0.95); 
             border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; 
-
         }
-
         
+        .logo { font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 15px var(--neon); }
 
-        .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
-
-
-
-        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
-
+        .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         
-
-        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
-
+        .player-viewport { 
+            position: relative; width: 100%; aspect-ratio: 16/9; 
+            border-radius: var(--radius-lg); overflow: hidden; 
+            border: 2px solid rgba(0, 255, 204, 0.3); background: #000;
+        }
         
-
-        .live-status-tag { position: absolute; top: 15px; left: 15px; z-index: 10; padding: 5px 12px; border-radius: 5px; font-family: 'Orbitron'; font-size: 0.7rem; background: rgba(0,0,0,0.85); border: 1px solid var(--neon); color: var(--neon); display: flex; align-items: center; gap: 8px; }
-
+        .live-status-tag { 
+            position: absolute; top: 20px; left: 20px; z-index: 10; 
+            padding: 6px 15px; border-radius: 30px; font-family: 'Orbitron'; 
+            font-size: 0.7rem; background: rgba(0,0,0,0.8); 
+            border: 1px solid var(--neon); color: var(--neon); 
+            display: flex; align-items: center; gap: 8px; 
+        }
+        
         .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
-
-        .is-live { border-color: #ff0000; color: #ff0000; }
-
+        .is-live { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px #ff0000; }
         .is-live .dot { background: #ff0000; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-
-
-        iframe { width: 100%; height: 100%; border: none; }
-
+        .section-title { 
+            font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; 
+            margin: 30px 0 20px; display: flex; align-items: center; gap: 12px; 
+            text-transform: uppercase;
+        }
         
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .v-card { 
+            background: var(--panel); padding: 12px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: 0.3s;
+        }
+        .v-card:hover { transform: translateY(-5px); border-color: var(--neon); }
 
-        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 0.85rem; margin: 25px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
-
+        .v-title-box { 
+            background: rgba(0, 255, 204, 0.07); 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid var(--neon); 
+            font-size: 0.75rem; 
+            margin-top: 10px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
         
-
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-
-        .v-card { background: var(--panel); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
-
-        
-
-        .glass-panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); position: relative; }
-
-        
-
-        /* DONATION */
-
-        .don-list { display: flex; flex-direction: column; gap: 8px; }
+        .glass-panel { 
+            background: var(--panel); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: var(--radius-lg); 
+            padding: 20px; margin-bottom: 20px; 
+        }
 
         .don-link { 
-
-            display: flex; align-items: center; gap: 12px; padding: 12px; 
-
-            background: rgba(255,255,255,0.05); border-radius: 10px; 
-
-            text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
-
+            display: flex; align-items: center; gap: 15px; padding: 15px; 
+            background: rgba(255,255,255,0.03); border-radius: var(--radius-sm);
+            text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s; margin-bottom: 10px;
         }
+        .don-link:hover { background: rgba(0, 255, 204, 0.1); border-color: var(--neon); }
 
-        .don-link i { font-size: 1.1rem; width: 20px; text-align: center; color: var(--neon); }
-
-        .don-info { display: flex; flex-direction: column; }
-
-        .don-title { font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; }
-
-        .don-desc { font-size: 0.6rem; opacity: 0.7; color: var(--neon); }
-
-        .don-link:hover { background: rgba(0, 255, 204, 0.1); border-color: var(--neon); transform: translateX(5px); }
-
-
-
-        /* SHARE */
-
-        .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-
-        .sh-btn { display: flex; flex-direction: column; align-items: center; padding: 8px 2px; border-radius: 6px; text-decoration: none; color: white; font-size: 0.6rem; transition: 0.2s; border: 1px solid rgba(255,255,255,0.1); }
-
-        .sh-tg { background: #229ED9; } .sh-wa { background: #25D366; } .sh-fb { background: #1877F2; }
-
-        .sh-tw { background: #000; } .sh-cp { background: #444; }
-
-        .sh-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
-
-
-
-        /* SOCIAL */
-
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-        .soc-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; text-decoration: none; color: white; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-
-        .soc-btn:hover { background: var(--neon); color: #000; }
-
-
-
-        /* PROGRESS BARS */
-
-        .progress-track { background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 5px; width: 100%; }
-
-        .progress-bar { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
-
-
+        .progress-track { background: rgba(255,255,255,0.1); height: 10px; border-radius: 20px; overflow: hidden; margin-top: 8px; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #008f7a, var(--neon)); box-shadow: 0 0 10px var(--neon); transition: width 1.5s ease-in-out; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
-
     </style>
-
 </head>
-
 <body>
 
-
-
-<nav>
-
-    <a href="/" class="logo">BlackCellUA 🔥</a>
-
-    <div style="display:flex; gap:15px; align-items:center;">
-
-        <div style="cursor:pointer; color:var(--neon);" onclick="document.body.classList.toggle('light-mode')">🌓</div>
-
-    </div>
-
-</nav>
-
-
+<nav><a href="/" class="logo">BLACKCELLUA 🔥</a></nav>
 
 <div class="main-layout">
-
     <div class="content">
-
         <div class="player-viewport">
-
-            <div id="live-indicator" class="live-status-tag">
-
-                <div class="dot"></div><span id="status-text">ОФЛАЙН</span>
-
-            </div>
-
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
-
+            <div id="live-indicator" class="live-status-tag"><div class="dot"></div><span id="status-text">ОФЛАЙН</span></div>
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
-
-
 
         <h2 class="section-title"><i class="fa-solid fa-fire"></i> ОСОБЛИВЕ ВІДЕО</h2>
-
         <div id="grid-special" class="grid-container">Завантаження...</div>
 
-
-
         <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ТРАНСЛЯЦІЇ</h2>
-
         <div id="grid-recent" class="grid-container">Завантаження...</div>
-
     </div>
 
-
-
     <aside>
-
-        <div class="glass-panel" style="text-align:center;">
-
-            <div style="color:#00ff00; font-family:'Orbitron'; font-size:0.75rem; display:flex; align-items:center; justify-content:center; gap:8px;">
-
-                <span style="width:8px; height:8px; background:#00ff00; border-radius:50%; box-shadow:0 0 10px #00ff00;"></span>
-
-                ЗАРАЗ: <span id="online-count">12</span>
-
+        <div class="glass-panel" style="text-align:center; border: 1px solid #00ff0055;">
+            <div style="color:#00ff00; font-family:'Orbitron'; font-size:0.8rem;">
+                <span style="display:inline-block; width:10px; height:10px; background:#00ff00; border-radius:50%; margin-right:8px; box-shadow:0 0 10px #00ff00;"></span>
+                ONLINE: <span id="online-count">12</span>
             </div>
-
         </div>
-
-
-
-        <div class="glass-panel" style="border-left: 3px solid var(--neon);">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-calendar-day"></i> РОЗКЛАД</h3>
-
-            <div style="font-size: 0.7rem; line-height: 1.6;">
-
-                <div style="display:flex; justify-content:space-between;"><span>ПН-ПТ:</span><b>19:00 - 23:00</b></div>
-
-                <div style="display:flex; justify-content:space-between;"><span>СБ-НД:</span><b>Гнучкий графік</b></div>
-
-            </div>
-
-        </div>
-
-
 
         <div class="glass-panel">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-crosshairs"></i> ЦІЛЬ: 3 ВІДМІТКИ</h3>
-
-            <div style="margin-bottom: 12px;">
-
-                <div style="display:flex; justify-content:space-between; font-size:0.65rem; margin-bottom:4px;">
-
-                    <span>Об'єкт 277</span><span>92.4%</span>
-
-                </div>
-
+            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛЬ: 3 ВІДМІТКИ</h3>
+            <div style="margin-bottom: 15px;">
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem;"><span>Об'єкт 277</span><b>92.4%</b></div>
                 <div class="progress-track"><div class="progress-bar" style="width: 92.4%;"></div></div>
-
             </div>
-
             <div>
-
-                <div style="display:flex; justify-content:space-between; font-size:0.65rem; margin-bottom:4px;">
-
-                    <span>Manticore</span><span>88.1%</span>
-
-                </div>
-
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem;"><span>Manticore</span><b>88.1%</b></div>
                 <div class="progress-track"><div class="progress-bar" style="width: 88.1%;"></div></div>
-
             </div>
-
         </div>
-
-
-
-        <div class="glass-panel">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-share-nodes"></i> РЕПОСТ</h3>
-
-            <div class="share-grid">
-
-                <a href="https://t.me/share/url?url=https://blackcellua.pp.ua/" target="_blank" class="sh-btn sh-tg"><i class="fa-brands fa-telegram"></i> TG</a>
-
-                <a href="#" target="_blank" class="sh-btn sh-wa"><i class="fa-brands fa-whatsapp"></i> WA</a>
-
-                <a href="#" target="_blank" class="sh-btn sh-fb"><i class="fa-brands fa-facebook"></i> FB</a>
-
-                <a href="#" target="_blank" class="sh-btn sh-tw"><i class="fa-brands fa-x-twitter"></i> X</a>
-
-                <a href="javascript:void(0)" onclick="copyLink()" class="sh-btn sh-cp"><i class="fa-solid fa-link"></i> Link</a>
-
-            </div>
-
-        </div>
-
-
 
         <div class="glass-panel" style="border: 1px solid var(--neon);">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-wallet"></i> ПІДТРИМКА</h3>
-
-            <div class="don-list">
-
-                <div class="don-link" style="cursor:pointer;" onclick="copyCard('5168745035521035', 'Приват24')">
-
-                    <i class="fa-solid fa-credit-card"></i>
-
-                    <div class="don-info">
-
-                        <span class="don-title">ПРИВАТ 24</span>
-
-                        <span class="don-desc">5168 7450 3552 1035</span>
-
-                    </div>
-
-                </div>
-
-                <div class="don-link" style="cursor:pointer;" onclick="copyCard('5355280058686971', 'ПУМБ')">
-
-                    <i class="fa-solid fa-building-columns"></i>
-
-                    <div class="don-info">
-
-                        <span class="don-title">ПУМБ</span>
-
-                        <span class="don-desc">5355 2800 5868 6971</span>
-
-                    </div>
-
-                </div>
-
-                <a href="https://donatello.to/krakenua" target="_blank" class="don-link">
-
-                    <i class="fa-solid fa-heart"></i>
-
-                    <div class="don-info"><span class="don-title">DONATELLO</span><span class="don-desc">Підтримати</span></div>
-
-                </a>
-
+            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-wallet"></i> ПІДТРИМКА</h3>
+            <div class="don-link" style="cursor:pointer;" onclick="navigator.clipboard.writeText('5168745035521035');alert('Скопійовано!')">
+                <i class="fa-solid fa-credit-card"></i>
+                <div><small style="opacity:0.7;">ПРИВАТ 24</small><br><b>5168 7450 3552 1035</b></div>
             </div>
-
-        </div>
-
-
-
-        <div class="glass-panel">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
-
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
-
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
-
+            <div class="don-link" style="cursor:pointer;" onclick="navigator.clipboard.writeText('5355280058686971');alert('Скопійовано!')">
+                <i class="fa-solid fa-building-columns"></i>
+                <div><small style="opacity:0.7;">ПУМБ</small><br><b>5355 2800 5868 6971</b></div>
             </div>
-
+            <a href="https://donatello.to/krakenua" target="_blank" class="don-link">
+                <i class="fa-solid fa-heart"></i><b>DONATELLO</b>
+            </a>
         </div>
-
-
-
-        <div class="glass-panel">
-
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-users"></i> СПІЛЬНОТА</h3>
-
-            <div class="social-grid">
-
-                <a href="https://discord.gg/cdyRSHqD" target="_blank" class="soc-btn"><i class="fa-brands fa-discord"></i> Discord</a>
-
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="soc-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
-
-            </div>
-
-        </div>
-
     </aside>
-
 </div>
 
-
-
 <script>
-
-    const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
-
-    const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
-
-
-
-    function copyLink() {
-
-        navigator.clipboard.writeText('https://blackcellua.pp.ua/');
-
-        alert('Посилання скопійовано!');
-
-    }
-
-
-
-    function copyCard(num, name) {
-
-        navigator.clipboard.writeText(num);
-
-        alert(name + ': Номер карти скопійовано!');
-
-    }
-
-
+    const APP_ID = 'b005714c276bf5c1a7ac6e313d6e4b7c'; // Твій ID з Screenshot_9
 
     async function fetchFeed(url, elementId, limit) {
-
         const grid = document.getElementById(elementId);
-
         try {
-
             const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-
             const data = await res.json();
-
             if (data.status === 'ok') {
-
                 let html = '';
-
                 data.items.slice(0, limit).forEach(item => {
-
                     let vId = item.link.split('v=')[1]?.split('&')[0] || item.link.split('/').pop();
-
-                    html += `<div class="v-card">
-
-                        <iframe src="https://www.youtube.com/embed/${vId}" style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-
-                        <p style="font-size:0.65rem; margin-top:8px; text-align:center; font-weight:bold; color:var(--neon);">${item.title}</p>
-
+                    html += `
+                    <div class="v-card">
+                        <iframe src="https://www.youtube.com/embed/${vId}" style="width:100%; aspect-ratio:16/9; border-radius:12px; border:none;"></iframe>
+                        <div class="v-title-box">${item.title}</div>
                     </div>`;
-
                 });
-
                 grid.innerHTML = html;
-
                 return data.items[0];
-
             }
-
-        } catch (e) { grid.innerHTML = "Помилка завантаження."; }
-
+        } catch (e) { grid.innerHTML = "Помилка завантаження..."; }
     }
 
-
-
-    async function updateAll() {
-
-        const last = await fetchFeed(rssRecent, 'grid-recent', 6);
-
-        await fetchFeed(rssSpecial, 'grid-special', 3);
-
+    async function init() {
+        const last = await fetchFeed('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'grid-recent', 6);
+        await fetchFeed('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'grid-special', 3);
+        
         if (last) {
-
             const isLive = last.title.toLowerCase().includes('live') || last.title.toLowerCase().includes('стрім');
-
             document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
-
             document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
-
         }
-
     }
 
-
-
-    window.onload = updateAll;
-
-    setInterval(() => {
-
-        document.getElementById('online-count').innerText = Math.floor(Math.random() * 10) + 7;
-
-    }, 5000);
-
+    window.onload = init;
+    setInterval(() => { document.getElementById('online-count').innerText = Math.floor(Math.random() * 5) + 12; }, 5000);
 </script>
-
 </body>
-
 </html>
