@@ -77,6 +77,39 @@
         .btn-wot { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 12px; background: linear-gradient(180deg, #ff6a00 0%, #ee4d00 100%); border-radius: 8px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
         .btn-mod { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; background: #ffcc00; border-radius: 12px; color: #000; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
 
+        /* КНОПКА ВГОРУ */
+        #scrollUp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--bg);
+            color: var(--neon);
+            border: 2px solid var(--neon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.4s;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+        }
+        #scrollUp.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #scrollUp:hover {
+            background: var(--neon);
+            color: #000;
+            box-shadow: 0 0 25px var(--neon);
+            transform: translateY(-5px);
+        }
+
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
 </head>
@@ -210,12 +243,26 @@
     </aside>
 </div>
 
+<div id="scrollUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fa-solid fa-arrow-up"></i>
+</div>
+
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
+
+    // Керування кнопкою "Вгору"
+    window.onscroll = function() {
+        const btn = document.getElementById('scrollUp');
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    };
 
     function updateLiveCount() {
         const el = document.getElementById('user-count');
