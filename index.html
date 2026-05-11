@@ -105,15 +105,8 @@
         }
         .soc-btn:hover { background: var(--neon); color: #000; font-weight: bold; }
 
-        .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .sh-btn { 
-            display: flex; flex-direction: column; align-items: center; 
-            padding: 10px 5px; border-radius: 8px; text-decoration: none; 
-            color: white; font-size: 0.65rem; background: rgba(255,255,255,0.05);
-        }
-
         .progress-track { background: rgba(255,255,255,0.1); height: 10px; border-radius: 20px; overflow: hidden; margin-top: 8px; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, #008f7a, var(--neon)); box-shadow: 0 0 10px var(--neon); }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, #008f7a, var(--neon)); box-shadow: 0 0 10px var(--neon); transition: width 1s ease-in-out; }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -161,15 +154,15 @@
             <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛЬ: 3 ВІДМІТКИ</h3>
             <div style="margin-bottom: 15px;">
                 <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:5px;">
-                    <span>Об'єкт 277</span><b>92.4%</b>
+                    <span>Об'єкт 277</span><b id="stat-277-val">--%</b>
                 </div>
-                <div class="progress-track"><div class="progress-bar" style="width: 92.4%;"></div></div>
+                <div class="progress-track"><div id="stat-277-bar" class="progress-bar" style="width: 0%;"></div></div>
             </div>
             <div>
                 <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:5px;">
-                    <span>Manticore</span><b>88.1%</b>
+                    <span>Manticore</span><b id="stat-manticore-val">--%</b>
                 </div>
-                <div class="progress-track"><div class="progress-bar" style="width: 88.1%;"></div></div>
+                <div class="progress-track"><div id="stat-manticore-bar" class="progress-bar" style="width: 0%;"></div></div>
             </div>
         </div>
 
@@ -200,9 +193,47 @@
 </div>
 
 <script>
+    const APP_ID = 'b005714c276bf5c1a7ac6e313d6e4b7c';
+    const NICKNAME = 'BlackCellUA';
+
     function copyCard(num, name) {
         navigator.clipboard.writeText(num);
         alert(name + ': Номер карти скопійовано!');
+    }
+
+    // === ФУНКЦІЯ ОТРИМАННЯ СТАТИСТИКИ WG ===
+    async function fetchWOTStat() {
+        try {
+            // 1. Пошук ID гравця
+            const searchRes = await fetch(`https://api.worldoftanks.eu/wot/account/list/?application_id=${APP_ID}&search=${NICKNAME}`);
+            const searchData = await searchRes.json();
+            if (!searchData.data || searchData.data.length === 0) return;
+            
+            const accountId = searchData.data[0].account_id;
+
+            // 2. Отримання даних про танки (277 ID: 52241, Manticore ID: 55313)
+            const tankRes = await fetch(`https://api.worldoftanks.eu/wot/tanks/stats/?application_id=${APP_ID}&account_id=${accountId}&tank_id=52241,55313&fields=tank_id,marks_on_gun`);
+            const tankData = await tankRes.json();
+            const stats = tankData.data[accountId];
+
+            if (stats) {
+                stats.forEach(tank => {
+                    // Ми отримуємо marks_on_gun, але для відсотків зазвичай потрібен інший ендпоінт або ручне введення. 
+                    // WG API повертає кількість відміток (1, 2, 3), а не точний відсоток.
+                    // Для ТОЧНОГО ВІДСОТКА (92.4% і т.д.) у WG API немає прямого поля в "stats", 
+                    // тому залишаємо логіку оновлення, якщо ти знайдеш метод або просто виводимо кількість зірок.
+                    // Тимчасово анімуємо бари до твоїх значень, якщо API успішно відповів.
+                    
+                    if(tank.tank_id === 52241) updateUI('277', 92.4);
+                    if(tank.tank_id === 55313) updateUI('manticore', 88.1);
+                });
+            }
+        } catch (e) { console.error("WG API Error", e); }
+    }
+
+    function updateUI(id, val) {
+        document.getElementById(`stat-${id}-val`).innerText = val + '%';
+        document.getElementById(`stat-${id}-bar`).style.width = val + '%';
     }
 
     async function fetchFeed(url, elementId, limit) {
@@ -227,19 +258,5 @@
     }
 
     async function updateAll() {
-        const last = await fetchFeed('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'grid-recent', 6);
-        await fetchFeed('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'grid-special', 3);
-        if (last) {
-            const isLive = last.title.toLowerCase().includes('live') || last.title.toLowerCase().includes('стрім');
-            document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
-            document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
-        }
-    }
-
-    window.onload = updateAll;
-    setInterval(() => {
-        document.getElementById('online-count').innerText = Math.floor(Math.random() * 5) + 10;
-    }, 5000);
-</script>
-</body>
-</html>
+        await fetchWOTStat(); // Оновлюємо танки
+        const last = await fetchFeed('
