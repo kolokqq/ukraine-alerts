@@ -246,6 +246,16 @@
         </div>
 
 
+        <div class="side-block" style="text-align: center;">
+    <button onclick="showSurprise()" style="background: none; border: 1px dashed #444; color: #444; padding: 5px 10px; cursor: pointer; font-size: 0.7rem;">
+        [ СЕКРЕТНИЙ ПРОТОКОЛ ]
+    </button>
+</div>
+<div id="surprise-box" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10000;">
+    <img src="https://i.ibb.co/3s6C7fG/image-3.png" style="width:300px; filter: drop-shadow(0 0 20px var(--neon));">
+</div>
+
+
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
             <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
@@ -286,6 +296,12 @@ function toggleFocus() {
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
+
+    function showSurprise() {
+    const box = document.getElementById('surprise-box');
+    box.style.display = 'block';
+    setTimeout(() => { box.style.display = 'none'; }, 2000);
+}
 
     // Керування кнопкою "Вгору"
     window.onscroll = function() {
