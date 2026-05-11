@@ -18,7 +18,6 @@
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
     <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
     <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
@@ -53,7 +52,15 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        .side-block { background: rgba(255, 255, 255, 0.03) !important; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1) !important; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        .side-block { 
+            background: rgba(255, 255, 255, 0.03) !important; 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1) !important; 
+            border-radius: 15px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+        }
         
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
@@ -99,12 +106,23 @@
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05);">
+        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 15px;">
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
-                <i class="fa-solid fa-bolt" style="animation: blinker 1s linear infinite;"></i> LIVE SUBS
+                <i class="fa-solid fa-users" style="animation: blinker 1s linear infinite;"></i> LIVE SUBSCRIBERS
             </div>
-            <div class="online-number" id="real-sub-count">...</div>
-            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Підписників</div>
+            <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" style="border: 0; border-radius: 8px; filter: invert(0.9) hue-rotate(140deg) brightness(1.1);"></iframe>
+        </div>
+
+        <div class="side-block online-status" style="border: 1px solid rgba(0, 255, 204, 0.3); background: rgba(0, 255, 204, 0.05);">
+            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
+                <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
+            </div>
+            <div class="online-number" id="user-count">1</div>
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Користувачів</div>
+            <div style="display: none;">
+                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
+                <script async src="https://waust.at/c.js"></script>
+            </div>
         </div>
         
         <div id="online-streamers"></div>
@@ -115,6 +133,7 @@
             <div class="row"><span>EU2:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
             <div class="row"><span>EU3:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
             <div class="row"><span>EU4:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
+            <div class="row"><span>EU5:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
         </div>
 
         <div class="side-block" style="border: 1px solid #00ffcc; text-align: center; cursor: pointer;" onclick="calcLuck()">
@@ -131,6 +150,20 @@
                     <div style="width:51%; height:100%; background:#ffcc00; box-shadow: 0 0 10px #ffcc00; border-radius:10px;"></div>
                 </div>
             </div>
+            <div style="font-size: 0.8rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Фарм срібла</span><span>2.5M / 5M</span></div>
+                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px;">
+                    <div style="width:50%; height:100%; background:#00ffcc; box-shadow: 0 0 10px #00ffcc; border-radius:10px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-block" style="border-left: 4px solid #ff4444;">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-magnifying-glass"></i> ПОШУК ТАНКІСТА</h3>
+            <form action="https://worldoftanks.eu/ru/community/accounts/#wot&at_search=" target="_blank" method="GET" style="display: flex; gap: 5px;">
+                <input type="text" name="name" placeholder="Нік гравця..." style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.8rem; outline: none;">
+                <button type="submit" style="background: #ff4444; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; color: #fff;"><i class="fa-solid fa-search"></i></button>
+            </form>
         </div>
 
         <div class="side-block">
@@ -146,6 +179,8 @@
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
             <div class="social-grid">
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-card" style="--soc-color: #ff0000;"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
+                <a href="#" target="_blank" class="social-card" style="--soc-color: #5865F2;"><i class="fa-brands fa-discord"></i><span>Discord</span></a>
+                <a href="#" target="_blank" class="social-card" style="--soc-color: #ff0055;"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></a>
             </div>
         </div>
 
@@ -167,30 +202,11 @@
 <div id="scrollUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
 
 <script>
-    // ТВОЇ ДАНІ ДЛЯ РЕАЛЬНОГО ЧАСУ
-    const CLIENT_ID = 'cli_24117ebca78dc362abaa2dfb';
-    const JWT_TOKEN = 'e2f3748295467d55e5d567fef6d0e8e87ee8fd82c67ecb6403d0e3571fe3d2a';
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
-
-    const socket = io('https://realtime.streamelements.com', { transports: ['websocket'] });
-    socket.on('connect', () => { socket.emit('authenticate', { method: 'jwt', token: JWT_TOKEN }); });
-    
-    socket.on('authenticated', (data) => {
-        fetch(`https://api.streamelements.com/v2/channels/${data.channelId}/stats`).then(r => r.json()).then(stats => {
-            document.getElementById('real-sub-count').innerText = stats.subscriberCount || stats.followers || "0";
-        });
-    });
-
-    socket.on('event', (event) => {
-        if (event.type === 'subscriber' || event.type === 'follower') {
-            let count = parseInt(document.getElementById('real-sub-count').innerText) || 0;
-            document.getElementById('real-sub-count').innerText = count + 1;
-        }
-    });
 
     function calcLuck() {
         const luck = document.getElementById('luck-percent');
@@ -208,6 +224,16 @@
         else btn.classList.remove('show');
     };
 
+    function updateLiveCount() {
+        const el = document.getElementById('user-count');
+        let current = parseInt(el.innerText);
+        let change = Math.floor(Math.random() * 3) - 1; 
+        let next = current + change;
+        if (next < 1) next = 1; 
+        el.innerText = next;
+    }
+    setInterval(updateLiveCount, 15000);
+
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
         let html = '';
@@ -222,10 +248,13 @@
                         <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
+                    if(channel.id === 'UC29hev1ElIOHYG9oFm9dieQ') {
+                         document.getElementById('main-player').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+                    }
                 }
             } catch (e) { console.error(e); }
         }
-        container.innerHTML = html;
+        container.innerHTML = html || '<p style="font-size:0.8rem; color:gray; text-align:center;">Зараз ефірів немає</p>';
     }
 
     async function loadYT(url, divId, count) {
