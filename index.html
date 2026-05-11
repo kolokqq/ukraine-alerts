@@ -87,7 +87,7 @@
 <div class="wrapper">
     <div class="main-content">
         <div class="player-box">
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
         <h2 class="section-header"><i class="fa-solid fa-star"></i> ОСОБЛИВЕ ВІДЕО</h2>
         <div id="special-videos" class="video-grid">Завантаження...</div>
@@ -102,10 +102,6 @@
             </div>
             <div class="online-number" id="user-count">1</div>
             <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">Користувачів</div>
-            <div style="display: none;">
-                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
-                <script async src="https://waust.at/c.js"></script>
-            </div>
         </div>
 
         <div class="side-block" style="border: 1px solid #ff0000; background: rgba(255, 0, 0, 0.05); text-align: center;">
@@ -168,6 +164,7 @@
 
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
+    const CHANNEL_ID = 'UC29hev1ElIOHYG9oFm9dieQ';
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
@@ -177,25 +174,24 @@
         const subElement = document.getElementById('sub-count');
         if (!subElement) return;
         try {
-            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC29hev1ElIOHYG9oFm9dieQ&key=${API_KEY}`;
+            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}&t=${new Date().getTime()}`;
             const res = await fetch(url);
             const data = await res.json();
             if (data.items && data.items.length > 0) {
                 const subs = data.items[0].statistics.subscriberCount;
                 subElement.innerText = Number(subs).toLocaleString();
             }
-        } catch (e) {
-            console.error(e);
-            subElement.innerText = "---";
-        }
+        } catch (e) { console.error(e); subElement.innerText = "---"; }
     }
 
     function updateLiveCount() {
         const el = document.getElementById('user-count');
+        if(!el) return;
         let current = parseInt(el.innerText) || 1;
         let change = Math.floor(Math.random() * 3) - 1; 
         let next = current + change;
         if (next < 1) next = 1; 
+        if (next > 15) next = 7;
         el.innerText = next;
     }
 
@@ -204,15 +200,25 @@
         let html = '';
         for (const channel of CHANNELS) {
             try {
-                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}`;
+                // Додано cache-busting параметр &t= щоб AdBlock менше чіплявся і дані були свіжіші
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}&t=${new Date().getTime()}`;
                 const res = await fetch(url);
                 const data = await res.json();
+                
                 if (data.items && data.items.length > 0) {
                     const videoId = data.items[0].id.videoId;
                     html += `<div style="margin-bottom:10px; padding:10px; border:1px solid #ff4444; border-radius:10px; background:rgba(255,0,0,0.05);">
                         <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
+                    
+                    // Якщо стрім йде на твоєму каналі, оновлюємо головний плеєр на пряме ID відео
+                    if(channel.id === CHANNEL_ID) {
+                        const player = document.getElementById('main-player');
+                        if (player && !player.src.includes(videoId)) {
+                            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+                        }
+                    }
                 }
             } catch (e) { console.error(e); }
         }
@@ -220,29 +226,4 @@
     }
 
     async function loadYT(url, divId, count) {
-        const box = document.getElementById(divId);
-        try {
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-            const data = await res.json();
-            if (data.status === 'ok') {
-                let cards = '';
-                data.items.slice(0, count).forEach(v => {
-                    let id = v.link.split('v=')[1] || v.link.split('/').pop();
-                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${v.title}</div></div>`;
-                });
-                box.innerHTML = cards;
-            }
-        } catch (err) { box.innerHTML = "Помилка..."; }
-    }
-
-    window.onload = () => {
-        checkStreams();
-        updateSubCount();
-        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 6);
-        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
-        setInterval(updateLiveCount, 15000);
-        setInterval(updateSubCount, 600000);
-    };
-</script>
-</body>
-</html>
+        const box = document.getElementById
