@@ -37,7 +37,6 @@
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
 
-        /* ОНОВЛЕНА НАВІГАЦІЯ З КНОПКАМИ (ЗАМІСТЬ ТЕКСТУ) */
         nav { 
             display: flex; 
             justify-content: center; 
@@ -83,11 +82,14 @@
 
         .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .social-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 15px 5px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
-        .social-card:hover { border-color: var(--neon); }
+        .social-card i { font-size: 1.5rem; }
+        .social-card:hover { border-color: var(--neon); transform: translateY(-3px); }
 
         .btn-mod { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; background: #ffcc00; border-radius: 12px; color: #000; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
+        .btn-shorts { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 10px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--neon); border-radius: 10px; color: var(--neon); text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; transition: 0.3s; }
+        .btn-shorts:hover { background: var(--neon); color: #000; }
 
-        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } .nav-buttons { gap: 5px; } .action-btn { padding: 5px 8px; font-size: 0.6rem; } }
+        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
         
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
@@ -100,10 +102,10 @@
         <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub">
             <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ
         </a>
-        <a href="https://www.youtube.com/watch?v=sC6EnSzcKa0" target="_blank" class="action-btn btn-like">
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0?si=_GjzD97nYh4qQ2TC" target="_blank" class="action-btn btn-like">
             <i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК
         </a>
-        <a href="https://www.youtube.com/watch?v=sC6EnSzcKa0" target="_blank" class="action-btn btn-comm">
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0?si=_GjzD97nYh4qQ2TC" target="_blank" class="action-btn btn-comm">
             <i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР
         </a>
     </div>
@@ -114,10 +116,8 @@
         <div class="player-box">
             <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
-        
         <h2 class="section-header"><i class="fa-solid fa-star"></i> ОСОБЛИВЕ ВІДЕО</h2>
         <div id="special-videos" class="video-grid">Завантаження...</div>
-        
         <h2 class="section-header"><i class="fa-solid fa-history"></i> ОСТАННІ СТРІМИ</h2>
         <div id="recent-videos" class="video-grid">Завантаження...</div>
     </div>
@@ -140,8 +140,6 @@
                 <script async src="https://waust.at/c.js"></script>
             </div>
         </div>
-        
-        <div id="online-streamers"></div>
 
         <div class="side-block" style="border-left: 4px solid #00ffcc;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-server"></i> СЕРВЕРИ WOT</h3>
@@ -150,14 +148,57 @@
             <div class="row"><span>EU3:</span><span style="color: #00ff00;">ONLINE</span></div>
         </div>
 
+        <div class="side-block" style="border: 1px solid #00ffcc; text-align: center; cursor: pointer;" onclick="calcLuck()">
+            <h3 class="section-header" style="justify-content: center; margin-top:0;"><i class="fa-solid fa-dice"></i> ШАНС НА WIN</h3>
+            <div id="luck-percent" style="font-size: 2rem; font-family: 'Orbitron'; color: #00ffcc; margin: 10px 0;">??%</div>
+            <div style="font-size: 0.7rem; color: gray;">Натисни для розрахунку</div>
+        </div>
+
+        <div class="side-block" style="border-left: 4px solid #ffcc00;">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
+            <div style="font-size: 0.8rem; margin-bottom: 10px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>3 відмітки BZ-176</span><span>51%</span></div>
+                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px;">
+                    <div style="width:51%; height:100%; background:#ffcc00; box-shadow: 0 0 10px #ffcc00; border-radius:10px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-block" style="border-left: 4px solid #ff4444;">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-magnifying-glass"></i> ПОШУК ТАНКІСТА</h3>
+            <form action="https://worldoftanks.eu/ru/community/accounts/#wot&at_search=" target="_blank" method="GET" style="display: flex; gap: 5px;">
+                <input type="text" name="name" placeholder="Нік..." style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.8rem; outline: none;">
+                <button type="submit" style="background: #ff4444; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; color: #fff;"><i class="fa-solid fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="side-block">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div style="aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden;"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
+                <div style="aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden;"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
+            </div>
+            <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-shorts">УСІ SHORTS</a>
+        </div>
+
+        <div class="side-block">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
+            <div class="social-grid">
+                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-card" style="background: rgba(255, 0, 0, 0.1);"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i><span>YouTube</span></a>
+                <a href="#" class="social-card" style="background: rgba(88, 101, 242, 0.1);"><i class="fa-brands fa-discord" style="color:#5865F2;"></i><span>Discord</span></a>
+                <a href="#" class="social-card" style="background: rgba(0, 136, 204, 0.1);"><i class="fa-brands fa-telegram" style="color:#0088cc;"></i><span>Telegram</span></a>
+                <a href="https://www.tiktok.com/@blackcellua" target="_blank" class="social-card" style="background: rgba(255, 255, 255, 0.05);"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></a>
+            </div>
+        </div>
+
         <div class="side-block" style="border: 2px solid #ffcc00;">
-            <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
+            <h3 class="section-header" style="color: #ffcc00; margin-top:0;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
             <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
         </div>
 
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
-            <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
+            <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Скопійовано!')">
                 <i class="fa-solid fa-credit-card"></i><div><small>ПРИВАТ</small><br><b>5168 7450 3552 1035</b></div>
             </div>
             <a href="https://donatello.to/krakenua" target="_blank" class="btn-don"><i class="fa-solid fa-coffee"></i><b>DONATELLO</b></a>
@@ -169,6 +210,16 @@
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [{ id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' }];
 
+    function calcLuck() {
+        const luck = document.getElementById('luck-percent');
+        luck.innerText = "...";
+        setTimeout(() => {
+            const val = Math.floor(Math.random() * 100);
+            luck.innerText = val + "%";
+            luck.style.color = val > 50 ? "#00ff00" : "#ff0000";
+        }, 500);
+    }
+
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
         let html = '';
@@ -179,9 +230,9 @@
                 const data = await res.json();
                 if (data.items && data.items.length > 0) {
                     const videoId = data.items[0].id.videoId;
-                    html += `<div style="margin-bottom:10px; padding:10px; border:1px solid #ff4444; border-radius:10px; background:rgba(255,0,0,0.05);">
-                        <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
-                        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
+                    html += `<div class="side-block" style="border:1px solid #ff4444; background:rgba(255,0,0,0.05); padding:15px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
+                        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-weight:bold; text-decoration:none; display:block; margin-top:10px;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
                 }
             } catch (e) { console.error(e); }
@@ -209,6 +260,7 @@
         checkStreams();
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 6);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
+        setInterval(checkStreams, 120000);
     };
 </script>
 </body>
