@@ -169,6 +169,11 @@
             </div>
         </div>
 
+<div class="side-block" style="border-left: 4px solid #f59e0b; background: rgba(245, 158, 11, 0.05);">
+    <h3 class="section-header" style="color: #f59e0b;"><i class="fa-solid fa-lightbulb"></i> ПОРАДА ТАНКІСТУ</h3>
+    <p id="tank-quote" style="font-size: 0.85rem; font-style: italic; color: #ddd;">"Не підставляй борт, коли виїжджаєш на бабаху!"</p>
+</div>
+
          <div class="side-block" style="border: 2px solid #ffcc00;">
             <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
             <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
@@ -250,6 +255,16 @@
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
+
+    const quotes = [
+    "Не їдь один на фланг, якщо ти не на СТ.",
+    "Голда — це не чіти, це тактика!",
+    "Бачиш арту? Знищуй першою.",
+    "Твій борт — це подарунок для ворога. Не даруй його.",
+    "Вміння грати від вежі — запорука перемоги на BZ-176.",
+    "Дивись на міні-карту частіше, ніж у приціл!"
+];
+document.getElementById('tank-quote').innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
 
     // Керування кнопкою "Вгору"
     window.onscroll = function() {
