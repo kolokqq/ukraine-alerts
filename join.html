@@ -1,6 +1,23 @@
+<title>World of Tanks Українською 🔥 | BlackCellUA</title>
+<meta name="description" content="Ігровий портал BlackCellUA. Дивись стріми World of Tanks українською, Shorts та огляди танків. Приєднуйся до нашої спільноти!">
+<meta name="keywords" content="BlackCellUA, World of Tanks українською, WOT стрім UA, танки стрім, ігровий портал, En0T1k_UA, танки українською">
+<meta name="author" content="BlackCellUA">
+<link rel="canonical" href="https://social-up.pp.ua">
+
+<meta property="og:title" content="BlackCellUA — Стріми World of Tanks Українською 🔥">
+<meta property="og:description" content="Прямі ефіри, танки та крута атмосфера. Підписуйся та заходь на портал!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://social-up.pp.ua">
+<meta property="og:image" content="https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg">
+<meta property="og:site_name" content="BlackCellUA Portal">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BlackCellUA — Твій портал WOT">
+<meta name="twitter:image" content="https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg">
+
 <div id="sub-lock" style="
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    /* Додаємо епічний фон із танками */
+    /* Епічний фон із танками */
     background: url('https://worldoftanks.eu/ice/news/media/uploads/2021/04/14/wot_wallpaper_1.jpg') center/cover no-repeat;
     z-index: 10000; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -25,7 +42,7 @@
     </button>
 
     <style>
-        /* Адаптація розмірів для мобілок */
+        /* Адаптація під телефони */
         @media (max-width: 600px) {
             .lock-title { font-size: 1.5rem !important; }
             .lock-text { font-size: 0.9rem !important; }
@@ -37,3 +54,21 @@
         }
     </style>
 </div>
+
+<script>
+// Функція розблокування
+function unlockSite() {
+    const lock = document.getElementById('sub-lock');
+    lock.style.transition = 'opacity 0.5s ease';
+    lock.style.opacity = '0';
+    setTimeout(() => {
+        lock.remove();
+    }, 500);
+    localStorage.setItem('isSubscribed', 'true');
+}
+
+// Автоматичне приховування, якщо вже підписаний
+if (localStorage.getItem('isSubscribed') === 'true') {
+    document.getElementById('sub-lock').style.display = 'none';
+}
+</script>
