@@ -98,16 +98,13 @@
 </div>
 
 <script>
-    // Твій Channel ID напряму
-    const ytChannelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-
     async function loadYouTubeData() {
         const grid = document.getElementById('video-grid');
         const indicator = document.getElementById('live-indicator');
         const statusText = document.getElementById('status-text');
         
-        // Використовуємо ТІЛЬКИ офіційний фід Ютуба через rss2json
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ytChannelId}`;
+        // Твоє нове посилання з RSS.app
+        const rssUrl = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
         const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
 
         try {
@@ -117,7 +114,7 @@
             if (data.status === 'ok' && data.items.length > 0) {
                 let html = '';
                 
-                // Перевірка першого відео в списку
+                // Перевірка на статус LIVE
                 const latest = data.items[0];
                 const isLive = latest.title.toLowerCase().includes('live') || 
                                latest.title.toLowerCase().includes('стрім');
@@ -131,26 +128,33 @@
                 }
 
                 data.items.slice(0, 6).forEach(item => {
-                    // Витягуємо ID відео з посилання або guid
-                    const videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split('video:')[1];
+                    // Витягуємо ID відео (працює для більшості форматів RSS.app)
+                    let videoId = '';
+                    if (item.link.includes('v=')) {
+                        videoId = item.link.split('v=')[1]?.split('&')[0];
+                    } else {
+                        videoId = item.link.split('/').pop();
+                    }
                     
-                    html += `
-                    <div class="v-card">
-                        <div style="position:relative; width:100%; aspect-ratio:16/9;">
-                            <iframe src="https://www.youtube.com/embed/${videoId}?rel=0" 
-                                    allowfullscreen 
-                                    style="width:100%; height:100%; border-radius:8px; border:none;">
-                            </iframe>
-                        </div>
-                        <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:#00ffcc; text-align:center; height:2.4em; overflow:hidden;">
-                            ${item.title}
-                        </p>
-                    </div>`;
+                    if (videoId) {
+                        html += `
+                        <div class="v-card">
+                            <div style="position:relative; width:100%; aspect-ratio:16/9;">
+                                <iframe src="https://www.youtube.com/embed/${videoId}?rel=0" 
+                                        allowfullscreen 
+                                        style="width:100%; height:100%; border-radius:8px; border:none;">
+                                </iframe>
+                            </div>
+                            <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:#00ffcc; text-align:center; height:2.4em; overflow:hidden;">
+                                ${item.title}
+                            </p>
+                        </div>`;
+                    }
                 });
                 grid.innerHTML = html;
             }
         } catch (e) {
-            grid.innerHTML = "<p>Помилка завантаження відео з Ютуба.</p>";
+            grid.innerHTML = "<p>Помилка завантаження контенту.</p>";
         }
     }
 
