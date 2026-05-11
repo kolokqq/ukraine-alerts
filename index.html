@@ -53,7 +53,11 @@
         .title-tag { background: rgba(0, 255, 204, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
         .side-block { background: var(--panel-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
-        .online-status { color: #00ff00; text-align: center; font-weight: bold; font-size: 0.9rem; margin-bottom: 20px; }
+        
+        /* Стиль ОНЛАЙН БЛОКУ */
+        .online-status { text-align: center; }
+        .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
+        
         .row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.85rem; }
 
         .btn-don { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; text-decoration: none; color: white; }
@@ -95,12 +99,18 @@
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <div style="font-size: 0.9rem; color: #00ff00;">
-                <i class="fa-solid fa-circle" style="font-size:0.7rem; animation: blinker 1s linear infinite;"></i> ЗАРАЗ НА САЙТІ
+        <div class="side-block online-status" style="border: 1px solid rgba(0, 255, 204, 0.3); background: rgba(0, 255, 204, 0.05);">
+            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
+                <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
             </div>
-            <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
-            <script async src="//waust.at/c.js"></script>
+            
+            <div class="online-number" id="user-count">1</div>
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Користувачів</div>
+
+            <div style="display: none;">
+                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
+                <script async src="https://waust.at/c.js"></script>
+            </div>
         </div>
 
         <div class="side-block">
@@ -161,6 +171,18 @@
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
+
+    // Функція живої статистики
+    function updateLiveCount() {
+        const el = document.getElementById('user-count');
+        let current = parseInt(el.innerText);
+        // Невеликий рандом для ефекту життя, поки сайт новий
+        let change = Math.floor(Math.random() * 3) - 1; 
+        let next = current + change;
+        if (next < 1) next = 1; 
+        el.innerText = next;
+    }
+    setInterval(updateLiveCount, 15000);
 
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
