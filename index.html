@@ -39,7 +39,6 @@
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
 
-        /* НАВІГАЦІЯ - ПРАПОР УКРАЇНИ */
         nav { 
             display: flex; 
             justify-content: center; 
@@ -82,7 +81,7 @@
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
         
-        .row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.85rem; }
+        .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.85rem; }
         .btn-don { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; text-decoration: none; color: white; }
         .btn-don:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); }
 
@@ -95,26 +94,30 @@
         .btn-shorts { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 10px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--neon); border-radius: 10px; color: var(--neon); text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; transition: 0.3s; }
         .btn-shorts:hover { background: var(--neon); color: #000; }
 
-        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
-        @media (max-width: 600px) { .action-btn { padding: 6px 10px; font-size: 0.65rem; } }
-        
-        .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
+        /* Анімації */
         @keyframes blinker { 50% { opacity: 0; } }
+        @keyframes blink-red {
+            0% { opacity: 1; text-shadow: 0 0 5px #ff0000; }
+            50% { opacity: 0.3; text-shadow: none; }
+            100% { opacity: 1; text-shadow: 0 0 5px #ff0000; }
+        }
+        .red-lamp {
+            color: #ff0000;
+            margin-right: 8px;
+            font-size: 0.7rem;
+            animation: blink-red 1s infinite;
+        }
+
+        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-buttons">
-        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub">
-            <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ
-        </a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like">
-            <i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК
-        </a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm">
-            <i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР
-        </a>
+        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
     </div>
 </nav>
 
@@ -130,12 +133,12 @@
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 10px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
-            <div style="font-family: 'Orbitron'; font-size: 0.75rem; color: var(--neon); margin-bottom: 5px;">
+        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 5px 10px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
+            <div style="font-family: 'Orbitron'; font-size: 0.75rem; color: var(--neon); margin-bottom: 2px; margin-top: 0;">
                 <i class="fa-solid fa-users" style="animation: blinker 1s linear infinite;"></i> LIVE SUBSCRIBERS
             </div>
-            <div style="width: 100%; height: 90px; overflow: hidden; border-radius: 8px;">
-                <iframe height="110px" width="100%" frameborder="0" scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" style="border: 0; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); margin-top: -15px;"></iframe>
+            <div style="width: 100%; height: 85px; overflow: hidden; border-radius: 8px;">
+                <iframe height="110px" width="100%" frameborder="0" scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" style="border: 0; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); margin-top: -22px;"></iframe>
             </div>
         </div>
 
@@ -143,20 +146,16 @@
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
                 <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
             </div>
-            <div class="online-number" id="user-count">1</div>
-            <div style="display: none;">
-                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
-                <script async src="https://waust.at/c.js"></script>
-            </div>
+            <div class="online-number">1</div>
         </div>
 
         <div class="side-block" style="border-left: 4px solid #00ffcc;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-server"></i> СЕРВЕРИ WOT</h3>
-            <div class="row"><span>EU1:</span><span style="color: #00ff00;">ONLINE</span></div>
-            <div class="row"><span>EU2:</span><span style="color: #00ff00;">ONLINE</span></div>
-            <div class="row"><span>EU3:</span><span style="color: #00ff00;">ONLINE</span></div>
-            <div class="row"><span>EU4:</span><span style="color: #00ff00;">ONLINE</span></div>
-            <div class="row"><span>EU5:</span><span style="color: #00ff00;">ONLINE</span></div>
+            <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU1:</span><span style="color: #00ff00;">ONLINE</span></div>
+            <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU2:</span><span style="color: #00ff00;">ONLINE</span></div>
+            <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU3:</span><span style="color: #00ff00;">ONLINE</span></div>
+            <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU4:</span><span style="color: #00ff00;">ONLINE</span></div>
+            <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU5:</span><span style="color: #00ff00;">ONLINE</span></div>
         </div>
 
         <div class="side-block">
@@ -195,18 +194,6 @@
 
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
-    const CHANNELS = [{ id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' }];
-
-    async function checkStreams() {
-        for (const channel of CHANNELS) {
-            try {
-                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}`;
-                const res = await fetch(url);
-                const data = await res.json();
-            } catch (e) { console.error(e); }
-        }
-    }
-
     async function loadYT(url, divId, count) {
         const box = document.getElementById(divId);
         try {
@@ -222,12 +209,9 @@
             }
         } catch (err) { box.innerHTML = "Помилка..."; }
     }
-
     window.onload = () => {
-        checkStreams();
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
-        setInterval(checkStreams, 120000);
     };
 </script>
 </body>
