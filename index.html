@@ -37,7 +37,7 @@
             --ua-yellow: #FFD700;
         }
 
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
 
         nav { 
             display: flex; 
@@ -67,21 +67,21 @@
 
         .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
-        .sidebar { width: 340px; flex-shrink: 0; }
+        .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
-        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.3); background: #000; margin-bottom: 30px; }
-        .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 40px 0 20px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.3); background: #000; margin-bottom: 10px; }
+        .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 25px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .card { background: var(--panel-bg); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        .side-block { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .side-block { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 15px; width: 100%; box-sizing: border-box; }
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
         
-        .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.85rem; }
+        .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.85rem; padding: 0 5px; }
         .btn-don { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; text-decoration: none; color: white; }
         .btn-don:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); }
 
@@ -94,19 +94,13 @@
         .btn-shorts { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 10px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--neon); border-radius: 10px; color: var(--neon); text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; transition: 0.3s; }
         .btn-shorts:hover { background: var(--neon); color: #000; }
 
-        /* Анімації */
         @keyframes blinker { 50% { opacity: 0; } }
         @keyframes blink-red {
             0% { opacity: 1; text-shadow: 0 0 5px #ff0000; }
             50% { opacity: 0.3; text-shadow: none; }
             100% { opacity: 1; text-shadow: 0 0 5px #ff0000; }
         }
-        .red-lamp {
-            color: #ff0000;
-            margin-right: 8px;
-            font-size: 0.7rem;
-            animation: blink-red 1s infinite;
-        }
+        .red-lamp { color: #ff0000; margin-right: 8px; font-size: 0.7rem; animation: blink-red 1s infinite; }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
@@ -126,31 +120,33 @@
         <div class="player-box">
             <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
+        
         <h2 class="section-header"><i class="fa-solid fa-star"></i> ОСОБЛИВЕ ВІДЕО</h2>
         <div id="special-videos" class="video-grid">Завантаження...</div>
+        
         <h2 class="section-header"><i class="fa-solid fa-history"></i> ОСТАННІ СТРІМИ</h2>
         <div id="recent-videos" class="video-grid">Завантаження...</div>
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 5px 10px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
-            <div style="font-family: 'Orbitron'; font-size: 0.75rem; color: var(--neon); margin-bottom: 2px; margin-top: 0;">
+        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 8px 5px 2px;">
+            <div style="font-family: 'Orbitron'; font-size: 0.75rem; color: var(--neon); margin-bottom: 2px;">
                 <i class="fa-solid fa-users" style="animation: blinker 1s linear infinite;"></i> LIVE SUBSCRIBERS
             </div>
-            <div style="width: 100%; height: 85px; overflow: hidden; border-radius: 8px;">
-                <iframe height="110px" width="100%" frameborder="0" scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" style="border: 0; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); margin-top: -22px;"></iframe>
+            <div style="width: 100%; height: 82px; overflow: hidden; border-radius: 8px;">
+                <iframe height="110px" width="100%" frameborder="0" scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" style="border: 0; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); margin-top: -24px;"></iframe>
             </div>
         </div>
 
         <div class="side-block online-status" style="border: 1px solid rgba(0, 255, 204, 0.3);">
-            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
+            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 5px;">
                 <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
             </div>
             <div class="online-number">1</div>
         </div>
 
         <div class="side-block" style="border-left: 4px solid #00ffcc;">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-server"></i> СЕРВЕРИ WOT</h3>
+            <h3 class="section-header" style="margin: 0 0 15px 0;"><i class="fa-solid fa-server"></i> СЕРВЕРИ WOT</h3>
             <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU1  СЕРВЕР</span><span style="color: #00ff00;">ONLINE</span></div>
             <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU2  СЕРВЕР</span><span style="color: #00ff00;">ONLINE</span></div>
             <div class="row"><span><i class="fa-solid fa-circle red-lamp"></i>EU3  СЕРВЕР</span><span style="color: #00ff00;">ONLINE</span></div>
@@ -159,7 +155,7 @@
         </div>
 
         <div class="side-block">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
+            <h3 class="section-header" style="margin: 0 0 15px 0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <div style="aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden;"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
                 <div style="aspect-ratio: 9/16; background: #000; border-radius: 10px; overflow: hidden;"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
@@ -168,7 +164,7 @@
         </div>
 
         <div class="side-block">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
+            <h3 class="section-header" style="margin: 0 0 15px 0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
             <div class="social-grid">
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-card" style="background: rgba(255, 0, 0, 0.1);"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i><span>YouTube</span></a>
                 <a href="#" class="social-card" style="background: rgba(88, 101, 242, 0.1);"><i class="fa-brands fa-discord" style="color:#5865F2;"></i><span>Discord</span></a>
@@ -178,13 +174,13 @@
         </div>
 
         <div class="side-block" style="border: 2px solid #ffcc00;">
-            <h3 class="section-header" style="color: #ffcc00; margin-top:0;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
+            <h3 class="section-header" style="color: #ffcc00; margin: 0 0 15px 0;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
             <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
         </div>
 
         <div class="side-block" style="border-color: var(--neon);">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
-            <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Скопійовано!')">
+            <h3 class="section-header" style="margin: 0 0 15px 0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
+            <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Номер картки скопійовано!')">
                 <i class="fa-solid fa-credit-card"></i><div><small>ПРИВАТ</small><br><b>5168 7450 3552 1035</b></div>
             </div>
             <a href="https://donatello.to/krakenua" target="_blank" class="btn-don"><i class="fa-solid fa-coffee"></i><b>DONATELLO</b></a>
@@ -207,7 +203,7 @@
                 });
                 box.innerHTML = cards;
             }
-        } catch (err) { box.innerHTML = "Помилка..."; }
+        } catch (err) { box.innerHTML = "Помилка завантаження відео..."; }
     }
     window.onload = () => {
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
