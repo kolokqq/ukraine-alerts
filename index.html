@@ -31,22 +31,20 @@
         :root { 
             --neon: #00ffcc; 
             --bg: #020617; 
-            --panel-bg: #020617; /* Зробив фон панелей в колір сайту */
+            --panel-bg: #020617;
             --inner-bg: #000000;
             --text: #ffffff; 
-            --ua-blue: #0057B7;
-            --ua-yellow: #FFD700;
         }
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
 
-        /* НАВІГАЦІЯ - ПРИБРАНО ЧОРНИЙ ФОН ТА ГРАДІЄНТ */
+        /* НАВІГАЦІЯ - ПОВНІСТЮ ПРОЗОРА, БЕЗ ЧОРНОГО */
         nav { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             padding: 15px 5%; 
-            background: transparent; /* Прибрано чорну заливку */
+            background: transparent; 
             border-bottom: 1px solid rgba(0, 255, 204, 0.3); 
             position: sticky; 
             top: 0; 
@@ -64,7 +62,7 @@
         .btn-comm { background: #10b981; }
         .action-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* ОСНОВНИЙ КОНТЕЙНЕР */
+        /* КОНТЕЙНЕР */
         .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
@@ -77,12 +75,12 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        /* СТИЛЬ БЛОКІВ САЙДБАРУ (ЯК НА СКРІНІ 9) */
+        /* САЙДБАР */
         .side-block {
             border: 1px solid var(--neon);
             border-radius: 25px;
             padding: 20px;
-            background: var(--bg);
+            background: var(--panel-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,18 +110,15 @@
             justify-content: center;
         }
 
-        /* Текстові елементи */
         .online-number { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; text-align: center; }
         .server-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; font-weight: 600; }
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
         .dot-red { background-color: #ff0000; box-shadow: 0 0 5px #ff0000; }
         .status-online { color: #00ff00; font-family: 'Orbitron'; font-size: 0.75rem; }
 
-        /* Shorts */
-        .shorts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .shorts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; width: 100%; }
         .short-item { aspect-ratio: 9/16; background:#000; border-radius:15px; overflow:hidden; border: 1px solid rgba(255,255,255,0.1); }
 
-        /* Додаткові кнопки */
         .btn-action-side {
             display: flex; align-items: center; justify-content: center; width: 100%; 
             padding: 12px; border-radius: 12px; text-decoration: none; font-family: 'Orbitron'; 
@@ -181,7 +176,7 @@
                 <div class="server-row"><span><span class="dot dot-red"></span>EU2 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
                 <div class="server-row"><span><span class="dot dot-red"></span>EU3 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
                 <div class="server-row"><span><span class="dot dot-red"></span>EU4 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU5 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
+                <div class="server-row"><span><span class="dot dot-red"></span>EU6 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
             </div>
         </div>
 
