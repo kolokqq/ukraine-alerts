@@ -175,6 +175,7 @@
 
     async function updateSubCount() {
         const subElement = document.getElementById('sub-count');
+        if (!subElement) return;
         try {
             const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC29hev1ElIOHYG9oFm9dieQ&key=${API_KEY}`;
             const res = await fetch(url);
