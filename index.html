@@ -54,7 +54,6 @@
 
         .side-block { background: var(--panel-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
         
-        /* Стиль ОНЛАЙН БЛОКУ */
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
         
@@ -71,11 +70,9 @@
         .btn-shorts { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; padding: 12px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--neon); border-radius: 12px; color: var(--neon); text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .btn-shorts:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
 
-        /* Анімація LIVE */
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        /* WOT / Modpack styles */
         .wot-official-border { border-left: 4px solid #ff4500 !important; }
         .btn-wot { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 12px; background: linear-gradient(180deg, #ff6a00 0%, #ee4d00 100%); border-radius: 8px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
         .btn-mod { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; background: #ffcc00; border-radius: 12px; color: #000; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
@@ -103,30 +100,26 @@
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
                 <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
             </div>
-            
             <div class="online-number" id="user-count">1</div>
-            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Користувачів</div>
-
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">Користувачів</div>
             <div style="display: none;">
                 <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
                 <script async src="https://waust.at/c.js"></script>
             </div>
         </div>
 
-        <div class="side-block">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> СТРІМЕРИ ОНЛАЙН</h3>
-            <div id="online-streamers">
-                <p style="font-size: 0.8rem; color: gray;">Перевірка ефірів...</p>
+        <div class="side-block" style="border: 1px solid #ff0000; background: rgba(255, 0, 0, 0.05); text-align: center;">
+            <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: #ff4444; margin-bottom: 10px;">
+                <i class="fa-brands fa-youtube"></i> ПІДПИСНИКІВ
             </div>
+            <div class="online-number" id="sub-count" style="text-shadow: 0 0 10px #ff0000;">...</div>
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">На YouTube каналі</div>
         </div>
 
-        <div class="side-block" style="border: 1px solid #ff0000; background: rgba(255, 0, 0, 0.05); text-align: center;">
-    <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: #ff4444; margin-bottom: 10px;">
-        <i class="fa-brands fa-youtube"></i> ПІДПИСНИКІВ
-    </div>
-    <div class="online-number" id="sub-count" style="text-shadow: 0 0 10px #ff0000;">...</div>
-    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">На YouTube каналі</div>
-</div>
+        <div class="side-block">
+            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> СТРІМЕРИ ОНЛАЙН</h3>
+            <div id="online-streamers"><p style="font-size: 0.8rem; color: gray;">Перевірка ефірів...</p></div>
+        </div>
 
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-clock"></i> РОЗКЛАД</h3>
@@ -180,17 +173,30 @@
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
 
-    // Функція живої статистики
+    async function updateSubCount() {
+        const subElement = document.getElementById('sub-count');
+        try {
+            const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC29hev1ElIOHYG9oFm9dieQ&key=${API_KEY}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (data.items && data.items.length > 0) {
+                const subs = data.items[0].statistics.subscriberCount;
+                subElement.innerText = Number(subs).toLocaleString();
+            }
+        } catch (e) {
+            console.error(e);
+            subElement.innerText = "---";
+        }
+    }
+
     function updateLiveCount() {
         const el = document.getElementById('user-count');
-        let current = parseInt(el.innerText);
-        // Невеликий рандом для ефекту життя, поки сайт новий
+        let current = parseInt(el.innerText) || 1;
         let change = Math.floor(Math.random() * 3) - 1; 
         let next = current + change;
         if (next < 1) next = 1; 
         el.innerText = next;
     }
-    setInterval(updateLiveCount, 15000);
 
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
@@ -230,8 +236,11 @@
 
     window.onload = () => {
         checkStreams();
+        updateSubCount();
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 6);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
+        setInterval(updateLiveCount, 15000);
+        setInterval(updateSubCount, 600000);
     };
 </script>
 </body>
