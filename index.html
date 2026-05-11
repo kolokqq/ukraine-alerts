@@ -98,7 +98,7 @@
             visibility: hidden;
             transition: 0.4s;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-        }       
+        }
         #scrollUp.show {
             opacity: 1;
             visibility: visible;
@@ -169,12 +169,6 @@
             </div>
         </div>
 
-
-         <div class="side-block" style="border: 2px solid #ffcc00;">
-            <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
-            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
-        </div>   
-
         <div class="side-block" style="border-left: 4px solid #ffcc00;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
             <div style="font-size: 0.8rem; margin-bottom: 10px;">
@@ -210,6 +204,16 @@
             </form>
         </div>
 
+        <div class="side-block" style="text-align: center; border: 2px solid var(--neon);">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <span style="position: relative; display: flex; height: 12px; width: 12px;">
+          <span style="animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; position: absolute; display: inline-flex; height: 100%; width: 100%; border-radius: 50%; background-color: #00ff00; opacity: 0.75;"></span>
+          <span style="position: relative; display: inline-flex; border-radius: 50%; height: 12px; width: 12px; background-color: #00ff00;"></span>
+        </span>
+        <b style="font-family: 'Orbitron'; letter-spacing: 2px;">EN0T1K_UA: ONLINE</b>
+    </div>
+</div>
+
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -229,7 +233,11 @@
             </div>
         </div>
 
-        
+        <div class="side-block" style="border: 2px solid #ffcc00;">
+            <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
+            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
+        </div>
+
 
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
@@ -245,22 +253,18 @@
     <i class="fa-solid fa-arrow-up"></i>
 </div>
 
+<style>
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+</style>   
+
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
-
-    const quotes = [
-    "Не їдь один на фланг, якщо ти не на СТ.",
-    "Голда — це не чіти, це тактика!",
-    "Бачиш арту? Знищуй першою.",
-    "Твій борт — це подарунок для ворога. Не даруй його.",
-    "Вміння грати від вежі — запорука перемоги на BZ-176.",
-    "Дивись на міні-карту частіше, ніж у приціл!"
-];
-document.getElementById('tank-quote').innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
 
     // Керування кнопкою "Вгору"
     window.onscroll = function() {
