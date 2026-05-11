@@ -94,23 +94,14 @@
         <div id="recent-videos" class="video-grid">Завантаження...</div>
     </div>
 
-   <div class="side-block online-status" style="display: flex; flex-direction: column; align-items: center; gap: 5px; min-height: 90px; justify-content: center; background: rgba(0, 255, 204, 0.03); border: 1px solid rgba(0, 255, 204, 0.2);">
-    
-    <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); letter-spacing: 1px;">
-        <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000; margin-right: 5px;"></i> LIVE СТАТИСТИКА
-    </div>
-
-    <div style="font-family: 'Orbitron'; font-size: 1.8rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0;">
-        <span id="real-online">1</span>
-    </div>
-
-    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase;">Користувачів</div>
-
-    <div style="display: none;">
-        <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
-        <script async src="https://waust.at/c.js"></script>
-    </div>
-</div>
+    <aside class="sidebar">
+        <div class="side-block online-status" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="font-size: 0.9rem; color: #00ff00;">
+                <i class="fa-solid fa-circle" style="font-size:0.7rem; animation: blinker 1s linear infinite;"></i> ЗАРАЗ НА САЙТІ
+            </div>
+            <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
+            <script async src="//waust.at/c.js"></script>
+        </div>
 
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-tower-broadcast"></i> СТРІМЕРИ ОНЛАЙН</h3>
@@ -163,21 +154,6 @@
         </div>
     </aside>
 </div>
-
-<script>
-    // Скрипт для ефекту "живої" цифри, поки сайт розкручується
-    function simulateOnline() {
-        const el = document.getElementById('real-online');
-        let current = parseInt(el.innerText);
-        // Рандомно додаємо або віднімаємо 1-2 людини, щоб цифра "дихала"
-        let change = Math.floor(Math.random() * 3) - 1; 
-        let next = current + change;
-        if (next < 1) next = 1; // Менше 1 бути не може (це ти)
-        el.innerText = next;
-    }
-    setInterval(simulateOnline, 15000); // Оновлювати раз на 15 сек
-</script>
-    
 
 <script>
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
