@@ -106,18 +106,20 @@
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 15px; overflow: hidden;">
+        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05); padding: 15px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
                 <i class="fa-solid fa-users" style="animation: blinker 1s linear infinite;"></i> LIVE SUBSCRIBERS
             </div>
-            <iframe 
-                height="100px" 
-                width="100%" 
-                frameborder="0" 
-                scrolling="no" 
-                src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
-                style="border: 0; border-radius: 8px; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); overflow: hidden;">
-            </iframe>
+            <div style="width: 100%; height: 120px; overflow: hidden;">
+                <iframe 
+                    height="120px" 
+                    width="100%" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
+                    style="border: 0; border-radius: 8px; filter: invert(0.9) hue-rotate(140deg) brightness(1.1); margin-top: -5px;">
+                </iframe>
+            </div>
         </div>
 
         <div class="side-block online-status" style="border: 1px solid rgba(0, 255, 204, 0.3); background: rgba(0, 255, 204, 0.05);">
@@ -181,6 +183,7 @@
             <div class="social-grid">
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-card" style="--soc-color: #ff0000;"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
                 <a href="#" target="_blank" class="social-card" style="--soc-color: #5865F2;"><i class="fa-brands fa-discord"></i><span>Discord</span></a>
+                <a href="#" target="_blank" class="social-card" style="--soc-color: #0088cc;"><i class="fa-brands fa-telegram"></i><span>Telegram</span></a>
             </div>
         </div>
 
