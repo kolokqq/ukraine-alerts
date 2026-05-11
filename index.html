@@ -38,12 +38,6 @@
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
         
-        .live-status-tag { position: absolute; top: 15px; left: 15px; z-index: 10; padding: 5px 12px; border-radius: 5px; font-family: 'Orbitron'; font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.85); border: 1px solid var(--neon); }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
-        .is-live { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
-        .is-live .dot { background: #ff0000; animation: blink 1s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
         iframe { width: 100%; height: 100%; border: none; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
         
@@ -59,21 +53,25 @@
 
 <nav>
     <a href="https://blackcellua.pp.ua/" class="logo">BlackCellUA | WOT 🔥</a>
-    <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.6rem; border:1px solid var(--neon); padding:4px 10px; border-radius:20px;">LIVE FEED</div>
 </nav>
 
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
-            <div id="live-indicator" class="live-status-tag">
-                <div class="dot"></div>
-                <span id="status-text">ОФЛАЙН</span>
-            </div>
             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
 
         <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ВІДЕО</h2>
-        <div id="video-grid">Завантаження...</div>
+        <div id="video-grid">
+            <div class="v-card">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:var(--neon);">Останній стрім / Відео</p>
+            </div>
+            <div class="v-card">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:var(--neon);">World of Tanks UA</p>
+            </div>
+        </div>
     </div>
 
     <aside>
@@ -88,56 +86,6 @@
         </div>
     </aside>
 </div>
-
-<script>
-    const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-
-    async function loadVideos() {
-        const grid = document.getElementById('video-grid');
-        const indicator = document.getElementById('live-indicator');
-        const statusText = document.getElementById('status-text');
-
-        // Використовуємо проксі, щоб YouTube не блокував запит
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
-
-        try {
-            const response = await fetch(proxyUrl);
-            const data = await response.json();
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data.contents, "text/xml");
-            const entries = xml.querySelectorAll("entry");
-
-            if (entries.length > 0) {
-                let html = '';
-                
-                // Перевірка LIVE по першому відео
-                const firstTitle = entries[0].querySelector("title").textContent;
-                if (firstTitle.includes('🔴') || firstTitle.toLowerCase().includes('live')) {
-                    indicator.classList.add('is-live');
-                    statusText.innerText = 'LIVE NOW';
-                }
-
-                entries.forEach((entry, i) => {
-                    if (i < 6) {
-                        const title = entry.querySelector("title").textContent;
-                        const vId = entry.querySelector("link").getAttribute("href").split('v=')[1];
-                        html += `
-                        <div class="v-card">
-                            <iframe src="https://www.youtube.com/embed/${vId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                            <p style="font-size:0.75rem; margin-top:10px; font-weight:bold; color:var(--neon);">${title}</p>
-                        </div>`;
-                    }
-                });
-                grid.innerHTML = html;
-            }
-        } catch (e) {
-            grid.innerHTML = "Помилка завантаження. Спробуй оновити сторінку.";
-        }
-    }
-
-    window.onload = loadVideos;
-</script>
 
 </body>
 </html>
