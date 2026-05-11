@@ -18,6 +18,7 @@
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
     <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
     <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
@@ -52,7 +53,7 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.1); padding: 10px; border-radius: 8px; border-left: 4px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        .side-block { background: var(--panel-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .side-block { background: rgba(255, 255, 255, 0.03) !important; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1) !important; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
         
         .online-status { text-align: center; }
         .online-number { font-family: 'Orbitron'; font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon); margin: 5px 0; }
@@ -73,50 +74,11 @@
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        .wot-official-border { border-left: 4px solid #ff4500 !important; }
-        .btn-wot { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; padding: 12px; background: linear-gradient(180deg, #ff6a00 0%, #ee4d00 100%); border-radius: 8px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; transition: 0.3s; }
         .btn-mod { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 15px; background: #ffcc00; border-radius: 12px; color: #000; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
 
-        /* КНОПКА ВГОРУ */
-        #scrollUp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--bg);
-            color: var(--neon);
-            border: 2px solid var(--neon);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.4s;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-        }
-
-.side-block {
-    background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(10px); /* Розмиває фон за панеллю */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-        
-        #scrollUp.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        #scrollUp:hover {
-            background: var(--neon);
-            color: #000;
-            box-shadow: 0 0 25px var(--neon);
-            transform: translateY(-5px);
-        }
+        #scrollUp { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--bg); color: var(--neon); border: 2px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+        #scrollUp.show { opacity: 1; visibility: visible; }
+        #scrollUp:hover { background: var(--neon); color: #000; box-shadow: 0 0 25px var(--neon); transform: translateY(-5px); }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
@@ -137,98 +99,40 @@
     </div>
 
     <aside class="sidebar">
-        <div class="side-block online-status" style="border: 1px solid rgba(0, 255, 204, 0.3); background: rgba(0, 255, 204, 0.05);">
+        <div class="side-block online-status" style="border: 1px solid var(--neon); background: rgba(0, 255, 204, 0.05);">
             <div style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon); margin-bottom: 10px;">
-                <i class="fa-solid fa-circle" style="font-size:0.6rem; animation: blinker 1s linear infinite; color: #ff0000;"></i> ЗАРАЗ НА САЙТІ
+                <i class="fa-solid fa-bolt" style="animation: blinker 1s linear infinite;"></i> LIVE SUBS
             </div>
-            
-            <div class="online-number" id="user-count">1</div>
-            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Користувачів</div>
-
-            <div style="display: none;">
-                <script id="_wau0rp">var _wau = _wau || []; _wau.push(["classic", "uqtewl2yw0", "0rp"]);</script>
-                <script async src="https://waust.at/c.js"></script>
-            </div>
+            <div class="online-number" id="real-sub-count">...</div>
+            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Підписників</div>
         </div>
         
         <div id="online-streamers"></div>
 
         <div class="side-block" style="border-left: 4px solid #00ffcc;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-server"></i> СЕРВЕРИ WOT</h3>
-            <div class="row">
-                <span>EU1:</span>
-                <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
-            </div>
-            <div class="row">
-                <span>EU2:</span>
-                <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
-            </div>
-            <div class="row">
-                <span>EU3:</span>
-                <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
-            </div>
-            <div class="row">
-                <span>EU4:</span>
-                <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
-            </div>
-            <div class="row">
-                <span>EU5:</span>
-                <span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span>
-            </div>
+            <div class="row"><span>EU1:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
+            <div class="row"><span>EU2:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
+            <div class="row"><span>EU3:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
+            <div class="row"><span>EU4:</span><span style="color: #00ff00;"><i class="fa-solid fa-signal"></i> ONLINE</span></div>
         </div>
 
         <div class="side-block" style="border: 1px solid #00ffcc; text-align: center; cursor: pointer;" onclick="calcLuck()">
-    <h3 class="section-header" style="justify-content: center;"><i class="fa-solid fa-dice"></i> ШАНС НА WIN</h3>
-    <div id="luck-percent" style="font-size: 2rem; font-family: 'Orbitron'; color: #00ffcc; margin: 10px 0;">??%</div>
-    <div style="font-size: 0.7rem; color: gray;">Натисни, щоб розрахувати ВБР</div>
-</div>
+            <h3 class="section-header" style="justify-content: center;"><i class="fa-solid fa-dice"></i> ШАНС НА WIN</h3>
+            <div id="luck-percent" style="font-size: 2rem; font-family: 'Orbitron'; color: #00ffcc; margin: 10px 0;">??%</div>
+            <div style="font-size: 0.7rem; color: gray;">Натисни, щоб розрахувати ВБР</div>
+        </div>
 
- 
         <div class="side-block" style="border-left: 4px solid #ffcc00;">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
             <div style="font-size: 0.8rem; margin-bottom: 10px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                    <span>3 відмітки на BZ-176</span>
-                    <span>51%</span>
-                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>3 відмітки на BZ-176</span><span>51%</span></div>
                 <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px;">
                     <div style="width:51%; height:100%; background:#ffcc00; box-shadow: 0 0 10px #ffcc00; border-radius:10px;"></div>
                 </div>
             </div>
-            <div style="font-size: 0.8rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                    <span>Фарм срібла</span>
-                    <span>2.5M / 5M</span>
-                </div>
-                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px;">
-                    <div style="width:50%; height:100%; background:#00ffcc; box-shadow: 0 0 10px #00ffcc; border-radius:10px;"></div>
-                </div>
-            </div>
         </div>
 
-        <div class="side-block" style="border-left: 4px solid #ff4444;">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-magnifying-glass"></i> ПОШУК ТАНКІСТА</h3>
-            <p style="font-size: 0.75rem; color: gray; margin-bottom: 10px;">Швидка перевірка статистики в WoT</p>
-            <form action="https://worldoftanks.eu/ru/community/accounts/#wot&at_search=" target="_blank" method="GET" style="display: flex; gap: 5px;">
-                <input type="text" name="name" placeholder="Нік гравця..." 
-                       style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.8rem; outline: none; border-color: rgba(255,255,255,0.1);">
-                <button type="submit" 
-                        style="background: #ff4444; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; color: #fff; transition: 0.3s;">
-                    <i class="fa-solid fa-search"></i>
-                </button>
-            </form>
-        </div>
-
-        <div class="side-block" style="border-left: 4px solid #ff0055;">
-    <h3 class="section-header" style="color: #ff0055;"><i class="fa-solid fa-bullhorn"></i> НОВИНИ & ПОДІЇ</h3>
-    <marquee behavior="scroll" direction="left" style="font-size: 0.85rem; color: #fff; background: rgba(255, 0, 85, 0.1); padding: 5px; border-radius: 5px;">
-        🔥 Наступний стрім о 19:00! | 🚀 Готуємось до трьох позначок на BZ-176 | 🎁 Новий розіграш вже скоро!
-    </marquee>
-    <div style="margin-top: 10px; font-size: 0.8rem; color: #ccc;">
-        <i class="fa-solid fa-check" style="color: #ff0055;"></i>
-    </div>
-</div>
-       
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -238,27 +142,13 @@
             <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-shorts">ДИВИТИСЯ УСІ</a>
         </div>
 
-        <div class="side-block" style="text-align: center;">
-    <button onclick="toggleFocus()" id="focusBtn" style="width: 100%; padding: 10px; background: none; border: 1px solid var(--neon); color: var(--neon); font-family: 'Orbitron'; cursor: pointer; border-radius: 8px; transition: 0.3s;">
-        <i class="fa-solid fa-eye-slash"></i> РЕЖИМ КОНЦЕНТРАЦІЇ
-    </button>
-</div>
-
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
             <div class="social-grid">
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="social-card" style="--soc-color: #ff0000;"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
-                <a href="#" target="_blank" class="social-card" style="--soc-color: #5865F2;"><i class="fa-brands fa-discord"></i><span>Discord</span></a>
-                <a href="#" target="_blank" class="social-card" style="--soc-color: #ff0055;"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></a>
                 <a href="#" target="_blank" class="social-card" style="--soc-color: #0088cc;"><i class="fa-brands fa-telegram"></i><span>Telegram</span></a>
             </div>
         </div>
-
-        <div class="side-block" style="border: 2px solid #ffcc00;">
-            <h3 class="section-header" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> MODPACK WOT</h3>
-            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-mod">ЗАВАНТАЖИТИ МОДПАК</a>
-        </div>
-
 
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
@@ -270,72 +160,49 @@
     </aside>
 </div>
 
-<div id="scrollUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    <i class="fa-solid fa-arrow-up"></i>
-</div>
+<div id="scrollUp" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
 
 <script>
-function toggleFocus() {
-    const sidebar = document.querySelector('.sidebar');
-    const nav = document.querySelector('nav');
-    const isHidden = sidebar.style.opacity === '0.1';
-    
-    sidebar.style.opacity = isHidden ? '1' : '0.1';
-    nav.style.opacity = isHidden ? '1' : '0.1';
-    document.getElementById('focusBtn').innerHTML = isHidden ? 
-        '<i class="fa-solid fa-eye-slash"></i> РЕЖИМ КОНЦЕНТРАЦІЇ' : 
-        '<i class="fa-solid fa-eye"></i> ВИЙТИ З РЕЖИМУ';
-}
-</script>
-    
-<style>
-@keyframes ping {
-  75%, 100% { transform: scale(2); opacity: 0; }
-}
-</style>   
-
-<script>
+    const JWT_TOKEN = 'e2f3748295467d55e5d567fef6d0e8e87ee8fd82c67ecb6403d0e3571fe3d2a';
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [
         { id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' },
         { id: 'UCidS0A8D9_yv7N7WshkXG6A', name: 'Skif_WOT' }
     ];
 
-    function showSurprise() {
-    const box = document.getElementById('surprise-box');
-    box.style.display = 'block';
-    setTimeout(() => { box.style.display = 'none'; }, 2000);
-}
+    // ПІДКЛЮЧЕННЯ РЕАЛЬНОГО ЛІЧИЛЬНИКА
+    const socket = io('https://realtime.streamelements.com', { transports: ['websocket'] });
+    socket.on('connect', () => { socket.emit('authenticate', { method: 'jwt', token: JWT_TOKEN }); });
+    
+    socket.on('authenticated', (data) => {
+        const channelId = data.channelId;
+        fetch(`https://api.streamelements.com/v2/channels/${channelId}/stats`).then(r => r.json()).then(stats => {
+            if(stats.subscriberCount) document.getElementById('real-sub-count').innerText = stats.subscriberCount;
+        });
+    });
 
-function calcLuck() {
-    const luck = document.getElementById('luck-percent');
-    luck.innerText = "...";
-    setTimeout(() => {
-        const val = Math.floor(Math.random() * 100);
-        luck.innerText = val + "%";
-        luck.style.color = val > 50 ? "#00ff00" : "#ff0000";
-    }, 500);
-}    
+    socket.on('event', (event) => {
+        if (event.type === 'subscriber') {
+            let count = parseInt(document.getElementById('real-sub-count').innerText);
+            document.getElementById('real-sub-count').innerText = count + 1;
+        }
+    });
 
-    // Керування кнопкою "Вгору"
+    function calcLuck() {
+        const luck = document.getElementById('luck-percent');
+        luck.innerText = "...";
+        setTimeout(() => {
+            const val = Math.floor(Math.random() * 100);
+            luck.innerText = val + "%";
+            luck.style.color = val > 50 ? "#00ff00" : "#ff0000";
+        }, 500);
+    }    
+
     window.onscroll = function() {
         const btn = document.getElementById('scrollUp');
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.classList.add('show');
-        } else {
-            btn.classList.remove('show');
-        }
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) btn.classList.add('show');
+        else btn.classList.remove('show');
     };
-
-    function updateLiveCount() {
-        const el = document.getElementById('user-count');
-        let current = parseInt(el.innerText);
-        let change = Math.floor(Math.random() * 3) - 1; 
-        let next = current + change;
-        if (next < 1) next = 1; 
-        el.innerText = next;
-    }
-    setInterval(updateLiveCount, 15000);
 
     async function checkStreams() {
         const container = document.getElementById('online-streamers');
@@ -351,15 +218,10 @@ function calcLuck() {
                         <div style="display:flex; justify-content:space-between;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
-                    
-                    if(channel.id === 'UC29hev1ElIOHYG9oFm9dieQ') {
-                         const mainPlayer = document.getElementById('main-player');
-                         mainPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
-                    }
                 }
             } catch (e) { console.error(e); }
         }
-        container.innerHTML = html || '<p style="font-size:0.8rem; color:gray; text-align:center;">Зараз ефірів немає</p>';
+        container.innerHTML = html;
     }
 
     async function loadYT(url, divId, count) {
