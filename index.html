@@ -19,45 +19,57 @@
     <link rel="icon" type="image/x-icon" href="https://www.youtube.com/s/desktop/28ea3302/img/favicon.ico">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
-        :root { --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;600;800&display=swap');
+        
+        :root { 
+            --neon: #00ffcc; 
+            --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+            --text: #ffffff; 
+            --y-glow: #ffc800;
+        }
         
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-        /* Адаптивна заглушка підписки */
+        /* Епічна заглушка підписки з Танком */
         #sub-lock {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #1a1a1a, #000);
+            background: url('https://i.ibb.co/3s6C7fG/image-3.png') center/cover no-repeat;
             z-index: 10000; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             color: white; font-family: 'Orbitron', sans-serif;
             text-align: center; padding: 15px; box-sizing: border-box;
         }
-        .lock-title { color: #00ffcc; text-shadow: 0 0 10px #00ffcc; margin-bottom: 10px; line-height: 1.2; }
-        .lock-text { margin: 10px 0 25px; line-height: 1.5; }
-        
-        @media (max-width: 600px) {
-            .lock-title { font-size: 1.3rem !important; }
-            .lock-text { font-size: 0.85rem !important; }
-            .main-layout { grid-template-columns: 1fr !important; }
-            .logo { font-size: 1rem !important; }
+        #sub-lock::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: -1;
         }
+        .lock-title { color: white; text-shadow: 0 0 20px var(--neon); margin-bottom: 5px; font-weight: 900; }
+        .lock-accent { color: var(--y-glow); font-size: 1.5rem; margin-bottom: 20px; text-shadow: 0 0 15px var(--y-glow); }
 
+        /* Навігація */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
+        /* Лейаут та Плеєр */
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
-        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.4); background: #000; }
         
+        .player-viewport { 
+            position: relative; width: 100%; aspect-ratio: 16/9; 
+            border-radius: 15px; overflow: hidden; 
+            border: 3px solid var(--neon); /* Неонова рамка як на фото */
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.5); 
+            background: #000; 
+        }
+        
+        /* Стиль LIVE NOW як на зразку */
         .live-status-tag {
             position: absolute; top: 15px; left: 15px; z-index: 10;
-            padding: 5px 12px; border-radius: 5px; font-family: 'Orbitron';
-            font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; gap: 8px;
-            background: rgba(0,0,0,0.85); border: 1px solid var(--neon);
+            padding: 6px 15px; border-radius: 5px; font-family: 'Orbitron';
+            font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px;
+            background: rgba(0,0,0,0.8); border: 1px solid #ff0000; color: #ff0000;
+            box-shadow: 0 0 15px rgba(255,0,0,0.4);
         }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
-        .is-live { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
-        .is-live .dot { background: #ff0000; animation: blink 1s infinite; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff0000; animation: blink 1s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         iframe { width: 100%; height: 100%; border: none; }
@@ -65,30 +77,35 @@
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-sizing: border-box; }
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-shadow: 0 0 15px var(--neon); }
+
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
 <div id="sub-lock">
     <h1 class="lock-title">ДОСТУП ОБМЕЖЕНО! 🔒</h1>
+    <div class="lock-accent">ШЛЯХ ДО ТРЬОХ ПОЗНАЧОК</div>
     <p class="lock-text">Щоб дивитися трансляції на порталі <br><b>BlackCellUA</b>, підпишись на канал!</p>
     
     <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
        target="_blank" 
        onclick="document.getElementById('unlock-btn').style.display = 'block';"
-       style="background: #ff0000; color: white; padding: 12px 25px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 15px; font-size: 0.9rem; font-family: sans-serif;">
+       style="background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(255,0,0,0.6);">
        1. ПІДПИСАТИСЯ
     </a>
 
     <button id="unlock-btn" onclick="unlockSite()" 
-            style="display: none; background: #00ffcc; color: black; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px; font-family: 'Orbitron';">
-       2. УВІЙТИ
+            style="display: none; background: #ffc800; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; font-family: 'Orbitron'; box-shadow: 0 0 20px #ffc800;">
+       2. УВІЙТИ НА ПОРТАЛ
     </button>
 </div>
 
 <nav>
-    <a href="#" class="logo">World of Tanks 🔥</a>
+    <a href="#" class="logo">BlackCellUA 🔥</a>
     <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.6rem; border:1px solid var(--neon); padding:4px 10px; border-radius:20px;">LIVE FEED</div>
 </nav>
 
@@ -97,7 +114,7 @@
         <div class="player-viewport">
             <div id="live-indicator" class="live-status-tag">
                 <div class="dot"></div>
-                <span id="status-text">ОФЛАЙН</span>
+                <span id="status-text">LIVE NOW</span>
             </div>
             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
@@ -109,7 +126,7 @@
     <aside>
         <div class="glass-panel">
             <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
+            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon); box-shadow: 0 0 15px rgba(0,255,204,0.3);">
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
@@ -123,15 +140,15 @@
     const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
 
     function unlockSite() {
-        document.getElementById('sub-lock').style.display = 'none';
+        const lock = document.getElementById('sub-lock');
+        lock.style.opacity = '0';
+        lock.style.transition = '0.5s';
+        setTimeout(() => { lock.style.display = 'none'; }, 500);
         localStorage.setItem('isSubscribed', 'true');
     }
 
     async function loadYouTubeData() {
         const grid = document.getElementById('video-grid');
-        const indicator = document.getElementById('live-indicator');
-        const statusText = document.getElementById('status-text');
-        
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
         const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
 
@@ -140,25 +157,14 @@
             const data = await response.json();
 
             if (data.status === 'ok' && data.items.length > 0) {
-                const latest = data.items[0];
-                const isLiveNow = latest.title.toLowerCase().includes('live') || latest.title.toLowerCase().includes('стрім');
-
-                if (isLiveNow) {
-                    indicator.className = 'live-status-tag is-live';
-                    statusText.innerText = 'LIVE NOW';
-                } else {
-                    indicator.className = 'live-status-tag';
-                    statusText.innerText = 'OFFLINE';
-                }
-
                 let html = '';
                 data.items.forEach(item => {
                     let videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split('video:')[1];
                     if (videoId) {
                         html += `
                         <div class="v-card">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
-                            <p style="font-size:0.7rem; margin-top:8px; font-weight:bold;">${item.title}</p>
+                            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px; border:1px solid rgba(0,255,204,0.3);"></iframe>
+                            <p style="font-size:0.75rem; margin-top:8px; font-weight:bold; color:var(--neon);">${item.title}</p>
                         </div>`;
                     }
                 });
@@ -172,7 +178,6 @@
             document.getElementById('sub-lock').style.display = 'none';
         }
         loadYouTubeData();
-        setInterval(loadYouTubeData, 60000);
     };
 </script>
 
