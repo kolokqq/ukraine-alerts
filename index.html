@@ -126,7 +126,7 @@
         <div class="glass-panel">
             <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-chart-simple"></i> СТАТИСТИКА</h3>
             <div style="font-size: 0.8rem; line-height: 1.6;">
-                <div style="display:flex; justify-content:space-between;"><span>Підписники:</span> <span style="color:var(--neon)">370+</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Підписники:</span> <span style="color:var(--neon)">1.2k+</span></div>
                 <div style="display:flex; justify-content:space-between;"><span>Ціль:</span> <span>2.0k</span></div>
                 <div style="width: 100%; background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; margin: 8px 0;">
                     <div style="width: 60%; background: var(--neon); height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--neon);"></div>
@@ -162,14 +162,16 @@
 
             if (data.status === 'ok' && data.items.length > 0) {
                 const latest = data.items[0];
-                const isLiveNow = latest.title.toLowerCase().includes('live') || latest.title.toLowerCase().includes('стрім');
+                
+                // ПОКРАЩЕНА ПЕРЕВІРКА: Шукаємо 🔴 або "live" у лінку, щоб не було хибного LIVE NOW
+                const isLiveNow = latest.link.includes('watch?v=live') || latest.title.includes('🔴');
 
                 if (isLiveNow) {
                     indicator.className = 'live-status-tag is-live';
                     statusText.innerText = 'LIVE NOW';
                 } else {
                     indicator.className = 'live-status-tag';
-                    statusText.innerText = 'OFFLINE';
+                    statusText.innerText = 'ОФЛАЙН';
                 }
 
                 let html = '';
