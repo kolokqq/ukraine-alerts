@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>World of Tanks</title>
-    <meta name="description" content="Ігровий портал World of Tanks Українською 🔥. Дивись прямі трансляції WOT українською. Shorts, огляди заліза.">
-    <meta name="keywords" content="World of Tanks Українською 🔥, стрім українською, World of Tanks UA, WOT стрім, танки українською, ігровий портал">
-    <meta name="author" content="World of Tanks Українською">
+    <title>World of Tanks | BlackCellUA</title>
+    <meta name="description" content="Ігровий портал BlackCellUA 🔥. Дивись прямі трансляції WOT українською.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, танки українською">
+    <meta name="author" content="BlackCellUA">
 
-    <meta property="og:title" content="World of Tanks Українською 🔥 — Твій ігровий портал">
-    <meta property="og:description" content="Прямі ефіри, танки та швидкість. Приєднуйся до української спільноти!">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://img.youtube.com/vi/xC29GvadLBs/maxresdefault.jpg">
-    <meta property="og:site_name" content="World of Tanks Українською 🔥">
+    <meta property="og:title" content="BlackCellUA 🔥 — Твій ігровий портал">
+    <meta property="og:description" content="Прямі ефіри та шлях до трьох позначок!">
+    <meta property="og:image" content="https://i.ibb.co/68Z7n7s/image-3.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="https://www.youtube.com/s/desktop/28ea3302/img/favicon.ico">
@@ -30,58 +28,54 @@
         
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-        /* Епічна заглушка підписки з Танком */
+        /* НОВИЙ ФОН ТА СТИЛЬ ПІДПИСКИ */
         #sub-lock {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://i.ibb.co/3s6C7fG/image-3.png') center/cover no-repeat;
+            /* ТВОЯ НОВА СИЛКА */
+            background: url('https://ibb.co/zh2VHD7k/image-3.png') center/cover no-repeat;
             z-index: 10000; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            color: white; font-family: 'Orbitron', sans-serif;
             text-align: center; padding: 15px; box-sizing: border-box;
         }
+        
         #sub-lock::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: -1;
         }
-        .lock-title { color: white; text-shadow: 0 0 20px var(--neon); margin-bottom: 5px; font-weight: 900; }
-        .lock-accent { color: var(--y-glow); font-size: 1.5rem; margin-bottom: 20px; text-shadow: 0 0 15px var(--y-glow); }
 
-        /* Навігація */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
+        .lock-title { font-family: 'Orbitron'; color: white; text-shadow: 0 0 20px var(--neon); margin-bottom: 5px; font-weight: 900; }
+        .lock-accent { font-family: 'Orbitron'; color: var(--y-glow); font-size: 1.5rem; margin-bottom: 20px; text-shadow: 0 0 15px var(--y-glow); }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.2rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 10px var(--neon); }
 
-        /* Лейаут та Плеєр */
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         
         .player-viewport { 
             position: relative; width: 100%; aspect-ratio: 16/9; 
             border-radius: 15px; overflow: hidden; 
-            border: 3px solid var(--neon); /* Неонова рамка як на фото */
+            border: 3px solid var(--neon); 
             box-shadow: 0 0 25px rgba(0, 255, 204, 0.5); 
             background: #000; 
         }
         
-        /* Стиль LIVE NOW як на зразку */
         .live-status-tag {
             position: absolute; top: 15px; left: 15px; z-index: 10;
             padding: 6px 15px; border-radius: 5px; font-family: 'Orbitron';
             font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px;
             background: rgba(0,0,0,0.8); border: 1px solid #ff0000; color: #ff0000;
-            box-shadow: 0 0 15px rgba(255,0,0,0.4);
         }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff0000; animation: blink 1s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         iframe { width: 100%; height: 100%; border: none; }
         .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 1rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+        
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
-        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
         .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-shadow: 0 0 15px var(--neon); }
 
-        @media (max-width: 900px) {
-            .main-layout { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -89,17 +83,17 @@
 <div id="sub-lock">
     <h1 class="lock-title">ДОСТУП ОБМЕЖЕНО! 🔒</h1>
     <div class="lock-accent">ШЛЯХ ДО ТРЬОХ ПОЗНАЧОК</div>
-    <p class="lock-text">Щоб дивитися трансляції на порталі <br><b>BlackCellUA</b>, підпишись на канал!</p>
+    <p>Щоб дивитися трансляції на порталі <br><b>BlackCellUA</b>, підпишись на канал!</p>
     
     <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" 
        target="_blank" 
        onclick="document.getElementById('unlock-btn').style.display = 'block';"
-       style="background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(255,0,0,0.6);">
+       style="background: #ff0000; color: white; padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-bottom: 20px; display: inline-block;">
        1. ПІДПИСАТИСЯ
     </a>
 
     <button id="unlock-btn" onclick="unlockSite()" 
-            style="display: none; background: #ffc800; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; font-family: 'Orbitron'; box-shadow: 0 0 20px #ffc800;">
+            style="display: none; background: #ffc800; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; font-family: 'Orbitron';">
        2. УВІЙТИ НА ПОРТАЛ
     </button>
 </div>
@@ -112,73 +106,29 @@
 <div class="main-layout">
     <div class="content">
         <div class="player-viewport">
-            <div id="live-indicator" class="live-status-tag">
-                <div class="dot"></div>
-                <span id="status-text">LIVE NOW</span>
-            </div>
+            <div class="live-status-tag"><div class="dot"></div><span>LIVE NOW</span></div>
             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
         </div>
-
         <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> ОСТАННІ ВІДЕО</h2>
         <div id="video-grid">Завантаження...</div>
     </div>
-
     <aside>
-        <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
-            <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:2px solid var(--neon); box-shadow: 0 0 15px rgba(0,255,204,0.3);">
-                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="glass-panel">
-            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px;">
+            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
+            <iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; aspect-ratio:9/16; border-radius:12px; border:2px solid var(--neon);"></iframe>
+            <a href="https://skif.donatik.ua" target="_blank" class="btn-donate" style="margin-top:15px;">ПІДТРИМАТИ</a>
         </div>
     </aside>
 </div>
 
 <script>
-    const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-
     function unlockSite() {
-        const lock = document.getElementById('sub-lock');
-        lock.style.opacity = '0';
-        lock.style.transition = '0.5s';
-        setTimeout(() => { lock.style.display = 'none'; }, 500);
+        document.getElementById('sub-lock').style.display = 'none';
         localStorage.setItem('isSubscribed', 'true');
     }
-
-    async function loadYouTubeData() {
-        const grid = document.getElementById('video-grid');
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        const apiFetch = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&t=${new Date().getTime()}`;
-
-        try {
-            const response = await fetch(apiFetch);
-            const data = await response.json();
-
-            if (data.status === 'ok' && data.items.length > 0) {
-                let html = '';
-                data.items.forEach(item => {
-                    let videoId = item.link.split('v=')[1]?.split('&')[0] || item.guid.split('video:')[1];
-                    if (videoId) {
-                        html += `
-                        <div class="v-card">
-                            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px; border:1px solid rgba(0,255,204,0.3);"></iframe>
-                            <p style="font-size:0.75rem; margin-top:8px; font-weight:bold; color:var(--neon);">${item.title}</p>
-                        </div>`;
-                    }
-                });
-                grid.innerHTML = html;
-            }
-        } catch (e) { console.error("Update error"); }
+    if (localStorage.getItem('isSubscribed') === 'true') {
+        document.getElementById('sub-lock').style.display = 'none';
     }
-
-    window.onload = () => {
-        if (localStorage.getItem('isSubscribed') === 'true') {
-            document.getElementById('sub-lock').style.display = 'none';
-        }
-        loadYouTubeData();
-    };
 </script>
 
 </body>
