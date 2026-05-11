@@ -191,7 +191,6 @@
         let change = Math.floor(Math.random() * 3) - 1; 
         let next = current + change;
         if (next < 1) next = 1; 
-        if (next > 15) next = 7;
         el.innerText = next;
     }
 
@@ -200,7 +199,6 @@
         let html = '';
         for (const channel of CHANNELS) {
             try {
-                // Додано cache-busting параметр &t= щоб AdBlock менше чіплявся і дані були свіжіші
                 const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}&t=${new Date().getTime()}`;
                 const res = await fetch(url);
                 const data = await res.json();
@@ -212,7 +210,6 @@
                         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-size:0.75rem; font-weight:bold; text-decoration:none;">ДИВИТИСЬ СТРІМ 🔥</a>
                     </div>`;
                     
-                    // Якщо стрім йде на твоєму каналі, оновлюємо головний плеєр на пряме ID відео
                     if(channel.id === CHANNEL_ID) {
                         const player = document.getElementById('main-player');
                         if (player && !player.src.includes(videoId)) {
@@ -225,5 +222,42 @@
         container.innerHTML = html || '<p style="font-size:0.8rem; color:gray; text-align:center;">Зараз ефірів немає</p>';
     }
 
-    async function loadYT(url, divId, count) {
-        const box = document.getElementById
+    // НОВА ФУНКЦІЯ: ЗАВАНТАЖЕННЯ ВІДЕО НАПРЯМУ З YOUTUBE
+    async function loadVideosDirect(divId, count) {
+        const box = document.getElementById(divId);
+        try {
+            const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${count}&type=video`;
+            const res = await fetch(url);
+            const data = await res.json();
+
+            if (data.items && data.items.length > 0) {
+                let cards = '';
+                data.items.forEach(v => {
+                    const id = v.id.videoId;
+                    const title = v.snippet.title;
+                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${title}</div></div>`;
+                });
+                box.innerHTML = cards;
+            } else {
+                box.innerHTML = "<p style='color:gray; text-align:center;'>Відео не знайдено</p>";
+            }
+        } catch (err) {
+            box.innerHTML = "<p style='color:red; text-align:center;'>Помилка завантаження</p>";
+        }
+    }
+
+    window.onload = () => {
+        checkStreams();
+        updateSubCount();
+        
+        // Викликаємо пряме завантаження
+        loadVideosDirect('special-videos', 3); 
+        loadVideosDirect('recent-videos', 6);
+        
+        setInterval(checkStreams, 120000); 
+        setInterval(updateLiveCount, 15000);
+        setInterval(updateSubCount, 600000);
+    };
+</script>
+</body>
+</html>
