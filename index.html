@@ -49,18 +49,25 @@
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         
-        /* КРАСИВІ БЛОКИ САЙДБАРУ */
         .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
         
         .goal-bar { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; overflow: hidden; margin-top: 8px; border: 1px solid rgba(0,255,204,0.2); }
         .goal-progress { background: var(--neon); height: 100%; width: 75%; box-shadow: 0 0 10px var(--neon); }
         
-        .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
-        .social-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: #fff; font-size: 0.8rem; transition: 0.3s; background: rgba(255,255,255,0.02); }
-        .social-btn:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); transform: scale(1.05); }
-
         .schedule-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
         .schedule-item span { color: var(--neon); font-weight: bold; }
+
+        /* КОЛЬОРОВІ КНОПКИ СОЦМЕРЕЖ */
+        .color-social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .c-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 0.8rem; transition: 0.3s; }
+        .c-btn i { font-size: 1.1rem; }
+        
+        .btn-tg { background: #229ED9; box-shadow: 0 4px 10px rgba(34, 158, 217, 0.3); }
+        .btn-dc { background: #5865F2; box-shadow: 0 4px 10px rgba(88, 101, 242, 0.3); }
+        .btn-tt { background: #000000; border: 1px solid #ff0050; box-shadow: 0 4px 10px rgba(255, 0, 80, 0.2); }
+        .btn-yt { background: #FF0000; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3); }
+        
+        .c-btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
         .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; transition: 0.3s; box-shadow: 0 0 15px rgba(0,255,204,0.3); }
         .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--neon); }
@@ -106,18 +113,19 @@
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
-            <div class="social-grid">
-                <a href="#" class="social-btn"><i class="fa-brands fa-telegram"></i> TG</a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-discord"></i> DIS</a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i> TT</a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i> SUB</a>
-            </div>
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-calendar-day"></i> ГРАФІК</h3>
+            <div class="schedule-item">Пн - Пт: <span>19:00</span></div>
+            <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
         </div>
 
         <div class="glass-panel">
-            <div class="schedule-item">Пн - Пт: <span>19:00</span></div>
-            <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СПІЛЬНОТА</h3>
+            <div class="color-social-grid">
+                <a href="https://t.me/your_link" target="_blank" class="c-btn btn-tg"><i class="fa-brands fa-telegram"></i> TG</a>
+                <a href="https://discord.gg/your_link" target="_blank" class="c-btn btn-dc"><i class="fa-brands fa-discord"></i> DIS</a>
+                <a href="https://tiktok.com/@your_link" target="_blank" class="c-btn btn-tt"><i class="fa-brands fa-tiktok"></i> TIKTOK</a>
+                <a href="https://youtube.com/@your_link" target="_blank" class="c-btn btn-yt"><i class="fa-brands fa-youtube"></i> SUB</a>
+            </div>
         </div>
 
         <div class="glass-panel">
