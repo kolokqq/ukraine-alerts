@@ -33,20 +33,18 @@
             --bg: #020617; 
             --panel-bg: rgba(13, 17, 23, 0.9);
             --text: #ffffff; 
-            /* Кольори прапора */
             --ua-blue: #0057B7;
             --ua-yellow: #FFD700;
         }
 
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; }
 
-        /* НАВІГАЦІЯ У ВИГЛЯДІ ПРАПОРА */
+        /* НАВІГАЦІЯ - ПРАПОР УКРАЇНИ */
         nav { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             padding: 10px 5%; 
-            /* Градієнт прапора з плавним переходом по центру */
             background: linear-gradient(180deg, var(--ua-blue) 0%, var(--ua-blue) 45%, var(--ua-yellow) 55%, var(--ua-yellow) 100%);
             border-bottom: 2px solid var(--neon);
             position: sticky;
@@ -59,18 +57,14 @@
             display: flex; align-items: center; gap: 8px; padding: 8px 16px; 
             border-radius: 6px; text-decoration: none; color: white; 
             font-family: 'Orbitron'; font-size: 0.75rem; font-weight: bold; 
-            transition: 0.3s; 
-            border: none;
-            /* Тінь для кращої читаємості кнопок на прапорі */
+            transition: 0.3s; border: none;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        /* Кольори кнопок, як на скріншоті */
-        .btn-sub { background: #ff0000; } /* Червона */
-        .btn-like { background: #3b82f6; } /* Синя */
-        .btn-comm { background: #10b981; } /* Зелена */
-        
-        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
+        .btn-sub { background: #ff0000; }
+        .btn-like { background: #3b82f6; }
+        .btn-comm { background: #10b981; }
+        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
         .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
@@ -102,11 +96,7 @@
         .btn-shorts:hover { background: var(--neon); color: #000; }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
-        /* Медіазапит для компактного розміщення кнопок на мобільних */
-        @media (max-width: 600px) {
-            .nav-buttons { gap: 5px; }
-            .action-btn { padding: 6px 10px; font-size: 0.65rem; gap: 5px; }
-        }
+        @media (max-width: 600px) { .action-btn { padding: 6px 10px; font-size: 0.65rem; } }
         
         .live-badge { color: #fff; background: #ff0000; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
@@ -167,30 +157,6 @@
             <div class="row"><span>EU3:</span><span style="color: #00ff00;">ONLINE</span></div>
         </div>
 
-        <div class="side-block" style="border: 1px solid #00ffcc; text-align: center; cursor: pointer;" onclick="calcLuck()">
-            <h3 class="section-header" style="justify-content: center; margin-top:0;"><i class="fa-solid fa-dice"></i> ШАНС НА WIN</h3>
-            <div id="luck-percent" style="font-size: 2rem; font-family: 'Orbitron'; color: #00ffcc; margin: 10px 0;">??%</div>
-            <div style="font-size: 0.7rem; color: gray;">Натисни для розрахунку</div>
-        </div>
-
-        <div class="side-block" style="border-left: 4px solid #ffcc00;">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛІ СТРІМУ</h3>
-            <div style="font-size: 0.8rem; margin-bottom: 10px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>3 відмітки BZ-176</span><span>51%</span></div>
-                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px;">
-                    <div style="width:51%; height:100%; background:#ffcc00; box-shadow: 0 0 10px #ffcc00; border-radius:10px;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="side-block" style="border-left: 4px solid #ff4444;">
-            <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-magnifying-glass"></i> ПОШУК ТАНКІСТА</h3>
-            <form action="https://worldoftanks.eu/ru/community/accounts/#wot&at_search=" target="_blank" method="GET" style="display: flex; gap: 5px;">
-                <input type="text" name="name" placeholder="Нік..." style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 0.8rem; outline: none;">
-                <button type="submit" style="background: #ff4444; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; color: #fff;"><i class="fa-solid fa-search"></i></button>
-            </form>
-        </div>
-
         <div class="side-block">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-bolt" style="color: #ff0055;"></i> TOP SHORTS</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -229,34 +195,14 @@
     const API_KEY = 'AIzaSyCJvwvETw885H0B_BpJzURGzovZm-n8EjI'; 
     const CHANNELS = [{ id: 'UC29hev1ElIOHYG9oFm9dieQ', name: 'BlackCellUA' }];
 
-    function calcLuck() {
-        const luck = document.getElementById('luck-percent');
-        luck.innerText = "...";
-        setTimeout(() => {
-            const val = Math.floor(Math.random() * 100);
-            luck.innerText = val + "%";
-            luck.style.color = val > 50 ? "#00ff00" : "#ff0000";
-        }, 500);
-    }
-
     async function checkStreams() {
-        const container = document.getElementById('online-streamers');
-        let html = '';
         for (const channel of CHANNELS) {
             try {
                 const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channel.id}&type=video&eventType=live&key=${API_KEY}`;
                 const res = await fetch(url);
                 const data = await res.json();
-                if (data.items && data.items.length > 0) {
-                    const videoId = data.items[0].id.videoId;
-                    html += `<div class="side-block" style="border:1px solid #ff4444; background:rgba(255,0,0,0.05); padding:15px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;"><b>${channel.name}</b> <span class="live-badge">LIVE</span></div>
-                        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="color:#ff4444; font-weight:bold; text-decoration:none; display:block; margin-top:10px;">ДИВИТИСЬ СТРІМ 🔥</a>
-                    </div>`;
-                }
             } catch (e) { console.error(e); }
         }
-        container.innerHTML = html;
     }
 
     async function loadYT(url, divId, count) {
@@ -277,8 +223,8 @@
 
     window.onload = () => {
         checkStreams();
-        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 4);
-        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 4);
+        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
+        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
         setInterval(checkStreams, 120000);
     };
 </script>
