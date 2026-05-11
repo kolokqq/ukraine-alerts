@@ -147,6 +147,22 @@
     </a>
 </div>
 
+  <div class="side-block wot-official-border">
+    <h3 class="section-header" style="color: #ff4500; margin-top: 0;">
+        <i class="fa-solid fa-shield-halved"></i> WORLD OF TANKS
+    </h3>
+    
+    <div class="wot-card">
+        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">
+            Офіційний портал гри. Новини, акції та ігрові події.
+        </p>
+        <a href="https://worldoftanks.eu/" target="_blank" class="btn-wot">
+            <span>ПЕРЕЙТИ НА САЙТ</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+    </div>
+</div>      
+
         <div class="side-block" style="border-color: var(--neon);">
             <h3 class="section-header" style="margin-top:0;"><i class="fa-solid fa-heart"></i> ПІДТРИМКА</h3>
             <div class="btn-don" onclick="navigator.clipboard.writeText('5168745035521035');alert('Приват: Скопійовано!')">
@@ -163,6 +179,45 @@
         </div>
     </aside>
 </div>
+
+  <style>
+    /* Межа блоку з акцентом на "Танковий" колір */
+    .wot-official-border {
+        border-left: 4px solid #ff4500 !important;
+        background: linear-gradient(90deg, rgba(255, 69, 0, 0.05) 0%, var(--panel-bg) 100%);
+    }
+
+    /* Стиль кнопки в стилі WOT (помаранчевий градієнт) */
+    .btn-wot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+        padding: 12px;
+        background: linear-gradient(180deg, #ff6a00 0%, #ee4d00 100%);
+        border: 1px solid #ff8c00;
+        border-radius: 8px;
+        color: #fff;
+        text-decoration: none;
+        font-family: 'Orbitron';
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: 0.3s all ease;
+        box-shadow: 0 4px 15px rgba(255, 69, 0, 0.2);
+    }
+
+    .btn-wot:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+        filter: brightness(1.1);
+    }
+
+    .btn-wot i {
+        font-size: 0.7rem;
+    }
+</style>  
 
  <style>
     /* Стилі для кнопки модпаку */
