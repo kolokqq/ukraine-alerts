@@ -8,9 +8,7 @@
     <meta name="description" content="Ігровий портал BlackCellUA 🔥. Дивись прямі трансляції WOT українською.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, танки українською">
     <meta name="author" content="BlackCellUA">
-    
     <link rel="canonical" href="https://blackcellua.pp.ua/">
-
     <meta property="og:url" content="https://blackcellua.pp.ua/">
     <meta property="og:title" content="BlackCellUA 🔥 — Твій ігровий портал">
     <meta property="og:description" content="Прямі ефіри World of Tanks та шлях до трьох позначок.">
@@ -32,32 +30,15 @@
             --radius-sm: 12px;
         }
 
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; transition: 0.3s; }
-        
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: rgba(0,0,0,0.95); 
-            border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; 
-        }
-        
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; transition: 0.3s; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--neon); position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Orbitron'; font-size: 1.4rem; color: var(--neon); text-decoration: none; text-shadow: 0 0 15px var(--neon); }
 
         .main-layout { display: grid; grid-template-columns: 1fr 320px; gap: 25px; max-width: 1400px; margin: 20px auto; padding: 0 15px; }
         
-        .player-viewport { 
-            position: relative; width: 100%; aspect-ratio: 16/9; 
-            border-radius: var(--radius-lg); overflow: hidden; 
-            border: 2px solid rgba(0, 255, 204, 0.3); background: #000;
-        }
-        
-        .live-status-tag { 
-            position: absolute; top: 20px; left: 20px; z-index: 10; 
-            padding: 6px 15px; border-radius: 30px; font-family: 'Orbitron'; 
-            font-size: 0.7rem; background: rgba(0,0,0,0.8); 
-            border: 1px solid var(--neon); color: var(--neon); 
-            display: flex; align-items: center; gap: 8px; 
-        }
-        
+        /* Плеєр */
+        .player-viewport { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(0, 255, 204, 0.3); background: #000; }
+        .live-status-tag { position: absolute; top: 20px; left: 20px; z-index: 10; padding: 6px 15px; border-radius: 30px; font-family: 'Orbitron'; font-size: 0.7rem; background: rgba(0,0,0,0.8); border: 1px solid var(--neon); color: var(--neon); display: flex; align-items: center; gap: 8px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); }
         .is-live { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 10px #ff0000; }
         .is-live .dot { background: #ff0000; animation: blink 1s infinite; }
@@ -65,52 +46,23 @@
 
         iframe { width: 100%; height: 100%; border: none; }
         
-        .section-title { 
-            font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; 
-            margin: 30px 0 20px; display: flex; align-items: center; gap: 12px; 
-            text-transform: uppercase;
-        }
+        .section-title { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 30px 0 20px; display: flex; align-items: center; gap: 12px; text-transform: uppercase; }
         
+        /* Картки відео з назвами в рамках */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .v-card { 
-            background: var(--panel); padding: 12px; 
-            border-radius: var(--radius-lg); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            transition: 0.3s;
-        }
-        .v-card:hover { transform: translateY(-5px); border-color: var(--neon); background: rgba(0, 255, 204, 0.05); }
-        .v-card iframe { border-radius: var(--radius-sm); }
+        .v-card { background: var(--panel); padding: 12px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .v-card:hover { border-color: var(--neon); background: rgba(0, 255, 204, 0.05); }
+        .v-card iframe { border-radius: var(--radius-sm); margin-bottom: 10px; }
+        .v-title-box { background: rgba(0,0,0,0.4); padding: 8px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.75rem; font-weight: 600; text-align: left; line-height: 1.3; }
         
-        .glass-panel { 
-            background: var(--panel); 
-            border: 1px solid rgba(255,255,255,0.08); 
-            border-radius: var(--radius-lg); 
-            padding: 20px; margin-bottom: 20px; 
-            backdrop-filter: blur(10px); 
-        }
-
-        .don-link { 
-            display: flex; align-items: center; gap: 15px; padding: 15px; 
-            background: rgba(255,255,255,0.03); border-radius: var(--radius-sm);
-            text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s; margin-bottom: 10px;
-        }
-        .don-link:hover { background: rgba(0, 255, 204, 0.1); border-color: var(--neon); transform: scale(1.02); }
-
+        /* Панелі */
+        .glass-panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; backdrop-filter: blur(10px); }
+        .don-link, .soc-btn { border-radius: var(--radius-sm); transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; text-decoration: none; color: white; }
+        .don-link { gap: 15px; padding: 15px; background: rgba(255,255,255,0.03); margin-bottom: 10px; }
+        .don-link:hover { border-color: var(--neon); background: rgba(0, 255, 204, 0.1); }
         .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .soc-btn { 
-            display: flex; align-items: center; justify-content: center; gap: 8px; 
-            padding: 12px; background: rgba(255,255,255,0.05); border-radius: var(--radius-sm);
-            text-decoration: none; color: white; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .soc-btn:hover { background: var(--neon); color: #000; font-weight: bold; }
-
-        .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .sh-btn { 
-            display: flex; flex-direction: column; align-items: center; 
-            padding: 10px 5px; border-radius: 8px; text-decoration: none; 
-            color: white; font-size: 0.65rem; background: rgba(255,255,255,0.05);
-        }
+        .soc-btn { justify-content: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.05); font-size: 0.8rem; }
+        .soc-btn:hover { background: var(--neon); color: #000; }
 
         .progress-track { background: rgba(255,255,255,0.1); height: 10px; border-radius: 20px; overflow: hidden; margin-top: 8px; }
         .progress-bar { height: 100%; background: linear-gradient(90deg, #008f7a, var(--neon)); box-shadow: 0 0 10px var(--neon); }
@@ -122,7 +74,6 @@
 
 <nav>
     <a href="/" class="logo">BLACKCELLUA 🔥</a>
-    <div style="cursor:pointer; color:var(--neon); font-size: 1.2rem;" onclick="document.body.classList.toggle('light-mode')">🌓</div>
 </nav>
 
 <div class="main-layout">
@@ -142,50 +93,37 @@
     </div>
 
     <aside>
-        <div class="glass-panel" style="text-align:center; border: 1px solid rgba(0,255,0,0.3);">
-            <div style="color:#00ff00; font-family:'Orbitron'; font-size:0.8rem; display:flex; align-items:center; justify-content:center; gap:10px;">
-                <span style="width:10px; height:10px; background:#00ff00; border-radius:50%; box-shadow:0 0 12px #00ff00;"></span>
-                ONLINE: <span id="online-count">12</span>
+        <div class="glass-panel" style="border-left: 4px solid var(--neon);">
+            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-calendar-day"></i> РОЗКЛАД</h3>
+            <div style="font-size: 0.8rem;">
+                <p>ПН - ПТ: 19:00 - 23:00</p>
+                <p>СБ - НД: Гнучкий графік</p>
             </div>
         </div>
 
-        <div class="glass-panel" style="border-left: 4px solid var(--neon);">
-            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-calendar-day"></i> РОЗКЛАД</h3>
-            <div style="font-size: 0.8rem; line-height: 1.8;">
-                <div style="display:flex; justify-content:space-between;"><span>ПН-ПТ:</span><b>19:00 - 23:00</b></div>
-                <div style="display:flex; justify-content:space-between;"><span>СБ-НД:</span><b>Гнучкий графік</b></div>
+        <div class="glass-panel">
+            <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
+            <div style="width:100%; aspect-ratio:9/16; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--neon);">
+                <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
 
         <div class="glass-panel">
             <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-crosshairs"></i> ЦІЛЬ: 3 ВІДМІТКИ</h3>
             <div style="margin-bottom: 15px;">
-                <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:5px;">
-                    <span>Об'єкт 277</span><b>92.4%</b>
-                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.75rem;"><span>Об'єкт 277</span><b>92.4%</b></div>
                 <div class="progress-track"><div class="progress-bar" style="width: 92.4%;"></div></div>
-            </div>
-            <div>
-                <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:5px;">
-                    <span>Manticore</span><b>88.1%</b>
-                </div>
-                <div class="progress-track"><div class="progress-bar" style="width: 88.1%;"></div></div>
             </div>
         </div>
 
         <div class="glass-panel" style="border: 1px solid var(--neon);">
             <h3 class="section-title" style="margin-top:0;"><i class="fa-solid fa-wallet"></i> ПІДТРИМКА</h3>
-            <div class="don-link" style="cursor:pointer;" onclick="copyCard('5168745035521035', 'Приват')">
+            <div class="don-link" style="cursor:pointer;" onclick="navigator.clipboard.writeText('5168745035521035');alert('Скопійовано!')">
                 <i class="fa-solid fa-credit-card"></i>
-                <div><small style="opacity:0.7;">ПРИВАТ 24</small><br><b>5168 7450 3552 1035</b></div>
-            </div>
-            <div class="don-link" style="cursor:pointer;" onclick="copyCard('5355280058686971', 'ПУМБ')">
-                <i class="fa-solid fa-building-columns"></i>
-                <div><small style="opacity:0.7;">ПУМБ</small><br><b>5355 2800 5868 6971</b></div>
+                <div><small>ПРИВАТ 24</small><br><b>5168 7450 3552 1035</b></div>
             </div>
             <a href="https://donatello.to/krakenua" target="_blank" class="don-link">
-                <i class="fa-solid fa-heart"></i>
-                <b>DONATELLO</b>
+                <i class="fa-solid fa-heart"></i><b>DONATELLO</b>
             </a>
         </div>
 
@@ -200,11 +138,6 @@
 </div>
 
 <script>
-    function copyCard(num, name) {
-        navigator.clipboard.writeText(num);
-        alert(name + ': Номер карти скопійовано!');
-    }
-
     async function fetchFeed(url, elementId, limit) {
         const grid = document.getElementById(elementId);
         try {
@@ -217,7 +150,7 @@
                     html += `
                     <div class="v-card">
                         <iframe src="https://www.youtube.com/embed/${vId}" style="width:100%; aspect-ratio:16/9;"></iframe>
-                        <p style="font-size:0.7rem; margin-top:10px; text-align:center; font-weight:600;">${item.title}</p>
+                        <div class="v-title-box">${item.title}</div>
                     </div>`;
                 });
                 grid.innerHTML = html;
@@ -235,11 +168,7 @@
             document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
         }
     }
-
     window.onload = updateAll;
-    setInterval(() => {
-        document.getElementById('online-count').innerText = Math.floor(Math.random() * 5) + 10;
-    }, 5000);
 </script>
 </body>
 </html>
