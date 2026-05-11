@@ -8,7 +8,7 @@
     <meta name="description" content="Ігровий портал BlackCellUA 🔥. Дивись прямі трансляції WOT українською.">
     <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, танки українською">
     <meta name="author" content="BlackCellUA">
-     
+    
     <link rel="canonical" href="https://blackcellua.pp.ua/">
 
     <meta property="og:url" content="https://blackcellua.pp.ua/">
@@ -155,7 +155,7 @@
                         <span class="don-desc">Копіювати карту</span>
                     </div>
                 </div>
-                <div class="don-link" style="cursor:pointer;" onclick="copyCard('5355280058686971', 'ПУМБ')">
+                <div class="don-link" style="cursor:pointer;" onclick="copyCard('ТВОЯ_КАРТА_ПУМБ', 'ПУМБ')">
                     <i class="fa-solid fa-building-columns"></i>
                     <div class="don-info">
                         <span class="don-title">ПУМБ</span>
@@ -173,4 +173,68 @@
         </div>
 
         <div class="glass-panel">
-            <h3 class="section-title" style="margin-top:0; font-size:0.75rem
+            <h3 class="section-title" style="margin-top:0; font-size:0.75rem;"><i class="fa-solid fa-users"></i> СПІЛЬНОТА</h3>
+            <div class="social-grid">
+                <a href="https://discord.gg/cdyRSHqD" class="soc-btn"><i class="fa-brands fa-discord"></i> Discord</a>
+                <a href="https://www.youtube.com/@BlackCellUA" class="soc-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<script>
+    const rssSpecial = 'https://rss.app/feeds/h7valG7dUSvQGIAh.xml';
+    const rssRecent = 'https://rss.app/feeds/2IWHE7GWK0ut65vc.xml';
+
+    function copyLink() {
+        navigator.clipboard.writeText('https://blackcellua.pp.ua/');
+        alert('Посилання скопійовано!');
+    }
+
+    function copyCard(num, name) {
+        if(num.includes('ТВОЯ_КАРТА')) {
+            alert('Помилка: Спочатку впишіть номер карти в коді!');
+        } else {
+            navigator.clipboard.writeText(num);
+            alert(name + ': Номер карти скопійовано!');
+        }
+    }
+
+    async function fetchFeed(url, elementId, limit) {
+        const grid = document.getElementById(elementId);
+        try {
+            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+            const data = await res.json();
+            if (data.status === 'ok') {
+                let html = '';
+                data.items.slice(0, limit).forEach(item => {
+                    let vId = item.link.split('v=')[1]?.split('&')[0] || item.link.split('/').pop();
+                    html += `
+                    <div class="v-card">
+                        <iframe src="https://www.youtube.com/embed/${vId}" style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>
+                        <p style="font-size:0.65rem; margin-top:8px; text-align:center; font-weight:bold; color:var(--neon);">${item.title}</p>
+                    </div>`;
+                });
+                grid.innerHTML = html;
+                return data.items[0];
+            }
+        } catch (e) { grid.innerHTML = "Помилка."; }
+    }
+
+    async function updateAll() {
+        const last = await fetchFeed(rssRecent, 'grid-recent', 6);
+        await fetchFeed(rssSpecial, 'grid-special', 3);
+        if (last) {
+            const isLive = last.title.toLowerCase().includes('live') || last.title.toLowerCase().includes('стрім');
+            document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
+            document.getElementById('status-text').innerText = isLive ? 'LIVE' : 'ОФЛАЙН';
+        }
+    }
+
+    window.onload = updateAll;
+    setInterval(() => {
+        document.getElementById('online-count').innerText = Math.floor(Math.random() * 10) + 7;
+    }, 5000);
+</script>
+</body>
+</html>
