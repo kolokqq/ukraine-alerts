@@ -27,14 +27,12 @@
     <link rel="icon" href="favicon_144_v2.png" sizes="144x144">
     <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
         :root { --neon: #00ffcc; --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%); --text: #ffffff; }
         
         body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
         
-        /* Адаптивна заглушка підписки */
         #sub-lock {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle, #1a1a1a, #000);
@@ -75,7 +73,8 @@
         #video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-sizing: border-box; }
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; box-sizing: border-box; transition: 0.3s; }
+        .btn-donate:hover { background: #fff; box-shadow: 0 0 15px #fff; }
     </style>
 </head>
 <body>
@@ -98,7 +97,7 @@
 </div>
 
 <nav>
-    <a href="#" class="logo">World of Tanks 🔥</a>
+    <a href="#" class="logo">BlackCellUA | WOT 🔥</a>
     <div style="color:var(--neon); font-family:'Orbitron'; font-size:0.6rem; border:1px solid var(--neon); padding:4px 10px; border-radius:20px;">LIVE FEED</div>
 </nav>
 
@@ -123,6 +122,18 @@
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-chart-simple"></i> СТАТИСТИКА</h3>
+            <div style="font-size: 0.8rem; line-height: 1.6;">
+                <div style="display:flex; justify-content:space-between;"><span>Підписники:</span> <span style="color:var(--neon)">1.2k+</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Ціль:</span> <span>2.0k</span></div>
+                <div style="width: 100%; background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; margin: 8px 0;">
+                    <div style="width: 60%; background: var(--neon); height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--neon);"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="glass-panel">
             <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
         </div>
