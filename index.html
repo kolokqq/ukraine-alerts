@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>BlackCellUA 🔥 — Твій ігровий портал</title>
+    <title>BlackCellUA | World of Tanks</title>
+    <meta name="description" content="Ігровий портал BlackCellUA 🔥. Дивись прямі трансляції WOT українською.">
+    <meta name="keywords" content="BlackCellUA, стрім українською, World of Tanks UA, WOT стрім, танки українською">
+    <meta name="author" content="BlackCellUA">
+    
     <link rel="canonical" href="https://blackcellua.pp.ua/">
 
-    <meta name="description" content="Ігровий портал BlackCellUA. Дивись прямі трансляції World of Tanks українською мовою.">
     <meta property="og:url" content="https://blackcellua.pp.ua/">
     <meta property="og:title" content="BlackCellUA 🔥 — Твій ігровий портал">
+    <meta property="og:description" content="Прямі ефіри World of Tanks та шлях до трьох позначок.">
     <meta property="og:image" content="https://i.ibb.co/3s6C7fG/image-3.png">
+    <meta property="og:type" content="website">
+
+    <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
+    <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
+    <link rel="icon" href="favicon_48_v2.png" sizes="48x48">
+    <link rel="icon" href="favicon_96_v2.png" sizes="96x96">
+    <link rel="icon" href="favicon_144_v2.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -37,8 +49,21 @@
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .v-card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; border: 1px solid rgba(0,255,204,0.1); }
         
-        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; }
+        /* КРАСИВІ БЛОКИ САЙДБАРУ */
+        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; backdrop-filter: blur(5px); }
+        
+        .goal-bar { background: rgba(255,255,255,0.1); height: 12px; border-radius: 10px; overflow: hidden; margin-top: 8px; border: 1px solid rgba(0,255,204,0.2); }
+        .goal-progress { background: var(--neon); height: 100%; width: 75%; box-shadow: 0 0 10px var(--neon); }
+        
+        .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: #fff; font-size: 0.8rem; transition: 0.3s; background: rgba(255,255,255,0.02); }
+        .social-btn:hover { border-color: var(--neon); background: rgba(0,255,204,0.1); transform: scale(1.05); }
+
+        .schedule-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+        .schedule-item span { color: var(--neon); font-weight: bold; }
+
+        .btn-donate { display: block; width: 100%; padding: 12px; background: var(--neon); color: #000; text-align: center; text-decoration: none; font-family: 'Orbitron'; font-weight: bold; border-radius: 8px; transition: 0.3s; box-shadow: 0 0 15px rgba(0,255,204,0.3); }
+        .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--neon); }
 
         @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
     </style>
@@ -68,11 +93,33 @@
 
     <aside>
         <div class="glass-panel">
-            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> SHORTS</h3>
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bolt"></i> TOP SHORTS</h3>
             <div style="width:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid var(--neon);">
                 <iframe src="https://www.youtube.com/embed/xC29GvadLBs" allowfullscreen></iframe>
             </div>
         </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-bullseye"></i> ЦІЛЬ</h3>
+            <div class="goal-bar"><div class="goal-progress" style="width: 75%;"></div></div>
+            <p style="font-size:0.7rem; text-align:center; margin-top:5px; color:#aaa;">До 5,000 підписників!</p>
+        </div>
+
+        <div class="glass-panel">
+            <h3 class="section-title" style="font-size: 0.8rem; margin-top:0;"><i class="fa-solid fa-share-nodes"></i> СОЦМЕРЕЖІ</h3>
+            <div class="social-grid">
+                <a href="#" class="social-btn"><i class="fa-brands fa-telegram"></i> TG</a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-discord"></i> DIS</a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i> TT</a>
+                <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i> SUB</a>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <div class="schedule-item">Пн - Пт: <span>19:00</span></div>
+            <div class="schedule-item">Сб - Нд: <span>14:00</span></div>
+        </div>
+
         <div class="glass-panel">
             <a href="https://skif.donatik.ua" target="_blank" class="btn-donate">ПІДТРИМАТИ</a>
         </div>
@@ -103,17 +150,15 @@
                     </div>`;
                 });
                 grid.innerHTML = html;
-                return data.items[0]; // Повертаємо останнє для статусу
+                return data.items[0]; 
             }
-        } catch (e) { grid.innerHTML = "Помилка завантаження."; }
+        } catch (e) { grid.innerHTML = "Помилка."; }
     }
 
     async function updateAll() {
-        // Оновлюємо обидва блоки
         const lastVideo = await fetchFeed(rssRecent, 'grid-recent', 6);
         await fetchFeed(rssSpecial, 'grid-special', 3);
 
-        // Статус LIVE (перевіряємо по основному фіду)
         if (lastVideo) {
             const isLive = lastVideo.title.toLowerCase().includes('live') || lastVideo.title.toLowerCase().includes('стрім');
             document.getElementById('live-indicator').className = isLive ? 'live-status-tag is-live' : 'live-status-tag';
