@@ -1,4 +1,4 @@
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -55,7 +55,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap'); 
         
-      :root { 
+        :root { 
             --neon: #00ffcc; 
             --bg: #020617; 
             --panel-bg: rgba(2, 6, 23, 0.8);
@@ -99,7 +99,6 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        /* САЙДБАР БЕЗ ЧОРНОГО ФОНУ ВНУТРІШНІХ БЛОКІВ */
         .side-block {
             border: 1px solid var(--neon);
             border-radius: 25px;
@@ -123,7 +122,7 @@
         }
 
         .inner-container {
-            background: transparent; /* ПРИБРАНО ЧОРНИЙ ФОН */
+            background: transparent;
             width: 100%;
             border-radius: 15px;
             padding: 10px 0;
@@ -132,7 +131,7 @@
             flex-direction: column;
             min-height: 60px;
             justify-content: center;
-            overflow: visible; /* ЩОБ КАРТИНКИ НЕ РІЗАЛО */
+            overflow: visible;
         }
 
         .online-number { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; text-align: center; }
@@ -153,142 +152,4 @@
         .btn-yellow { background: #ffcc00; color: #000; }
         .btn-outline { border: 1px solid var(--neon); color: var(--neon); }
 
-        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
-    </style>
-</head>
-<body>
-
-<nav>
-    <div class="nav-buttons">
-        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
-    </div>
-</nav>
-
-<div class="wrapper">
-    <div class="main-content">
-        <div class="player-box">
-            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
-        </div>
-        
-        <h2 class="section-header"><i class="fa-solid fa-star"></i>💙💛 ОСОБЛИВЕ ВІДЕО</h2>
-        <div id="special-videos" class="video-grid">Завантаження...</div>
-        
-        <h2 class="section-header"><i class="fa-solid fa-history"></i>💙💛 ОСТАННІ СТРІМИ</h2>
-        <div id="recent-videos" class="video-grid">Завантаження...</div>
-    </div>
-
-    <aside class="sidebar">
-        <div class="side-block">
-            <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
-            <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
-                <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
-                        style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
-            </div>
-        </div>
-
-        <div class="side-block">
-            <div class="side-title" style="color: #00ffcc;"><span class="dot" style="background: red; box-shadow: 0 0 5px red;"></span>💙💛  ЗАРАЗ НА САЙТІ</div>
-            <div class="inner-container">
-                <div class="online-number">1</div>
-            </div>
-        </div>
-
-  <div class="side-block" style="border-color: #ff0000;">
-    <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
-    <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
-        
-        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-single-link">
-            <i class="fa-brands fa-youtube"></i>
-            <span>YouTube</span>
-        </a>
-
-    </div>
-</div>
-
-        <div class="side-block">
-            <div class="side-title"><i class="fa-solid fa-server"></i>💙💛 СЕРВЕРИ WOT</div>
-            <div class="inner-container">
-                <div class="server-row"><span><span class="dot dot-red"></span>EU1 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU2 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU3 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU4 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU5 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-            </div>
-        </div>
-
-        <div class="side-block">
-            <div class="side-title" style="color: #ff0055;"><i class="fa-solid fa-bolt"></i> 💙💛 SHORTS</div>
-            <div class="shorts-grid">
-                <div class="short-item"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
-                <div class="short-item"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
-            </div>
-            <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-action-side btn-outline">💙💛 SHORTS</a>
-        </div>
-
-        <div class="side-block" style="border-color: #ffcc00;">
-            <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>💙💛 MODPACK WOT</div>
-            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
-        </div>
-    </aside>
-</div>
-
-  <style>
-    .yt-single-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: #ff0000;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.4rem;
-        font-weight: bold;
-        transition: 0.3s ease;
-        padding: 5px 15px;
-        border-radius: 10px;
-    }
-
-    .yt-single-link:hover {
-        transform: scale(1.1);
-        color: #ffffff;
-        text-shadow: 0 0 15px #ff0000;
-        background: rgba(255, 0, 0, 0.1);
-    }
-
-    .yt-single-link i {
-        font-size: 2.2rem;
-    }
-</style>  
-
- <style>
-    /* Додай це до своїх стилів <style>, щоб іконки підсвічувалися при наведенні */
-    .inner-container a:hover {
-        transform: scale(1.2);
-        filter: drop-shadow(0 0 5px currentColor);
-    }
-</style>   
-
-<script>
-    async function loadYT(url, divId, count) {
-        const box = document.getElementById(divId);
-        try {
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-            const data = await res.json();
-            if (data.status === 'ok') {
-                let cards = '';
-                data.items.slice(0, count).forEach(v => {
-                    let id = v.link.split('v=')[1] || v.link.split('/').pop();
-                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${v.title}</div></div>`;
-                });
-                box.innerHTML = cards;
-            }
-        } catch (err) { box.innerHTML = "Помилка завантаження..."; }
-    }
-    window.onload = () => {
-        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
-        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
-    };
-</script>
-</body>
-</html>
+        /* СТИЛІ ДЛЯ СУПЕРНЕОНОВОЇ О
