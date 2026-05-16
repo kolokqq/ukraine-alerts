@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -55,7 +55,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap'); 
         
-        :root { 
+      :root { 
             --neon: #00ffcc; 
             --bg: #020617; 
             --panel-bg: rgba(2, 6, 23, 0.8);
@@ -91,8 +91,7 @@
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
-        /* Контейнер плеєра */
-        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; position: relative; }
+        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; }
         .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
@@ -100,6 +99,7 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
+        /* САЙДБАР БЕЗ ЧОРНОГО ФОНУ ВНУТРІШНІХ БЛОКІВ */
         .side-block {
             border: 1px solid var(--neon);
             border-radius: 25px;
@@ -123,7 +123,7 @@
         }
 
         .inner-container {
-            background: transparent;
+            background: transparent; /* ПРИБРАНО ЧОРНИЙ ФОН */
             width: 100%;
             border-radius: 15px;
             padding: 10px 0;
@@ -132,7 +132,7 @@
             flex-direction: column;
             min-height: 60px;
             justify-content: center;
-            overflow: visible;
+            overflow: visible; /* ЩОБ КАРТИНКИ НЕ РІЗАЛО */
         }
 
         .online-number { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; text-align: center; }
@@ -153,30 +153,8 @@
         .btn-yellow { background: #ffcc00; color: #000; }
         .btn-outline { border: 1px solid var(--neon); color: var(--neon); }
 
-        /* Стилі для плавної авто-заміни елементів */
-        .stream-offline-container {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            z-index: 2;
-            background: #000;
-        }
-        #yt-hidden-player {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-            z-index: 1;
-        }
-
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
-    
-    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
 
@@ -191,13 +169,7 @@
 <div class="wrapper">
     <div class="main-content">
         <div class="player-box">
-            
-            <div id="offline-screen" class="stream-offline-container">
-                <img src="image_8.png" alt="Стрім Офлайн" width="100%" height="auto">
-            </div>
-
-            <div id="yt-hidden-player"></div>
-
+            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
         
         <h2 class="section-header"><i class="fa-solid fa-star"></i>💙💛 ОСОБЛИВЕ ВІДЕО</h2>
@@ -223,15 +195,17 @@
             </div>
         </div>
 
-        <div class="side-block" style="border-color: #ff0000;">
-            <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
-            <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-single-link">
-                    <i class="fa-brands fa-youtube"></i>
-                    <span>YouTube</span>
-                </a>
-            </div>
-        </div>
+  <div class="side-block" style="border-color: #ff0000;">
+    <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
+    <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
+        
+        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-single-link">
+            <i class="fa-brands fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+
+    </div>
+</div>
 
         <div class="side-block">
             <div class="side-title"><i class="fa-solid fa-server"></i>💙💛 СЕРВЕРИ WOT</div>
@@ -260,7 +234,7 @@
     </aside>
 </div>
 
-<style>
+  <style>
     .yt-single-link {
         display: flex;
         align-items: center;
@@ -274,13 +248,21 @@
         padding: 5px 15px;
         border-radius: 10px;
     }
+
     .yt-single-link:hover {
         transform: scale(1.1);
         color: #ffffff;
         text-shadow: 0 0 15px #ff0000;
         background: rgba(255, 0, 0, 0.1);
     }
-    .yt-single-link i { font-size: 2.2rem; }
+
+    .yt-single-link i {
+        font-size: 2.2rem;
+    }
+</style>  
+
+ <style>
+    /* Додай це до своїх стилів <style>, щоб іконки підсвічувалися при наведенні */
     .inner-container a:hover {
         transform: scale(1.2);
         filter: drop-shadow(0 0 5px currentColor);
@@ -288,48 +270,6 @@
 </style>   
 
 <script>
-    let player;
-    // Функція ініціалізації відеоплеєра через YouTube API
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('yt-hidden-player', {
-            height: '100%',
-            width: '100%',
-            playerVars: {
-                // Вказуємо лінк на прямі трансляції твого каналу
-                listType: 'live_stream',
-                list: 'UC29hev1ElIOHYG9oFm9dieQ',
-                autoplay: 1,
-                mute: 1
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    function onPlayerReady(event) {
-        // Коли плеєр готовий, ми перевіряємо чи йде відтворення ефіру
-        setTimeout(() => {
-            if (player && player.getPlayerState() === 1) { 
-                // Якщо статус "1" (відтворення), ховаємо картинку офлайн
-                document.getElementById('offline-screen').style.display = 'none';
-            }
-        }, 2000); // Даємо 2 секунди на буферизацію потоку
-    }
-
-    function onPlayerStateChange(event) {
-        // Якщо трансляція почалася (статус 1)
-        if (event.data == YT.PlayerState.PLAYING) {
-            document.getElementById('offline-screen').style.display = 'none';
-        }
-        // Якщо трансляція завершилась, або видала помилку (статус 0 або -1)
-        if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.UNSTARTED) {
-            document.getElementById('offline-screen').style.display = 'flex';
-        }
-    }
-
-    // Завантаження відосів для grids
     async function loadYT(url, divId, count) {
         const box = document.getElementById(divId);
         try {
@@ -345,7 +285,6 @@
             }
         } catch (err) { box.innerHTML = "Помилка завантаження..."; }
     }
-
     window.onload = () => {
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
