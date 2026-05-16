@@ -91,7 +91,7 @@
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
-        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; position: relative; }
+        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; }
         .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
@@ -152,20 +152,13 @@
         .btn-yellow { background: #ffcc00; color: #000; }
         .btn-outline { border: 1px solid var(--neon); color: var(--neon); }
 
-        /* Контейнери для авто-переключення плеєра та картинки */
         .stream-offline-container {
             width: 100%;
             height: 100%;
-            display: none; /* За замовчуванням прихована, вмикається скриптом якщо стріму немає */
+            display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-        }
-        #live-player {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
         }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
@@ -184,12 +177,12 @@
 <div class="wrapper">
     <div class="main-content">
         <div class="player-box">
-            <iframe id="live-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
             
-            <div id="offline-screen" class="stream-offline-container">
+            <div class="stream-offline-container">
                 <img src="image_8.png" alt="Стрім Офлайн" width="100%" height="auto">
             </div>
-        </div>
+
+            </div>
         
         <h2 class="section-header"><i class="fa-solid fa-star"></i>💙💛 ОСОБЛИВЕ ВІДЕО</h2>
         <div id="special-videos" class="video-grid">Завантаження...</div>
@@ -279,30 +272,6 @@
 </style>   
 
 <script>
-    // 1. РОЗУМНА ПЕРЕВІРКА СТРИМУ: Вмикає картинку, якщо прямо зараз ефіру немає
-    function checkLiveStream() {
-        const channelId = 'UC29hev1ElIOHYG9oFm9dieQ';
-        // Використовуємо відкритий проксі-сервер для швидкої перевірки статусу трансляції без API-ключів
-        fetch(`https://corsproxy.io/?${encodeURIComponent('https://www.youtube.com/embed/live_stream?channel=' + channelId)}`)
-        .then(response => response.text())
-        .then(html => {
-            // Якщо YouTube повертає рядок "LIVE_STREAM_OFFLINE" або "yt-player-error", стріму немає
-            if (html.includes("LIVE_STREAM_OFFLINE") || html.includes("is_live_stream\":false") || html.includes("У трансляции нет зрителей")) {
-                document.getElementById('live-player').style.display = 'none';
-                document.getElementById('offline-screen').style.display = 'flex';
-            } else {
-                document.getElementById('live-player').style.display = 'block';
-                document.getElementById('offline-screen').style.display = 'none';
-            }
-        })
-        .catch(() => {
-            // Якщо щось пішло не так із перевіркою, залишаємо плеєр за замовчуванням
-            document.getElementById('live-player').style.display = 'block';
-            document.getElementById('offline-screen').style.display = 'none';
-        });
-    }
-
-    // 2. ЗАВАНТАЖЕННЯ ВІДЕО З RSS КАНАЛУ ТА ПЕРЕВІРКА ЕФІРУ ОДНОЧАСНО
     async function loadYT(url, divId, count) {
         const box = document.getElementById(divId);
         try {
@@ -318,9 +287,7 @@
             }
         } catch (err) { box.innerHTML = "Помилка завантаження..."; }
     }
-
     window.onload = () => {
-        checkLiveStream(); // Запуск перевірки ефіру
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
     };
