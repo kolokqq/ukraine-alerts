@@ -239,16 +239,6 @@
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
         .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-weight: 500; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .live-counter-widget {
-            display: flex; align-items: center; justify-content: space-between;
-            background: #080c14; padding: 18px 25px; border-radius: 12px; margin-bottom: 40px;
-            border: 1px solid var(--border-color);
-        }
-        .counter-label { font-family: 'Orbitron'; font-size: 0.85rem; color: #64748b; font-weight: 700; letter-spacing: 1px; }
-        .counter-value-flow { display: flex; align-items: center; gap: 12px; }
-        .counter-pulse { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 10px #00ff66; }
-        .counter-number { font-family: 'Orbitron'; font-size: 1.8rem; font-weight: 900; color: #fff; }
-
         .right-pane { display: flex; flex-direction: column; gap: 30px; }
 
         .btn-main-channel {
@@ -362,7 +352,6 @@
             .clean-mosaic { grid-template-columns: 1fr; }
             .banner-buttons-row { flex-direction: column; gap: 10px; }
             .luxury-btn, .info-btn-outline { font-size: 1rem; padding: 14px 20px; width: 100%; box-sizing: border-box; white-space: normal; }
-            .counter-number { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -403,14 +392,6 @@
                     <button class="info-btn-outline" id="open-rules-btn">
                         <i class="fa-solid fa-circle-info"></i> УМОВИ РОЗІГРАШУ
                     </button>
-                </div>
-            </div>
-
-            <div class="live-counter-widget">
-                <div class="counter-label">ВІДВІДУВАЧІ</div>
-                <div class="counter-value-flow">
-                    <div class="counter-pulse"></div>
-                    <div class="counter-number" id="live-user-count">2785</div>
                 </div>
             </div>
 
@@ -490,10 +471,12 @@
         <button class="modal-close-btn" id="close-rules-btn"><i class="fa-solid fa-xmark"></i></button>
         <h3 class="modal-title"><i class="fa-solid fa-circle-check" style="color:#ffcc00;"></i> Умови розіграшу голди</h3>
         <ul class="modal-rule-list">
-            <li><i class="fa-solid fa-circle-dot"></i><div><strong>Бути підписником</strong> нашого YouTube-каналу <strong>BlackCellUA</strong>.</div></li>
+            <li><i class="fa-solid fa-circle-dot"></i><div><strong>Бути підписником від 4 тижнів</strong> нашого YouTube-каналу <strong>BlackCellUA</strong>.</div></li>
             <li><i class="fa-solid fa-circle-dot"></i><div><strong>Проявляти активність:</strong> ставити лайки під стрімами, Shorts та писати коментарі.</div></li>
             <li><i class="fa-solid fa-circle-dot"></i><div><strong>Приходити на трансляції:</strong> розіграші золота проводяться за допомогою рандомайзера прямо в прямому ефірі!</div></li>
             <li><i class="fa-solid fa-circle-dot"></i><div><strong>Мати аккаунт на EU-сервері</strong> World of Tanks для швидкої відправки подарунка.</div></li>
+            <li><i class="fa-solid fa-circle-dot"></i><div><strong>Нарахування голди:</strong> золото поступає на ігровий акаунт протягом 7 днів.</div></li>
+            <li><i class="fa-solid fa-circle-dot"></i><div><strong>Важливо:</strong> якщо ти відписався від каналу — автоматично втрачаєш право на участь.</div></li>
         </ul>
     </div>
 </div>
@@ -512,7 +495,6 @@
             modal.classList.remove('active');
         });
 
-        // Закриття при кліку поза вікном
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('active');
@@ -533,23 +515,6 @@
                 dayLabel.innerHTML += '<span class="sched-badge">СЬОГОДНІ</span>';
             }
         }
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const counterElement = document.getElementById('live-user-count');
-        const BASE_START_VISITS = 2785;
-
-        let totalClicks = parseInt(localStorage.getItem('site_total_clicks') || "0");
-
-        if (!sessionStorage.getItem('session_active')) {
-            totalClicks += 1;
-            localStorage.setItem('site_total_clicks', totalClicks);
-            sessionStorage.setItem('session_active', 'true');
-        }
-
-        counterElement.innerText = BASE_START_VISITS + totalClicks;
     });
 </script>
 
