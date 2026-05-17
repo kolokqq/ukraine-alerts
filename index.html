@@ -33,7 +33,7 @@
       "@context": "https://schema.org",
       "@type": "VideoObject",
       "name": "World of Tanks Стрім Українською | BlackCellUA",
-      "description": "Дивись пряму трансляцию WoT українською мовою на ігровому порталі BlackCellUA. Фарм, відмітки та круті бої!",
+      "description": "Дивись пряму трансляцію WoT українською мовою на ігровому порталі BlackCellUA. Фарм, відмітки та круті бої!",
       "thumbnailUrl": [
         "https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg"
       ],
@@ -285,10 +285,10 @@
             </div>
 
             <div class="live-counter-widget">
-                <div class="counter-label">ONLINE</div>
+                <div class="counter-label">ВІДВІДУВАЧІ</div>
                 <div class="counter-value-flow">
                     <div class="counter-pulse"></div>
-                    <div class="counter-number" id="live-user-count">2785</div>
+                    <div class="counter-number" id="live-user-count">Завантаження...</div>
                 </div>
             </div>
 
@@ -350,7 +350,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
     const firebaseConfig = {
         databaseURL: "https://counter-blackcellua-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -358,18 +358,23 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const visitsRef = ref(db, 'total_visits');
 
-    const userId = Math.random().toString(36).substring(2, 9);
-    const userRef = ref(db, 'online/' + userId);
-    const countRef = ref(db, 'online');
+    // Базова солідна стартова цифра, щоб сайт не виглядав порожнім
+    const BASE_START_VISITS = 2785;
 
-    set(userRef, true);
-    onDisconnect(userRef).remove();
+    // Прапорець для запобігання накрутки від однієї людини при простому оновленні сторінки під час однієї сесії
+    if (!sessionStorage.getItem('site_visited')) {
+        runTransaction(visitsRef, (currentValue) => {
+            return (currentValue || 0) + 1;
+        });
+        sessionStorage.setItem('site_visited', 'true');
+    }
 
-    onValue(countRef, (snapshot) => {
-        const data = snapshot.val();
-        const activeUsers = data ? Object.keys(data).length : 1;
-        document.getElementById('live-user-count').innerText = activeUsers;
+    // Оновлення цифри на екрані в реальному часі з додаванням базового значення
+    onValue(visitsRef, (snapshot) => {
+        const dbValue = snapshot.val() || 0;
+        document.getElementById('live-user-count').innerText = BASE_START_VISITS + dbValue;
     });
 </script>
 
@@ -400,10 +405,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        // Блок ВІДЕО завантажує твій новий фід
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'latest-videos-block', 3);
-        
-        // Блок ТРАНСЛЯЦІЙ завантажує старий фід
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
     });
 </script>
