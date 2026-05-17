@@ -22,7 +22,7 @@
 
     <meta property="og:url" content="https://blackcellua.pp.ua/">
     <meta property="og:title" content="World of Tanks — Твій ігровий портал BlackCellUA">
-    <meta property="og:description" content="Пнямі ефіри та трансляції World of Tanks українською мовою. Заходь на стрім!">
+    <meta property="og:description" content="Прямі ефіри та трансляції World of Tanks українською мовою. Заходь на стрім!">
     <meta property="og:image" content="https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg">
     <meta property="og:video" content="https://www.youtube.com/embed/JcirRSU3iCY">
     <meta property="og:type" content="website">
@@ -144,6 +144,7 @@
             text-decoration: none;
             transition: 0.3s ease;
             box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.1);
+            height: 100%;
         }
         .sub-big-block:hover {
             transform: scale(1.02);
@@ -283,12 +284,11 @@
         </div>
     </a>
 
-    <div class="side-block">
-        <div class="side-title" style="color: #00ffcc;">
-            <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
-        </div>
-        <div class="inner-container">
-            <div class="online-number" id="live-user-count">1</div>
+    <div class="side-block" style="padding: 15px 20px;">
+        <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
+        <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
+            <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
+                    style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
         </div>
     </div>
 </div>
@@ -304,6 +304,15 @@
     </div>
 
     <aside class="sidebar">
+        <div class="side-block">
+            <div class="side-title" style="color: #00ffcc;">
+                <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
+            </div>
+            <div class="inner-container">
+                <div class="online-number" id="live-user-count">1</div>
+            </div>
+        </div>
+
         <div class="side-block" style="border-color: #ff0000;">
             <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
             <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
