@@ -14,7 +14,7 @@
     </script>
     
     <title>World of Tanks — Твій ігровий портал BlackCellUA</title>
-    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на каналі BlackCellUA. Приєднуйся!">
+    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на канале BlackCellUA. Приєднуйся!">
     <meta name="keywords" content="World of Tanks, стрім українською, World of Tanks UA, WOT стрім, танки українською, BlackCellUA, світ танків стрім">
     <meta name="author" content="BlackCellUA">
     
@@ -85,12 +85,21 @@
         .logo-area { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; color: #fff; text-transform: uppercase; }
         .logo-area span { color: var(--gold); }
         .nav-links { display: flex; gap: 15px; }
+        
+        /* КРАСИВІ КНОПКИ НАВІГАЦІЇ */
         .nav-item {
-            display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px;
-            color: #94a3b8; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700;
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 6px;
+            color: #cbd5e1; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700;
+            background: rgba(13, 22, 38, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: 1px;
         }
-        .nav-item:hover { color: #fff; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .nav-item:hover { 
+            color: #fff; 
+            background: rgba(255, 255, 255, 0.05); 
+            border-color: rgba(255, 255, 255, 0.25); 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
 
         /* ЕЛЕГАНТНИЙ БІГУЧИЙ РЯДОК */
         .ticker-bar {
@@ -108,7 +117,7 @@
             gap: 40px;
         }
 
-        /* ZONE CARDS (ЕФЕКТ ДИЗАЙНУ БРЕНДОВОГО ЗАЛІЗА) */
+        /* ZONE CARDS */
         .stealth-card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -131,30 +140,26 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* МАТОВА ЗОЛОТА КНОПКА СТИЛЮ LUXURY */
+        /* ВЕЛИКА КНОПКА ПІДПИСКИ — НОВИЙ ПРЕМІУМ СТИЛЬ */
         .premium-sub-banner {
-            background: linear-gradient(135deg, #090e17 0%, #131e33 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 16px; padding: 35px; text-align: center; margin-bottom: 40px; position: relative; overflow: hidden;
-        }
-        .premium-sub-banner::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 70%); pointer-events: none;
+            background: #090e17;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px; padding: 35px; text-align: center; margin-bottom: 40px;
         }
         .luxury-btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 15px;
-            background: #000000; border: 1px solid var(--gold); border-radius: 8px;
-            padding: 16px 60px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
-            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; transition: honesty 0.4s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6), inset 0 0 10px rgba(212,175,55,0.1);
-            position: relative; overflow: hidden;
+            background: #020408; border: 2px solid var(--gold); border-radius: 8px;
+            padding: 18px 65px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
+            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; 
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
-        .luxury-btn::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); transition: 0.5s;
+        .luxury-btn:hover { 
+            background: var(--gold); 
+            color: #020408; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); 
+            transform: translateY(-3px); 
         }
-        .luxury-btn:hover::after { left: 100%; }
-        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 15px 35px rgba(212,175,55,0.25); transform: translateY(-2px); }
 
         /* СТУДІЙНИЙ ПЛЕЄР */
         .studio-player {
@@ -163,14 +168,14 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        /* МОЗАЇКА СТРІМІВ (ЧИСТІ ПРЕВ'Ю) */
+        /* МОЗАЇКА СТРІМІВ */
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; transition: 0.3s; }
         .video-block:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
         .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-weight: 500; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* ОНЛАЙН СТАТУС В СТИЛІ РЕАЛЬНОГО ЧАСУ */
+        /* ОНЛАЙН СТАТУС */
         .live-counter-widget {
             display: flex; align-items: center; justify-content: space-between;
             background: #080c14; padding: 18px 25px; border-radius: 12px; margin-bottom: 40px;
@@ -184,12 +189,21 @@
         /* ПРАВА КОЛОНКА */
         .right-pane { display: flex; flex-direction: column; gap: 30px; }
 
+        /* КНОПКА СТРІМЕР ХАБ — НОВИЙ ПРЕМІУМ СТИЛЬ */
         .btn-main-channel {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: #fff; color: #000; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
-            padding: 16px; border-radius: 8px; transition: 0.3s; font-size: 0.9rem; letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: #0f172a; color: #f8fafc; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
+            padding: 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease; font-size: 0.95rem; letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
-        .btn-main-channel:hover { background: #e2e8f0; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.05); }
+        .btn-main-channel:hover { 
+            background: #f8fafc; 
+            color: #0f172a; 
+            border-color: #f8fafc;
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(255,255,255,0.1); 
+        }
 
         /* СЕРВЕРИ */
         .server-grid { display: flex; flex-direction: column; gap: 12px; }
@@ -202,16 +216,36 @@
         .shorts-flex-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
 
+        /* КНОПКА РЕКЛАМНОГО БЛОКУ */
         .action-link-widget {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 15px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.85rem; font-weight: 700; transition: 0.3s; box-sizing: border-box; letter-spacing: 1px;
+            padding: 16px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.85rem; font-weight: 800; transition: all 0.2s ease; box-sizing: border-box; letter-spacing: 1.5px;
         }
-        .widget-dark-outline { border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; background: transparent; }
-        .widget-dark-outline:hover { background: rgba(255,255,255,0.03); color: #fff; border-color: rgba(255,255,255,0.25); }
+        .widget-dark-outline { 
+            border: 1px solid rgba(255,255,255,0.15); 
+            color: #e2e8f0; 
+            background: rgba(255,255,255,0.02); 
+        }
+        .widget-dark-outline:hover { 
+            background: rgba(255,255,255,0.07); 
+            color: #fff; 
+            border-color: rgba(255,255,255,0.4); 
+            transform: scale(1.01);
+        }
         
-        .widget-gold-fill { background: var(--gold); color: #000; font-weight: 900; }
-        .widget-gold-fill:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        /* КНОПКА СКАЧАТИ МОДПАК — НОВИЙ ПРЕМІУМ СТИЛЬ */
+        .widget-gold-fill { 
+            background: linear-gradient(135deg, #b79528 0%, #ecd067 100%); 
+            color: #05080e; 
+            font-weight: 900;
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.15);
+        }
+        .widget-gold-fill:hover { 
+            filter: brightness(1.15); 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+        }
 
         /* АДАПТИВНІСТЬ СТИЛЮ СТЕЛС */
         @media (max-width: 1200px) {
@@ -243,7 +277,7 @@
     <div class="ticker-bar">
         <div class="ticker-wrap">
             <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар під трансляцією!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар под трансляцією!</span>
             <span>🔥 <strong>ВИХІДНІ:</strong> 🔥 Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
         </div>
     </div>
@@ -282,7 +316,7 @@
             <div class="stealth-card">
                 <div class="card-header"><span>СТРІМЕР ХАБ</span><div></div></div>
                 <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="btn-main-channel">
-                    <i class="fa-brands fa-youtube" style="color: #000;"></i> ПЕРЕЙТИ НА ЮТУБ
+                    <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> ПЕРЕЙТИ НА ЮТУБ
                 </a>
             </div>
 
