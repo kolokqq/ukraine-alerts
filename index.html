@@ -60,235 +60,240 @@
             --neon-yellow: #ffcc00;
             --neon-red: #ff0055;
             --neon-green: #00ff66;
-            --glass-bg: rgba(6, 16, 36, 0.78);
-            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-bg: rgba(5, 12, 28, 0.82);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
 
         body { 
             margin: 0; 
-            /* Ультра-анімований RGB кібер-фон */
-            background: linear-gradient(125deg, #020612, #071630, #020612, #0d091f);
-            background-size: 400% 400%;
-            animation: cyber-mesh-bg 15s ease infinite;
+            /* Футуристичний живий космо-градієнт */
+            background: radial-gradient(circle at 50% 20%, #0d2347 0%, #030a1c 60%, #01040d 100%);
+            background-size: 100% 100%;
             color: #ffffff; 
             font-family: 'Exo 2', sans-serif; 
             overflow-x: hidden;
             padding: 25px 15px;
-        }
-        @keyframes cyber-mesh-bg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* ГОЛОВНИЙ HUD КОНТЕЙНЕР З ПОДВІЙНИМ СВІТІННЯМ */
-        .hud-container {
-            max-width: 1750px;
-            margin: 0 auto;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background: rgba(3, 10, 24, 0.85);
-            border: 2px solid #1a3152;
-            border-radius: 28px;
-            padding: 30px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), 
-                        inset 0 0 50px rgba(0, 240, 255, 0.03);
-            box-sizing: border-box;
             position: relative;
         }
 
-        /* ТОП НАВІГАЦІЯ */
-        nav { display: flex; justify-content: center; margin-bottom: 30px; }
-        .nav-flex { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .action-btn { 
-            display: flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 14px; 
-            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.85rem; 
-            font-weight: 900; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(255,255,255,0.08);
-            letter-spacing: 1px;
+        /* Фонова кібер-сітка */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
         }
-        .btn-youtube { background: linear-gradient(135deg, #ff003c, #990022); box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
-        .btn-like { background: linear-gradient(135deg, #1a73e8, #0d47a1); box-shadow: 0 0 15px rgba(26, 115, 232, 0.35); }
-        .btn-comment { background: linear-gradient(135deg, #00b074, #006643); box-shadow: 0 0 15px rgba(0, 176, 116, 0.35); }
-        .action-btn:hover { transform: translateY(-4px) scale(1.03); filter: brightness(1.25); box-shadow: 0 12px 25px rgba(255,255,255,0.25); }
 
-        /* ЛАЗЕРНИЙ БІГУЧИЙ РЯДОК */
+        /* ЦЕНТРАЛЬНИЙ HUD КОНТЕЙНЕР (PREMIUM GLASS) */
+        .hud-container {
+            max-width: 1750px;
+            margin: 0 auto;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(3, 8, 20, 0.88);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 32px;
+            padding: 35px;
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.95), 
+                        inset 0 0 60px rgba(0, 240, 255, 0.03);
+            box-sizing: border-box;
+        }
+
+        /* ТОП КНОПКИ НАВІГАЦІЇ */
+        nav { display: flex; justify-content: center; margin-bottom: 30px; }
+        .nav-flex { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .action-btn { 
+            display: flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 16px; 
+            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.85rem; 
+            font-weight: 900; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.06);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .btn-youtube { background: linear-gradient(135deg, #ff0040 0%, #aa0024 100%); box-shadow: 0 4px 20px rgba(255, 0, 64, 0.3); }
+        .btn-like { background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); box-shadow: 0 4px 20px rgba(30, 136, 229, 0.3); }
+        .btn-comment { background: linear-gradient(135deg, #00c853 0%, #006020 100%); box-shadow: 0 4px 20px rgba(0, 200, 83, 0.3); }
+        .action-btn:hover { transform: translateY(-4px) scale(1.04); filter: brightness(1.2); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+
+        /* МАТРИЧНИЙ БІГУЧИЙ РЯДОК */
         .marquee-container {
             width: 100%;
-            background: rgba(0, 3, 10, 0.98);
-            border: 2px solid;
+            background: #01050f;
+            border: 2px solid transparent;
             border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-red), var(--neon-yellow), var(--neon-blue)) 1;
             padding: 16px 0;
-            margin-bottom: 30px;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            margin-bottom: 35px;
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.15);
         }
-        .marquee-tag { text-align: center; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.9rem; font-weight: 900; letter-spacing: 6px; margin-bottom: 6px; text-transform: uppercase; text-shadow: 0 0 10px var(--neon-blue);}
-        .marquee-window { display: flex; width: max-content; animation: marquee-anim 20s linear infinite; }
-        .marquee-window span { font-size: 1.25rem; font-weight: 900; white-space: nowrap; padding-right: 80px; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.3); font-family: 'Exo 2'; }
+        .marquee-tag { text-align: center; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.9rem; font-weight: 900; letter-spacing: 6px; margin-bottom: 8px; text-transform: uppercase; text-shadow: 0 0 8px var(--neon-blue);}
+        .marquee-window { display: flex; width: max-content; animation: marquee-anim 18s linear infinite; }
+        .marquee-window span { font-size: 1.3rem; font-weight: 800; white-space: nowrap; padding-right: 95px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.25); }
         @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* СІТКА */
+        /* СІТКА БЛОКІВ */
         .main-grid {
             display: grid;
-            grid-template-columns: 1.45fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1.48fr 1fr;
+            gap: 35px;
         }
 
-        /* СКЛЯНІ ПАНЕЛІ З КІБЕР-ХАРАКТЕРОМ */
+        /* СКЛЯНІ СКИНДЖЕТИ З НЕОНОВИМ КАНТОМ */
         .glass-panel {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.5), inset 0 0 25px rgba(255,255,255,0.01);
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow: 0 25px 55px rgba(0,0,0,0.55), inset 0 0 30px rgba(255,255,255,0.01);
             box-sizing: border-box;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
         }
+        .glass-panel::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.6s; pointer-events: none;
+        }
+        .glass-panel:hover::after { left: 150%; }
         .glass-panel:hover {
-            transform: translateY(-5px);
-            background: rgba(8, 22, 48, 0.88);
-            border-color: rgba(0, 240, 255, 0.2);
+            transform: translateY(-6px);
+            background: rgba(8, 20, 44, 0.9);
+            border-color: rgba(0, 240, 255, 0.25);
         }
-        .panel-glow-blue { border-left: 5px solid var(--neon-blue); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05); }
-        .panel-glow-blue:hover { box-shadow: 0 15px 40px rgba(0, 240, 255, 0.15); }
-        
-        .panel-glow-yellow { border-left: 5px solid var(--neon-yellow); box-shadow: 0 10px 30px rgba(255, 204, 0, 0.05); }
-        .panel-glow-yellow:hover { box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15); }
-
-        .panel-glow-red { border-left: 5px solid var(--neon-red); box-shadow: 0 10px 30px rgba(213, 0, 85, 0.05); }
-        .panel-glow-red:hover { box-shadow: 0 15px 40px rgba(213, 0, 85, 0.15); }
+        .panel-glow-blue { border-left: 6px solid var(--neon-blue); }
+        .panel-glow-yellow { border-left: 6px solid var(--neon-yellow); }
+        .panel-glow-red { border-left: 6px solid var(--neon-red); }
 
         .block-title {
-            font-family: 'Orbitron'; font-size: 1rem; font-weight: 900; color: #fff;
-            margin-top: 0; margin-bottom: 22px; text-transform: uppercase; letter-spacing: 3px;
-            display: flex; align-items: center; gap: 12px;
+            font-family: 'Orbitron'; font-size: 1.05rem; font-weight: 900; color: #fff;
+            margin-top: 0; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 3px;
+            display: flex; align-items: center; gap: 14px;
         }
         .block-title i { color: var(--neon-blue); filter: drop-shadow(0 0 8px var(--neon-blue)); }
 
-        /* 👑 3D ЗОЛОТА КНОПКА «ПІДПИШИСЬ!» */
+        /* 🏆 ПРЕМІУМ-ЗОЛОТО 3Д */
         .subscribe-gold-zone {
-            background: radial-gradient(circle at center, rgba(255, 204, 0, 0.08) 0%, rgba(0,0,0,0.6) 100%);
-            border-radius: 20px;
-            padding: 30px;
+            background: radial-gradient(circle at center, rgba(255, 204, 0, 0.12) 0%, rgba(0,0,0,0.65) 100%);
+            border-radius: 24px;
+            padding: 35px;
             text-align: center;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 204, 0, 0.25);
-            box-shadow: inset 0 0 30px rgba(255,204,0,0.05);
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            box-shadow: inset 0 0 35px rgba(255,204,0,0.05);
         }
         .premium-gold-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            background: linear-gradient(135deg, #805e00 0%, #fff7a3 25%, #ffcc00 50%, #fff7a3 75%, #805e00 100%);
+            gap: 22px;
+            background: linear-gradient(135deg, #7a5800 0%, #fff9be 25%, #ffcc00 50%, #fff9be 75%, #7a5800 100%);
             background-size: 200% auto;
             border: 3px solid #ffffff;
-            border-radius: 60px;
-            padding: 18px 65px;
+            border-radius: 100px;
+            padding: 20px 75px;
             color: #000000;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            letter-spacing: 5px;
-            box-shadow: 0 0 40px rgba(255, 204, 0, 0.65), inset 0 3px 10px rgba(255,255,255,0.8);
+            letter-spacing: 6px;
+            box-shadow: 0 0 45px rgba(255, 204, 0, 0.7), inset 0 4px 12px rgba(255, 255, 255, 0.8);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: liquid-gold 3s linear infinite;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+            animation: liquid-gold 2.8s linear infinite;
         }
         .premium-gold-btn:hover {
-            transform: scale(1.06) translateY(-4px);
-            box-shadow: 0 0 60px rgba(255, 204, 0, 0.9), inset 0 4px 15px rgba(255, 255, 255, 1);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 65px rgba(255, 204, 0, 0.95), inset 0 5px 20px rgba(255, 255, 255, 1);
         }
-        .premium-gold-btn i { font-size: 2.4rem; color: #ff0044; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); }
-        @keyframes liquid-gold { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        .premium-gold-btn i { font-size: 2.6rem; color: #ff0044; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); }
 
-        /* СТАТИСТИКА ОНЛАЙНУ */
+        /* ОНЛАЙН СТАТИСТИКА */
         .online-status-card {
-            background: rgba(0, 4, 12, 0.9);
+            background: rgba(0, 3, 10, 0.92);
             border: 2px solid var(--neon-blue);
-            border-radius: 18px;
-            padding: 18px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
         }
-        .online-flex-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
-        .online-number { font-family: 'Orbitron'; font-size: 3.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 20px var(--neon-blue); letter-spacing: 2px; }
-        .live-pulse-dot { width: 16px; height: 16px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 18px var(--neon-green); animation: pulse-glow 1.5s infinite; }
-        @keyframes pulse-glow { 0% { opacity: 0.4; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.15); } 100% { opacity: 0.4; transform: scale(0.9); } }
+        .online-flex-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .online-number { font-family: 'Orbitron'; font-size: 4.2rem; font-weight: 900; color: #fff; text-shadow: 0 0 25px var(--neon-blue); letter-spacing: 3px; }
+        .live-pulse-dot { width: 18px; height: 18px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 20px var(--neon-green); animation: pulse-glow 1.4s infinite; }
 
-        /* ЛАЗЕРНИЙ КІБЕР-ПЛЕЄР */
+        /* КІБЕР-ПЛЕЄР */
         .cinema-player-wrapper {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 22px;
+            border-radius: 24px;
             overflow: hidden;
-            position: relative;
             background: #000;
-            margin-bottom: 30px;
-            box-shadow: 0 0 35px rgba(0, 240, 255, 0.2);
+            margin-bottom: 35px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25);
             border: 2px solid var(--neon-blue);
         }
 
         /* МОЗАЇКА ВІДЕО */
-        .streams-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .streams-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
         .mosaic-card {
-            background: rgba(0, 3, 8, 0.7);
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 16px;
-            padding: 12px;
-            transition: all 0.3s ease;
+            background: rgba(0, 3, 8, 0.8);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 18px;
+            padding: 14px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .mosaic-card:hover { border-color: var(--neon-blue); transform: translateY(-5px) scale(1.02); background: rgba(0, 3, 8, 0.95); box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15); }
-        .mosaic-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; }
-        .mosaic-title { font-size: 0.8rem; color: #cbd5e1; margin-top: 10px; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .mosaic-card:hover { border-color: var(--neon-blue); transform: translateY(-6px) scale(1.03); background: #010614; box-shadow: 0 12px 30px rgba(0, 240, 255, 0.2); }
+        .mosaic-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
+        .mosaic-title { font-size: 0.85rem; color: #e2e8f0; margin-top: 12px; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* ПРАВА СТОРОНА */
-        .right-column-stack { display: flex; flex-direction: column; gap: 25px; }
+        /* ПРАВИЙ СТЕК БЛОКІВ */
+        .right-column-stack { display: flex; flex-direction: column; gap: 30px; }
 
         .youtube-channel-btn {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            background: linear-gradient(90deg, #ff0044 0%, #a80027 100%);
+            display: flex; align-items: center; justify-content: center; gap: 14px;
+            background: linear-gradient(90deg, #ff0044 0%, #90001f 100%);
             color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
-            padding: 16px; border-radius: 14px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
-            letter-spacing: 2px; font-size: 0.95rem;
+            padding: 18px; border-radius: 16px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.08);
+            letter-spacing: 2px; font-size: 1rem;
         }
-        .youtube-channel-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,0,68,0.5); filter: brightness(1.1); }
+        .youtube-channel-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(255,0,68,0.55); filter: brightness(1.15); }
 
         /* СЕРВЕРИ WOT */
-        .wot-server-menu { display: flex; flex-direction: column; gap: 12px; font-family: 'Orbitron'; font-size: 0.85rem; }
-        .srv-row { display: flex; justify-content: space-between; padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .srv-name { color: #fff; display: flex; align-items: center; gap: 10px; font-weight: bold; }
-        .srv-dot { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 8px var(--neon-green); }
+        .wot-server-menu { display: flex; flex-direction: column; gap: 14px; font-family: 'Orbitron'; font-size: 0.9rem; }
+        .srv-row { display: flex; justify-content: space-between; padding: 12px 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .srv-name { color: #fff; display: flex; align-items: center; gap: 12px; font-weight: bold; }
+        .srv-dot { width: 9px; height: 9px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 10px var(--neon-green); }
         .srv-status { color: var(--neon-green); font-weight: 900; }
 
         /* SHORTS ГРИД */
-        .shorts-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .short-frame { aspect-ratio: 9/16; background: #000; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s; }
-        .short-frame:hover { transform: scale(1.03); border-color: var(--neon-red); box-shadow: 0 0 20px rgba(255,0,85,0.2); }
+        .shorts-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .short-frame { aspect-ratio: 9/16; background: #000; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .short-frame:hover { transform: scale(1.04) translateY(-3px); border-color: var(--neon-red); box-shadow: 0 0 25px rgba(255,0,85,0.3); }
 
-        /* ВІДЖЕТИ КНОПОК */
+        /* ВІДЖЕТ КНОПКИ */
         .widget-btn {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 15px; border-radius: 14px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.9rem; font-weight: 900; transition: 0.3s; box-sizing: border-box; letter-spacing: 2px;
+            padding: 16px; border-radius: 16px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.95rem; font-weight: 900; transition: 0.3s; box-sizing: border-box; letter-spacing: 2px;
         }
-        .btn-orange-glow { border: 2px solid #ff5500; color: #ff5500; background: transparent; text-shadow: 0 0 5px #ff5500; }
-        .btn-orange-glow:hover { background: rgba(255,85,0,0.15); box-shadow: 0 0 25px rgba(255,85,0,0.3); transform: translateY(-2px); }
+        .btn-orange-glow { border: 2px solid #ff5500; color: #ff5500; background: transparent; text-shadow: 0 0 6px #ff5500; }
+        .btn-orange-glow:hover { background: rgba(255,85,0,0.18); box-shadow: 0 0 30px rgba(255,85,0,0.35); transform: translateY(-3px); }
         
-        .btn-yellow-glow { background: linear-gradient(135deg, #ffcc00, #b38f00); color: #000; box-shadow: 0 0 15px rgba(255,204,0,0.2); }
-        .btn-yellow-glow:hover { box-shadow: 0 0 30px rgba(255,204,0,0.5); transform: translateY(-3px) scale(1.01); }
+        .btn-yellow-glow { background: linear-gradient(135deg, #ffcc00, #a38000); color: #000; font-weight: 900; }
+        .btn-yellow-glow:hover { box-shadow: 0 0 35px rgba(255,204,0,0.6); transform: translateY(-4px) scale(1.01); }
 
-        /* АДПТИВНІСТЬ ДЛЯ СМАРТФОНІВ ТА ПЛАНШЕТІВ */
+        /* АДАПТИВНІСТЬ */
         @media (max-width: 1280px) {
             .main-grid { grid-template-columns: 1fr; }
             .streams-mosaic { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .hud-container { padding: 20px 15px; border-radius: 20px; border: none; }
+            .hud-container { padding: 22px 16px; border-radius: 24px; border: none; }
             .streams-mosaic { grid-template-columns: 1fr; }
-            .premium-gold-btn { font-size: 1.4rem; padding: 14px 35px; width: 100%; box-sizing: border-box; }
-            .premium-gold-btn i { font-size: 1.8rem; }
-            .online-number { font-size: 3rem; }
+            .premium-gold-btn { font-size: 1.5rem; padding: 16px 40px; width: 100%; box-sizing: border-box; }
+            .premium-gold-btn i { font-size: 2rem; }
+            .online-number { font-size: 3.4rem; }
             body { padding: 15px 5px; }
         }
     </style>
@@ -324,7 +329,7 @@
             </div>
 
             <div class="online-status-card">
-                <div style="font-family:'Orbitron'; font-size:0.85rem; text-align:center; margin-bottom:8px; color:var(--neon-blue); font-weight:900; letter-spacing:2px;">ЗАРАЗ НА САЙТІ</div>
+                <div style="font-family:'Orbitron'; font-size:0.9rem; text-align:center; margin-bottom:8px; color:var(--neon-blue); font-weight:900; letter-spacing:2px;">ЗАРАЗ НА САЙТІ</div>
                 <div class="online-flex-row">
                     <div class="live-pulse-dot"></div>
                     <div class="online-number" id="live-user-count">1</div>
