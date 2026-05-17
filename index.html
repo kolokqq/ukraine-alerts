@@ -134,7 +134,7 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* БАНЕР РОЗІГРАШУ ГОЛДИ ДВІ КНОПКИ */
+        /* БАНЕР РОЗІГРАШУ ГОЛДИ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -153,15 +153,15 @@
             line-height: 1.5; font-weight: 500;
         }
         .banner-buttons-row {
-            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
+            display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
         }
 
         .luxury-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             background: linear-gradient(135deg, #110000 0%, #330000 100%);
             border: 2px solid #ff003c; border-radius: 8px;
-            padding: 16px 35px; color: #fff; text-decoration: none; font-family: 'Orbitron';
-            font-size: 1.1rem; font-weight: 900; letter-spacing: 2px; white-space: nowrap;
+            padding: 14px 28px; color: #fff; text-decoration: none; font-family: 'Orbitron';
+            font-size: 1rem; font-weight: 900; letter-spacing: 1.5px; white-space: nowrap;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 8px 25px rgba(255, 0, 60, 0.2);
             cursor: pointer;
@@ -172,11 +172,28 @@
             transform: translateY(-3px); 
         }
 
+        /* Кнопка реєстрації */
+        .register-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background: linear-gradient(135deg, #005f24 0%, #00ab44 100%);
+            border: 2px solid #00ff66; border-radius: 8px;
+            padding: 14px 28px; color: #fff; text-decoration: none; font-family: 'Orbitron';
+            font-size: 1rem; font-weight: 900; letter-spacing: 1.5px; white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 255, 102, 0.15);
+            cursor: pointer;
+        }
+        .register-btn:hover {
+            background: #00ff66; color: #05080e;
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.4);
+            transform: translateY(-3px);
+        }
+
         .info-btn-outline {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             background: rgba(212, 175, 55, 0.03); border: 2px solid var(--gold); border-radius: 8px;
-            padding: 16px 35px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
-            font-size: 1.1rem; font-weight: 900; letter-spacing: 2px; white-space: nowrap;
+            padding: 14px 28px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
+            font-size: 1rem; font-weight: 900; letter-spacing: 1.5px; white-space: nowrap;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer; box-sizing: border-box;
         }
@@ -208,7 +225,7 @@
             border-top: 1px solid rgba(255,255,255,0.04); padding-top: 10px; text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        /* КРАСИВЕ МОДАЛЬНЕ ВІКНО ДЛЯ УМОВ РОЗІГРАШУ */
+        /* КРАСИВЕ МОДАЛЬНЕ ВІКНО */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px);
@@ -227,6 +244,9 @@
         }
         .modal-overlay.active .modal-window { transform: translateY(0); }
 
+        /* Вікно форми реєстрації */
+        .modal-window.reg-window { border-color: #00ff66; }
+
         .modal-close-btn {
             position: absolute; top: 20px; right: 20px; background: transparent; border: none;
             color: #64748b; font-size: 1.5rem; cursor: pointer; transition: color 0.2s, transform 0.2s;
@@ -240,6 +260,24 @@
             margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05);
             padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
         }
+        
+        /* СТИЛІ ФОРМИ */
+        .reg-form { display: flex; flex-direction: column; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700; color: #94a3b8; letter-spacing: 1px; }
+        .form-group input {
+            background: #060a12; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+            padding: 14px; color: #fff; font-family: 'Exo 2'; font-size: 0.95rem; transition: border-color 0.2s;
+        }
+        .form-group input:focus { outline: none; border-color: #00ff66; background: #080e1a; }
+        .submit-reg-btn {
+            background: #00ff66; color: #05080e; border: none; padding: 16px; border-radius: 8px;
+            font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; letter-spacing: 2px; cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s; text-transform: uppercase; margin-top: 10px;
+        }
+        .submit-reg-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .submit-reg-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
         .modal-rule-list { list-style: none; padding: 0; margin: 0; }
         .modal-rule-list li {
             display: flex; gap: 15px; align-items: flex-start; margin-bottom: 18px;
@@ -373,7 +411,7 @@
             nav { flex-direction: column; gap: 20px; text-align: center; }
             .clean-mosaic { grid-template-columns: 1fr; }
             .banner-buttons-row { flex-direction: column; gap: 10px; }
-            .luxury-btn, .info-btn-outline { font-size: 1rem; padding: 14px 20px; width: 100%; box-sizing: border-box; white-space: normal; }
+            .luxury-btn, .register-btn, .info-btn-outline { font-size: 0.95rem; padding: 14px 20px; width: 100%; box-sizing: border-box; white-space: normal; }
         }
     </style>
 </head>
@@ -393,7 +431,7 @@
     <div class="ticker-bar">
         <div class="ticker-wrap">
             <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар под трансляцією!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар під трансляцією!</span>
             <span>🔥 <strong>ВИХІДНІ:</strong> 🔥 Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
         </div>
     </div>
@@ -405,14 +443,17 @@
             <div class="premium-sub-banner">
                 <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 10px;"></i> РОЗІГРАШ <span>1000 ГОЛДИ</span> НА СТРІМАХ!</h2>
                 <p class="giveaway-conditions">
-                    Британське та німецьке золото чекає на тебе. Оформлюй підписку та залітай на прямі трансляції, щоб взяти участь!
+                    Британське та німецьке золото чекає на тебе. Оформлюй підписку, реєструйся та залітай на стріми!
                 </p>
                 <div class="banner-buttons-row">
                     <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn">
-                        <i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ НА КАНАЛ
+                        <i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ
                     </a>
+                    <button class="register-btn" id="open-reg-btn">
+                        <i class="fa-solid fa-user-plus"></i> БРАТИ УЧАСТЬ
+                    </button>
                     <button class="info-btn-outline" id="open-rules-btn">
-                        <i class="fa-solid fa-circle-info"></i> УМОВИ РОЗІГРАШУ
+                        <i class="fa-solid fa-circle-info"></i> УМОВИ
                     </button>
                 </div>
             </div>
@@ -514,25 +555,88 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="reg-modal">
+    <div class="modal-window reg-window">
+        <button class="modal-close-btn" id="close-reg-btn"><i class="fa-solid fa-xmark"></i></button>
+        <h3 class="modal-title" style="color:#00ff66;"><i class="fa-solid fa-id-card"></i> Реєстрація учасника</h3>
+        <form class="reg-form" id="tg-reg-form">
+            <div class="form-group">
+                <label for="wot-nick">Твій нік у World of Tanks *</label>
+                <input type="text" id="wot-nick" placeholder="Наприклад: Killer_WOT_UA" required>
+            </div>
+            <div class="form-group">
+                <label for="yt-link">Посилання на твій YouTube канал або Юзернейм *</label>
+                <input type="text" id="yt-link" placeholder="Наприклад: @user-name або лінк" required>
+            </div>
+            <button type="submit" class="submit-reg-btn" id="submit-btn">Подати заявку</button>
+        </form>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('rules-modal');
-        const openBtn = document.getElementById('open-rules-btn');
-        const closeBtn = document.getElementById('close-rules-btn');
+        const rulesModal = document.getElementById('rules-modal');
+        const openRulesBtn = document.getElementById('open-rules-btn');
+        const closeRulesBtn = document.getElementById('close-rules-btn');
 
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
+        openRulesBtn.addEventListener('click', () => rulesModal.classList.add('active'));
+        closeRulesBtn.addEventListener('click', () => rulesModal.classList.remove('active'));
+
+        const regModal = document.getElementById('reg-modal');
+        const openRegBtn = document.getElementById('open-reg-btn');
+        const closeRegBtn = document.getElementById('close-reg-btn');
+
+        openRegBtn.addEventListener('click', () => regModal.classList.add('active'));
+        closeRegBtn.addEventListener('click', () => regModal.classList.remove('active'));
+
+        window.addEventListener('click', (e) => {
+            if (e.target === rulesModal) rulesModal.classList.remove('active');
+            if (e.target === regModal) regModal.classList.remove('active');
         });
+    });
+</script>
 
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
+<script>
+    // --- АВТОМАТИЗОВАНИЙ СКРИПТ ВІДПРАВКИ В ТЕЛЕГРАМ ---
+    document.getElementById('tg-reg-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const nick = document.getElementById('wot-nick').value.trim();
+        const yt = document.getElementById('yt-link').value.trim();
+        const submitBtn = document.getElementById('submit-btn');
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
+        // Твої автоматично прописані токени
+        const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
+        const TELEGRAM_CHAT_ID = '5223885410';
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Надсилання...';
+
+        const textMessage = `🎁 НОВИЙ УЧАСНИК РОЗІГРАШУ! 🎁\n\n🎮 Нік у WoT: ${nick}\n📺 YouTube: ${yt}`;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: textMessage
+                })
+            });
+
+            if (response.ok) {
+                alert('Успішно! Твою заявку надіслано стрімеру в базу!');
+                document.getElementById('tg-reg-form').reset();
+                document.getElementById('reg-modal').classList.remove('active');
+            } else {
+                alert('Помилка сервера телеграм при надсиланні. Переконайся, що ти запустив бота в ТГ!');
             }
-        });
+        } catch (error) {
+            alert('Помилка мережі. Перевір з’єднання.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Подати заявку';
+        }
     });
 </script>
 
