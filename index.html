@@ -21,7 +21,7 @@
     <link rel="canonical" href="https://blackcellua.pp.ua/">
 
     <meta property="og:url" content="https://blackcellua.pp.ua/">
-    <meta property="og:title" content="World of Tanks — Твій ігровий портал BlackCellUA">
+    <meta property="og:title" content="World of Tanks — Твій ігровий portal BlackCellUA">
     <meta property="og:description" content="Прямі ефіри та трансляції World of Tanks українською мовою. Заходь на стрім!">
     <meta property="og:image" content="https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg">
     <meta property="og:video" content="https://www.youtube.com/embed/JcirRSU3iCY">
@@ -80,7 +80,15 @@
         /* Етапи реєстрації всередині блокування */
         .auth-step { display: none; }
         .auth-step.active { display: block; }
-        .tg-widget-container { display: inline-block; min-height: 40px; margin-top: 10px; }
+        
+        /* Исправленный контейнер для виджета Telegram */
+        .tg-widget-container { 
+            display: inline-block; 
+            min-height: 40px; 
+            margin-top: 10px; 
+            background: transparent !important;
+        }
+        .tg-widget-container iframe { background: transparent !important; }
 
         /* Стилі форми на екрані блокування */
         .lock-form { display: flex; flex-direction: column; gap: 18px; text-align: left; margin-top: 10px; }
@@ -177,7 +185,7 @@
         .rules-panel-title { font-family: 'Orbitron'; font-size: 1.05rem; font-weight: 700; color: #ffcc00; margin: 0 0 10px 0; text-transform: uppercase; }
         .rules-panel-text { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0 0 12px 0; }
 
-        /* МОДАЛКИ СУТО ДЛЯ УМОВ (КНОПКУ РЕЄСТРАЦІЇ З САЙТУ ПРИБРАНО, БО ВОНА ПРИ ВХОДІ) */
+        /* МОДАЛКИ СУТО ДЛЯ УМОВ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
@@ -258,7 +266,7 @@
             </p>
             <div class="tg-widget-container">
                 <script async src="https://telegram.org/js/telegram-widget.js?22" 
-                        data-telegram-login="BlackCellGiveawayBot" 
+                        data-telegram-login="bok_Kiev_bot" 
                         data-size="large" 
                         data-radius="8" 
                         data-onauth="onTelegramAuth(user)" 
@@ -385,21 +393,18 @@
 </div>
 
 <script>
+    // ИСПОЛЬЗУЕМ ТОКЕН ТВОЕГО БОТА И ТВОЙ CHAT_ID ДЛЯ ОТПРАВКИ ОТЧЕТОВ
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
     
     let temporaryTelegramUser = null;
 
-    // КРОК 1: Тимчасове збереження даних після кліку на ТГ-віджет
     function onTelegramAuth(user) {
         temporaryTelegramUser = user;
-        
-        // Ховаємо Крок 1 і відкриваємо Крок 2 (Форму)
         document.getElementById('step-1-container').classList.remove('active');
         document.getElementById('step-2-container').classList.add('active');
     }
 
-    // КРОК 2: Відправка повної анкети і розблокування сайту
     document.getElementById('lock-reg-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -415,7 +420,6 @@
         submitBtn.disabled = true;
         submitBtn.innerText = 'Реєстрація...';
 
-        // Формуємо красивий повний звіт для тебе в Telegram
         const messageText = `🎉 НОВИЙ ПОВНІСТЮ ЗАРЕЄСТРОВАНИЙ УЧАСНИК! 🎉\n\n🎮 Нік у WoT: ${nick}\n📺 YouTube: ${yt}\n\n👤 Профіль Telegram:\n📝 Ім'я: ${temporaryTelegramUser.first_name}\n🔗 Юзернейм: ${temporaryTelegramUser.username ? '@' + temporaryTelegramUser.username : 'немає'}\n🆔 ID: ${temporaryTelegramUser.id}`;
 
         try {
@@ -426,10 +430,7 @@
             });
 
             if (response.ok) {
-                // Тільки тепер вважаємо користувача повністю зареєстрованим
                 localStorage.setItem('registered_site_user', JSON.stringify(temporaryTelegramUser));
-                
-                // Пускаємо на сайт
                 unlockSite(temporaryTelegramUser);
                 alert('Реєстрація успішна! Ласкаво просимо на сайт!');
             } else {
@@ -439,11 +440,10 @@
             alert('Помилка з’єднання.');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.innerText = 'Надсилання заявку й увійти';
+            submitBtn.innerText = 'Надіслати заявку й увійти';
         }
     });
 
-    // Функція активації повного доступу до сайту
     function unlockSite(user) {
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-content').classList.add('visible');
@@ -463,7 +463,6 @@
         window.location.reload();
     }
 
-    // Перевірка статусу при вході: якщо людина вже реєструвалася раніше — пускаємо одразу
     document.addEventListener('DOMContentLoaded', () => {
         const savedUser = localStorage.getItem('registered_site_user');
         if (savedUser) {
@@ -473,7 +472,6 @@
 </script>
 
 <script>
-    // ПІДКЛЮЧЕННЯ МОДАЛКИ УМОВ ТА РОЗКЛАДУ
     document.addEventListener('DOMContentLoaded', () => {
         const rulesModal = document.getElementById('rules-modal');
         const openRulesBtn = document.getElementById('open-rules-btn');
