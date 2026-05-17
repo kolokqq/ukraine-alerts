@@ -77,10 +77,6 @@
         .auth-logo span { color: var(--gold); }
         .auth-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
         
-        /* Етапи реєстрації всередині блокування */
-        .auth-step { display: none; }
-        .auth-step.active { display: block; }
-        
         /* Контейнер для віджета Telegram */
         .tg-widget-container { 
             display: inline-block; 
@@ -89,21 +85,6 @@
             background: transparent !important;
         }
         .tg-widget-container iframe { background: transparent !important; }
-
-        /* Стилі форми на екрані блокування */
-        .lock-form { display: flex; flex-direction: column; gap: 18px; text-align: left; margin-top: 10px; }
-        .lock-form .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .lock-form label { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.5px; }
-        .lock-form input { background: #060a12; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px; color: #fff; font-family: 'Exo 2'; font-size: 0.95rem; }
-        .lock-form input:focus { outline: none; border-color: #00ff66; background: #080e1a; }
-        
-        .btn-lock-submit { 
-            background: linear-gradient(135deg, #005f24 0%, #00ab44 100%); border: 2px solid #00ff66; color: #fff; 
-            padding: 16px; border-radius: 8px; font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; cursor: pointer; 
-            text-transform: uppercase; letter-spacing: 1.5px; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,255,102,0.2); transition: 0.2s;
-        }
-        .btn-lock-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,255,102,0.4); }
-        .btn-lock-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         /* ОСНОВНИЙ КОНТЕНТ САЙТУ (ПРИХОВАНИЙ ЗА ЗАМОВЧУВАННЯМ) */
         .main-site-content { opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
@@ -259,39 +240,18 @@
 <div class="auth-overlay" id="auth-screen">
     <div class="auth-box">
         <div class="auth-logo">BlackCell<span>UA</span></div>
-        
-        <div class="auth-step active" id="step-1-container">
-            <p class="auth-desc">
-                Для отримання доступу до сайту, модпаку та розіграшів, виконайте перший крок — увійдіть через свій Telegram.
-            </p>
-            <div class="tg-widget-container">
-                <script async src="https://telegram.org/js/telegram-widget.js?22" 
-                        data-telegram-login="bok_Kiev_bot" 
-                        data-size="large" 
-                        data-radius="8" 
-                        data-auth-url="https://blackcellua.pp.ua/"
-                        data-onauth="onTelegramAuth(user)" 
-                        data-request-access="write"></script>
-            </div>
+        <p class="auth-desc">
+            Для отримання доступу до сайту, модпаку та розіграшів, увійдіть через свій Telegram.
+        </p>
+        <div class="tg-widget-container">
+            <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                    data-telegram-login="bok_Kiev_bot" 
+                    data-size="large" 
+                    data-radius="8" 
+                    data-auth-url="https://blackcellua.pp.ua/"
+                    data-onauth="onTelegramAuth(user)" 
+                    data-request-access="write"></script>
         </div>
-
-        <div class="auth-step" id="step-2-container">
-            <p class="auth-desc" style="color: #00ff66;">
-                <i class="fa-solid fa-circle-check"></i> Telegram успішно прив'язано! Тепер заповни анкету гравця, щоб відкрити повний сайт.
-            </p>
-            <form class="lock-form" id="lock-reg-form">
-                <div class="form-group">
-                    <label for="lock-wot-nick">Твій нік у World of Tanks *</label>
-                    <input type="text" id="lock-wot-nick" placeholder="Наприклад: Killer_WOT_UA" required>
-                </div>
-                <div class="form-group">
-                    <label for="lock-yt-link">Посилання на твій YouTube канал *</label>
-                    <input type="text" id="lock-yt-link" placeholder="Наприклад: @my_channel" required>
-                </div>
-                <button type="submit" class="btn-lock-submit" id="lock-submit-btn">Надіслати заявку й увійти</button>
-            </form>
-        </div>
-
     </div>
 </div>
 
@@ -328,7 +288,7 @@
 
                 <div class="site-rules-panel">
                     <h3 class="rules-panel-title"><i class="fa-solid fa-triangle-exclamation"></i> УМОВИ ВИКОРИСТАННЯ САЙТУ</h3>
-                    <p class="rules-panel-text">Коритимся цим ресурсом, ви зобов'язуєтесь беззаперечно дотримуватись установлених правил спільноти.</p>
+                    <p class="rules-panel-text">Користуючись цим ресурсом, ви зобов'язуєтесь беззаперечно дотримуватись установлених правил спільноти.</p>
                 </div>
 
                 <div class="studio-player">
@@ -396,53 +356,28 @@
 <script>
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
-    
-    let temporaryTelegramUser = null;
 
-    function onTelegramAuth(user) {
-        temporaryTelegramUser = user;
-        document.getElementById('step-1-container').classList.remove('active');
-        document.getElementById('step-2-container').classList.add('active');
-    }
+    // ВХІД ВІДБУВАЄТЬСЯ ОДРАЗУ ПІСЛЯ КЛІКУ НА КНОПКУ TELEGRAM
+    async function onTelegramAuth(user) {
+        if (!user) return;
 
-    document.getElementById('lock-reg-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
+        // Зберігаємо юзера, щоб при наступному заході сайт відкривався сам
+        localStorage.setItem('registered_site_user', JSON.stringify(user));
+        unlockSite(user);
+
+        // Бот тихо надсилає тобі звіт, що зайшов новий глядач
+        const messageText = `👤 НОВИЙ ВХІД НА САЙТ! 👤\n\n📝 Ім'я: ${user.first_name}\n🔗 Юзернейм: ${user.username ? '@' + user.username : 'немає'}\n🆔 ID Telegram: ${user.id}`;
         
-        const nick = document.getElementById('lock-wot-nick').value.trim();
-        const yt = document.getElementById('lock-yt-link').value.trim();
-        const submitBtn = document.getElementById('lock-submit-btn');
-
-        if (!temporaryTelegramUser) {
-            alert('Будь ласка, спочатку авторизуйтесь через Telegram!');
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Реєстрація...';
-
-        const messageText = `🎉 НОВИЙ ПОВНІСТЮ ЗАРЕЄСТРОВАНИЙ УЧАСНИК! 🎉\n\n🎮 Нік у WoT: ${nick}\n📺 YouTube: ${yt}\n\n👤 Профіль Telegram:\n📝 Ім'я: ${temporaryTelegramUser.first_name}\n🔗 Юзернейм: ${temporaryTelegramUser.username ? '@' + temporaryTelegramUser.username : 'немає'}\n🆔 ID: ${temporaryTelegramUser.id}`;
-
         try {
-            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+            await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: messageText })
             });
-
-            if (response.ok) {
-                localStorage.setItem('registered_site_user', JSON.stringify(temporaryTelegramUser));
-                unlockSite(temporaryTelegramUser);
-                alert('Реєстрація успішна! Ласкаво просимо на сайт!');
-            } else {
-                alert('Помилка сервера. Спробуй ще раз.');
-            }
-        } catch (error) {
-            alert('Помилка з’єднання.');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Надіслати заявку й увійти';
+        } catch (e) {
+            console.error('Помилка відправки логу в ТГ');
         }
-    });
+    }
 
     function unlockSite(user) {
         document.getElementById('auth-screen').classList.add('hidden');
@@ -463,8 +398,8 @@
         window.location.reload();
     }
 
-    // Поддержка автоматического входа для метода через URL редирект на ПК
     document.addEventListener('DOMContentLoaded', () => {
+        // Обробка редиректу з ПК версії Telegram авторизації
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('id') && urlParams.has('first_name')) {
             const user = {
@@ -475,7 +410,6 @@
                 auth_date: urlParams.get('auth_date'),
                 hash: urlParams.get('hash')
             };
-            // Очищаем URL от параметров Telegram
             window.history.replaceState({}, document.title, window.location.pathname);
             onTelegramAuth(user);
             return;
