@@ -60,211 +60,236 @@
             --neon-yellow: #ffcc00;
             --neon-red: #ff0055;
             --neon-green: #00ff66;
-            --glass-bg: rgba(6, 15, 30, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-bg: rgba(6, 16, 36, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.07);
         }
 
         body { 
             margin: 0; 
-            background: #020612 radial-gradient(circle at 50% 30%, #0b1e3d 0%, #020612 80%); 
+            /* Ультра-анімований RGB кібер-фон */
+            background: linear-gradient(125deg, #020612, #071630, #020612, #0d091f);
+            background-size: 400% 400%;
+            animation: cyber-mesh-bg 15s ease infinite;
             color: #ffffff; 
             font-family: 'Exo 2', sans-serif; 
             overflow-x: hidden;
-            padding: 20px 15px;
+            padding: 25px 15px;
+        }
+        @keyframes cyber-mesh-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* КОНЦЕПТ-КОНТЕЙНЕР (ГЛЯНЦЕВИЙ HUD) */
+        /* ГОЛОВНИЙ HUD КОНТЕЙНЕР З ПОДВІЙНИМ СВІТІННЯМ */
         .hud-container {
             max-width: 1750px;
             margin: 0 auto;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: rgba(2, 7, 18, 0.9);
-            border: 2px solid #14243b;
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0, 240, 255, 0.02);
-            box-sizing: border-box;
-        }
-
-        /* НАВІГАЦІЙНІ КНОПКИ */
-        nav { display: flex; justify-content: center; margin-bottom: 25px; }
-        .nav-flex { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-        .action-btn { 
-            display: flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 12px; 
-            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.8rem; 
-            font-weight: bold; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.1);
-        }
-        .btn-youtube { background: #ff003c; box-shadow: 0 0 15px rgba(255, 0, 60, 0.3); }
-        .btn-like { background: #1a73e8; box-shadow: 0 0 15px rgba(26, 115, 232, 0.3); }
-        .btn-comment { background: #00b074; box-shadow: 0 0 15px rgba(0, 176, 116, 0.3); }
-        .action-btn:hover { transform: translateY(-3px); filter: brightness(1.2); box-shadow: 0 8px 20px rgba(255,255,255,0.2); }
-
-        /* БІГУЧИЙ РЯДОК З ПЕРЕЛИВОМ */
-        .marquee-container {
-            width: 100%;
-            background: rgba(1, 5, 12, 0.95);
-            border: 2px solid;
-            border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow), var(--neon-red)) 1;
-            padding: 14px 0;
-            margin-bottom: 25px;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-        }
-        .marquee-tag { text-align: center; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.85rem; font-weight: 900; letter-spacing: 5px; margin-bottom: 6px; text-transform: uppercase;}
-        .marquee-window { display: flex; width: max-content; animation: marquee-anim 22s linear infinite; }
-        .marquee-window span { font-size: 1.15rem; font-weight: 800; white-space: nowrap; padding-right: 70px; color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.2); }
-        @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* АСИМЕТРИЧНА СІТКА НОВОГО ДИЗАЙНУ */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 25px;
-        }
-
-        /* СКЛЯНІ БЛОКИ ІЗ НЕОНОВИМ КАНТОМ */
-        .glass-panel {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,255,255,0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(3, 10, 24, 0.85);
+            border: 2px solid #1a3152;
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), 
+                        inset 0 0 50px rgba(0, 240, 255, 0.03);
             box-sizing: border-box;
             position: relative;
         }
-        .panel-glow-blue { border-left: 4px solid var(--neon-blue); }
-        .panel-glow-yellow { border-left: 4px solid var(--neon-yellow); }
-        .panel-glow-red { border-left: 4px solid var(--neon-red); }
+
+        /* ТОП НАВІГАЦІЯ */
+        nav { display: flex; justify-content: center; margin-bottom: 30px; }
+        .nav-flex { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .action-btn { 
+            display: flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 14px; 
+            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.85rem; 
+            font-weight: 900; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(255,255,255,0.08);
+            letter-spacing: 1px;
+        }
+        .btn-youtube { background: linear-gradient(135deg, #ff003c, #990022); box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
+        .btn-like { background: linear-gradient(135deg, #1a73e8, #0d47a1); box-shadow: 0 0 15px rgba(26, 115, 232, 0.35); }
+        .btn-comment { background: linear-gradient(135deg, #00b074, #006643); box-shadow: 0 0 15px rgba(0, 176, 116, 0.35); }
+        .action-btn:hover { transform: translateY(-4px) scale(1.03); filter: brightness(1.25); box-shadow: 0 12px 25px rgba(255,255,255,0.25); }
+
+        /* ЛАЗЕРНИЙ БІГУЧИЙ РЯДОК */
+        .marquee-container {
+            width: 100%;
+            background: rgba(0, 3, 10, 0.98);
+            border: 2px solid;
+            border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-red), var(--neon-yellow), var(--neon-blue)) 1;
+            padding: 16px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+        }
+        .marquee-tag { text-align: center; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.9rem; font-weight: 900; letter-spacing: 6px; margin-bottom: 6px; text-transform: uppercase; text-shadow: 0 0 10px var(--neon-blue);}
+        .marquee-window { display: flex; width: max-content; animation: marquee-anim 20s linear infinite; }
+        .marquee-window span { font-size: 1.25rem; font-weight: 900; white-space: nowrap; padding-right: 80px; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.3); font-family: 'Exo 2'; }
+        @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* СІТКА */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 30px;
+        }
+
+        /* СКЛЯНІ ПАНЕЛІ З КІБЕР-ХАРАКТЕРОМ */
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5), inset 0 0 25px rgba(255,255,255,0.01);
+            box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            background: rgba(8, 22, 48, 0.88);
+            border-color: rgba(0, 240, 255, 0.2);
+        }
+        .panel-glow-blue { border-left: 5px solid var(--neon-blue); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05); }
+        .panel-glow-blue:hover { box-shadow: 0 15px 40px rgba(0, 240, 255, 0.15); }
+        
+        .panel-glow-yellow { border-left: 5px solid var(--neon-yellow); box-shadow: 0 10px 30px rgba(255, 204, 0, 0.05); }
+        .panel-glow-yellow:hover { box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15); }
+
+        .panel-glow-red { border-left: 5px solid var(--neon-red); box-shadow: 0 10px 30px rgba(213, 0, 85, 0.05); }
+        .panel-glow-red:hover { box-shadow: 0 15px 40px rgba(213, 0, 85, 0.15); }
 
         .block-title {
-            font-family: 'Orbitron'; font-size: 0.95rem; font-weight: 700; color: #fff;
-            margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;
-            display: flex; align-items: center; gap: 10px;
+            font-family: 'Orbitron'; font-size: 1rem; font-weight: 900; color: #fff;
+            margin-top: 0; margin-bottom: 22px; text-transform: uppercase; letter-spacing: 3px;
+            display: flex; align-items: center; gap: 12px;
         }
-        .block-title i { color: var(--neon-blue); filter: drop-shadow(0 0 5px var(--neon-blue)); }
+        .block-title i { color: var(--neon-blue); filter: drop-shadow(0 0 8px var(--neon-blue)); }
 
-        /* ЗОЛОТА КНОПКА «ПІДПИШИСЬ!» СТИЛЮ PREMIUM */
+        /* 👑 3D ЗОЛОТА КНОПКА «ПІДПИШИСЬ!» */
         .subscribe-gold-zone {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 16px;
-            padding: 25px;
+            background: radial-gradient(circle at center, rgba(255, 204, 0, 0.08) 0%, rgba(0,0,0,0.6) 100%);
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 204, 0, 0.2);
-            box-shadow: inset 0 0 15px rgba(255,204,0,0.03);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 204, 0, 0.25);
+            box-shadow: inset 0 0 30px rgba(255,204,0,0.05);
         }
         .premium-gold-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            background: linear-gradient(135deg, #a17600 0%, #fff37a 30%, #ffcc00 50%, #fff37a 70%, #a17600 100%);
+            gap: 20px;
+            background: linear-gradient(135deg, #805e00 0%, #fff7a3 25%, #ffcc00 50%, #fff7a3 75%, #805e00 100%);
             background-size: 200% auto;
             border: 3px solid #ffffff;
-            border-radius: 50px;
-            padding: 16px 55px;
+            border-radius: 60px;
+            padding: 18px 65px;
             color: #000000;
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
-            letter-spacing: 4px;
-            box-shadow: 0 0 35px rgba(255, 204, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.7);
+            letter-spacing: 5px;
+            box-shadow: 0 0 40px rgba(255, 204, 0, 0.65), inset 0 3px 10px rgba(255,255,255,0.8);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: liquid-gold 3.5s linear infinite;
+            animation: liquid-gold 3s linear infinite;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
         }
         .premium-gold-btn:hover {
-            transform: scale(1.04) translateY(-3px);
-            box-shadow: 0 0 50px rgba(255, 204, 0, 0.85), inset 0 0 20px rgba(255, 255, 255, 0.9);
+            transform: scale(1.06) translateY(-4px);
+            box-shadow: 0 0 60px rgba(255, 204, 0, 0.9), inset 0 4px 15px rgba(255, 255, 255, 1);
         }
-        .premium-gold-btn i { font-size: 2.2rem; color: #ff0044; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4)); }
+        .premium-gold-btn i { font-size: 2.4rem; color: #ff0044; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); }
         @keyframes liquid-gold { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
 
-        /* БЛОК СТАТИСТИКИ ОНЛАЙНУ */
+        /* СТАТИСТИКА ОНЛАЙНУ */
         .online-status-card {
-            background: rgba(1, 5, 12, 0.8);
+            background: rgba(0, 4, 12, 0.9);
             border: 2px solid var(--neon-blue);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 25px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
         }
-        .online-flex-row { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .online-number { font-family: 'Orbitron'; font-size: 3.4rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px var(--neon-blue); }
-        .live-pulse-dot { width: 14px; height: 14px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 15px var(--neon-green); animation: pulse-glow 2s infinite; }
-        @keyframes pulse-glow { 0% { opacity: 0.5; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; transform: scale(0.95); } }
+        .online-flex-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
+        .online-number { font-family: 'Orbitron'; font-size: 3.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 20px var(--neon-blue); letter-spacing: 2px; }
+        .live-pulse-dot { width: 16px; height: 16px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 18px var(--neon-green); animation: pulse-glow 1.5s infinite; }
+        @keyframes pulse-glow { 0% { opacity: 0.4; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.15); } 100% { opacity: 0.4; transform: scale(0.9); } }
 
-        /* ГОЛОВНИЙ ПЛЕЄР */
+        /* ЛАЗЕРНИЙ КІБЕР-ПЛЕЄР */
         .cinema-player-wrapper {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 18px;
+            border-radius: 22px;
             overflow: hidden;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+            position: relative;
             background: #000;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--neon-blue);
         }
 
-        /* ОСТАННІ СТРІМИ (ГРИД 3 В РЯД) */
-        .streams-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        /* МОЗАЇКА ВІДЕО */
+        .streams-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .mosaic-card {
-            background: rgba(1, 4, 10, 0.6);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 14px;
-            padding: 10px;
-            transition: 0.3s ease;
+            background: rgba(0, 3, 8, 0.7);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 12px;
+            transition: all 0.3s ease;
         }
-        .mosaic-card:hover { border-color: var(--neon-blue); transform: translateY(-4px); background: rgba(1, 4, 10, 0.9); }
-        .mosaic-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: none; }
-        .mosaic-title { font-size: 0.75rem; color: #b0c4de; margin-top: 8px; font-weight: 600; text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.3; }
+        .mosaic-card:hover { border-color: var(--neon-blue); transform: translateY(-5px) scale(1.02); background: rgba(0, 3, 8, 0.95); box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15); }
+        .mosaic-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 10px; border: none; }
+        .mosaic-title { font-size: 0.8rem; color: #cbd5e1; margin-top: 10px; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* ПРАВИЙ БЛОК КОНТЕНТУ */
-        .right-column-stack { display: flex; flex-direction: column; gap: 20px; }
+        /* ПРАВА СТОРОНА */
+        .right-column-stack { display: flex; flex-direction: column; gap: 25px; }
 
-        /* Кнопка Ютуб Каналу */
         .youtube-channel-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: linear-gradient(90deg, #ff0044 0%, #b3002d 100%);
-            color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: bold;
-            padding: 14px; border-radius: 12px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: linear-gradient(90deg, #ff0044 0%, #a80027 100%);
+            color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
+            padding: 16px; border-radius: 14px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 2px; font-size: 0.95rem;
         }
-        .youtube-channel-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,0,68,0.4); }
+        .youtube-channel-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,0,68,0.5); filter: brightness(1.1); }
 
-        /* Таблиця серверів WoT */
-        .wot-server-menu { display: flex; flex-direction: column; gap: 10px; font-family: 'Orbitron'; font-size: 0.8rem; }
-        .srv-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-        .srv-name { color: #fff; display: flex; align-items: center; gap: 8px; }
-        .srv-dot { width: 7px; height: 7px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 6px var(--neon-green); }
-        .srv-status { color: var(--neon-green); font-weight: bold; }
+        /* СЕРВЕРИ WOT */
+        .wot-server-menu { display: flex; flex-direction: column; gap: 12px; font-family: 'Orbitron'; font-size: 0.85rem; }
+        .srv-row { display: flex; justify-content: space-between; padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .srv-name { color: #fff; display: flex; align-items: center; gap: 10px; font-weight: bold; }
+        .srv-dot { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 8px var(--neon-green); }
+        .srv-status { color: var(--neon-green); font-weight: 900; }
 
-        /* Блок Shorts */
-        .shorts-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .short-frame { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        /* SHORTS ГРИД */
+        .shorts-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .short-frame { aspect-ratio: 9/16; background: #000; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); transition: 0.3s; }
+        .short-frame:hover { transform: scale(1.03); border-color: var(--neon-red); box-shadow: 0 0 20px rgba(255,0,85,0.2); }
 
-        /* Додаткові посилання */
+        /* ВІДЖЕТИ КНОПОК */
         .widget-btn {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 12px; border-radius: 12px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.85rem; font-weight: 700; transition: 0.3s; box-sizing: border-box;
+            padding: 15px; border-radius: 14px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.9rem; font-weight: 900; transition: 0.3s; box-sizing: border-box; letter-spacing: 2px;
         }
         .btn-orange-glow { border: 2px solid #ff5500; color: #ff5500; background: transparent; text-shadow: 0 0 5px #ff5500; }
-        .btn-orange-glow:hover { background: rgba(255,85,0,0.1); box-shadow: 0 0 15px rgba(255,85,0,0.2); }
+        .btn-orange-glow:hover { background: rgba(255,85,0,0.15); box-shadow: 0 0 25px rgba(255,85,0,0.3); transform: translateY(-2px); }
         
-        .btn-yellow-glow { background: var(--neon-yellow); color: #000; }
-        .btn-yellow-glow:hover { box-shadow: 0 0 20px rgba(255,204,0,0.4); transform: translateY(-2px); }
+        .btn-yellow-glow { background: linear-gradient(135deg, #ffcc00, #b38f00); color: #000; box-shadow: 0 0 15px rgba(255,204,0,0.2); }
+        .btn-yellow-glow:hover { box-shadow: 0 0 30px rgba(255,204,0,0.5); transform: translateY(-3px) scale(1.01); }
 
-        /* АДАПТИВНІСТЬ */
+        /* АДПТИВНІСТЬ ДЛЯ СМАРТФОНІВ ТА ПЛАНШЕТІВ */
         @media (max-width: 1280px) {
             .main-grid { grid-template-columns: 1fr; }
             .streams-mosaic { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .hud-container { padding: 15px; border-radius: 16px; border: none; }
+            .hud-container { padding: 20px 15px; border-radius: 20px; border: none; }
             .streams-mosaic { grid-template-columns: 1fr; }
-            .premium-gold-btn { font-size: 1.3rem; padding: 12px 30px; width: 100%; box-sizing: border-box; }
-            .premium-gold-btn i { font-size: 1.6rem; }
-            body { padding: 10px 5px; }
+            .premium-gold-btn { font-size: 1.4rem; padding: 14px 35px; width: 100%; box-sizing: border-box; }
+            .premium-gold-btn i { font-size: 1.8rem; }
+            .online-number { font-size: 3rem; }
+            body { padding: 15px 5px; }
         }
     </style>
 </head>
@@ -299,7 +324,7 @@
             </div>
 
             <div class="online-status-card">
-                <div style="font-family:'Orbitron'; font-size:0.8rem; text-align:center; margin-bottom:6px; color:var(--neon-blue); font-weight:bold; letter-spacing:1px;">ЗАРАЗ НА САЙТІ</div>
+                <div style="font-family:'Orbitron'; font-size:0.85rem; text-align:center; margin-bottom:8px; color:var(--neon-blue); font-weight:900; letter-spacing:2px;">ЗАРАЗ НА САЙТІ</div>
                 <div class="online-flex-row">
                     <div class="live-pulse-dot"></div>
                     <div class="online-number" id="live-user-count">1</div>
@@ -344,7 +369,7 @@
                 </div>
             </div>
 
-            <div class="glass-panel" style="border-left: 4px solid #ff5500;">
+            <div class="glass-panel" style="border-left: 5px solid #ff5500;">
                 <a href="#" class="widget-btn btn-orange-glow">... РЕКЛАМА ...</a>
             </div>
 
@@ -400,7 +425,7 @@
                 });
                 box.innerHTML = cards;
             }
-        } catch (err) { box.innerHTML = "<div style='text-align:center;color:var(--neon-red);padding:10px;'>Помилка завантаження...</div>"; }
+        } catch (err) { box.innerHTML = "<div style='text-align:center;color:var(--neon-red);padding:10px;'>Помилка завантаження відео...</div>"; }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
