@@ -240,6 +240,40 @@
             box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
         }
 
+        .side-block {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+        .side-block:hover {
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        .side-title {
+            font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px;
+            margin-top: 0; margin-bottom: 25px; text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+        }
+        .btn-action-side {
+            display: flex; align-items: center; justify-content: center; width: 100%; 
+            padding: 16px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.85rem; font-weight: 900; transition: all 0.2s ease; box-sizing: border-box; letter-spacing: 1.5px;
+        }
+        .btn-yellow {
+            background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); 
+            color: #05080e; 
+            box-shadow: 0 6px 15px rgba(255, 204, 0, 0.15);
+        }
+        .btn-yellow:hover {
+            filter: brightness(1.15); 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.35);
+        }
+
         @media (max-width: 1200px) {
             .layout-grid { grid-template-columns: 1fr; }
             .clean-mosaic { grid-template-columns: repeat(2, 1fr); }
@@ -269,7 +303,7 @@
     <div class="ticker-bar">
         <div class="ticker-wrap">
             <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар под трансляцією!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар під трансляцією!</span>
             <span>🔥 <strong>ВИХІДНІ:</strong> 🔥 Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
         </div>
     </div>
@@ -317,6 +351,11 @@
                 </a>
             </div>
 
+            <div class="side-block" style="border-color: #ffcc00;">
+                <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>💙💛 MODPACK WOT</div>
+                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
+            </div>
+
             <div class="stealth-card">
                 <div class="card-header"><span>КЛАСУВАННЯ СЕРВЕРІВ WOT</span><div></div></div>
                 <div class="server-grid">
@@ -339,10 +378,6 @@
                 <a href="#" class="action-link-widget widget-dark-outline">РЕКЛАМНИЙ ІНТЕГРАТОР</a>
             </div>
 
-            <div class="stealth-card" style="border-color: rgba(212, 175, 55, 0.3);">
-                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="action-link-widget widget-gold-fill">СКАЧАТИ МОДПАК WOT</a>
-            </div>
-
         </div>
 
     </div>
@@ -353,17 +388,14 @@
         const counterElement = document.getElementById('live-user-count');
         const BASE_START_VISITS = 2785;
 
-        // Дістаємо збережені унікальні кліки з пам'яті браузера
         let totalClicks = parseInt(localStorage.getItem('site_total_clicks') || "0");
 
-        // Якщо людина зайшла вперше за цю сесію — додаємо +1
         if (!sessionStorage.getItem('session_active')) {
             totalClicks += 1;
             localStorage.setItem('site_total_clicks', totalClicks);
             sessionStorage.setItem('session_active', 'true');
         }
 
-        // Виводимо підсумкову красиву суму
         counterElement.innerText = BASE_START_VISITS + totalClicks;
     });
 </script>
