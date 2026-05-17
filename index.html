@@ -81,7 +81,7 @@
         .auth-step { display: none; }
         .auth-step.active { display: block; }
         
-        /* Исправленный контейнер для виджета Telegram */
+        /* Контейнер для віджета Telegram */
         .tg-widget-container { 
             display: inline-block; 
             min-height: 40px; 
@@ -269,6 +269,7 @@
                         data-telegram-login="bok_Kiev_bot" 
                         data-size="large" 
                         data-radius="8" 
+                        data-auth-url="https://blackcellua.pp.ua/"
                         data-onauth="onTelegramAuth(user)" 
                         data-request-access="write"></script>
             </div>
@@ -327,7 +328,7 @@
 
                 <div class="site-rules-panel">
                     <h3 class="rules-panel-title"><i class="fa-solid fa-triangle-exclamation"></i> УМОВИ ВИКОРИСТАННЯ САЙТУ</h3>
-                    <p class="rules-panel-text">Користуючись цим ресурсом, ви зобов'язуєтесь беззаперечно дотримуватись установлених правил спільноти.</p>
+                    <p class="rules-panel-text">Коритимся цим ресурсом, ви зобов'язуєтесь беззаперечно дотримуватись установлених правил спільноти.</p>
                 </div>
 
                 <div class="studio-player">
@@ -393,7 +394,6 @@
 </div>
 
 <script>
-    // ИСПОЛЬЗУЕМ ТОКЕН ТВОЕГО БОТА И ТВОЙ CHAT_ID ДЛЯ ОТПРАВКИ ОТЧЕТОВ
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
     
@@ -463,7 +463,24 @@
         window.location.reload();
     }
 
+    // Поддержка автоматического входа для метода через URL редирект на ПК
     document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('id') && urlParams.has('first_name')) {
+            const user = {
+                id: urlParams.get('id'),
+                first_name: urlParams.get('first_name'),
+                username: urlParams.get('username'),
+                photo_url: urlParams.get('photo_url'),
+                auth_date: urlParams.get('auth_date'),
+                hash: urlParams.get('hash')
+            };
+            // Очищаем URL от параметров Telegram
+            window.history.replaceState({}, document.title, window.location.pathname);
+            onTelegramAuth(user);
+            return;
+        }
+
         const savedUser = localStorage.getItem('registered_site_user');
         if (savedUser) {
             unlockSite(JSON.parse(savedUser));
