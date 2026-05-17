@@ -134,24 +134,47 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
+        /* ОНОВЛЕНИЙ БАНЕР РОЗІГРАШУ ГОЛДИ */
         .premium-sub-banner {
-            background: #090e17;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px; padding: 35px; text-align: center; margin-bottom: 40px;
+            background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px; padding: 35px 25px; text-align: center; margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 20px rgba(212, 175, 55, 0.03);
+            position: relative; overflow: hidden;
         }
+        .premium-sub-banner::before {
+            content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.01), transparent);
+            transform: rotate(45deg); animation: shine 6s linear infinite;
+        }
+        @keyframes shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+
+        .giveaway-title {
+            font-family: 'Orbitron'; font-size: 1.6rem; font-weight: 900; color: #fff;
+            margin: 0 0 8px 0; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .giveaway-title span { color: #ffcc00; text-shadow: 0 0 15px rgba(255,204,0,0.3); }
+        
+        .giveaway-conditions {
+            font-size: 0.9rem; color: #94a3b8; margin: 0 auto 25px auto; max-width: 500px;
+            line-height: 1.5; font-weight: 500;
+        }
+        .giveaway-conditions strong { color: #f1f5f9; }
+
         .luxury-btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 15px;
-            background: #020408; border: 2px solid var(--gold); border-radius: 8px;
-            padding: 18px 40px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
-            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; white-space: nowrap;
+            background: linear-gradient(135deg, #110000 0%, #330000 100%);
+            border: 2px solid #ff003c; border-radius: 8px;
+            padding: 18px 45px; color: #fff; text-decoration: none; font-family: 'Orbitron';
+            font-size: 1.25rem; font-weight: 900; letter-spacing: 2px; white-space: nowrap;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 0, 60, 0.2);
             width: auto; max-width: 100%; box-sizing: border-box;
         }
         .luxury-btn:hover { 
-            background: var(--gold); 
-            color: #020408; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); 
+            background: #ff003c; 
+            color: #fff; 
+            box-shadow: 0 0 35px rgba(255, 0, 60, 0.6); 
             transform: translateY(-3px); 
         }
 
@@ -274,7 +297,6 @@
             box-shadow: 0 10px 25px rgba(255, 204, 0, 0.35);
         }
 
-        /* НОВІ СТИЛІ ДЛЯ КРАСИВОГО БЛОКУ РОЗКЛАДУ */
         .sched-item {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5);
@@ -335,8 +357,12 @@
         <div class="left-pane-flow">
             
             <div class="premium-sub-banner">
+                <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 10px;"></i> РОЗІГРАШ <span>ГОЛДИ</span> НА СТРІМАХ!</h2>
+                <p class="giveaway-conditions">
+                    Оформи підписку на канал прямо зараз! Розіграші ігрового золота проходять регулярно серед підписників під час прямих трансляцій. <strong>Твій шанс зафармити золото!</strong>
+                </p>
                 <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn">
-                    <i class="fa-brands fa-youtube" style="color:#ff0000;"></i> ПІДПИШИСЬ НА КАНАЛ
+                    <i class="fa-brands fa-youtube" style="color:#fff;"></i> ХОЧУ ГОЛДУ! ПІДПИСАТИСЬ
                 </a>
             </div>
 
@@ -374,28 +400,31 @@
             </div>
 
             <div class="side-block" style="border-color: #ffcc00;">
-                <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>WG Mods</div>
-                <a href="https://wgmods.net/?tags=12" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
+                <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>💙💛 MODPACK WOT</div>
+                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
             </div>
 
             <div class="stealth-card">
                 <div class="card-header"><span><i class="fa-solid fa-calendar-days" style="color:var(--gold); margin-right:8px;"></i> РОЗКЛАД ТРАНСЛЯЦІЙ</span><div></div></div>
                 <div class="server-grid">
                     <div class="sched-item id-mon"><div class="sched-day">ПН</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Вечірній фарм</div></div></div>
-                    <div class="server-item style="display:none !important; padding:0;"></div> <div class="sched-item id-tue"><div class="sched-day">ВТ</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Танкові відмітки</div></div></div>
-                    <div class="sched-item id-wed"><div class="sched-day">СБ</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Стрім з глядачами</div></div></div>
-                    <div class="sched-item id-sat"><div class="sched-day">ВС</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Стрім з глядачами</div></div></div>
+                    <div class="server-item" style="display:none !important; padding:0;"></div> 
+                    <div class="sched-item id-tue"><div class="sched-day">ВТ</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Танкові відмітки</div></div></div>
+                    <div class="sched-item id-wed"><div class="sched-day">СР</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Стрім з глядачами</div></div></div>
+                    <div class="sched-item id-thu"><div class="sched-day">ЧТ</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Фарм та розмови</div></div></div>
+                    <div class="sched-item id-fri"><div class="sched-day">ПТ</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">П'ятничний стрім</div></div></div>
+                    <div class="sched-item id-sat"><div class="sched-day">СБ</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Ранковий ефір</div></div></div>
+                    <div class="sched-item id-sun"><div class="sched-day">НД</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Ранковий рознос</div></div></div>
                 </div>
             </div>
 
             <div class="stealth-card">
                 <div class="card-header"><span>КЛАСУВАННЯ СЕРВЕРІВ WOT</span><div></div></div>
                 <div class="server-grid">
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 1 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 2 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 3 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 4 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 5 </div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 WEST</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 EAST</div><div class="server-ping">ONLINE</div></div>
                 </div>
             </div>
 
