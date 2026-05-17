@@ -51,30 +51,46 @@
             padding: 20px 10px;
         }
 
-        /* КУРВАТУРА ТА СТИЛЬ КУРВЕД-МОНІТОРА ЯК НА ФОТО */
-        .monitor-frame {
-            max-width: 1550px;
+        /* ТРИМОНІТОРНИЙ СТИЛЬ ДЛЯ КОМП'ЮТЕРА */
+        .monitor-setup {
+            max-width: 1800px;
             margin: 0 auto;
-            background: #020714;
-            border: 4px solid #1a2942;
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 
-                        inset 0 0 40px rgba(0, 210, 255, 0.05);
-            position: relative;
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1.1fr;
+            gap: 20px;
+            perspective: 1000px;
         }
 
+        /* Спільний стиль для екранів моніторів */
+        .monitor-screen {
+            background: #020714;
+            border: 3px solid #1a2942;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 210, 255, 0.02);
+            box-sizing: border-box;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        /* Ефект вигнутості кабінету на великих екранах */
+        @media (min-width: 1300px) {
+            .screen-left { transform: rotateY(12deg); transform-origin: right center; }
+            .screen-right { transform: rotateY(-12deg); transform-origin: left center; }
+            .monitor-screen:hover { transform: rotateY(0deg) scale(1.01); z-index: 10; box-shadow: 0 25px 60px rgba(0, 210, 255, 0.15); }
+        }
+
+        /* ВЕРХНЯ НАВІГАЦІЯ */
         nav { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            padding: 0 0 15px 0; 
+            padding: 0 0 20px 0; 
             background: transparent; 
         }
-        .nav-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
         .action-btn { 
-            display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; 
-            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.8rem; 
+            display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; 
+            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.75rem; 
             font-weight: bold; transition: 0.3s; border: none;
         }
         .btn-sub { background: #ff0000; }
@@ -82,26 +98,25 @@
         .btn-comm { background: #10b981; }
         .action-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* РУХОМИЙ РЯДОК З РАМКОЮ ЯК НА МАКЕТІ */
+        /* РУХОМИЙ РЯДОК */
         .neon-marquee {
             width: 100%;
             background: rgba(2, 7, 20, 0.9);
             border: 2px solid var(--neon-blue);
             border-image: linear-gradient(to right, var(--neon-blue), var(--neon-yellow)) 1;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            padding: 12px 0;
+            padding: 10px 0;
             box-sizing: border-box;
-            margin-bottom: 25px;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            margin-bottom: 20px;
         }
         .marquee-title {
             text-align: center;
             font-family: 'Orbitron';
             color: var(--neon-blue);
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            margin: 0 0 5px 0;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin: 0 0 4px 0;
             text-transform: uppercase;
         }
         .marquee-track {
@@ -111,11 +126,10 @@
         }
         .marquee-track span {
             font-family: 'Exo 2', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
-            letter-spacing: 1px;
             white-space: nowrap;
-            padding-right: 60px;
+            padding-right: 50px;
             color: #ffffff;
         }
         @keyframes scroll-text {
@@ -123,300 +137,240 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* СІТКА ДЛЯ ВЕРХНІХ БЛОКІВ */
-        .top-widgets-container {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr; 
-            gap: 20px;
+        /* НОВА ЗОЛОТА КНОПКА ПІДПИСКИ ЯК НА ФОТО */
+        .gold-sub-container {
+            border: 2px solid var(--neon-yellow);
+            border-radius: 16px;
+            background: var(--panel-bg);
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.05);
+        }
+        .gold-sub-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #b58d15 0%, #ffd700 50%, #b58d15 100%);
+            border: 3px solid #fff;
+            border-radius: 50px;
+            padding: 12px 35px;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.6);
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .gold-sub-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        .gold-sub-btn i {
+            font-size: 2rem;
+            color: #ff0000;
+            filter: drop-shadow(0 0 2px #fff);
+        }
+
+        /* БЛОК ЗАРАЗ НА САЙТІ */
+        .online-box {
+            border: 2px solid var(--neon-blue);
+            border-radius: 16px;
+            background: var(--panel-bg);
+            padding: 15px;
+            text-align: center;
             margin-bottom: 20px;
         }
+        .online-title { font-family: 'Orbitron'; font-size: 0.9rem; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .online-content { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .online-value { font-family: 'Orbitron'; font-size: 2.8rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px var(--neon-blue); }
+        .online-dot { width: 16px; height: 16px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 12px #00ff00; }
 
-        /* БЛОК ПІДПИШИСЬ ЖОВТО-БЛАКИТНИЙ */
-        .sub-big-block {
-            border: 2px solid var(--neon-yellow);
-            border-radius: 16px;
-            padding: 15px;
-            background: var(--panel-bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
-        }
-        .sub-big-block:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
-        }
-        .sub-big-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .sub-big-content img { width: 45px; height: auto; }
-        .sub-desc {
-            font-family: 'Orbitron';
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
-
-        /* БЛОК ЗАРАЗ НА САЙТІ ВГОРІ ЯК НА ФОТО */
-        .top-online-block {
-            border: 2px solid var(--neon-yellow);
-            border-radius: 16px;
-            background: var(--panel-bg);
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .top-online-title {
-            font-family: 'Orbitron';
-            font-size: 0.9rem;
-            color: #fff;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        .top-online-value {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-family: 'Orbitron';
-            font-size: 3.2rem;
-            font-weight: bold;
-        }
-        .status-circle {
-            width: 24px;
-            height: 24px;
-            background-color: #00ff00;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #00ff00;
-        }
-
-        /* ОСНОВНА СТРУКТУРА */
-        .wrapper { display: flex; flex-direction: row; gap: 25px; }
-        .main-content { flex: 1; min-width: 0; }
-        .sidebar { width: 360px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
-
-        /* ПЛЕЄР З ТАНКОВИМ ЗАДНІМ ФОНОМ ТА НЕОНОМ */
+        /* ГОЛОВНИЙ ПЛЕЄР */
         .player-box { 
             width: 100%; 
             aspect-ratio: 16/9; 
             border-radius: 16px; 
             overflow: hidden; 
-            border: 2px solid var(--neon-yellow); 
-            background: url('https://images.alphacoders.com/274/274230.jpg') center/cover no-repeat; 
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.15);
+            border: 2px solid var(--neon-blue); 
+            background: #000;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+            margin-bottom: 20px;
         }
 
-        /* СЕКЦІЯ ОСТАННІ СТРІМИ */
+        /* СЕКЦІЯ СТРІМІВ */
         .section-header { 
             font-family: 'Orbitron'; 
             color: #ffffff; 
-            font-size: 1.1rem; 
-            margin: 25px 0 15px; 
+            font-size: 1rem; 
+            margin: 0 0 15px 0; 
             display: flex; 
             align-items: center; 
             justify-content: center;
-            gap: 10px; 
+            gap: 8px; 
             text-transform: uppercase; 
-            letter-spacing: 2px;
         }
         .section-header span { color: var(--neon-blue); }
 
-        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .video-column { display: flex; flex-direction: column; gap: 15px; }
         .card { 
             background: #040f21; 
             padding: 10px; 
             border-radius: 12px; 
-            border: 2px solid rgba(0, 210, 255, 0.3); 
+            border: 1px solid rgba(0, 210, 255, 0.2); 
             text-align: center;
         }
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: none; }
-        .video-meta-title {
-            font-size: 0.75rem;
-            color: #8ab4f8;
-            margin-top: 8px;
-            font-family: 'Exo 2';
-        }
-        .video-meta-date {
-            font-size: 0.65rem;
-            color: #5f6368;
-            margin-top: 3px;
-        }
+        .video-meta-title { font-size: 0.75rem; color: #8ab4f8; margin-top: 8px; font-weight: bold; }
 
-        /* СТИЛІЗАЦІЯ БЛОКІВ САЙДБАРУ */
+        /* САЙДБАРНІ ЕЛЕМЕНТИ */
         .side-block {
             border: 2px solid var(--neon-blue);
             border-radius: 16px;
-            padding: 18px;
+            padding: 15px;
             background: var(--panel-bg);
-            box-sizing: border-box;
-            width: 100%;
+            margin-bottom: 15px;
         }
         .side-title {
-            font-family: 'Orbitron';
-            font-size: 0.85rem;
-            color: var(--neon-blue);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon-blue);
+            margin-bottom: 12px; text-align: center; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* МІЙ КАНАЛ (ЧЕРВОНИЙ НЕОН) */
+        /* МІЙ КАНАЛ (ЧЕРВОНИЙ) */
         .channel-block { border-color: var(--neon-red); }
         .channel-block .side-title { color: var(--neon-red); }
         .yt-link-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: #ff0000;
-            color: white;
-            text-decoration: none;
-            font-family: 'Orbitron';
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 8px;
-            transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: #ff0000; color: white; text-decoration: none;
+            font-family: 'Orbitron'; font-weight: bold; padding: 10px; border-radius: 8px; transition: 0.3s;
         }
-        .yt-link-btn:hover { transform: scale(1.03); box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+        .yt-link-btn:hover { transform: translateY(-2px); box-shadow: 0 0 15px rgba(255,0,0,0.4); }
 
-        /* СЕРВЕРИ WOT */
-        .server-table { width: 100%; font-family: 'Orbitron'; font-size: 0.8rem; }
-        .server-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .server-name { color: #fff; display: flex; align-items: center; gap: 8px; }
-        .server-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 5px #00ff00; }
-        .server-status { color: #00ff00; font-weight: bold; }
+        /* СЕРВЕРИ */
+        .server-row { display: flex; justify-content: space-between; padding: 5px 0; font-family: 'Orbitron'; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .server-name { color: #fff; display: flex; align-items: center; gap: 6px; }
+        .server-dot { width: 6px; height: 6px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 5px #00ff00; }
+        .server-status { color: #00ff00; }
 
         /* SHORTS */
         .shorts-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* КНОПКИ ТА БАНЕРИ */
+        /* ДОДАТКОВІ КНОПКИ */
         .side-btn {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 12px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.85rem; font-weight: bold; transition: 0.3s; box-sizing: border-box;
-            border: none; margin-top: 10px;
+            padding: 10px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.8rem; font-weight: bold; transition: 0.3s; box-sizing: border-box;
         }
         .btn-yellow-filled { background: var(--neon-yellow); color: #000; }
-        .btn-yellow-filled:hover { transform: translateY(-2px); box-shadow: 0 0 15px rgba(255,204,0,0.4); }
-        
         .btn-orange-outline { border: 2px solid #ff7700; color: #ff7700; background: transparent; }
-        .btn-orange-outline:hover { background: rgba(255,119,0,0.1); }
 
-        /* АДАПТИВНІСТЬ ДЛЯ МОБІЛОК */
-        @media (max-width: 1200px) {
-            .wrapper { flex-direction: column; }
-            .sidebar { width: 100%; }
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .top-widgets-container { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: 1fr; }
-            .monitor-frame { padding: 12px; border: none; }
+        /* АДАПТИВНІСТЬ ДЛЯ ТЕЛЕФОНІВ (ВЕРТИКАЛЬНИЙ СТРОГИЙ СТИЛЬ) */
+        @media (max-width: 1100px) {
+            body { padding: 10px 5px; }
+            .monitor-setup {
+                grid-template-columns: 1fr; /* Перетворює у стрічку на мобільних */
+                gap: 15px;
+            }
+            /* Скидаємо 3D ефекти моніторів на мобілках */
+            .screen-left, .screen-right { transform: none !important; }
+            .gold-sub-btn { font-size: 1.2rem; padding: 10px 20px; width: 100%; box-sizing: border-box; }
+            .gold-sub-btn i { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="monitor-frame">
+<nav>
+    <div class="nav-buttons">
+        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
+        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
+    </div>
+</nav>
 
-    <nav>
-        <div class="nav-buttons">
-            <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
-            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
-            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
-        </div>
-    </nav>
+<div class="monitor-setup">
 
-    <div class="neon-marquee">
-        <div class="marquee-title"></div>
-        <div class="marquee-track">
-            <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
-        </div>
+    <div class="monitor-screen screen-left">
+        <h2 class="section-header">«(•)» <span>ОСТАННІ СТРІМИ</span> «(•)»</h2>
+        <div id="recent-videos" class="video-column">Завантаження...</div>
     </div>
 
-    <div class="top-widgets-container">
-        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="sub-big-block">
-            <div class="sub-big-content">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo_2015.svg" alt="YouTube">
-                <span>YouTube</span>
-            </div>
-            <div class="sub-desc">ПІДПИШИСЬ!</div>
-        </a>
-
-        <div class="top-online-block">
-            <div class="top-online-title">ЗАРАЗ НА САЙТІ</div>
-            <div class="top-online-value">
-                <div class="status-circle"></div>
-                <span id="live-user-count">1</span>
-            </div>
-        </div>
-    </div>
+    <div class="monitor-screen screen-center">
         
-    <div class="wrapper">
-        <div class="main-content">
-            <div class="player-box">
-                <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none; background: transparent;"></iframe>
+        <div class="neon-marquee">
+            <div class="marquee-title">«« РУХОМИЙ РЯДОК »»</div>
+            <div class="marquee-track">
+                <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
+                <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
             </div>
-            
-            <h2 class="section-header"><span>ОСТАННІ СТРІМИ</span></h2>
-            <div id="recent-videos" class="video-grid">Завантаження...</div>
         </div>
 
-        <aside class="sidebar">
-            
-            <div class="side-block channel-block">
-                <div class="side-title"><i class="fa-solid fa-users-viewfinder"></i> МІЙ КАНАЛ</div>
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-link-btn">
-                    <i class="fa-brands fa-youtube"></i> YouTube
-                </a>
-            </div>
+        <div class="gold-sub-container">
+            <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="gold-sub-btn">
+                <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ!
+            </a>
+        </div>
 
-            <div class="side-block">
-                <div class="side-title">СЕРВЕРИ WOT</div>
-                <div class="server-table">
-                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 1</span><span class="server-status">ONLINE</span></div>
-                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 2</span><span class="server-status">ONLINE</span></div>
-                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 3</span><span class="server-status">ONLINE</span></div>
-                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 4</span><span class="server-status">ONLINE</span></div>
-                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 5</span><span class="server-status">ONLINE</span></div>
-                </div>
+        <div class="online-box">
+            <div class="online-title">ЗАРАЗ НА САЙТІ</div>
+            <div class="online-content">
+                <div class="online-dot"></div>
+                <div class="online-value" id="live-user-count">1</div>
             </div>
+        </div>
 
-            <div class="side-block">
-                <div class="side-title">SHORTS</div>
-                <div class="shorts-container">
-                    <div class="short-card"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
-                    <div class="short-card"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
-                </div>
-            </div>
+        <div class="player-box">
+            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+        </div>
 
-            <div class="side-block" style="border-color: #ff7700;">
-                <a href="#" class="side-btn btn-orange-outline" style="margin: 0; padding: 8px;">РЕКЛАМА</a>
-            </div>
-
-            <div class="side-block" style="border-color: var(--neon-yellow);">
-                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="side-btn btn-yellow-filled" style="margin: 0;">MODPACK WOT</a>
-            </div>
-
-        </aside>
     </div>
 
-</div> <script type="module">
+    <div class="monitor-screen screen-right">
+        
+        <div class="side-block channel-block">
+            <div class="side-title">МІЙ КАНАЛ</div>
+            <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-link-btn">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+        </div>
+
+        <div class="side-block">
+            <div class="side-title">СЕРВЕРИ WOT</div>
+            <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 1</span><span class="server-status">ONLINE</span></div>
+            <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 2</span><span class="server-status">ONLINE</span></div>
+            <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 3</span><span class="server-status">ONLINE</span></div>
+            <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 4</span><span class="server-status">ONLINE</span></div>
+        </div>
+
+        <div class="side-block">
+            <div class="side-title">SHORTS</div>
+            <div class="shorts-container">
+                <div class="short-card"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
+                <div class="short-card"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
+            </div>
+        </div>
+
+        <div class="side-block" style="border-color: #ff7700;">
+            <a href="#" class="side-btn btn-orange-outline">РЕКЛАМА</a>
+        </div>
+
+        <div class="side-block" style="border-color: var(--neon-yellow);">
+            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="side-btn btn-yellow-filled">MODPACK WOT</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
@@ -455,12 +409,11 @@
                     <div class="card">
                         <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
                         <div class="video-meta-title">${v.title}</div>
-                        <div class="video-meta-date">Screenshot 3, 2026</div>
                     </div>`;
                 });
                 box.innerHTML = cards;
             }
-        } catch (err) { box.innerHTML = "Помилка завантаження відео..."; }
+        } catch (err) { box.innerHTML = "Помилка завантаження стрімів..."; }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
