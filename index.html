@@ -87,12 +87,11 @@
         .btn-comm { background: #10b981; }
         .action-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* ОНОВЛЕНІ СТИЛІ ДЛЯ НЕОНОВОГО РУХОМОГО РЯДКА В КОЛЬОРАХ ПРАПОРА */
         .neon-marquee {
             width: 100%;
             background: rgba(2, 6, 23, 0.95);
-            border-top: 1px solid rgba(59, 130, 246, 0.4);     /* Синя лінія зверху */
-            border-bottom: 1px solid rgba(234, 179, 8, 0.4);   /* Жовта лінія знизу */
+            border-top: 1px solid rgba(59, 130, 246, 0.4);     
+            border-bottom: 1px solid rgba(234, 179, 8, 0.4);   
             overflow: hidden;
             padding: 12px 0;
             box-sizing: border-box;
@@ -109,13 +108,9 @@
             letter-spacing: 2px;
             white-space: nowrap;
             padding-right: 60px;
-            
-            /* Двоколірний градієнт прапора України на текст */
             background: linear-gradient(to bottom, #3b82f6 50%, #eab308 50%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* Ефект подвійного патріотичного неону */
             filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6)) 
                     drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
         }
@@ -136,7 +131,6 @@
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
 
-        /* САЙДБАР БЕЗ ЧОРНОГО ФОНУ ВНУТРІШНІХ БЛОКІВ */
         .side-block {
             border: 1px solid var(--neon);
             border-radius: 25px;
@@ -160,7 +154,7 @@
         }
 
         .inner-container {
-            background: transparent; /* ПРИБРАНО ЧОРНИЙ ФОН */
+            background: transparent;
             width: 100%;
             border-radius: 15px;
             padding: 10px 0;
@@ -169,10 +163,10 @@
             flex-direction: column;
             min-height: 60px;
             justify-content: center;
-            overflow: visible; /* ЩОБ КАРТИНКИ НЕ РІЗАЛО */
+            overflow: visible;
         }
 
-        .online-number { font-family: 'Orbitron'; font-size: 2.5rem; color: #fff; text-align: center; }
+        .online-number { font-family: 'Orbitron'; font-size: 2.8rem; color: #fff; text-align: center; text-shadow: 0 0 10px #00ffcc; }
         .server-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; font-weight: 600; }
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
         .dot-red { background-color: #ff0000; box-shadow: 0 0 5px #ff0000; }
@@ -190,7 +184,6 @@
         .btn-yellow { background: #ffcc00; color: #000; }
         .btn-outline { border: 1px solid var(--neon); color: var(--neon); }
 
-        /* СТИЛІ ДЛЯ БЛОКУ РЕКЛАМИ */
         .ad-container {
             width: 100%;
             border-radius: 15px;
@@ -210,9 +203,7 @@
             border-radius: 15px;
             transition: transform 0.3s ease;
         }
-        .ad-container:hover .ad-banner {
-            transform: scale(1.02);
-        }
+        .ad-container:hover .ad-banner { transform: scale(1.02); }
 
         @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
     </style>
@@ -259,10 +250,8 @@
             <div class="side-title" style="color: #00ffcc;">
                 <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
             </div>
-            <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
-                <a href="https://www.freecounterstat.com" target="_blank">
-                    <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=7deg68x9xu9c5tjwsehjrmjuhdewn2bp" border="0" alt="лічильник онлайну" style="max-width: 100%; height: auto; display: block;">
-                </a>
+            <div class="inner-container">
+                <div class="online-number" id="live-user-count">1</div>
             </div>
         </div>
 
@@ -312,43 +301,55 @@
     </aside>
 </div>
 
-  <style>
+<style>
     .yt-single-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: #ff0000;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.4rem;
-        font-weight: bold;
-        transition: 0.3s ease;
-        padding: 5px 15px;
-        border-radius: 10px;
+        display: flex; align-items: center; gap: 12px; text-decoration: none; color: #ff0000;
+        font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: bold; transition: 0.3s ease;
+        padding: 5px 15px; border-radius: 10px;
     }
-
     .yt-single-link:hover {
-        transform: scale(1.1);
-        color: #ffffff;
-        text-shadow: 0 0 15px #ff0000;
-        background: rgba(255, 0, 0, 0.1);
+        transform: scale(1.1); color: #ffffff; text-shadow: 0 0 15px #ff0000; background: rgba(255, 0, 0, 0.1);
     }
-
-    .yt-single-link i {
-        font-size: 2.2rem;
-    }
+    .yt-single-link i { font-size: 2.2rem; }
 </style>  
 
- <style>
-    .inner-container a:hover {
-        transform: scale(1.1);
-    }
-    /* Скасування збільшення для реклами */
-    .inner-container a.ad-container:hover {
-        transform: scale(1.0) !important;
-        filter: none !important;
-    }
+<style>
+    .inner-container a:hover { transform: scale(1.1); }
+    .inner-container a.ad-container:hover { transform: scale(1.0) !important; filter: none !important; }
 </style>   
+
+<script type="module">
+    // Підключаємо офіційні легкі скрипти Firebase безпосередньо від Google
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    // Безкоштовна та відкрита конфігурація для твого лічильника
+    const firebaseConfig = {
+        databaseURL: "https://counter-blackcellua-default-rtdb.europe-west1.firebasedatabase.app/"
+    };
+
+    // Ініціалізація
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Створюємо унікальний ID для кожного пристрою користувача
+    const userId = Math.random().toString(36).substring(2, 9);
+    const userRef = ref(db, 'online/' + userId);
+    const countRef = ref(db, 'online');
+
+    // Фіксуємо вхід на сайт
+    set(userRef, true);
+
+    // Автоматично видаляємо користувача з бази, коли він закриває вкладку
+    onDisconnect(userRef).remove();
+
+    // Слухаємо базу даних в РЕАЛЬНОМУ ЧАСІ та виводимо цифру на екран
+    onValue(countRef, (snapshot) => {
+        const data = snapshot.val();
+        const activeUsers = data ? Object.keys(data).length : 1;
+        document.getElementById('live-user-count').innerText = activeUsers;
+    });
+</script>
 
 <script>
     async function loadYT(url, divId, count) {
@@ -366,10 +367,11 @@
             }
         } catch (err) { box.innerHTML = "Помилка завантаження..."; }
     }
-    window.onload = () => {
+
+    window.addEventListener('DOMContentLoaded', () => {
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
         loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
-    };
+    });
 </script>
 </body>
 </html>
