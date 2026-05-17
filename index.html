@@ -53,333 +53,264 @@
     <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700&display=swap'); 
         
         :root { 
-            --neon-blue: #00f0ff;
-            --neon-yellow: #ffcc00;
-            --neon-red: #ff0055;
-            --neon-green: #00ff66;
-            --glass-bg: rgba(5, 12, 28, 0.82);
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --steel-blue: #4682b4;
+            --bg-dark: #05080e;
+            --panel-bg: rgba(13, 19, 33, 0.75);
+            --border-color: rgba(255, 255, 255, 0.04);
         }
 
         body { 
             margin: 0; 
-            /* Футуристичний живий космо-градієнт */
-            background: radial-gradient(circle at 50% 20%, #0d2347 0%, #030a1c 60%, #01040d 100%);
-            background-size: 100% 100%;
-            color: #ffffff; 
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(at 50% 0%, #0d1726 0%, var(--bg-dark) 70%);
+            color: #f1f5f9; 
             font-family: 'Exo 2', sans-serif; 
             overflow-x: hidden;
-            padding: 25px 15px;
-            position: relative;
+            padding: 40px 20px;
         }
 
-        /* Фонова кібер-сітка */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* ЦЕНТРАЛЬНИЙ HUD КОНТЕЙНЕР (PREMIUM GLASS) */
-        .hud-container {
-            max-width: 1750px;
+        /* МІНІМАЛІСТИЧНА ПЛАТФОРМА */
+        .stealth-wrapper {
+            max-width: 1600px;
             margin: 0 auto;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(3, 8, 20, 0.88);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            border-radius: 32px;
-            padding: 35px;
-            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.95), 
-                        inset 0 0 60px rgba(0, 240, 255, 0.03);
-            box-sizing: border-box;
         }
 
-        /* ТОП КНОПКИ НАВІГАЦІЇ */
-        nav { display: flex; justify-content: center; margin-bottom: 30px; }
-        .nav-flex { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .action-btn { 
-            display: flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 16px; 
-            text-decoration: none; color: white; font-family: 'Orbitron'; font-size: 0.85rem; 
-            font-weight: 900; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); border: 1px solid rgba(255,255,255,0.06);
-            letter-spacing: 1px; text-transform: uppercase;
+        /* НАВІГАЦІЯ В СТИЛІ КІБЕР-ПРЕМІУМ */
+        nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+        .logo-area { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; color: #fff; text-transform: uppercase; }
+        .logo-area span { color: var(--gold); }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px;
+            color: #94a3b8; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); transition: all 0.3s ease;
         }
-        .btn-youtube { background: linear-gradient(135deg, #ff0040 0%, #aa0024 100%); box-shadow: 0 4px 20px rgba(255, 0, 64, 0.3); }
-        .btn-like { background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); box-shadow: 0 4px 20px rgba(30, 136, 229, 0.3); }
-        .btn-comment { background: linear-gradient(135deg, #00c853 0%, #006020 100%); box-shadow: 0 4px 20px rgba(0, 200, 83, 0.3); }
-        .action-btn:hover { transform: translateY(-4px) scale(1.04); filter: brightness(1.2); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+        .nav-item:hover { color: #fff; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
-        /* МАТРИЧНИЙ БІГУЧИЙ РЯДОК */
-        .marquee-container {
-            width: 100%;
-            background: #01050f;
-            border: 2px solid transparent;
-            border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-red), var(--neon-yellow), var(--neon-blue)) 1;
-            padding: 16px 0;
-            margin-bottom: 35px;
-            box-shadow: 0 0 35px rgba(0, 240, 255, 0.15);
+        /* ЕЛЕГАНТНИЙ БІГУЧИЙ РЯДОК */
+        .ticker-bar {
+            width: 100%; background: #080c14; border: 1px solid var(--border-color); padding: 12px 0; margin-bottom: 40px; border-radius: 8px; overflow: hidden;
         }
-        .marquee-tag { text-align: center; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.9rem; font-weight: 900; letter-spacing: 6px; margin-bottom: 8px; text-transform: uppercase; text-shadow: 0 0 8px var(--neon-blue);}
-        .marquee-window { display: flex; width: max-content; animation: marquee-anim 18s linear infinite; }
-        .marquee-window span { font-size: 1.3rem; font-weight: 800; white-space: nowrap; padding-right: 95px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.25); }
-        @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .ticker-wrap { display: flex; width: max-content; animation: ticker-move 25s linear infinite; }
+        .ticker-wrap span { font-size: 0.95rem; font-weight: 500; color: #64748b; white-space: nowrap; padding-right: 100px; font-family: 'Exo 2'; }
+        .ticker-wrap span strong { color: #cbd5e1; }
+        @keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* СІТКА БЛОКІВ */
-        .main-grid {
+        /* ГОЛОВНИЙ ПРЕМІУМ-МАКЕТ */
+        .layout-grid {
             display: grid;
-            grid-template-columns: 1.48fr 1fr;
-            gap: 35px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
         }
 
-        /* СКЛЯНІ СКИНДЖЕТИ З НЕОНОВИМ КАНТОМ */
-        .glass-panel {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 26px;
-            padding: 28px;
-            box-shadow: 0 25px 55px rgba(0,0,0,0.55), inset 0 0 30px rgba(255,255,255,0.01);
+        /* ZONE CARDS (ЕФЕКТ ДИЗАЙНУ БРЕНДОВОГО ЗАЛІЗА) */
+        .stealth-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-sizing: border-box;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            overflow: hidden;
+            transition: border-color 0.4s, box-shadow 0.4s;
         }
-        .glass-panel::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: 0.6s; pointer-events: none;
-        }
-        .glass-panel:hover::after { left: 150%; }
-        .glass-panel:hover {
-            transform: translateY(-6px);
-            background: rgba(8, 20, 44, 0.9);
-            border-color: rgba(0, 240, 255, 0.25);
-        }
-        .panel-glow-blue { border-left: 6px solid var(--neon-blue); }
-        .panel-glow-yellow { border-left: 6px solid var(--neon-yellow); }
-        .panel-glow-red { border-left: 6px solid var(--neon-red); }
-
-        .block-title {
-            font-family: 'Orbitron'; font-size: 1.05rem; font-weight: 900; color: #fff;
-            margin-top: 0; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 3px;
-            display: flex; align-items: center; gap: 14px;
-        }
-        .block-title i { color: var(--neon-blue); filter: drop-shadow(0 0 8px var(--neon-blue)); }
-
-        /* 🏆 ПРЕМІУМ-ЗОЛОТО 3Д */
-        .subscribe-gold-zone {
-            background: radial-gradient(circle at center, rgba(255, 204, 0, 0.12) 0%, rgba(0,0,0,0.65) 100%);
-            border-radius: 24px;
-            padding: 35px;
-            text-align: center;
-            margin-bottom: 35px;
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            box-shadow: inset 0 0 35px rgba(255,204,0,0.05);
-        }
-        .premium-gold-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 22px;
-            background: linear-gradient(135deg, #7a5800 0%, #fff9be 25%, #ffcc00 50%, #fff9be 75%, #7a5800 100%);
-            background-size: 200% auto;
-            border: 3px solid #ffffff;
-            border-radius: 100px;
-            padding: 20px 75px;
-            color: #000000;
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: 6px;
-            box-shadow: 0 0 45px rgba(255, 204, 0, 0.7), inset 0 4px 12px rgba(255, 255, 255, 0.8);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: liquid-gold 2.8s linear infinite;
-        }
-        .premium-gold-btn:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 0 65px rgba(255, 204, 0, 0.95), inset 0 5px 20px rgba(255, 255, 255, 1);
-        }
-        .premium-gold-btn i { font-size: 2.6rem; color: #ff0044; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4)); }
-
-        /* ОНЛАЙН СТАТИСТИКА */
-        .online-status-card {
-            background: rgba(0, 3, 10, 0.92);
-            border: 2px solid var(--neon-blue);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 35px;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
-        }
-        .online-flex-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .online-number { font-family: 'Orbitron'; font-size: 4.2rem; font-weight: 900; color: #fff; text-shadow: 0 0 25px var(--neon-blue); letter-spacing: 3px; }
-        .live-pulse-dot { width: 18px; height: 18px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 20px var(--neon-green); animation: pulse-glow 1.4s infinite; }
-
-        /* КІБЕР-ПЛЕЄР */
-        .cinema-player-wrapper {
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 24px;
-            overflow: hidden;
-            background: #000;
-            margin-bottom: 35px;
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25);
-            border: 2px solid var(--neon-blue);
+        .stealth-card:hover {
+            border-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.02);
         }
 
-        /* МОЗАЇКА ВІДЕО */
-        .streams-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-        .mosaic-card {
-            background: rgba(0, 3, 8, 0.8);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 18px;
-            padding: 14px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        .card-header {
+            font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 2px;
+            margin-top: 0; margin-bottom: 25px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
         }
-        .mosaic-card:hover { border-color: var(--neon-blue); transform: translateY(-6px) scale(1.03); background: #010614; box-shadow: 0 12px 30px rgba(0, 240, 255, 0.2); }
-        .mosaic-card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
-        .mosaic-title { font-size: 0.85rem; color: #e2e8f0; margin-top: 12px; font-weight: 700; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* ПРАВИЙ СТЕК БЛОКІВ */
-        .right-column-stack { display: flex; flex-direction: column; gap: 30px; }
-
-        .youtube-channel-btn {
-            display: flex; align-items: center; justify-content: center; gap: 14px;
-            background: linear-gradient(90deg, #ff0044 0%, #90001f 100%);
-            color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
-            padding: 18px; border-radius: 16px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.08);
-            letter-spacing: 2px; font-size: 1rem;
+        /* МАТОВА ЗОЛОТА КНОПКА СТИЛЮ LUXURY */
+        .premium-sub-banner {
+            background: linear-gradient(135deg, #090e17 0%, #131e33 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px; padding: 35px; text-align: center; margin-bottom: 40px; position: relative; overflow: hidden;
         }
-        .youtube-channel-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(255,0,68,0.55); filter: brightness(1.15); }
+        .premium-sub-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 70%); pointer-events: none;
+        }
+        .luxury-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 15px;
+            background: #000000; border: 1px solid var(--gold); border-radius: 8px;
+            padding: 16px 60px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
+            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; transition: honesty 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6), inset 0 0 10px rgba(212,175,55,0.1);
+            position: relative; overflow: hidden;
+        }
+        .luxury-btn::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent); transition: 0.5s;
+        }
+        .luxury-btn:hover::after { left: 100%; }
+        .luxury-btn:hover { background: var(--gold); color: #000; box-shadow: 0 15px 35px rgba(212,175,55,0.25); transform: translateY(-2px); }
 
-        /* СЕРВЕРИ WOT */
-        .wot-server-menu { display: flex; flex-direction: column; gap: 14px; font-family: 'Orbitron'; font-size: 0.9rem; }
-        .srv-row { display: flex; justify-content: space-between; padding: 12px 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .srv-name { color: #fff; display: flex; align-items: center; gap: 12px; font-weight: bold; }
-        .srv-dot { width: 9px; height: 9px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 10px var(--neon-green); }
-        .srv-status { color: var(--neon-green); font-weight: 900; }
+        /* СТУДІЙНИЙ ПЛЕЄР */
+        .studio-player {
+            width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
 
-        /* SHORTS ГРИД */
-        .shorts-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .short-frame { aspect-ratio: 9/16; background: #000; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .short-frame:hover { transform: scale(1.04) translateY(-3px); border-color: var(--neon-red); box-shadow: 0 0 25px rgba(255,0,85,0.3); }
+        /* МОЗАЇКА СТРІМІВ (ЧИСТІ ПРЕВ'Ю) */
+        .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; transition: 0.3s; }
+        .video-block:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
+        .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
+        .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-weight: 500; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* ВІДЖЕТ КНОПКИ */
-        .widget-btn {
+        /* ОНЛАЙН СТАТУС В СТИЛІ РЕАЛЬНОГО ЧАСУ */
+        .live-counter-widget {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #080c14; padding: 18px 25px; border-radius: 12px; margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+        .counter-label { font-family: 'Orbitron'; font-size: 0.85rem; color: #64748b; font-weight: 700; letter-spacing: 1px; }
+        .counter-value-flow { display: flex; align-items: center; gap: 12px; }
+        .counter-pulse { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 10px #00ff66; }
+        .counter-number { font-family: 'Orbitron'; font-size: 1.8rem; font-weight: 900; color: #fff; }
+
+        /* ПРАВА КОЛОНКА */
+        .right-pane { display: flex; flex-direction: column; gap: 30px; }
+
+        .btn-main-channel {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #fff; color: #000; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
+            padding: 16px; border-radius: 8px; transition: 0.3s; font-size: 0.9rem; letter-spacing: 1px;
+        }
+        .btn-main-channel:hover { background: #e2e8f0; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.05); }
+
+        /* СЕРВЕРИ */
+        .server-grid { display: flex; flex-direction: column; gap: 12px; }
+        .server-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.02); font-size: 0.85rem; }
+        .server-meta { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-family: 'Orbitron'; font-weight: bold; }
+        .server-indicator { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; }
+        .server-ping { color: #64748b; font-family: 'Orbitron'; }
+
+        /* SHORTS ТА ВІДЖЕТИ */
+        .shorts-flex-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
+
+        .action-link-widget {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 16px; border-radius: 16px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.95rem; font-weight: 900; transition: 0.3s; box-sizing: border-box; letter-spacing: 2px;
+            padding: 15px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.85rem; font-weight: 700; transition: 0.3s; box-sizing: border-box; letter-spacing: 1px;
         }
-        .btn-orange-glow { border: 2px solid #ff5500; color: #ff5500; background: transparent; text-shadow: 0 0 6px #ff5500; }
-        .btn-orange-glow:hover { background: rgba(255,85,0,0.18); box-shadow: 0 0 30px rgba(255,85,0,0.35); transform: translateY(-3px); }
+        .widget-dark-outline { border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; background: transparent; }
+        .widget-dark-outline:hover { background: rgba(255,255,255,0.03); color: #fff; border-color: rgba(255,255,255,0.25); }
         
-        .btn-yellow-glow { background: linear-gradient(135deg, #ffcc00, #a38000); color: #000; font-weight: 900; }
-        .btn-yellow-glow:hover { box-shadow: 0 0 35px rgba(255,204,0,0.6); transform: translateY(-4px) scale(1.01); }
+        .widget-gold-fill { background: var(--gold); color: #000; font-weight: 900; }
+        .widget-gold-fill:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        /* АДАПТИВНІСТЬ */
-        @media (max-width: 1280px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .streams-mosaic { grid-template-columns: repeat(2, 1fr); }
+        /* АДАПТИВНІСТЬ СТИЛЮ СТЕЛС */
+        @media (max-width: 1200px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .clean-mosaic { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .hud-container { padding: 22px 16px; border-radius: 24px; border: none; }
-            .streams-mosaic { grid-template-columns: 1fr; }
-            .premium-gold-btn { font-size: 1.5rem; padding: 16px 40px; width: 100%; box-sizing: border-box; }
-            .premium-gold-btn i { font-size: 2rem; }
-            .online-number { font-size: 3.4rem; }
-            body { padding: 15px 5px; }
+            body { padding: 20px 10px; }
+            nav { flex-direction: column; gap: 20px; text-align: center; }
+            .clean-mosaic { grid-template-columns: 1fr; }
+            .luxury-btn { font-size: 1.1rem; padding: 14px 30px; width: 100%; box-sizing: border-box; }
+            .counter-number { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="hud-container">
+<div class="stealth-wrapper">
 
     <nav>
-        <div class="nav-flex">
-            <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-youtube"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
-            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
-            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comment"><i class="fa-solid fa-comment"></i> КОМЕНТАР</a>
+        <div class="logo-area">BlackCell<span>UA</span></div>
+        <div class="nav-links">
+            <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="nav-item"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube</a>
+            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="nav-item"><i class="fa-solid fa-thumbs-up"></i> Лайк</a>
+            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="nav-item"><i class="fa-solid fa-comment"></i> Коментар</a>
         </div>
     </nav>
 
-    <div class="marquee-container">
-        <div class="marquee-tag">«« РУХОМИЙ РЯДОК »»</div>
-        <div class="marquee-window">
-            <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
-            <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
+    <div class="ticker-bar">
+        <div class="ticker-wrap">
+            <span>🚀 <strong>СТРІМИ ЩОДНЯ:</strong> О 21:00 стартуємо на YouTube!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> Тисни лайк та залишай коментар під трансляцією!</span>
+            <span>⚡ <strong>ВИХІДНІ:</strong> Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
+            <span>🚀 <strong>СТРІМИ ЩОДНЯ:</strong> О 21:00 стартуємо на YouTube!</span>
         </div>
     </div>
 
-    <div class="main-grid">
+    <div class="layout-grid">
 
-        <div class="left-column-flow">
+        <div class="left-pane-flow">
             
-            <div class="subscribe-gold-zone">
-                <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="premium-gold-btn">
-                    <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ!
+            <div class="premium-sub-banner">
+                <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn">
+                    <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ НА КАНАЛ
                 </a>
             </div>
 
-            <div class="online-status-card">
-                <div style="font-family:'Orbitron'; font-size:0.9rem; text-align:center; margin-bottom:8px; color:var(--neon-blue); font-weight:900; letter-spacing:2px;">ЗАРАЗ НА САЙТІ</div>
-                <div class="online-flex-row">
-                    <div class="live-pulse-dot"></div>
-                    <div class="online-number" id="live-user-count">1</div>
+            <div class="live-counter-widget">
+                <div class="counter-label">LIVE CONTROLLER // ONLINE</div>
+                <div class="counter-value-flow">
+                    <div class="counter-pulse"></div>
+                    <div class="counter-number" id="live-user-count">1</div>
                 </div>
             </div>
 
-            <div class="cinema-player-wrapper">
+            <div class="studio-player">
                 <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
             </div>
 
-            <div class="glass-panel panel-glow-blue" style="margin-bottom: 25px;">
-                <h3 class="block-title"><i class="fa-solid fa-circle-play"></i> «(•)» ОСТАННІ СТРІМИ «(•)»</h3>
-                <div id="recent-videos" class="streams-mosaic">Завантаження...</div>
+            <div class="stealth-card" style="margin-bottom: 30px;">
+                <div class="card-header"><span>ARCHIVE</span><div>ОСТАННІ ТРАНСЛЯЦІЇ</div></div>
+                <div id="recent-videos" class="clean-mosaic">Завантаження...</div>
             </div>
 
         </div>
 
-        <div class="right-column-stack">
+        <div class="right-pane">
             
-            <div class="glass-panel panel-glow-red">
-                <h3 class="block-title" style="color:var(--neon-red);"><i class="fa-solid fa-headset" style="color:var(--neon-red); filter:drop-shadow(0 0 5px var(--neon-red));"></i> МІЙ КАНАЛ</h3>
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="youtube-channel-btn">
-                    <i class="fa-brands fa-youtube"></i> YouTube Канал
+            <div class="stealth-card">
+                <div class="card-header"><span>COMMUNITY</span><div>СТРІМЕР ХАБ</div></div>
+                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="btn-main-channel">
+                    <i class="fa-brands fa-youtube" style="color: #000;"></i> ПЕРЕЙТИ НА ЮТУБ
                 </a>
             </div>
 
-            <div class="glass-panel panel-glow-blue">
-                <h3 class="block-title"><i class="fa-solid fa-network-wired"></i> СЕРВЕРИ WOT</h3>
-                <div class="wot-server-menu">
-                    <div class="srv-row"><span class="srv-name"><span class="srv-dot"></span>EU Server 1</span><span class="srv-status">ONLINE</span></div>
-                    <div class="srv-row"><span class="srv-name"><span class="srv-dot"></span>EU Server 2</span><span class="srv-status">ONLINE</span></div>
-                    <div class="srv-row"><span class="srv-name"><span class="srv-dot"></span>EU Server 3</span><span class="srv-status">ONLINE</span></div>
-                    <div class="srv-row"><span class="srv-name"><span class="srv-dot"></span>EU Server 4</span><span class="srv-status">ONLINE</span></div>
+            <div class="stealth-card">
+                <div class="card-header"><span>NETWORK</span><div>КЛАСУВАННЯ СЕРВЕРІВ WOT</div></div>
+                <div class="server-grid">
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 WEST</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 EAST</div><div class="server-ping">ONLINE</div></div>
                 </div>
             </div>
 
-            <div class="glass-panel panel-glow-blue">
-                <h3 class="block-title"><i class="fa-solid fa-bolt" style="color:var(--neon-red); filter:drop-shadow(0 0 5px var(--neon-red));"></i> SHORTS</h3>
-                <div class="shorts-grid-layout">
-                    <div class="short-frame"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
-                    <div class="short-frame"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
+            <div class="stealth-card">
+                <div class="card-header"><span>QUICK CONTENT</span><div>YOUTUBE SHORTS</div></div>
+                <div class="shorts-flex-container">
+                    <div class="short-card"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
+                    <div class="short-card"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
                 </div>
             </div>
 
-            <div class="glass-panel" style="border-left: 5px solid #ff5500;">
-                <a href="#" class="widget-btn btn-orange-glow">... РЕКЛАМА ...</a>
+            <div class="stealth-card" style="padding: 20px;">
+                <a href="#" class="action-link-widget widget-dark-outline">РЕКЛАМНИЙ ІНТЕГРАТОР</a>
             </div>
 
-            <div class="glass-panel panel-glow-yellow">
-                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="widget-btn btn-yellow-glow">DOWNLOAD MODPACK WOT</a>
+            <div class="stealth-card" style="border-color: rgba(212, 175, 55, 0.3);">
+                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="action-link-widget widget-gold-fill">СКАЧАТИ МОДПАК WOT</a>
             </div>
 
         </div>
@@ -423,14 +354,14 @@
                 data.items.slice(0, count).forEach(v => {
                     let id = v.link.split('v=')[1] || v.link.split('/').pop();
                     cards += `
-                    <div class="mosaic-card">
+                    <div class="video-block">
                         <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
-                        <div class="mosaic-title">${v.title}</div>
+                        <div class="video-caption">${v.title}</div>
                     </div>`;
                 });
                 box.innerHTML = cards;
             }
-        } catch (err) { box.innerHTML = "<div style='text-align:center;color:var(--neon-red);padding:10px;'>Помилка завантаження відео...</div>"; }
+        } catch (err) { box.innerHTML = "<div style='text-align:center;color:#ef4444;padding:10px;'>Помилка завантаження архіву...</div>"; }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
