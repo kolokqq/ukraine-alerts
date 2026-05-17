@@ -55,7 +55,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap'); 
         
-      :root { 
+        :root { 
             --neon: #00ffcc; 
             --bg: #020617; 
             --panel-bg: rgba(2, 6, 23, 0.8);
@@ -119,6 +119,17 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* ГОЛОВНИЙ КОНТЕЙНЕР ДЛЯ ВЕРХНІХ БЛОКІВ */
+        .top-widgets-container {
+            max-width: 1500px;
+            margin: 20px auto 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Робить блоки однакової ширини в один ряд */
+            gap: 20px;
+            box-sizing: border-box;
+        }
+
         .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
@@ -139,6 +150,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .side-title {
@@ -205,7 +218,16 @@
         }
         .ad-container:hover .ad-banner { transform: scale(1.02); }
 
-        @media (max-width: 1100px) { .wrapper { flex-direction: column; } .sidebar { width: 100%; } }
+        /* АДАПТИВНІСТЬ ДЛЯ ДИСКЛЕЇВ */
+        @media (max-width: 1100px) { 
+            .wrapper { flex-direction: column; } 
+            .sidebar { width: 100%; } 
+        }
+        @media (max-width: 768px) {
+            .top-widgets-container {
+                grid-template-columns: 1fr; /* На телефонах блоки стають один під одного */
+            }
+        }
     </style>
 </head>
 <body>
@@ -223,35 +245,37 @@
         <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА! • </span>
     </div>
 </div>
+
+<div class="top-widgets-container">
+    <div class="side-block">
+        <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
+        <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
+            <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
+                    style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
+        </div>
+    </div>
+
+    <div class="side-block">
+        <div class="side-title" style="color: #00ffcc;">
+            <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
+        </div>
+        <div class="inner-container">
+            <div class="online-number" id="live-user-count">1</div>
+        </div>
+    </div>
+</div>
     
 <div class="wrapper">
     <div class="main-content">
         <div class="player-box">
             <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
-                      
-        <h2 class="section-header"><i class="fa-solid fa-history"></i>ОСТАННІ СТРІМИ</h2>
+        
+        <h2 class="section-header"><i class="fa-solid fa-history"></i>💙💛 ОСТАННІ СТРІМИ</h2>
         <div id="recent-videos" class="video-grid">Завантаження...</div>
     </div>
 
     <aside class="sidebar">
-        <div class="side-block">
-            <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
-            <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
-                <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
-                        style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
-            </div>
-        </div>
-
-        <div class="side-block">
-            <div class="side-title" style="color: #00ffcc;">
-                <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
-            </div>
-            <div class="inner-container">
-                <div class="online-number" id="live-user-count">1</div>
-            </div>
-        </div>
-
         <div class="side-block" style="border-color: #ff0000;">
             <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
             <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
@@ -316,31 +340,23 @@
 </style>   
 
 <script type="module">
-    // Підключаємо офіційні легкі скрипти Firebase безпосередньо від Google
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // Безкоштовна та відкрита конфігурація для твого лічильника
     const firebaseConfig = {
         databaseURL: "https://counter-blackcellua-default-rtdb.europe-west1.firebasedatabase.app/"
     };
 
-    // Ініціалізація
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Створюємо унікальний ID для кожного пристрою користувача
     const userId = Math.random().toString(36).substring(2, 9);
     const userRef = ref(db, 'online/' + userId);
     const countRef = ref(db, 'online');
 
-    // Фіксуємо вхід на сайт
     set(userRef, true);
-
-    // Автоматично видаляємо користувача з бази, коли він закриває вкладку
     onDisconnect(userRef).remove();
 
-    // Слухаємо базу даних в РЕАЛЬНОМУ ЧАСІ та виводимо цифру на екран
     onValue(countRef, (snapshot) => {
         const data = snapshot.val();
         const activeUsers = data ? Object.keys(data).length : 1;
@@ -366,8 +382,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+        // Завантажуємо тільки останні стріми, рядок з особливим відео прибрано
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
-        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'special-videos', 3);
     });
 </script>
 </body>
