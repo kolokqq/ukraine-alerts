@@ -269,7 +269,7 @@
     <div class="ticker-bar">
         <div class="ticker-wrap">
             <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар під трансляцією!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар под трансляцією!</span>
             <span>🔥 <strong>ВИХІДНІ:</strong> 🔥 Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
         </div>
     </div>
@@ -288,7 +288,7 @@
                 <div class="counter-label">ВІДВІДУВАЧІ</div>
                 <div class="counter-value-flow">
                     <div class="counter-pulse"></div>
-                    <div class="counter-number" id="live-user-count">Завантаження...</div>
+                    <div class="counter-number" id="live-user-count">2785</div>
                 </div>
             </div>
 
@@ -348,33 +348,23 @@
     </div>
 </div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const counterElement = document.getElementById('live-user-count');
+        const BASE_START_VISITS = 2785;
 
-    const firebaseConfig = {
-        databaseURL: "https://counter-blackcellua-default-rtdb.europe-west1.firebasedatabase.app/"
-    };
+        // Дістаємо збережені унікальні кліки з пам'яті браузера
+        let totalClicks = parseInt(localStorage.getItem('site_total_clicks') || "0");
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const visitsRef = ref(db, 'total_visits');
+        // Якщо людина зайшла вперше за цю сесію — додаємо +1
+        if (!sessionStorage.getItem('session_active')) {
+            totalClicks += 1;
+            localStorage.setItem('site_total_clicks', totalClicks);
+            sessionStorage.setItem('session_active', 'true');
+        }
 
-    // Базова солідна стартова цифра, щоб сайт не виглядав порожнім
-    const BASE_START_VISITS = 2785;
-
-    // Прапорець для запобігання накрутки від однієї людини при простому оновленні сторінки під час однієї сесії
-    if (!sessionStorage.getItem('site_visited')) {
-        runTransaction(visitsRef, (currentValue) => {
-            return (currentValue || 0) + 1;
-        });
-        sessionStorage.setItem('site_visited', 'true');
-    }
-
-    // Оновлення цифри на екрані в реальному часі з додаванням базового значення
-    onValue(visitsRef, (snapshot) => {
-        const dbValue = snapshot.val() || 0;
-        document.getElementById('live-user-count').innerText = BASE_START_VISITS + dbValue;
+        // Виводимо підсумкову красиву суму
+        counterElement.innerText = BASE_START_VISITS + totalClicks;
     });
 </script>
 
