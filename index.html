@@ -14,7 +14,7 @@
     </script>
     
     <title>World of Tanks — Твій ігровий портал BlackCellUA</title>
-    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на канале BlackCellUA. Приєднуйся!">
+    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на каналі BlackCellUA. Приєднуйся!">
     <meta name="keywords" content="World of Tanks, стрім українською, World of Tanks UA, WOT стрім, танки українською, BlackCellUA, світ танків стрім">
     <meta name="author" content="BlackCellUA">
     
@@ -86,7 +86,6 @@
         .logo-area span { color: var(--gold); }
         .nav-links { display: flex; gap: 15px; }
         
-        /* КРАСИВІ КНОПКИ НАВІГАЦІЇ */
         .nav-item {
             display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 6px;
             color: #cbd5e1; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700;
@@ -140,7 +139,7 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* ВЕЛИКА КНОПКА ПІДПИСКИ — НОВИЙ ПРЕМІУМ СТИЛЬ */
+        /* ФІКС ВЕЛИКОЇ КНОПКИ ПІДПИСКИ */
         .premium-sub-banner {
             background: #090e17;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -149,10 +148,11 @@
         .luxury-btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 15px;
             background: #020408; border: 2px solid var(--gold); border-radius: 8px;
-            padding: 18px 65px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
-            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; 
+            padding: 18px 40px; color: var(--gold); text-decoration: none; font-family: 'Orbitron';
+            font-size: 1.3rem; font-weight: 900; letter-spacing: 3px; white-space: nowrap;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            width: auto; max-width: 100%; box-sizing: border-box;
         }
         .luxury-btn:hover { 
             background: var(--gold); 
@@ -189,7 +189,7 @@
         /* ПРАВА КОЛОНКА */
         .right-pane { display: flex; flex-direction: column; gap: 30px; }
 
-        /* КНОПКА СТРІМЕР ХАБ — НОВИЙ ПРЕМІУМ СТИЛЬ */
+        /* КНОПКА СТРІМЕР ХАБ */
         .btn-main-channel {
             display: flex; align-items: center; justify-content: center; gap: 12px;
             background: #0f172a; color: #f8fafc; text-decoration: none; font-family: 'Orbitron'; font-weight: 900;
@@ -205,18 +205,26 @@
             box-shadow: 0 8px 20px rgba(255,255,255,0.1); 
         }
 
-        /* СЕРВЕРИ */
-        .server-grid { display: flex; flex-direction: column; gap: 12px; }
-        .server-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.02); font-size: 0.85rem; }
+        /* ФІКС ТАБЛИЦІ СЕРВЕРІВ (СТРОГИЙ БЛОЧНИЙ ВИГЛЯД КОЖНОГО РЯДКА) */
+        .server-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; }
+        .server-item { 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            align-items: center !important;
+            padding: 10px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.04); 
+            font-size: 0.85rem;
+            width: 100%;
+        }
         .server-meta { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-family: 'Orbitron'; font-weight: bold; }
-        .server-indicator { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; }
-        .server-ping { color: #64748b; font-family: 'Orbitron'; }
+        .server-indicator { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 6px #00ff66; }
+        .server-ping { color: #64748b; font-family: 'Orbitron'; font-weight: 700; }
 
         /* SHORTS ТА ВІДЖЕТИ */
         .shorts-flex-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
 
-        /* КНОПКА РЕКЛАМНОГО БЛОКУ */
+        /* КНОПКИ ВІДЖЕТІВ */
         .action-link-widget {
             display: flex; align-items: center; justify-content: center; width: 100%; 
             padding: 16px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
@@ -234,7 +242,6 @@
             transform: scale(1.01);
         }
         
-        /* КНОПКА СКАЧАТИ МОДПАК — НОВИЙ ПРЕМІУМ СТИЛЬ */
         .widget-gold-fill { 
             background: linear-gradient(135deg, #b79528 0%, #ecd067 100%); 
             color: #05080e; 
@@ -247,7 +254,7 @@
             box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
         }
 
-        /* АДАПТИВНІСТЬ СТИЛЮ СТЕЛС */
+        /* АДАПТИВНІСТЬ */
         @media (max-width: 1200px) {
             .layout-grid { grid-template-columns: 1fr; }
             .clean-mosaic { grid-template-columns: repeat(2, 1fr); }
@@ -256,7 +263,7 @@
             body { padding: 20px 10px; }
             nav { flex-direction: column; gap: 20px; text-align: center; }
             .clean-mosaic { grid-template-columns: 1fr; }
-            .luxury-btn { font-size: 1.1rem; padding: 14px 30px; width: 100%; box-sizing: border-box; }
+            .luxury-btn { font-size: 1.1rem; padding: 14px 20px; width: 100%; box-sizing: border-box; white-space: normal; }
             .counter-number { font-size: 1.4rem; }
         }
     </style>
@@ -277,7 +284,7 @@
     <div class="ticker-bar">
         <div class="ticker-wrap">
             <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар под трансляцією!</span>
+            <span>🔥 <strong>АКТИВНІСТЬ:</strong> 🔥 Тисни лайк та залишай коментар під трансляцією!</span>
             <span>🔥 <strong>ВИХІДНІ:</strong> 🔥 Особливі ранкові ефіри о 07:00! Приєднуйся!</span>
         </div>
     </div>
@@ -288,7 +295,7 @@
             
             <div class="premium-sub-banner">
                 <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn">
-                    <i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ НА КАНАЛ
+                    <i class="fa-brands fa-youtube" style="color:#ff0000;"></i> ПІДПИШИСЬ НА КАНАЛ
                 </a>
             </div>
 
@@ -323,11 +330,10 @@
             <div class="stealth-card">
                 <div class="card-header"><span>КЛАСУВАННЯ СЕРВЕРІВ WOT</span><div></div></div>
                 <div class="server-grid">
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 1 /div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 2 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 3 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 4 </div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 5 </div><div class="server-ping">ONLINE</div></div>   
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 WEST</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 EAST</div><div class="server-ping">ONLINE</div></div>
                 </div>
             </div>
 
