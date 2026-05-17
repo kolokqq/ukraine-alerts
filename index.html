@@ -9,7 +9,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'AW-17614916752');
     </script>
     
@@ -28,53 +27,49 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="BlackCellUA">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "World of Tanks Стрім Українською | BlackCellUA",
-      "description": "Дивись пряму трансляцію WoT українською мовою на ігровому порталі BlackCellUA. Фарм, відмітки та круті бої!",
-      "thumbnailUrl": [
-        "https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg"
-      ],
-      "uploadDate": "2026-05-16T07:00:00+02:00",
-      "contentUrl": "https://www.youtube.com/watch?v=JcirRSU3iCY",
-      "embedUrl": "https://www.youtube.com/embed/JcirRSU3iCY",
-      "interactionCount": "190"
-    }
-    </script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
-    <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
-    <link rel="icon" href="favicon_48_v2.png" sizes="48x48">
-    <link rel="icon" href="favicon_96_v2.png" sizes="96x96">
-    <link rel="icon" href="favicon_144_v2.png" sizes="144x144">
-    <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap'); 
         
         :root { 
-            --neon: #00ffcc; 
-            --bg: #020617; 
-            --panel-bg: rgba(2, 6, 23, 0.8);
+            --neon-blue: #00d2ff;
+            --neon-yellow: #ffcc00;
+            --neon-red: #ff0055;
+            --bg: #030a16; 
+            --panel-bg: rgba(6, 18, 36, 0.85);
             --text: #ffffff; 
         }
 
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; overflow-x: hidden; }
+        body { 
+            margin: 0; 
+            background: radial-gradient(circle at center, #0a1c3a 0%, #020712 100%); 
+            color: var(--text); 
+            font-family: 'Exo 2', sans-serif; 
+            overflow-x: hidden;
+            padding: 20px 10px;
+        }
+
+        /* КУРВАТУРА ТА СТИЛЬ КУРВЕД-МОНІТОРА ЯК НА ФОТО */
+        .monitor-frame {
+            max-width: 1550px;
+            margin: 0 auto;
+            background: #020714;
+            border: 4px solid #1a2942;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 
+                        inset 0 0 40px rgba(0, 210, 255, 0.05);
+            position: relative;
+        }
 
         nav { 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            padding: 15px 5%; 
+            padding: 0 0 15px 0; 
             background: transparent; 
-            border-bottom: 1px solid rgba(0, 255, 204, 0.3); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            backdrop-filter: blur(5px);
         }
         .nav-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
         .action-btn { 
@@ -87,282 +82,340 @@
         .btn-comm { background: #10b981; }
         .action-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
+        /* РУХОМИЙ РЯДОК З РАМКОЮ ЯК НА МАКЕТІ */
         .neon-marquee {
             width: 100%;
-            background: rgba(2, 6, 23, 0.95);
-            border-top: 1px solid rgba(59, 130, 246, 0.4);     
-            border-bottom: 1px solid rgba(234, 179, 8, 0.4);   
+            background: rgba(2, 7, 20, 0.9);
+            border: 2px solid var(--neon-blue);
+            border-image: linear-gradient(to right, var(--neon-blue), var(--neon-yellow)) 1;
+            border-radius: 12px;
             overflow: hidden;
             padding: 12px 0;
             box-sizing: border-box;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+        .marquee-title {
+            text-align: center;
+            font-family: 'Orbitron';
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
         }
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: scroll-text 20s linear infinite;
+            animation: scroll-text 25s linear infinite;
         }
         .marquee-track span {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.1rem;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             white-space: nowrap;
             padding-right: 60px;
-            background: linear-gradient(to bottom, #3b82f6 50%, #eab308 50%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.6)) 
-                    drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
+            color: #ffffff;
         }
         @keyframes scroll-text {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* ВЕРХНІ БЛОКИ ПІД БІГУЧОЮ СТРОКОЮ */
+        /* СІТКА ДЛЯ ВЕРХНІХ БЛОКІВ */
         .top-widgets-container {
-            max-width: 1500px;
-            margin: 20px auto 0 auto;
-            padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr; 
+            grid-template-columns: 1.6fr 1fr; 
             gap: 20px;
-            box-sizing: border-box;
+            margin-bottom: 20px;
         }
 
-        /* СТИЛЬ ДЛЯ ВЕЛИКОЇ КНОПКИ ПІДПИСКИ (ЧЕРВОНИЙ НЕОН) */
+        /* БЛОК ПІДПИШИСЬ ЖОВТО-БЛАКИТНИЙ */
         .sub-big-block {
-            border: 1px solid #ff0000;
-            border-radius: 25px;
-            padding: 15px 20px;
+            border: 2px solid var(--neon-yellow);
+            border-radius: 16px;
+            padding: 15px;
             background: var(--panel-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box;
             text-decoration: none;
             transition: 0.3s ease;
-            box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.1);
-            height: 100%;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
         }
         .sub-big-block:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4), inset 0 0 15px rgba(255, 0, 0, 0.2);
-        }
-        .sub-big-title {
-            font-family: 'Orbitron';
-            font-size: 0.8rem;
-            color: #ff3333;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
         }
         .sub-big-content {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             color: #fff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: bold;
         }
-        .sub-big-content i {
-            color: #ff0000;
-            font-size: 3rem;
-            animation: pulse-yt 2s infinite;
-        }
-        @keyframes pulse-yt {
-            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(255,0,0,0)); }
-            50% { transform: scale(1.08); filter: drop-shadow(0 0 10px rgba(255,0,0,0.6)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(255,0,0,0)); }
+        .sub-big-content img { width: 45px; height: auto; }
+        .sub-desc {
+            font-family: 'Orbitron';
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            margin-top: 5px;
         }
 
-        .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
-        .main-content { flex: 1; min-width: 0; }
-        .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
-
-        .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; }
-        .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
-
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: rgba(13, 17, 23, 0.6); padding: 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 204, 0.2); }
-        .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
-        .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
-
-        .side-block {
-            border: 1px solid var(--neon);
-            border-radius: 25px;
-            padding: 20px;
+        /* БЛОК ЗАРАЗ НА САЙТІ ВГОРІ ЯК НА ФОТО */
+        .top-online-block {
+            border: 2px solid var(--neon-yellow);
+            border-radius: 16px;
             background: var(--panel-bg);
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+        }
+        .top-online-title {
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .top-online-value {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Orbitron';
+            font-size: 3.2rem;
+            font-weight: bold;
+        }
+        .status-circle {
+            width: 24px;
+            height: 24px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        /* ОСНОВНА СТРУКТУРА */
+        .wrapper { display: flex; flex-direction: row; gap: 25px; }
+        .main-content { flex: 1; min-width: 0; }
+        .sidebar { width: 360px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
+
+        /* ПЛЕЄР З ТАНКОВИМ ЗАДНІМ ФОНОМ ТА НЕОНОМ */
+        .player-box { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: 2px solid var(--neon-yellow); 
+            background: url('https://images.alphacoders.com/274/274230.jpg') center/cover no-repeat; 
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.15);
+        }
+
+        /* СЕКЦІЯ ОСТАННІ СТРІМИ */
+        .section-header { 
+            font-family: 'Orbitron'; 
+            color: #ffffff; 
+            font-size: 1.1rem; 
+            margin: 25px 0 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+        .section-header span { color: var(--neon-blue); }
+
+        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .card { 
+            background: #040f21; 
+            padding: 10px; 
+            border-radius: 12px; 
+            border: 2px solid rgba(0, 210, 255, 0.3); 
+            text-align: center;
+        }
+        .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: none; }
+        .video-meta-title {
+            font-size: 0.75rem;
+            color: #8ab4f8;
+            margin-top: 8px;
+            font-family: 'Exo 2';
+        }
+        .video-meta-date {
+            font-size: 0.65rem;
+            color: #5f6368;
+            margin-top: 3px;
+        }
+
+        /* СТИЛІЗАЦІЯ БЛОКІВ САЙДБАРУ */
+        .side-block {
+            border: 2px solid var(--neon-blue);
+            border-radius: 16px;
+            padding: 18px;
+            background: var(--panel-bg);
             box-sizing: border-box;
             width: 100%;
         }
-
         .side-title {
             font-family: 'Orbitron';
-            font-size: 0.8rem;
-            color: var(--neon);
+            font-size: 0.85rem;
+            color: var(--neon-blue);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .inner-container {
-            background: transparent;
-            width: 100%;
-            border-radius: 15px;
-            padding: 10px 0;
-            box-sizing: border-box;
+        /* МІЙ КАНАЛ (ЧЕРВОНИЙ НЕОН) */
+        .channel-block { border-color: var(--neon-red); }
+        .channel-block .side-title { color: var(--neon-red); }
+        .yt-link-btn {
             display: flex;
-            flex-direction: column;
-            min-height: 60px;
+            align-items: center;
             justify-content: center;
-            overflow: visible;
+            gap: 10px;
+            background: #ff0000;
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron';
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 8px;
+            transition: 0.3s;
         }
+        .yt-link-btn:hover { transform: scale(1.03); box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
 
-        .online-number { font-family: 'Orbitron'; font-size: 2.8rem; color: #fff; text-align: center; text-shadow: 0 0 10px #00ffcc; }
-        .server-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; font-weight: 600; }
-        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
-        .dot-red { background-color: #ff0000; box-shadow: 0 0 5px #ff0000; }
-        .status-online { color: #00ff00; font-family: 'Orbitron'; font-size: 0.75rem; }
+        /* СЕРВЕРИ WOT */
+        .server-table { width: 100%; font-family: 'Orbitron'; font-size: 0.8rem; }
+        .server-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .server-name { color: #fff; display: flex; align-items: center; gap: 8px; }
+        .server-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 5px #00ff00; }
+        .server-status { color: #00ff00; font-weight: bold; }
 
-        .shorts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; width: 100%; }
-        .short-item { aspect-ratio: 9/16; background:#000; border-radius:15px; overflow:hidden; border: 1px solid rgba(255,255,255,0.1); }
+        /* SHORTS */
+        .shorts-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
 
-        .btn-action-side {
+        /* КНОПКИ ТА БАНЕРИ */
+        .side-btn {
             display: flex; align-items: center; justify-content: center; width: 100%; 
-            padding: 12px; border-radius: 12px; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.8rem; font-weight: bold; transition: 0.3s; margin-top: 10px;
-            box-sizing: border-box;
+            padding: 12px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.85rem; font-weight: bold; transition: 0.3s; box-sizing: border-box;
+            border: none; margin-top: 10px;
         }
-        .btn-yellow { background: #ffcc00; color: #000; }
-        .btn-outline { border: 1px solid var(--neon); color: var(--neon); }
+        .btn-yellow-filled { background: var(--neon-yellow); color: #000; }
+        .btn-yellow-filled:hover { transform: translateY(-2px); box-shadow: 0 0 15px rgba(255,204,0,0.4); }
+        
+        .btn-orange-outline { border: 2px solid #ff7700; color: #ff7700; background: transparent; }
+        .btn-orange-outline:hover { background: rgba(255,119,0,0.1); }
 
-        @media (max-width: 1100px) { 
-            .wrapper { flex-direction: column; } 
-            .sidebar { width: 100%; } 
+        /* АДАПТИВНІСТЬ ДЛЯ МОБІЛОК */
+        @media (max-width: 1200px) {
+            .wrapper { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .top-widgets-container { grid-template-columns: 1fr; gap: 15px; }
-            .sub-big-content { font-size: 1.6rem; }
-            .sub-big-content i { font-size: 2.2rem; }
+            .top-widgets-container { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; }
+            .monitor-frame { padding: 12px; border: none; }
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="nav-buttons">
-        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
-        <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
-    </div>
-</nav>
+<div class="monitor-frame">
 
-<div class="neon-marquee">
-    <div class="marquee-track">
-        <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА! • </span>
-    </div>
-</div>
-
-<div class="top-widgets-container">
-    <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="sub-big-block">
-        <div class="sub-big-title"><i class="fa-solid fa-heart"></i> 💙💛 ПІДПИШИСЬ</div>
-        <div class="sub-big-content">
-            <i class="fa-brands fa-youtube"></i>
-            <span>YouTube</span>
+    <nav>
+        <div class="nav-buttons">
+            <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="action-btn btn-sub"><i class="fa-brands fa-youtube"></i> ПІДПИШИСЬ</a>
+            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-like"><i class="fa-solid fa-thumbs-up"></i> ПОСТАВ ЛАЙК</a>
+            <a href="https://www.youtube.com/live/sC6EnSzcKa0" target="_blank" class="action-btn btn-comm"><i class="fa-solid fa-comment"></i> НАПИШИ КОМЕНТАР</a>
         </div>
-    </a>
+    </nav>
 
-    <div class="side-block" style="padding: 15px 20px;">
-        <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
-        <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
-            <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
-                    style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
+    <div class="neon-marquee">
+        <div class="marquee-title">«« РУХОМИЙ РЯДОК »»</div>
+        <div class="marquee-track">
+            <span>🔥 ПІДПИШИСЬ НА КАНАЛ! • 👍 ПОСТАВ ЛАЙК! • 🎬 СТРІМИ ЩОДНЯ О 21:00! • 🚀 НА ВИХІДНИХ СТРІМ О 7 УТРА!! • </span>
         </div>
     </div>
-</div>
-    
-<div class="wrapper">
-    <div class="main-content">
-        <div class="player-box">
-            <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+
+    <div class="top-widgets-container">
+        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="sub-big-block">
+            <div class="sub-big-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo_2015.svg" alt="YouTube">
+                <span>YouTube</span>
+            </div>
+            <div class="sub-desc">ПІДПИШИСЬ!</div>
+        </a>
+
+        <div class="top-online-block">
+            <div class="top-online-title">ЗАРАЗ НА САЙТІ</div>
+            <div class="top-online-value">
+                <div class="status-circle"></div>
+                <span id="live-user-count">1</span>
+            </div>
         </div>
+    </div>
         
-        <h2 class="section-header"><i class="fa-solid fa-history"></i>💙💛 ОСТАННІ СТРІМИ</h2>
-        <div id="recent-videos" class="video-grid">Завантаження...</div>
-    </div>
-
-    <aside class="sidebar">
-        <div class="side-block">
-            <div class="side-title" style="color: #00ffcc;">
-                <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
+    <div class="wrapper">
+        <div class="main-content">
+            <div class="player-box">
+                <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none; background: transparent;"></iframe>
             </div>
-            <div class="inner-container">
-                <div class="online-number" id="live-user-count">1</div>
-            </div>
+            
+            <h2 class="section-header">«(•)» <span>ОСТАННІ СТРІМИ</span> «(•)»</h2>
+            <div id="recent-videos" class="video-grid">Завантаження...</div>
         </div>
 
-        <div class="side-block" style="border-color: #ff0000;">
-            <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
-            <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
-                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-single-link">
-                    <i class="fa-brands fa-youtube"></i>
-                    <span>YouTube</span>
+        <aside class="sidebar">
+            
+            <div class="side-block channel-block">
+                <div class="side-title"><i class="fa-solid fa-users-viewfinder"></i> МІЙ КАНАЛ</div>
+                <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="yt-link-btn">
+                    <i class="fa-brands fa-youtube"></i> YouTube
                 </a>
             </div>
-        </div>
 
-        <div class="side-block">
-            <div class="side-title"><i class="fa-solid fa-server"></i>💙💛 СЕРВЕРИ WOT</div>
-            <div class="inner-container">
-                <div class="server-row"><span><span class="dot dot-red"></span>EU1 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU2 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU3 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU4 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
-                <div class="server-row"><span><span class="dot dot-red"></span>EU5 СЕРВЕР</span><span class="status-online">ONLINE</span></div>
+            <div class="side-block">
+                <div class="side-title">СЕРВЕРИ WOT</div>
+                <div class="server-table">
+                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 1</span><span class="server-status">ONLINE</span></div>
+                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 2</span><span class="server-status">ONLINE</span></div>
+                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 3</span><span class="server-status">ONLINE</span></div>
+                    <div class="server-row"><span class="server-name"><span class="server-dot"></span>EU Server 4</span><span class="server-status">ONLINE</span></div>
+                </div>
             </div>
-        </div>
 
-        <div class="side-block">
-            <div class="side-title" style="color: #ff0055;"><i class="fa-solid fa-bolt"></i> 💙💛 SHORTS</div>
-            <div class="shorts-grid">
-                <div class="short-item"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
-                <div class="short-item"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
+            <div class="side-block">
+                <div class="side-title">SHORTS</div>
+                <div class="shorts-container">
+                    <div class="short-card"><iframe src="https://www.youtube.com/embed/xC29GvadLBs" style="width:100%; height:100%; border:none;"></iframe></div>
+                    <div class="short-card"><iframe src="https://www.youtube.com/embed/Hp8l6Iaa-Gg" style="width:100%; height:100%; border:none;"></iframe></div>
+                </div>
             </div>
-            <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-action-side btn-outline">💙💛 SHORTS</a>
-        </div>
 
-        <div class="side-block" style="border-color: #ffcc00;">
-            <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>💙💛 MODPACK WOT</div>
-            <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
-        </div>
-    </aside>
-</div>
+            <div class="side-block" style="border-color: #ff7700;">
+                <a href="#" class="side-btn btn-orange-outline" style="margin: 0; padding: 8px;">РЕКЛАМА</a>
+            </div>
 
-<style>
-    .yt-single-link {
-        display: flex; align-items: center; gap: 12px; text-decoration: none; color: #ff0000;
-        font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: bold; transition: 0.3s ease;
-        padding: 5px 15px; border-radius: 10px;
-    }
-    .yt-single-link:hover {
-        transform: scale(1.1); color: #ffffff; text-shadow: 0 0 15px #ff0000; background: rgba(255, 0, 0, 0.1);
-    }
-    .yt-single-link i { font-size: 2.2rem; }
-</style>  
+            <div class="side-block" style="border-color: var(--neon-yellow);">
+                <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="side-btn btn-yellow-filled" style="margin: 0;">MODPACK WOT</a>
+            </div>
 
-<script type="module">
+        </aside>
+    </div>
+
+</div> <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
@@ -397,16 +450,22 @@
                 let cards = '';
                 data.items.slice(0, count).forEach(v => {
                     let id = v.link.split('v=')[1] || v.link.split('/').pop();
-                    cards += `<div class="card"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="title-tag">${v.title}</div></div>`;
+                    cards += `
+                    <div class="card">
+                        <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
+                        <div class="video-meta-title">${v.title}</div>
+                        <div class="video-meta-date">Screenshot 3, 2026</div>
+                    </div>`;
                 });
                 box.innerHTML = cards;
             }
-        } catch (err) { box.innerHTML = "Помилка завантаження..."; }
+        } catch (err) { box.innerHTML = "Помилка завантаження відео..."; }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
     });
 </script>
+
 </body>
 </html>
