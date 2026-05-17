@@ -139,7 +139,7 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* ФІКС ВЕЛИКОЇ КНОПКИ ПІДПИСКИ */
+        /* ВЕЛИКА КНОПКА ПІДПИСКИ */
         .premium-sub-banner {
             background: #090e17;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -168,7 +168,7 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        /* МОЗАЇКА СТРІМІВ */
+        /* МОЗАЇКА СТРІМІВ ТА ВІДЕО */
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; transition: 0.3s; }
         .video-block:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
@@ -205,7 +205,7 @@
             box-shadow: 0 8px 20px rgba(255,255,255,0.1); 
         }
 
-        /* ФІКС ТАБЛИЦІ СЕРВЕРІВ (СТРОГИЙ БЛОЧНИЙ ВИГЛЯД КОЖНОГО РЯДКА) */
+        /* ТАБЛИЦЯ СЕРВЕРІВ */
         .server-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; }
         .server-item { 
             display: flex !important; 
@@ -312,6 +312,11 @@
             </div>
 
             <div class="stealth-card" style="margin-bottom: 30px;">
+                <div class="card-header"><span>ОСТАННІ ВІДЕО</span><div></div></div>
+                <div id="latest-videos-block" class="clean-mosaic">Завантаження...</div>
+            </div>
+
+            <div class="stealth-card" style="margin-bottom: 30px;">
                 <div class="card-header"><span>ОСТАННІ ТРАНСЛЯЦІЇ</span><div></div></div>
                 <div id="recent-videos" class="clean-mosaic">Завантаження...</div>
             </div>
@@ -405,6 +410,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+        // Завантаження контенту в обидва блоки
+        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'latest-videos-block', 3);
         loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
     });
 </script>
