@@ -119,27 +119,26 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* КОНТЕЙНЕР ДЛЯ ОСТАННІХ СТРІМІВ ВГОРІ */
-        .top-streams-container {
+        /* КОНТЕЙНЕР ДЛЯ ЛІЧИЛЬНИКІВ ВГОРІ */
+        .top-widgets-container {
             max-width: 1500px;
             margin: 20px auto 0 auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px;
             box-sizing: border-box;
         }
 
-        .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 15px auto 40px auto; padding: 0 20px; gap: 30px; }
+        .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 20px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
         .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; }
-        .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 15px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
-        /* Сітка відео: 3 в ряд на великих екранах */
-        .video-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-        }
+        /* Сітка для відео: адаптивна під ширину лівої колонки */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .card { background: rgba(13, 17, 23, 0.6); padding: 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 204, 0.2); }
         .card iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; }
         .title-tag { background: rgba(0, 255, 204, 0.05); padding: 10px; border-radius: 8px; border-left: 3px solid var(--neon); font-size: 0.8rem; margin-top: 12px; }
@@ -220,11 +219,14 @@
         }
         .ad-container:hover .ad-banner { transform: scale(1.02); }
 
-        /* АДАПТИВНІСТЬ ДЛЯ ЕКРАНІВ */
         @media (max-width: 1100px) { 
             .wrapper { flex-direction: column; } 
             .sidebar { width: 100%; } 
-            .video-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .top-widgets-container {
+                grid-template-columns: 1fr; 
+            }
         }
     </style>
 </head>
@@ -244,9 +246,23 @@
     </div>
 </div>
 
-<div class="top-streams-container">
-    <h2 class="section-header"><i class="fa-solid fa-history"></i>💙💛 ОСТАННІ СТРІМИ</h2>
-    <div id="recent-videos" class="video-grid">Завантаження...</div>
+<div class="top-widgets-container">
+    <div class="side-block">
+        <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
+        <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
+            <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
+                    style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
+        </div>
+    </div>
+
+    <div class="side-block">
+        <div class="side-title" style="color: #00ffcc;">
+            <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
+        </div>
+        <div class="inner-container">
+            <div class="online-number" id="live-user-count">1</div>
+        </div>
+    </div>
 </div>
     
 <div class="wrapper">
@@ -254,26 +270,12 @@
         <div class="player-box">
             <iframe id="main-player" src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
         </div>
+        
+        <h2 class="section-header"><i class="fa-solid fa-history"></i>💙💛 ОСТАННІ СТРІМИ</h2>
+        <div id="recent-videos" class="video-grid">Завантаження...</div>
     </div>
 
     <aside class="sidebar">
-        <div class="side-block">
-            <div class="side-title"><i class="fa-solid fa-users"></i>💙💛  LIVE</div>
-            <div class="inner-container" style="height: 90px; position: relative; overflow: hidden;">
-                <iframe scrolling="no" src="https://livecounts.io/embed/youtube-live-subscriber-counter/UC29hev1ElIOHYG9oFm9dieQ" 
-                        style="width: 100%; height: 160px; border: none; position: absolute; top: -40px; filter: invert(0.9) hue-rotate(140deg); background: transparent;"></iframe>
-            </div>
-        </div>
-
-        <div class="side-block">
-            <div class="side-title" style="color: #00ffcc;">
-                <span class="dot" style="background: #00ff00; box-shadow: 0 0 5px #00ff00;"></span>💙💛  ЗАРАЗ НА САЙТІ
-            </div>
-            <div class="inner-container">
-                <div class="online-number" id="live-user-count">1</div>
-            </div>
-        </div>
-
         <div class="side-block" style="border-color: #ff0000;">
             <div class="side-title"><i class="fa-brands fa-youtube"></i>💙💛  МІЙ КАНАЛ</div>
             <div class="inner-container" style="display: flex; justify-content: center; align-items: center; padding: 15px 0;">
@@ -304,7 +306,7 @@
             <a href="https://www.youtube.com/@BlackCellUA/shorts" target="_blank" class="btn-action-side btn-outline">💙💛 SHORTS</a>
         </div>
 
-        <div class="side-block" style="border-color: rgba(0, 255, 204, 0.7);">
+        <div class="side-block" style="border-color: rgba(0, 255, 204, 0.7); display: none;">
             <div class="side-title" style="color: var(--neon);"><i class="fa-solid fa-ad"></i> РЕКЛАМА</div>
             <div class="inner-container">
                 <a href="https://worldoftanks.eu/" target="_blank" class="ad-container">
@@ -380,7 +382,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 1);
+        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
     });
 </script>
 </body>
