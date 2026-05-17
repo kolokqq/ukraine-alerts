@@ -77,7 +77,6 @@
         .auth-logo span { color: var(--gold); }
         .auth-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
         
-        /* Контейнер для віджета Telegram */
         .tg-widget-container { 
             display: inline-block; 
             min-height: 40px; 
@@ -133,6 +132,7 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
+        /* РОЗІГРАШ І КНОПКИ ДІЙ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 16px; padding: 35px 25px; text-align: center; margin-bottom: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
@@ -141,7 +141,7 @@
         .giveaway-title span { color: #ffcc00; text-shadow: 0 0 15px rgba(255,204,0,0.3); }
         .giveaway-conditions { font-size: 0.9rem; color: #94a3b8; margin: 0 auto 25px auto; max-width: 500px; line-height: 1.5; }
         
-        .banner-buttons-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .banner-buttons-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
 
         .luxury-btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -159,14 +159,25 @@
         }
         .info-btn-outline:hover { background: var(--gold); color: #05080e; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); transform: translateY(-3px); }
 
+        /* Нові кнопки заклику під розіграшем */
+        .social-engagement-ribbon {
+            display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;
+        }
+        .engage-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            padding: 8px 16px; border-radius: 6px; color: #cbd5e1; font-size: 0.85rem; font-weight: bold; text-decoration: none; transition: 0.2s;
+        }
+        .engage-btn:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.2); }
+        .engage-btn i { color: #ffcc00; }
+
         .site-rules-panel {
             background: rgba(13, 19, 33, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-left: 4px solid #ffcc00;
             border-radius: 12px; padding: 22px; margin-bottom: 40px;
         }
         .rules-panel-title { font-family: 'Orbitron'; font-size: 1.05rem; font-weight: 700; color: #ffcc00; margin: 0 0 10px 0; text-transform: uppercase; }
-        .rules-panel-text { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0 0 12px 0; }
+        .rules-panel-text { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
-        /* МОДАЛКИ СУТО ДЛЯ УМОВ */
+        /* МОДАЛКА */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
@@ -191,23 +202,45 @@
         .modal-rule-list li i { color: #00ff66; font-size: 1.1rem; margin-top: 3px; }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 40px; }
+        
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; transition: 0.3s; }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
         .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
         .right-pane { display: flex; flex-direction: column; gap: 30px; }
-        .btn-main-channel { display: flex; align-items: center; justify-content: center; gap: 12px; background: #0f172a; color: #f8fafc; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; padding: 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.2s ease; }
-        .btn-main-channel:hover { background: #f8fafc; color: #0f172a; transform: translateY(-2px); }
+        
+        /* КРАСИВИЙ БЛОК ЮТУБ КАНАЛУ */
+        .youtube-channel-card {
+            background: linear-gradient(135deg, rgba(20, 10, 15, 0.8) 0%, rgba(10, 15, 28, 0.8) 100%);
+            border: 1px solid rgba(255, 0, 60, 0.15); border-radius: 16px; padding: 25px; text-align: center;
+        }
+        .yt-card-header { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 15px; }
+        .yt-card-header i { color: #ff000c; font-size: 2rem; filter: drop-shadow(0 0 10px rgba(255,0,0,0.4)); }
+        .yt-card-header h3 { font-family: 'Orbitron'; margin: 0; font-size: 1.2rem; color: #fff; letter-spacing: 1px; }
+        .yt-subs-count { font-size: 0.9rem; color: #94a3b8; margin-bottom: 18px; }
+        .yt-subs-count span { color: #fff; font-weight: bold; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; }
+        
+        .btn-main-channel { 
+            display: flex; align-items: center; justify-content: center; gap: 12px; 
+            background: #ff003c; color: #fff; text-decoration: none; 
+            font-family: 'Orbitron'; font-weight: 900; padding: 15px; border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(255, 0, 60, 0.3); transition: all 0.2s ease; 
+        }
+        .btn-main-channel:hover { background: #fff; color: #ff003c; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2); }
 
-        .server-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; }
-        .server-item { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.85rem; }
+        /* КРАСИВІ 5 СЕРВЕРІВ */
+        .server-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .server-item { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 12px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; font-size: 0.85rem; transition: 0.2s; }
+        .server-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
         .server-meta { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-family: 'Orbitron'; font-weight: bold; }
-        .server-indicator { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 6px #00ff66; }
-        .server-ping { color: #64748b; font-family: 'Orbitron'; }
+        .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; }
+        .server-ping { color: #00ff66; font-family: 'Orbitron'; font-weight: 700; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 8px; border-radius: 4px; }
 
+        /* БЛОК SHORTS В ДВА СЛОВПЦІ */
         .shorts-flex-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; }
+        .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .short-card iframe { width: 100%; height: 100%; border: none; }
 
         .side-block { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
         .side-title { font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
@@ -219,7 +252,6 @@
         .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); }
         .sched-day { font-family: 'Orbitron'; font-weight: 700; font-size: 0.85rem; color: #cbd5e1; }
         .sched-time { font-family: 'Orbitron'; font-weight: 900; font-size: 0.9rem; color: var(--gold); }
-        .sched-desc { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
         .sched-badge { background: #00ff66; color: #05080e; font-family: 'Orbitron'; font-weight: 900; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; margin-left: 8px; }
 
         @media (max-width: 1200px) {
@@ -232,6 +264,7 @@
             .clean-mosaic { grid-template-columns: 1fr; }
             .banner-buttons-row { flex-direction: column; }
             .luxury-btn, .info-btn-outline { width: 100%; box-sizing: border-box; }
+            .shorts-flex-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -280,9 +313,16 @@
                 <div class="premium-sub-banner">
                     <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 10px;"></i> РОЗІГРАШ <span>1000 ГОЛДИ</span> НА СТРІМАХ!</h2>
                     <p class="giveaway-conditions">Ти успішно зареєстрований у базі розіграшу! Британське та німецьке золото чекає на тебе на трансляціях.</p>
+                    
                     <div class="banner-buttons-row">
                         <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn"><i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ НА КАНАЛ</a>
                         <button class="info-btn-outline" id="open-rules-btn"><i class="fa-solid fa-circle-info"></i> УМОВИ РОЗІГРАШУ</button>
+                    </div>
+
+                    <div class="social-engagement-ribbon">
+                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-thumbs-up"></i> Постав Лайк!</a>
+                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-comment-dots"></i> Напиши коментар!</a>
+                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-bell"></i> Увімкни дзвіночок!</a>
                     </div>
                 </div>
 
@@ -307,36 +347,56 @@
             </div>
 
             <div class="right-pane">
-                <div class="stealth-card">
-                    <div class="card-header"><span>СТРІМЕР ХАБ</span></div>
-                    <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="btn-main-channel"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> ПЕРЕЙТИ НА ЮТУБ</a>
+                <div class="youtube-channel-card">
+                    <div class="yt-card-header">
+                        <i class="fa-brands fa-youtube"></i>
+                        <h3>МІЙ YOUTUBE КАНАЛ</h3>
+                    </div>
+                    <div class="yt-subs-count">Офіційне співтовариство: <span>190+ підписників</span></div>
+                    <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="btn-main-channel"><i class="fa-solid fa-arrow-up-right-from-square"></i> ПЕРЕЙТИ НА ЮТУБ</a>
                 </div>
 
                 <div class="side-block" style="border-color: #ffcc00;">
-                    <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>💙💛 MODPACK WOT</div>
-                    <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
-                </div>
-
-                <div class="stealth-card">
-                    <div class="card-header"><span>РОЗКЛАД ТРАНСЛЯЦІЙ</span></div>
-                    <div class="server-grid">
-                        <div class="sched-item id-mon"><div class="sched-day">ПН</div><div class="sched-info"><div class="sched-time">21:00</div></div></div>
-                        <div class="sched-item id-tue"><div class="sched-day">ВТ</div><div class="sched-info"><div class="sched-time">21:00</div></div></div>
-                        <div class="sched-item id-wed"><div class="sched-day">СР</div><div class="sched-info"><div class="sched-time">21:00</div></div></div>
-                        <div class="sched-item id-thu"><div class="sched-day">ЧТ</div><div class="sched-info"><div class="sched-time">21:00</div></div></div>
-                        <div class="sched-item id-fri"><div class="sched-day">ПТ</div><div class="sched-info"><div class="sched-time">21:00</div></div></div>
-                        <div class="sched-item id-sat"><div class="sched-day">СБ</div><div class="sched-info"><div class="sched-time">07:00</div></div></div>
-                        <div class="sched-item id-sun"><div class="sched-day">НД</div><div class="sched-info"><div class="sched-time">07:00</div></div></div>
-                    </div>
+                    <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i> 💙💛 MODPACK WOT</div>
+                    <a href="https://drive.google.com/file/d/150RmKHOAVI38LK0pX7UYEHS2iCJlO8Ow/view" target="_blank" class="btn-action-side btn-yellow" style="margin-top: 15px;">ЗАВАНТАЖИТИ МОДПАК</a>
                 </div>
 
                 <div class="stealth-card">
                     <div class="card-header"><span>КЛАСУВАННЯ СЕРВЕРІВ WOT</span></div>
                     <div class="server-grid">
-                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">ONLINE</div></div>
-                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">ONLINE</div></div>
+                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">35 ms</div></div>
+                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">42 ms</div></div>
+                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 PROMO</div><div class="server-ping">28 ms</div></div>
+                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 BACKUP</div><div class="server-ping">55 ms</div></div>
+                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-5 EVENT</div><div class="server-ping">19 ms</div></div>
                     </div>
                 </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>РОЗКЛАД ТРАНСЛЯЦІЙ</span></div>
+                    <div class="server-grid">
+                        <div class="sched-item id-mon"><div class="sched-day">ПН</div><div class="sched-time">21:00</div></div>
+                        <div class="sched-item id-tue"><div class="sched-day">ВТ</div><div class="sched-time">21:00</div></div>
+                        <div class="sched-item id-wed"><div class="sched-day">СР</div><div class="sched-time">21:00</div></div>
+                        <div class="sched-item id-thu"><div class="sched-day">ЧТ</div><div class="sched-time">21:00</div></div>
+                        <div class="sched-item id-fri"><div class="sched-day">ПТ</div><div class="sched-time">21:00</div></div>
+                        <div class="sched-item id-sat"><div class="sched-day">СБ</div><div class="sched-time">07:00</div></div>
+                        <div class="sched-item id-sun"><div class="sched-day">НД</div><div class="sched-time">07:00</div></div>
+                    </div>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>ОСТАННІ SHORTS</span></div>
+                    <div class="shorts-flex-container">
+                        <div class="short-card">
+                            <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
+                        </div>
+                        <div class="short-card">
+                            <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ&index=2" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -357,15 +417,12 @@
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
 
-    // ВХІД ВІДБУВАЄТЬСЯ ОДРАЗУ ПІСЛЯ КЛІКУ НА КНОПКУ TELEGRAM
     async function onTelegramAuth(user) {
         if (!user) return;
 
-        // Зберігаємо юзера, щоб при наступному заході сайт відкривався сам
         localStorage.setItem('registered_site_user', JSON.stringify(user));
         unlockSite(user);
 
-        // Бот тихо надсилає тобі звіт, що зайшов новий глядач
         const messageText = `👤 НОВИЙ ВХІД НА САЙТ! 👤\n\n📝 Ім'я: ${user.first_name}\n🔗 Юзернейм: ${user.username ? '@' + user.username : 'немає'}\n🆔 ID Telegram: ${user.id}`;
         
         try {
@@ -375,7 +432,7 @@
                 body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: messageText })
             });
         } catch (e) {
-            console.error('Помилка відправки логу в ТГ');
+            console.error('Помилка логів');
         }
     }
 
@@ -399,7 +456,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Обробка редиректу з ПК версії Telegram авторизації
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('id') && urlParams.has('first_name')) {
             const user = {
