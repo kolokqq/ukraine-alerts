@@ -515,16 +515,16 @@
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
 
-    // Масив танкових аватарок з гри (можна замінити посилання на будь-які свої)
+    // ОНОВЛЕНІ НАДІЙНІ СТАБІЛЬНІ КАРТИНКИ (ТАНКИ ТА ГЕЙМЕРСЬКІ СТИЛЬНІ ІКОНКИ)
     const AVAILABLE_AVATARS = [
-        "https://i.postimg.cc/85MhV4mN/tank-icon1.png", // Якщо картинки пропадуть, підставляться запасні іконки
-        "https://cdn-icons-png.flaticon.com/512/2590/2590514.png", 
-        "https://cdn-icons-png.flaticon.com/512/2590/2590525.png",
-        "https://cdn-icons-png.flaticon.com/512/6124/6124991.png",
-        "https://cdn-icons-png.flaticon.com/512/2083/2083161.png",
-        "https://cdn-icons-png.flaticon.com/512/1042/1042459.png",
-        "https://cdn-icons-png.flaticon.com/512/9131/9131529.png",
-        "https://cdn-icons-png.flaticon.com/512/1869/1869389.png"
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80", // Геймерський монітор/лого
+        "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&w=150&q=80", // Геймпад червоний
+        "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80", // Кіберспорт лого
+        "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=150&q=80", // Ретро ігри
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80", // Джойстик неон
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=150&q=80", // Абстрактний геймінг
+        "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=150&q=80", // Шолом воїна
+        "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=150&q=80"  // Механічний арт
     ];
 
     let currentSelectedAvatarUrl = "";
@@ -532,11 +532,9 @@
     async function onTelegramAuth(user) {
         if (!user) return;
 
-        // Перевіряємо, чи є вже кастомні збережені налаштування для цього користувача
         let savedUser = localStorage.getItem('registered_site_user');
         if (savedUser) {
             let parsed = JSON.parse(savedUser);
-            // Якщо користувач той самий, залишаємо кастомні поля
             if(parsed.id == user.id) {
                 user.custom_name = parsed.custom_name || user.first_name;
                 user.custom_photo = parsed.custom_photo || user.photo_url;
@@ -566,7 +564,6 @@
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-content').classList.add('visible');
         
-        // Показуємо саме кастомні (або відредаговані) нікнейми та фото
         const displayPhoto = user.custom_photo ? user.custom_photo : (user.photo_url ? user.photo_url : AVAILABLE_AVATARS[0]);
         const displayName = user.custom_name ? user.custom_name : user.first_name;
 
@@ -589,11 +586,9 @@
         const nickInput = document.getElementById('profile-nickname-input');
         nickInput.value = user.custom_name || user.first_name;
 
-        // Генеруємо список аватарок у модалці
         const container = document.getElementById('avatar-options-container');
         container.innerHTML = "";
 
-        // Якщо у користувача є його оригінальна аватарка з ТГ, додаємо її як перший варіант
         let listToRender = [...AVAILABLE_AVATARS];
         if(user.photo_url && !listToRender.includes(user.photo_url)) {
             listToRender.unshift(user.photo_url);
@@ -642,7 +637,6 @@
             unlockSite(JSON.parse(savedUser));
         }
 
-        // Обробка закриття та збереження профілю
         const profileModal = document.getElementById('profile-modal');
         const closeProfileBtn = document.getElementById('close-profile-btn');
         const saveProfileBtn = document.getElementById('save-profile-btn');
@@ -668,7 +662,6 @@
                 unlockSite(user);
                 profileModal.classList.remove('active');
 
-                // Повідомляємо адміна в ТГ про зміну ніку
                 const logMessage = `⚙️ КОРИСТУВАЧ ЗМІНИВ ПРОФІЛЬ! ⚙️\n\n🆔 TG ID: ${user.id}\n📝 Старе ім'я: ${user.first_name}\n🎮 НОВИЙ НІКНЕЙМ: ${user.custom_name}`;
                 try {
                     await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
