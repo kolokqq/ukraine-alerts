@@ -274,6 +274,28 @@
             box-shadow: 0 10px 25px rgba(255, 204, 0, 0.35);
         }
 
+        /* НОВІ СТИЛІ ДЛЯ КРАСИВОГО БЛОКУ РОЗКЛАДУ */
+        .sched-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5);
+            border-left: 3px solid #64748b; margin-bottom: 10px; transition: 0.2s;
+        }
+        .sched-item:last-child { margin-bottom: 0; }
+        .sched-item.today {
+            border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03);
+            box-shadow: inset 5px 0 15px rgba(0, 255, 102, 0.02);
+        }
+        .sched-day { font-family: 'Orbitron'; font-weight: 700; font-size: 0.85rem; color: #cbd5e1; }
+        .sched-item.today .sched-day { color: #fff; }
+        .sched-info { text-align: right; }
+        .sched-time { font-family: 'Orbitron'; font-weight: 900; font-size: 0.9rem; color: var(--gold); block-size: auto; }
+        .sched-desc { font-size: 0.75rem; color: #64748b; margin-top: 2px; font-weight: 500; }
+        .sched-badge {
+            background: #00ff66; color: #05080e; font-family: 'Orbitron'; font-weight: 900;
+            font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px;
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.4); margin-left: 8px; vertical-align: middle;
+        }
+
         @media (max-width: 1200px) {
             .layout-grid { grid-template-columns: 1fr; }
             .clean-mosaic { grid-template-columns: repeat(2, 1fr); }
@@ -353,16 +375,27 @@
 
             <div class="side-block" style="border-color: #ffcc00;">
                 <div class="side-title" style="color: #ffcc00;"><i class="fa-solid fa-box-open"></i>WG Mods</div>
-                <a href="https://wgmods.net/?tags=12" target="_blank" class="btn-action-side btn-yellow">Перейти на сайт</a>
+                <a href="https://wgmods.net/?tags=12" target="_blank" class="btn-action-side btn-yellow">ЗАВАНТАЖИТИ МОДПАК</a>
+            </div>
+
+            <div class="stealth-card">
+                <div class="card-header"><span><i class="fa-solid fa-calendar-days" style="color:var(--gold); margin-right:8px;"></i> РОЗКЛАД ТРАНСЛЯЦІЙ</span><div></div></div>
+                <div class="server-grid">
+                    <div class="sched-item id-mon"><div class="sched-day">ПН</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Вечірній фарм</div></div></div>
+                    <div class="server-item style="display:none !important; padding:0;"></div> <div class="sched-item id-tue"><div class="sched-day">ВТ</div><div class="sched-info"><div class="sched-time">21:00</div><div class="sched-desc">Танкові відмітки</div></div></div>
+                    <div class="sched-item id-wed"><div class="sched-day">СБ</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Стрім з глядачами</div></div></div>
+                    <div class="sched-item id-sat"><div class="sched-day">ВС</div><div class="sched-info"><div class="sched-time">07:00</div><div class="sched-desc">Стрім з глядачами</div></div></div>
+                </div>
             </div>
 
             <div class="stealth-card">
                 <div class="card-header"><span>КЛАСУВАННЯ СЕРВЕРІВ WOT</span><div></div></div>
                 <div class="server-grid">
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 WEST</div><div class="server-ping">ONLINE</div></div>
-                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 EAST</div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 1 </div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 2 </div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 3 </div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 4 </div><div class="server-ping">ONLINE</div></div>
+                    <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU 5 </div><div class="server-ping">ONLINE</div></div>
                 </div>
             </div>
 
@@ -382,6 +415,21 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const daysMap = ['id-sun', 'id-mon', 'id-tue', 'id-wed', 'id-thu', 'id-fri', 'id-sat'];
+        const currentDayClass = daysMap[new Date().getDay()];
+        const todayElement = document.querySelector('.' + currentDayClass);
+        if (todayElement) {
+            todayElement.classList.add('today');
+            const dayLabel = todayElement.querySelector('.sched-day');
+            if (dayLabel) {
+                dayLabel.innerHTML += '<span class="sched-badge">СЬОГОДНІ</span>';
+            }
+        }
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
