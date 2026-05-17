@@ -119,7 +119,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* КОНТЕЙНЕР ДЛЯ ВЕРХНІХ СТРІМІВ НА ВСЮ ШИРИНУ */
+        /* КОНТЕЙНЕР ДЛЯ ОСТАННІХ СТРІМІВ ВГОРІ */
         .top-streams-container {
             max-width: 1500px;
             margin: 20px auto 0 auto;
@@ -127,14 +127,14 @@
             box-sizing: border-box;
         }
 
-        .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 10px auto 20px auto; padding: 0 20px; gap: 30px; }
+        .wrapper { display: flex; flex-direction: row; max-width: 1500px; margin: 15px auto 40px auto; padding: 0 20px; gap: 30px; }
         .main-content { flex: 1; min-width: 0; }
         .sidebar { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
         .player-box { width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; border: 1px solid var(--neon); background: #000; }
         .section-header { font-family: 'Orbitron'; color: var(--neon); font-size: 0.9rem; margin: 15px 0 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
 
-        /* Спеціальна сітка для 3 відео в ряд вгорі */
+        /* Сітка відео: 3 в ряд на великих екранах */
         .video-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -224,7 +224,7 @@
         @media (max-width: 1100px) { 
             .wrapper { flex-direction: column; } 
             .sidebar { width: 100%; } 
-            .video-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+            .video-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
         }
     </style>
 </head>
