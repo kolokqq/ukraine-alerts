@@ -44,12 +44,14 @@
             --gold-glow: rgba(212, 175, 55, 0.2);
             --steel-blue: #4682b4;
             --bg-dark: #05080e;
-            --panel-bg: rgba(13, 22, 38, 0.85); /* Оптимизировано без backdrop-filter для плавности */
+            --panel-bg: rgba(13, 22, 38, 0.85); 
             --border-color: rgba(255, 255, 255, 0.05);
             --xp-green: #00ff66;
             --purple-stat: #a335ee;
             --danger: #ff3344;
             --cyan: #00bdf2;
+            --discord: #5865F2;
+            --telegram: #0088cc;
         }
 
         * {
@@ -103,13 +105,13 @@
         .music-widget { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-decoration: none; color: inherit; }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        /* УЛУЧШЕННЫЙ БЛОК РОЗЫГРЫША */
+        /* БЛОК РОЗІГРАШУ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f1c33 0%, #060a12 100%); 
             border: 2px solid var(--gold);
             border-radius: 16px; padding: 25px 20px; margin-bottom: 20px; 
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); width: 100%;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center;
+            display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: center;
         }
         .giveaway-info-side { text-align: left; }
         .giveaway-title { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0 0 8px 0; letter-spacing: 1px; }
@@ -129,11 +131,21 @@
         .timer-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: #fff; display: block; }
         .timer-label { font-size: 0.6rem; color: #64748b; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 2px; }
 
-        .banner-buttons-row { display: flex; gap: 10px; width: 100%; }
-        .luxury-btn { flex: 1; justify-content: center; background: linear-gradient(135deg, #4a000d 0%, #80001c 100%); border: 1px solid #ff003c; border-radius: 8px; padding: 12px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,0,60,0.2); }
+        /* КНОПКИ В БАНЕРІ */
+        .banner-buttons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-bottom: 10px; }
+        .banner-social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+
+        .luxury-btn { background: linear-gradient(135deg, #4a000d 0%, #80001c 100%); border: 1px solid #ff003c; border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,0,60,0.2); }
         .luxury-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg, #610013 0%, #990024 100%); }
-        .info-btn-outline { flex: 1; justify-content: center; background: rgba(212, 175, 55, 0.03); border: 1px solid var(--gold); border-radius: 8px; padding: 12px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; }
-        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.08); }
+        
+        .info-btn-outline { background: rgba(212, 175, 55, 0.03); border: 1px solid var(--gold); border-radius: 8px; padding: 11px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; text-decoration: none; }
+        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.08); transform: translateY(-2px); }
+
+        .discord-btn { background: var(--discord); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; transition: 0.2s; }
+        .discord-btn:hover { background: #4752c4; transform: translateY(-2px); }
+
+        .telegram-btn { background: var(--telegram); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; transition: 0.2s; }
+        .telegram-btn:hover { background: #0077b3; transform: translateY(-2px); }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 25px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
@@ -187,10 +199,10 @@
             .giveaway-title { font-size: 1.2rem; text-align: center; }
             .giveaway-desc { text-align: center; }
             .giveaway-meta-badges { justify-content: center; }
-            .banner-buttons-row { flex-direction: column; }
+            .banner-buttons-row, .banner-social-row { grid-template-columns: 1fr; }
         }
 
-        /* МОДАЛКИ БЕЗ BLUR ДЛЯ СКОРОСТИ */
+        /* МОДАЛКИ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.92); z-index: 9999;
@@ -240,7 +252,6 @@
         .garage-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 6px; }
         .garage-checkbox { width: 18px; height: 18px; accent-color: var(--gold); }
 
-        /* ЛЕГКИЙ И СТИЛЬНЫЙ ВЫБОР АВАТАРОК ЧЕРЕЗ ИКОНКИ БЕЗ ФОТО */
         .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
         .avatar-option { aspect-ratio: 1/1; border-radius: 6px; cursor: pointer; border: 2px solid transparent; background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #64748b; transition: 0.2s; }
         .avatar-option.selected { border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(212,175,55,0.08); }
@@ -267,8 +278,8 @@
                     <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
                     <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
                     <div class="giveaway-meta-badges">
-                        <div class="g-badge prize"><i class="fas fa-gem"></i> Фонд: Ігрове Золото</div>
-                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">0</span> Учасників в базі</div>
+                        <div class="g-badge prize"><i class="fas fa-gem"></i> Фонд: Ігрове Золото / Прем Танки</div>
+                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> Учасників в базі</div>
                     </div>
                 </div>
                 <div class="giveaway-interactive-side">
@@ -279,9 +290,15 @@
                         <div class="timer-segment"><span class="timer-num" id="t-mins">42</span><span class="timer-label">Хв</span></div>
                         <div class="timer-segment"><span class="timer-num" id="t-secs">19</span><span class="timer-label">Сек</span></div>
                     </div>
+                    
                     <div class="banner-buttons-row">
                         <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Реєстрація</a>
                         <a href="#" class="info-btn-outline" id="open-profile-btn"><i class="fas fa-user-cog"></i> Мій Ангар</a>
+                    </div>
+                    
+                    <div class="banner-social-row">
+                        <a href="#" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
+                        <a href="#" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
                     </div>
                 </div>
             </div>
@@ -480,7 +497,7 @@
             "Tiger II", "IS-3", "AMX 50 100", "Rhm.-Borsig"
         ];
 
-        // ОПТИМИЗИРОВАННАЯ РУЛЕТКА ТАНКІВ
+        // РУЛЕТКА ТАНКІВ
         document.getElementById('roll-tank-btn').addEventListener('click', () => {
             const display = document.getElementById('tank-result-display');
             const button = document.getElementById('roll-tank-btn');
@@ -507,7 +524,6 @@
 
         // ЖИВОЙ ТАЙМЕР ДЛЯ БЛОКА РОЗЫГРЫША
         function initGiveawayTimer() {
-            // Установка дедлайна: например, каждую субботу в 19:00
             function getNextStreamDate() {
                 const now = new Date();
                 const nextStream = new Date();
@@ -543,7 +559,6 @@
             updateTimer();
             setInterval(updateTimer, 1000);
 
-            // Анимация накрутки счетчика пользователей для имитации "живого" портала
             let startCount = 310;
             const targetCount = 342;
             const uCounter = document.getElementById('g-users-count');
@@ -554,7 +569,7 @@
             }, 40);
         }
 
-        // НАДЁЖНАЯ ФУНКЦИЯ КЭШИРОВАНИЯ И ВЫВОДА СТРИМОВ
+        // ЗАГРУЗКА YOUTUBE ФИДА
         async function loadYT(url, divId, count) {
             const box = document.getElementById(divId);
             const cacheKey = `yt_cache_${divId}`;
@@ -619,7 +634,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 3);
             
-            // Завантаження розкладу
             const schedBox = document.getElementById('schedule-box');
             const days = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
             const todayIndex = new Date().getDay();
@@ -693,7 +707,6 @@
             document.getElementById('inp-wot-nick').value = localStorage.getItem('wot_nick') || "";
             document.getElementById('inp-wot-flag').value = flag;
             
-            // Восстановление выбранной иконки в интерфейсе настроек
             document.querySelectorAll('.avatar-option').forEach(o => {
                 o.classList.remove('selected');
                 if(o.querySelector('i').classList.contains(avClass)) {
