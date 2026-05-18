@@ -7,8 +7,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17614916752"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag(){dataLayer.push(arguments);}\n      gtag('js', new Date());
       gtag('config', 'AW-17614916752');
     </script>
     
@@ -98,7 +97,7 @@
             margin-top: 0; margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
         }
 
-        /* Анімація миготіння для живого ефіру */
+        /* Мигающий кружок */
         .pulse-circle {
             display: inline-block;
             width: 10px;
@@ -200,10 +199,36 @@
         .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
         .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); }
 
+        /* СТИЛИ ДЛЯ НОВЫХ БЛОКОВ */
+        .streamer-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px; }
+        .stat-card-mini { background: rgba(5, 8, 14, 0.6); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 10px; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        .stat-card-mini.purple-tier { border-color: var(--purple-stat); background: linear-gradient(180deg, rgba(163,53,238,0.03) 0%, rgba(5,8,14,0.6) 100%); }
+        .stat-card-mini.gold-tier { border-color: var(--gold); background: linear-gradient(180deg, rgba(212,175,55,0.03) 0%, rgba(5,8,14,0.6) 100%); }
+        .stat-mini-title { font-family: 'Orbitron'; font-size: 0.65rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-mini-value { font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 900; color: #fff; margin-top: 4px; }
+        
+        .battlepass-track { display: flex; flex-direction: column; gap: 14px; position: relative; margin-top: 5px; }
+        .battlepass-step { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 10px; position: relative; transition: 0.2s; }
+        .battlepass-step.unlocked { border-left: 3px solid var(--xp-green); background: rgba(0,255,102,0.02); }
+        .battlepass-step.locked { border-left: 3px solid #334155; opacity: 0.65; }
+        .bp-level-indicator { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 900; min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #05080e; border: 1px solid rgba(255,255,255,0.08); }
+        .unlocked .bp-level-indicator { border-color: var(--xp-green); color: var(--xp-green); box-shadow: 0 0 8px rgba(0,255,102,0.2); }
+        .bp-reward-name { font-size: 0.85rem; font-weight: bold; color: #e2e8f0; }
+        .bp-reward-desc { font-size: 0.75rem; color: #64748b; margin-top: 1px; }
+        .bp-status-icon { margin-left: auto; font-size: 0.9rem; }
+        .unlocked .bp-status-icon { color: var(--xp-green); }
+        .locked .bp-status-icon { color: #475569; }
+
+        .commands-list { display: flex; flex-direction: column; gap: 8px; }
+        .command-row { display: flex; align-items: center; justify-content: space-between; background: rgba(5,8,14,0.4); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.02); }
+        .command-trigger { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 900; color: var(--cyan); background: rgba(0,189,242,0.08); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(0,189,242,0.15); }
+        .command-effect { font-size: 0.8rem; color: #cbd5e1; text-align: right; }
+
         @media (max-width: 1024px) {
             .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
             .premium-sub-banner { grid-template-columns: 1fr; }
+            .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
         }
         
         @media (max-width: 680px) {
@@ -218,6 +243,7 @@
             .giveaway-desc { text-align: center; }
             .giveaway-meta-badges { justify-content: center; }
             .banner-buttons-row, .banner-social-row { grid-template-columns: 1fr; }
+            .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
         }
 
         /* МОДАЛКИ */
@@ -296,7 +322,7 @@
                     <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
                     <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
                     <div class="giveaway-meta-badges">
-                        <div class="g-badge prize"><i class="fas fa-gem"></i> Фонд: Ігрове Золото / Прем Танки</div>
+                        <div class="g-badge prize"><i class="fas fa GEM"></i> Фонд: Ігрове Золото / Прем Танки</div>
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> Учасників в базі</div>
                     </div>
                 </div>
@@ -315,8 +341,8 @@
                     </div>
                     
                     <div class="banner-social-row">
-                        <a href="https://discord.gg/CNYF4eEz" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
-                        <a href="https://t.me/blackcellua" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
+                        <a href="#" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
+                        <a href="#" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
                     </div>
                 </div>
             </div>
@@ -329,6 +355,28 @@
                         <h3 class="card-header"><span class="pulse-circle"></span>ЖИВИЙ ЕФІР</h3>
                         <div class="studio-player">
                             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">📈 ПОТОЧНА СТАТИСТИКА СТРІМЕРА (АККАУНТ)</h3>
+                        <div class="streamer-stats-grid">
+                            <div class="stat-card-mini purple-tier">
+                                <div class="stat-mini-title">Рейтинг WN8</div>
+                                <div class="stat-mini-value" style="color:var(--purple-stat);">2,850+</div>
+                            </div>
+                            <div class="stat-card-mini">
+                                <div class="stat-mini-title">Перемоги</div>
+                                <div class="stat-mini-value" style="color:var(--xp-green);">58.4%</div>
+                            </div>
+                            <div class="stat-card-mini gold-tier">
+                                <div class="stat-mini-title">Макс. Урон</div>
+                                <div class="stat-mini-value" style="color:var(--gold-bright);">9,240</div>
+                            </div>
+                            <div class="stat-card-mini">
+                                <div class="stat-mini-title">Топ техніка</div>
+                                <div class="stat-mini-value" style="color:var(--cyan);">BZT-70</div>
+                            </div>
                         </div>
                     </div>
 
@@ -361,14 +409,62 @@
                     </div>
 
                     <div class="side-block">
+                        <h3 class="side-title">🔥 БАТТЛ-ПАСС ГЛЯДАЧА (НАГОРОДИ)</h3>
+                        <div class="battlepass-track">
+                            <div class="battlepass-step unlocked">
+                                <div class="bp-level-indicator">01</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Новачок»</div>
+                                    <div class="bp-reward-desc">Доступ до реєстрації в розіграшах</div>
+                                </div>
+                                <i class="fas fa-check-circle bp-status-icon"></i>
+                            </div>
+                            <div class="battlepass-step unlocked">
+                                <div class="bp-level-indicator">05</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Танкіст»</div>
+                                    <div class="bp-reward-desc">Пріоритет при зборі Взводу з глядачами</div>
+                                </div>
+                                <i class="fas fa-check-circle bp-status-icon"></i>
+                            </div>
+                            <div class="battlepass-step locked">
+                                <div class="bp-level-indicator">10</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Ветеран»</div>
+                                    <div class="bp-reward-desc">Унікальна роль в нашому Discord</div>
+                                </div>
+                                <i class="fas fa-lock bp-status-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
                         <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
-                        <a href="https://www.youtube.com/watch?v=h28H0Ho9Sk8&list=PLCiVjAiT9q1KL5pExT_sTW0oAbbLeqmwv" target="_blank" class="music-widget">
+                        <a href="https://music.youtube.com" target="_blank" class="music-widget">
                             <div class="music-icon-box"><i class="fas fa-music"></i></div>
                             <div>
                                 <div style="font-size:0.85rem; font-weight:bold; color:#fff;">BlackCellUA Stream Vibes</div>
                                 <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">Плейлист підписників</div>
                             </div>
                         </a>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">💬 КОМАНДИ СТРІМУ ДЛЯ ЧАТУ</h3>
+                        <div class="commands-list">
+                            <div class="command-row">
+                                <span class="command-trigger">!donate</span>
+                                <span class="command-effect">Посилання на донат</span>
+                            </div>
+                            <div class="command-row">
+                                <span class="command-trigger">!stat</span>
+                                <span class="command-effect">Поточна статистика аккаунта</span>
+                            </div>
+                            <div class="command-row">
+                                <span class="command-trigger">!discord</span>
+                                <span class="command-effect">Запрошення у спільноту</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="side-block">
@@ -398,7 +494,8 @@
                     <div class="stealth-card">
                         <h3 class="card-header">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
                         <div class="quest-list-box">
-                            <div class="quest-item"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge in-progress">В процесі</span></div>
+                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
+                            <div class="quest-item"><span>Пройти NFS Underground 2 за один стрім</span><span class="quest-badge in-progress">В процесі</span></div>
                             <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
                         </div>
                     </div>
