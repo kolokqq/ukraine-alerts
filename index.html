@@ -57,24 +57,6 @@
             color: #f1f5f9; font-family: 'Exo 2', sans-serif; overflow-x: hidden; padding: 40px 20px;
         }
 
-        /* АВТОРИЗАЦІЯ */
-        .auth-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #05080e radial-gradient(circle at center, #0d1726 0%, #05080e 100%);
-            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease, pointer-events 0.5s; padding: 20px; box-sizing: border-box;
-        }
-        .auth-overlay.hidden { opacity: 0; pointer-events: none; }
-        
-        .auth-box {
-            background: rgba(13, 19, 33, 0.9); border: 2px solid #ffcc00; border-radius: 16px;
-            padding: 40px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 30px 65px rgba(0,0,0,0.8), 0 0 40px rgba(255, 204, 0, 0.15);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        }
-        .auth-logo { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: 900; letter-spacing: 4px; color: #fff; text-transform: uppercase; margin-bottom: 15px; }
-        .auth-logo span { color: var(--gold); }
-        .auth-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
-
         /* НАВІГАЦІЯ ТА ШАПКА */
         .stealth-wrapper { max-width: 1600px; margin: 0 auto; }
         nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 15px; }
@@ -264,22 +246,6 @@
     </style>
 </head>
 <body>
-
-<div class="auth-overlay" id="auth-screen">
-    <div class="auth-box">
-        <div class="auth-logo">BlackCell<span>UA</span></div>
-        <p class="auth-desc">Для доступу до кабінету танкіста, перегляду логів та розіграшів увійдіть через ваш Telegram.</p>
-        <div class="tg-widget-container">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" 
-                    data-telegram-login="bok_Kiev_bot" 
-                    data-size="large" 
-                    data-radius="8" 
-                    data-auth-url="https://blackcellua.pp.ua/"
-                    data-onauth="onTelegramAuth(user)" 
-                    data-request-access="write"></script>
-        </div>
-    </div>
-</div>
 
 <div class="main-site-content" id="main-content">
     <div class="stealth-wrapper">
@@ -597,31 +563,6 @@
         openProfileModal();
     }
 
-    async function onTelegramAuth(user) {
-        if (!user) return;
-        let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
-        let regDate = localStorage.getItem('site_registration_date') || new Date().toLocaleDateString('uk-UA');
-        
-        if (!localStorage.getItem('site_registration_date')) localStorage.setItem('site_registration_date', regDate);
-
-        let savedUser = localStorage.getItem('registered_site_user');
-        if (savedUser) {
-            let parsed = JSON.parse(savedUser);
-            if(parsed.id == user.id) user = Object.assign({}, user, parsed);
-        } else {
-            user.custom_name = user.first_name;
-            user.custom_photo = user.photo_url || AVAILABLE_AVATARS[0];
-            user.wot_nick = ""; user.nation = "UA"; user.squad_status = "Соло";
-            user.status_text = ""; user.wn8 = "Червоний (Початківець)"; user.prime_time = "Вечір (18:00-22:00)";
-            user.pc_cpu = ""; user.pc_gpu = ""; user.pc_graphics = "Середні"; user.pc_fps = "";
-            user.t8 = false; user.t10 = false;
-            user.garage = { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" };
-        }
-
-        localStorage.setItem('registered_site_user', JSON.stringify(user));
-        unlockSite(user);
-    }
-
     function calculateXP(user, visits) {
         let xp = 50;
         if (user.wot_nick && user.wot_nick.trim().length > 1) xp += 100;
@@ -629,6 +570,7 @@
         if (user.garage) {
             if (user.garage.bz) xp += 30 + (parseInt(user.garage.bz_m) * 15);
             if (user.garage.udes) xp += 30 + (parseInt(user.garage.udes_m) * 15);
+            if (user.garage.bzt) xp += 30 + (parseInt(user.garage.bzt_m) * 15);
         }
         return xp + (visits - 1) * 15;
     }
@@ -639,16 +581,42 @@
         return { lvl: 3, title: "Рівень 3: Майстер танка 👑", next: xp, prev: 350 };
     }
 
-    function unlockSite(user) {
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('main-content').classList.add('visible');
-        
+    // ГОЛОВНА ФУНКЦІЯ АВТО-ЛОГІНУ ГУЕСТА
+    function initLocalUser() {
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
+        let regDate = localStorage.getItem('site_registration_date') || new Date().toLocaleDateString('uk-UA');
+        
+        if (!localStorage.getItem('site_registration_date')) {
+            localStorage.setItem('site_registration_date', regDate);
+        }
+
+        let savedUser = localStorage.getItem('registered_site_user');
+        let user = {};
+
+        if (savedUser) {
+            user = JSON.parse(savedUser);
+        } else {
+            const randomId = Math.floor(100000 + Math.random() * 900000);
+            user.id = "L_" + randomId;
+            user.custom_name = "Танкіст #" + randomId;
+            user.custom_photo = AVAILABLE_AVATARS[0];
+            user.wot_nick = ""; user.nation = "UA"; user.squad_status = "Соло";
+            user.status_text = ""; user.wn8 = "Червоний (Початківець)"; user.prime_time = "Вечір (18:00-22:00)";
+            user.pc_cpu = ""; user.pc_gpu = ""; user.pc_graphics = "Середні"; user.pc_fps = "";
+            user.t8 = false; user.t10 = false;
+            user.garage = { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" };
+            localStorage.setItem('registered_site_user', JSON.stringify(user));
+        }
+
+        renderUserBadge(user, visits);
+    }
+
+    function renderUserBadge(user, visits) {
         let xp = calculateXP(user, visits);
         let lvlInfo = getLevelInfo(xp);
 
         const displayPhoto = user.custom_photo || AVAILABLE_AVATARS[0];
-        const displayName = user.custom_name || user.first_name;
+        const displayName = user.custom_name;
         const flagUrl = FLAG_IMAGES[user.nation || "UA"];
 
         document.getElementById('user-display').innerHTML = `
@@ -660,7 +628,7 @@
                 
                 <button class="action-icon-btn" onclick="openProfileModal()" title="Налаштування профілю"><i class="fa-solid fa-user-gear"></i></button>
                 <button class="action-icon-btn" onclick="redirectToWotLife()" title="Моя Статистика КТТС" style="color:#00ff66;"><i class="fa-solid fa-crosshairs"></i> Стата</button>
-                <button class="action-icon-btn" onclick="logout()" title="Вихід" style="color:#ff4d4d;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <button class="action-icon-btn" onclick="resetLocalProfile()" title="Скинути Профіль" style="color:#ff4d4d;"><i class="fa-solid fa-arrow-rotate-left"></i> Скинути</button>
             </div>
         `;
     }
@@ -682,7 +650,7 @@
         document.getElementById('profile-xp-counter').innerText = `${xp} XP`;
         document.getElementById('profile-xp-bar').style.width = totalNeeded > 0 ? `${(currentProgress / totalNeeded) * 100}%` : "100%";
 
-        document.getElementById('p-custom-name').value = user.custom_name || user.first_name;
+        document.getElementById('p-custom-name').value = user.custom_name;
         document.getElementById('p-wot-nick').value = user.wot_nick || "";
         document.getElementById('p-nation').value = user.nation || "UA";
         document.getElementById('p-squad-status').value = user.squad_status || "Соло";
@@ -722,11 +690,9 @@
 
         const pickerZone = document.getElementById('avatar-picker-zone');
         pickerZone.innerHTML = "";
-        let finalAvatars = [...AVAILABLE_AVATARS];
-        if(user.photo_url && !finalAvatars.includes(user.photo_url)) finalAvatars.unshift(user.photo_url);
         currentSelectedAvatarUrl = user.custom_photo || AVAILABLE_AVATARS[0];
 
-        finalAvatars.forEach(url => {
+        AVAILABLE_AVATARS.forEach(url => {
             const div = document.createElement('div');
             div.className = `avatar-option ${url === currentSelectedAvatarUrl ? 'selected' : ''}`;
             div.innerHTML = `<img src="${url}">`;
@@ -741,14 +707,20 @@
         document.getElementById('profile-modal').classList.add('active');
     }
 
-    function logout() { localStorage.removeItem('registered_site_user'); window.location.reload(); }
+    function resetLocalProfile() { 
+        if(confirm("Ти впевнений, що хочеш очистити свій профіль на цьому сайті?")) {
+            localStorage.removeItem('registered_site_user'); 
+            localStorage.removeItem('site_visit_counter');
+            localStorage.removeItem('site_registration_date');
+            window.location.reload(); 
+        }
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "0") + 1;
         localStorage.setItem('site_visit_counter', visits);
 
-        const savedUser = localStorage.getItem('registered_site_user');
-        if (savedUser) unlockSite(JSON.parse(savedUser));
+        initLocalUser();
 
         document.getElementById('close-profile-btn').addEventListener('click', () => document.getElementById('profile-modal').classList.remove('active'));
         document.getElementById('open-rules-btn').addEventListener('click', () => document.getElementById('rules-modal').classList.add('active'));
@@ -757,8 +729,9 @@
         document.getElementById('save-profile-btn').addEventListener('click', async () => {
             let uData = JSON.parse(localStorage.getItem('registered_site_user'));
             if (!uData) return;
+            let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
 
-            uData.custom_name = document.getElementById('p-custom-name').value.trim();
+            uData.custom_name = document.getElementById('p-custom-name').value.trim() || "Танкіст";
             uData.wot_nick = document.getElementById('p-wot-nick').value.trim();
             uData.nation = document.getElementById('p-nation').value;
             uData.squad_status = document.getElementById('p-squad-status').value;
@@ -785,7 +758,7 @@
             uData.pc_fps = document.getElementById('pc-fps').value.trim();
 
             localStorage.setItem('registered_site_user', JSON.stringify(uData));
-            unlockSite(uData);
+            renderUserBadge(uData, visits);
             document.getElementById('profile-modal').classList.remove('active');
 
             let garageList = [];
@@ -798,7 +771,7 @@
             if(uData.t10) tList.push("10-й");
 
             let logMsg = `⚙️ ОНОВЛЕННЯ ПРОФІЛЮ!\n\n` +
-                         `👤 Гравець: ${uData.custom_name}\n` +
+                         `👤 Гравець: ${uData.custom_name} (ID: ${uData.id})\n` +
                          `💥 Нік у WoT: ${uData.wot_nick || 'Не вказано'}\n` +
                          `📊 WN8: ${uData.wn8}\n` +
                          `⏱️ Прайм: ${uData.prime_time}\n` +
