@@ -37,15 +37,16 @@
     <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700;900&display=swap'); 
         
         :root { 
             --gold: #d4af37;
-            --gold-glow: rgba(212, 175, 55, 0.15);
+            --gold-glow: rgba(212, 175, 55, 0.2);
             --steel-blue: #4682b4;
             --bg-dark: #05080e;
             --panel-bg: rgba(13, 19, 33, 0.75);
             --border-color: rgba(255, 255, 255, 0.04);
+            --xp-green: #00ff66;
         }
 
         body { 
@@ -58,7 +59,7 @@
             padding: 40px 20px;
         }
 
-        /* КРУТИЙ ЕКРАН ПОВНОГО БЛОКУВАННЯ */
+        /* АВТОРИЗАЦІЯ */
         .auth-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #05080e radial-gradient(circle at center, #0d1726 0%, #05080e 100%);
@@ -77,14 +78,9 @@
         .auth-logo span { color: var(--gold); }
         .auth-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
         
-        .tg-widget-container { 
-            display: inline-block; 
-            min-height: 40px; 
-            margin-top: 10px; 
-            background: transparent !important;
-        }
+        .tg-widget-container { display: inline-block; min-height: 40px; margin-top: 10px; background: transparent !important; }
 
-        /* ОСНОВНИЙ КОНТЕНТ САЙТУ */
+        /* ОСНОВНИЙ КОНТЕНТ */
         .main-site-content { opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
         .main-site-content.visible { opacity: 1; pointer-events: auto; }
 
@@ -94,7 +90,7 @@
         .logo-area span { color: var(--gold); }
         .nav-links { display: flex; gap: 15px; align-items: center; }
         
-        /* Стильний віджет користувача */
+        /* Юзер-бейдж у меню */
         .user-profile-badge {
             display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px;
@@ -102,6 +98,7 @@
         }
         .user-profile-badge img.avatar-main { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--gold); object-fit: cover; }
         .user-profile-badge img.flag-icon { width: 18px; height: 12px; object-fit: cover; border-radius: 2px; }
+        .user-lvl-tag { background: var(--gold); color: #05080e; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; }
         .edit-profile-btn { background: transparent; border: none; color: var(--gold); cursor: pointer; font-size: 0.85rem; margin-left: 5px; transition: 0.2s; }
         .edit-profile-btn:hover { color: #fff; transform: scale(1.1); }
         .logout-btn { background: transparent; border: none; color: #ff4d4d; cursor: pointer; font-size: 0.85rem; margin-left: 3px; transition: 0.2s; }
@@ -135,7 +132,7 @@
         }
         .card-header span { font-size: 0.75rem; color: var(--gold); letter-spacing: 1px; font-weight: 500; }
 
-        /* РОЗІГРАШ І КНОПКИ */
+        /* РОЗІГРАШ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 16px; padding: 35px 25px; text-align: center; margin-bottom: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
@@ -179,7 +176,7 @@
         .rules-panel-title { font-family: 'Orbitron'; font-size: 1.05rem; font-weight: 700; color: #ffcc00; margin: 0 0 10px 0; text-transform: uppercase; }
         .rules-panel-text { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
-        /* СПІЛЬНІ МОДАЛКИ */
+        /* МОДАЛКИ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 9999;
@@ -200,116 +197,94 @@
         }
         .modal-close-btn:hover { color: #ff003c; background: rgba(255,255,255,0.1); border-color: #ff003c; transform: rotate(90deg); }
         
-        .modal-title-block { text-align: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 15px; }
-        .modal-title { font-family: 'Orbitron'; font-size: 1.5rem; font-weight: 900; color: #fff; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .modal-title-block { text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; }
+        .modal-title { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 1px; }
         .modal-title span { color: #ffcc00; }
         .modal-subtitle { color: #64748b; font-size: 0.85rem; margin: 0; font-family: 'Orbitron'; }
 
-        /* УМОВИ РОЗІГРАШУ */
-        .modal-prize-box {
-            display: flex; gap: 15px; background: rgba(255, 204, 0, 0.04); border: 1px dashed rgba(255, 204, 0, 0.2);
-            border-radius: 10px; padding: 15px; margin-bottom: 25px; align-items: center;
+        /* СКЛАДНІ ВЕНТИЛЯЦІЙНІ ВКЛАДКИ ПРОФІЛЮ */
+        .profile-tabs-nav { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; overflow-x: auto; }
+        .p-tab-btn { 
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #94a3b8; 
+            padding: 8px 16px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; 
+            cursor: pointer; transition: 0.2s; white-space: nowrap;
         }
-        .modal-prize-icon { font-size: 2.2rem; color: #ffcc00; filter: drop-shadow(0 0 8px rgba(255,204,0,0.4)); padding-left: 5px; }
-        .modal-prize-details h4 { margin: 0 0 3px 0; font-family: 'Orbitron'; color: #fff; font-size: 1.05rem; }
-        .modal-prize-details p { margin: 0; color: #94a3b8; font-size: 0.85rem; }
-
-        .modal-steps-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-        .modal-step-item { display: flex; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 15px; border-radius: 8px; align-items: flex-start; }
-        .modal-step-num { 
-            background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; 
-            font-family: 'Orbitron'; font-weight: 900; font-size: 0.9rem;
-            min-width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(255,204,0,0.2);
-        }
-        .modal-step-text { font-size: 0.95rem; color: #cbd5e1; line-height: 1.4; }
+        .p-tab-btn.active { background: var(--gold); color: #05080e; border-color: var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.2); }
         
-        .modal-footer-note {
-            background: rgba(13, 22, 38, 0.6); border-left: 3px solid #ff003c; padding: 12px 15px; border-radius: 0 6px 6px 0;
-            font-size: 0.8rem; color: #94a3b8; line-height: 1.4;
-        }
+        .profile-tab-content { display: none; }
+        .profile-tab-content.active { display: block; }
 
-        /* ІНПУТИ ПРОФІЛЮ */
-        .modal-grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .input-group { text-align: left; margin-bottom: 15px; }
+        /* RPG XP СМУГА */
+        .xp-level-container { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; }
+        .xp-header-row { display: flex; justify-content: space-between; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: bold; margin-bottom: 6px; }
+        .xp-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+        .xp-bar-fill { height: 100%; width: 20%; background: linear-gradient(90deg, #00cc44 0%, var(--xp-green) 100%); transition: width 0.5s ease; box-shadow: 0 0 8px var(--xp-green); }
+
+        /* ІНПУТИ */
+        .modal-grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 12px; }
+        .input-group { text-align: left; margin-bottom: 12px; }
         .input-label { display: block; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
         .custom-input, .custom-select { 
             width: 100%; background: rgba(5, 8, 14, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; 
-            padding: 12px; font-family: 'Exo 2'; color: #fff; font-size: 0.95rem; box-sizing: border-box; transition: 0.2s;
+            padding: 10px 12px; font-family: 'Exo 2'; color: #fff; font-size: 0.95rem; box-sizing: border-box; transition: 0.2s;
         }
         .custom-input:focus, .custom-select:focus { border-color: #ffcc00; outline: none; box-shadow: 0 0 12px rgba(255,204,0,0.15); }
         .custom-select option { background-color: #0b1220; color: #fff; }
 
-        /* СКРИНІ З АВАТАРКАМИ */
-        .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; max-height: 110px; overflow-y: auto; padding-right: 5px; }
-        .avatar-option { 
-            aspect-ratio: 1/1; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; 
-            position: relative; transition: 0.2s; background: rgba(255,255,255,0.02);
+        /* АНКАР ТАНКІВ */
+        .garage-scroller { max-height: 240px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); }
+        .garage-item-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 8px 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 6px; margin-bottom: 8px; transition: 0.2s;
         }
+        .garage-item-row:hover { background: rgba(255,255,255,0.05); }
+        .garage-tank-meta { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 0.9rem; }
+        .garage-checkbox { width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; }
+        .marks-selector-group { display: flex; align-items: center; gap: 5px; }
+        .marks-label { font-size: 0.7rem; font-family: 'Orbitron'; color: #64748b; text-transform: uppercase; }
+
+        /* АВАТАРКИ */
+        .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-height: 110px; overflow-y: auto; }
+        .avatar-option { aspect-ratio: 1/1; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; background: rgba(255,255,255,0.02); transition: 0.2s; }
         .avatar-option img { width: 100%; height: 100%; object-fit: cover; }
         .avatar-option:hover { transform: scale(1.05); border-color: rgba(255,255,255,0.3); }
         .avatar-option.selected { border-color: #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
 
-        /* 🎟️ ДИЗАЙН КВИТКА РОЗІГРАШУ */
-        .ticket-status-box {
-            background: rgba(255, 204, 0, 0.03); border: 1px solid rgba(255, 204, 0, 0.15); border-radius: 8px;
-            padding: 12px; text-align: center; margin-bottom: 20px; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold;
-        }
-        .ticket-status-box.active {
-            background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(5,8,14,0.4) 100%);
-            border-color: var(--gold); color: #fff;
-        }
-        .ticket-status-box i { margin-right: 8px; }
-
-        /* 🏅 СТИЛЬНІ МЕДАЛІ */
-        .achievements-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; }
-        .badge-item { flex: 1; text-align: center; opacity: 0.25; filter: grayscale(100%); transition: all 0.3s ease; }
-        .badge-item.unlocked { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
-        .badge-icon { font-size: 1.5rem; margin-bottom: 4px; display: block; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
-        .badge-item.unlocked .badge-icon { text-shadow: 0 0 15px rgba(255,204,0,0.5); }
+        /* МЕДАЛІ */
+        .achievements-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; }
+        .badge-item { flex: 1; text-align: center; opacity: 0.25; filter: grayscale(100%); transition: 0.3s; }
+        .badge-item.unlocked { opacity: 1; filter: grayscale(0%); }
+        .badge-icon { font-size: 1.4rem; margin-bottom: 4px; display: block; }
         .badge-name { font-size: 0.65rem; font-family: 'Orbitron'; font-weight: 700; color: #64748b; text-transform: uppercase; display: block; }
         .badge-item.unlocked .badge-name { color: var(--gold); }
 
-        /* 📊 СТАТИСТИКА */
-        .stats-footer-row { display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); padding: 10px 15px; border-radius: 6px; font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 20px; }
-        .stats-footer-row span strong { color: #cbd5e1; }
+        .ticket-status-box { background: rgba(255, 204, 0, 0.03); border: 1px solid rgba(255, 204, 0, 0.15); border-radius: 8px; padding: 10px; text-align: center; margin-bottom: 15px; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: bold; }
+        .ticket-status-box.active { background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(5,8,14,0.4) 100%); border-color: var(--gold); color: #fff; }
+        .stats-footer-row { display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 15px; }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 40px; }
-        
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; transition: 0.3s; }
+        .video-block { background: #090d16; border-radius: 10px; padding: 10px; border: 1px solid transparent; }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
         .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 10px; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
         .right-pane { display: flex; flex-direction: column; gap: 30px; }
-        
-        /* БЛОК КАНАЛУ */
-        .youtube-channel-card {
-            background: linear-gradient(135deg, rgba(20, 10, 15, 0.8) 0%, rgba(10, 15, 28, 0.8) 100%);
-            border: 1px solid rgba(255, 0, 60, 0.15); border-radius: 16px; padding: 25px; text-align: center;
-        }
+        .youtube-channel-card { background: linear-gradient(135deg, rgba(20, 10, 15, 0.8) 0%, rgba(10, 15, 28, 0.8) 100%); border: 1px solid rgba(255, 0, 60, 0.15); border-radius: 16px; padding: 25px; text-align: center; }
         .yt-card-header { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 15px; }
-        .yt-card-header i { color: #ff000c; font-size: 2rem; filter: drop-shadow(0 0 10px rgba(255,0,0,0.4)); }
-        .yt-card-header h3 { font-family: 'Orbitron'; margin: 0; font-size: 1.2rem; color: #fff; letter-spacing: 1px; }
+        .yt-card-header i { color: #ff000c; font-size: 2rem; }
+        .yt-card-header h3 { font-family: 'Orbitron'; margin: 0; font-size: 1.2rem; color: #fff; }
         .yt-subs-count { font-size: 0.9rem; color: #94a3b8; margin-bottom: 18px; }
         .yt-subs-count span { color: #fff; font-weight: bold; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; }
-        
-        .btn-main-channel { 
-            display: flex; align-items: center; justify-content: center; gap: 12px; 
-            background: #ff003c; color: #fff; text-decoration: none; 
-            font-family: 'Orbitron'; font-weight: 900; padding: 15px; border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(255, 0, 60, 0.3); transition: all 0.2s ease; 
-        }
-        .btn-main-channel:hover { background: #fff; color: #ff003c; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2); }
+        .btn-main-channel { display: flex; align-items: center; justify-content: center; gap: 12px; background: #ff003c; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; padding: 15px; border-radius: 8px; transition: 0.2s; }
+        .btn-main-channel:hover { background: #fff; color: #ff003c; transform: translateY(-2px); }
 
-        /* СЕРВЕРИ WOT */
         .server-grid { display: flex; flex-direction: column; gap: 10px; width: 100%; }
-        .server-item { display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 12px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; font-size: 0.85rem; transition: 0.2s; }
-        .server-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+        .server-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; font-size: 0.85rem; }
         .server-meta { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-family: 'Orbitron'; font-weight: bold; }
         .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; }
         .server-ping { color: #00ff66; font-family: 'Orbitron'; font-weight: 700; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 8px; border-radius: 4px; }
 
-        /* SHORTS */
         .shorts-flex-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .short-card { aspect-ratio: 9/16; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .short-card iframe { width: 100%; height: 100%; border: none; }
@@ -317,7 +292,7 @@
         .side-block { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
         .side-title { font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
         .btn-action-side { display: flex; align-items: center; justify-content: center; width: 100%; padding: 16px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; transition: 0.2s; }
-        .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.15); border: none; cursor: pointer; }
+        .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; border: none; cursor: pointer; }
         .btn-yellow:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 10px; }
@@ -335,7 +310,6 @@
             nav { flex-direction: column; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr; }
             .banner-buttons-row { flex-direction: column; }
-            .luxury-btn, .info-btn-outline { width: 100%; box-sizing: border-box; }
             .shorts-flex-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -345,9 +319,7 @@
 <div class="auth-overlay" id="auth-screen">
     <div class="auth-box">
         <div class="auth-logo">BlackCell<span>UA</span></div>
-        <p class="auth-desc">
-            Для отримання доступу до сайту, модпаку та розіграшів, увійдіть через свій Telegram.
-        </p>
+        <p class="auth-desc">Для отримання доступу до порталу, кабінету гравця та розіграшів голди, увійдіть через Telegram.</p>
         <div class="tg-widget-container">
             <script async src="https://telegram.org/js/telegram-widget.js?22" 
                     data-telegram-login="bok_Kiev_bot" 
@@ -381,26 +353,18 @@
 
         <div class="layout-grid">
             <div class="left-pane-flow">
-                
                 <div class="premium-sub-banner">
                     <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 10px;"></i> РОЗІГРАШ <span>1000 ГОЛДИ</span> НА СТРІМАХ!</h2>
-                    <p class="giveaway-conditions">Ти успішно зареєстрований у базі розіграшу! Британське та німецьке золото чекає на тебе на трансляціях.</p>
-                    
+                    <p class="giveaway-conditions">Ти успішно зареєстрований у базі розіграшу! Перевір статус лотерейного квитка у своєму бойовому профілі.</p>
                     <div class="banner-buttons-row">
                         <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn"><i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ НА КАНАЛ</a>
                         <button class="info-btn-outline" id="open-rules-btn"><i class="fa-solid fa-circle-info"></i> УМОВИ РОЗІГРАШУ</button>
                     </div>
-
-                    <div class="social-engagement-ribbon">
-                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-thumbs-up"></i> Постав Лайк!</a>
-                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-comment-dots"></i> Напиши коментар!</a>
-                        <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="engage-btn"><i class="fa-solid fa-bell"></i> Увімкни дзвіночок!</a>
-                    </div>
                 </div>
 
                 <div class="site-rules-panel">
-                    <h3 class="rules-panel-title"><i class="fa-solid fa-triangle-exclamation"></i> УМОВИ ВИКОРИСТАННЯ САЙТУ</h3>
-                    <p class="rules-panel-text">Користуючись цим ресурсом, ви зобов'язуєтесь беззаперечно дотримуватись установлених правил спільноти.</p>
+                    <h3 class="rules-panel-title"><i class="fa-solid fa-triangle-exclamation"></i> УМОВИ ВИКОРИСТАННЯ</h3>
+                    <p class="rules-panel-text">Користуючись цим ресурсом, ви зобов'язуєтесь дотримуватись правил спільноти BlackCellUA.</p>
                 </div>
 
                 <div class="studio-player">
@@ -420,10 +384,7 @@
 
             <div class="right-pane">
                 <div class="youtube-channel-card">
-                    <div class="yt-card-header">
-                        <i class="fa-brands fa-youtube"></i>
-                        <h3>МІЙ YOUTUBE КАНАЛ</h3>
-                    </div>
+                    <div class="yt-card-header"><i class="fa-brands fa-youtube"></i><h3>МІЙ YOUTUBE КАНАЛ</h3></div>
                     <div class="yt-subs-count">Офіційне співтовариство: <span>190+ підписників</span></div>
                     <a href="https://www.youtube.com/@BlackCellUA" target="_blank" class="btn-main-channel"><i class="fa-solid fa-arrow-up-right-from-square"></i> ПЕРЕЙТИ НА ЮТУБ</a>
                 </div>
@@ -439,8 +400,6 @@
                         <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-1 MAIN</div><div class="server-ping">35 ms</div></div>
                         <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">42 ms</div></div>
                         <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-3 PROMO</div><div class="server-ping">28 ms</div></div>
-                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-4 BACKUP</div><div class="server-ping">55 ms</div></div>
-                        <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-5 EVENT</div><div class="server-ping">19 ms</div></div>
                     </div>
                 </div>
 
@@ -456,19 +415,6 @@
                         <div class="sched-item id-sun"><div class="sched-day">НД</div><div class="sched-time">07:00</div></div>
                     </div>
                 </div>
-
-                <div class="stealth-card">
-                    <div class="card-header"><span>ОСТАННІ SHORTS</span></div>
-                    <div class="shorts-flex-container">
-                        <div class="short-card">
-                            <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ" allowfullscreen></iframe>
-                        </div>
-                        <div class="short-card">
-                            <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUSH29hev1ElIOHYG9oFm9dieQ&index=2" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -483,118 +429,190 @@
         </div>
         <div class="modal-prize-box">
             <div class="modal-prize-icon"><i class="fa-solid fa-coins"></i></div>
-            <div class="modal-prize-details">
-                <h4>1 000 Ігрової Голди WOT</h4>
-                <p>Приз зараховується безпосередньо на твій аккаунт.</p>
-            </div>
+            <div class="modal-prize-details"><h4>1 000 Ігрової Голди WOT</h4><p>Приз зараховується безпосередньо на аккаунт на серверах EU.</p></div>
         </div>
         <div class="modal-steps-list">
-            <div class="modal-step-item">
-                <div class="modal-step-num">1</div>
-                <div class="modal-step-text">Бути підписаним на YouTube-канал <strong>BlackCellUA</strong>.</div>
-            </div>
-            <div class="modal-step-item">
-                <div class="modal-step-num">2</div>
-                <div class="modal-step-text">Проявляти активність на трансляціях (<strong>лайки, коментарі</strong>).</div>
-            </div>
-            <div class="modal-step-item">
-                <div class="modal-step-num">3</div>
-                <div class="modal-step-text">Мати аккаунт на <strong>EU-сервері World of Tanks</strong>.</div>
-            </div>
-        </div>
-        <div class="modal-footer-note">
-            <i class="fa-solid fa-circle-exclamation" style="color: #ff003c; margin-right: 6px;"></i> 
-            Переможці визначаються випадковим чином серед активних глядачів!
+            <div class="modal-step-item"><div class="modal-step-num">1</div><div class="modal-step-text">Бути підписаним на YouTube-канал <strong>BlackCellUA</strong>.</div></div>
+            <div class="modal-step-item"><div class="modal-step-num">2</div><div class="modal-step-text">Заповнити ігровий нік у профілі на цьому сайті для активації лотерейного квитка.</div></div>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="profile-modal">
-    <div class="modal-window" style="max-width: 620px; padding: 30px;">
+    <div class="modal-window" style="max-width: 640px; padding: 25px;">
         <button class="modal-close-btn" id="close-profile-btn"><i class="fa-solid fa-xmark"></i></button>
         
         <div class="modal-title-block">
-            <h3 class="modal-title"><i class="fa-solid fa-id-card-clip" style="color: #ffcc00; margin-right: 8px;"></i> Ігровий <span>Профіль Гравця</span></h3>
-            <p class="modal-subtitle">Твій кастомний кабінет на порталі BlackCellUA</p>
+            <h3 class="modal-title"><i class="fa-solid fa-shield-halved" style="color: #ffcc00; margin-right: 8px;"></i> Бойовий <span>Кабінет Танкіста</span></h3>
+            <p class="modal-subtitle">Особисте досьє, ангар та характеристики системи</p>
+        </div>
+
+        <div class="xp-level-container">
+            <div class="xp-header-row">
+                <span style="color: var(--gold);" id="profile-lvl-title">Рівень 1: Рекрут</span>
+                <span style="color: #64748b;" id="profile-xp-counter">0 / 300 XP</span>
+            </div>
+            <div class="xp-bar-bg"><div class="xp-bar-fill" id="profile-xp-bar"></div></div>
         </div>
 
         <div id="ticket-status-display" class="ticket-status-box">
-            <i class="fa-solid fa-ticket"></i> Статус квитка визначається...
+            <i class="fa-solid fa-ticket"></i> Перевірка квитка...
         </div>
 
-        <label class="input-label" style="text-align: center; margin-bottom: 8px;">Твої Досягнення на Сайті</label>
-        <div class="achievements-row">
-            <div class="badge-item" id="badge-login" title="Перший вхід: Зареєстрований через бот">
-                <span class="badge-icon">🏁</span><span class="badge-name">Вхід</span>
-            </div>
-            <div class="badge-item" id="badge-patriot" title="Патріот: Обрано націю Україна">
-                <span class="badge-icon">🇺🇦</span><span class="badge-name">Патріот</span>
-            </div>
-            <div class="badge-item" id="badge-tankist" title="Бойовий Танкіст: Вказано ігровий нік WoT">
-                <span class="badge-icon">🎖️</span><span class="badge-name">Танкіст</span>
-            </div>
-            <div class="badge-item" id="badge-style" title="На Стилі: Кастомна ігрова аватарка">
-                <span class="badge-icon">⚡</span><span class="badge-name">Стиль</span>
-            </div>
-            <div class="badge-item" id="badge-veteran" title="Ветеран порталу: Відвідано сайт більше 3 разів">
-                <span class="badge-icon">👑</span><span class="badge-name">Ветеран</span>
-            </div>
+        <div class="profile-tabs-nav">
+            <button class="p-tab-btn active" onclick="switchProfileTab('tab-main', this)">📋 Головне</button>
+            <button class="p-tab-btn" onclick="switchProfileTab('tab-garage', this)">🚜 Мій Ангар</button>
+            <button class="p-tab-btn" onclick="switchProfileTab('tab-hardware', this)">💻 Мій ПК</button>
+            <button class="p-tab-btn" onclick="switchProfileTab('tab-badges', this)">🎖️ Медалі</button>
         </div>
 
-        <div class="modal-grid-inputs">
-            <div class="input-group">
-                <label class="input-label" for="profile-nickname-input">Ім'я користувача</label>
-                <input type="text" id="profile-nickname-input" class="custom-input" placeholder="Нік на сайті...">
+        <form id="profile-big-form" onsubmit="event.preventDefault();">
+            
+            <div id="tab-main" class="profile-tab-content active">
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Нікнейм на сайті</label>
+                        <input type="text" id="p-custom-name" class="custom-input" placeholder="Твій нік...">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Ігровий нік у WoT</label>
+                        <input type="text" id="p-wot-nick" class="custom-input" placeholder="Для нарахування голди...">
+                    </div>
+                </div>
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Нація</label>
+                        <select id="p-nation" class="custom-select">
+                            <option value="UA">🇺🇦 Україна</option>
+                            <option value="US">🇺🇸 США</option>
+                            <option value="DE">🇩🇪 Німеччина</option>
+                            <option value="UK">🇬🇧 Велика Британія</option>
+                            <option value="FR">🇫🇷 Франція</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Взводний Статус</label>
+                        <select id="p-squad-status" class="custom-select">
+                            <option value="Соло">Граю соло 🤫</option>
+                            <option value="Шукаю взвод">Шукаю взвод 🤝</option>
+                            <option value="В клані">Катаю з кланом 🛡️</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Тег Клану (якщо є)</label>
+                        <input type="text" id="p-clan-tag" class="custom-input" placeholder="Напр: [NATO]">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Бойовий девіз</label>
+                        <input type="text" id="p-status-text" class="custom-input" placeholder="Твоє кредо у грі...">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Обери Аватарку</label>
+                    <div class="avatar-picker-grid" id="avatar-picker-zone"></div>
+                </div>
             </div>
-            <div class="input-group">
-                <label class="input-label" for="profile-wot-nick">Нік у World of Tanks</label>
-                <input type="text" id="profile-wot-nick" class="custom-input" placeholder="Ігровий нік для призів...">
+
+            <div id="tab-garage" class="profile-tab-content">
+                <label class="input-label" style="margin-bottom: 10px; display:block;">Познач техніку в ангарі та кількість відміток:</label>
+                <div class="garage-scroller">
+                    <div class="garage-item-row">
+                        <div class="garage-tank-meta"><input type="checkbox" id="chk-bz" class="garage-checkbox"> BZ-176</div>
+                        <div class="marks-selector-group">
+                            <span class="marks-label">Відмітки:</span>
+                            <select id="marks-bz" class="custom-select" style="padding:4px; width:65px; font-size:0.8rem;">
+                                <option value="0">0 ⭐</option><option value="1">1 ⭐</option><option value="2">2 ⭐</option><option value="3">3 ⭐</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="garage-item-row">
+                        <div class="garage-tank-meta"><input type="checkbox" id="chk-udes" class="garage-checkbox"> UDES 03</div>
+                        <div class="marks-selector-group">
+                            <span class="marks-label">Відмітки:</span>
+                            <select id="marks-udes" class="custom-select" style="padding:4px; width:65px; font-size:0.8rem;">
+                                <option value="0">0 ⭐</option><option value="1">1 ⭐</option><option value="2">2 ⭐</option><option value="3">3 ⭐</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="garage-item-row">
+                        <div class="garage-tank-meta"><input type="checkbox" id="chk-bzt" class="garage-checkbox"> BZT-70</div>
+                        <div class="marks-selector-group">
+                            <span class="marks-label">Відмітки:</span>
+                            <select id="marks-bzt" class="custom-select" style="padding:4px; width:65px; font-size:0.8rem;">
+                                <option value="0">0 ⭐</option><option value="1">1 ⭐</option><option value="2">2 ⭐</option><option value="3">3 ⭐</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="garage-item-row">
+                        <div class="garage-tank-meta"><input type="checkbox" id="chk-maus" class="garage-checkbox"> Mauschen / Maus</div>
+                        <div class="marks-selector-group">
+                            <span class="marks-label">Відмітки:</span>
+                            <select id="marks-maus" class="custom-select" style="padding:4px; width:65px; font-size:0.8rem;">
+                                <option value="0">0 ⭐</option><option value="1">1 ⭐</option><option value="2">2 ⭐</option><option value="3">3 ⭐</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="garage-item-row">
+                        <div class="garage-tank-meta"><input type="checkbox" id="chk-lowe" class="garage-checkbox"> Löwe</div>
+                        <div class="marks-selector-group">
+                            <span class="marks-label">Відмітки:</span>
+                            <select id="marks-lowe" class="custom-select" style="padding:4px; width:65px; font-size:0.8rem;">
+                                <option value="0">0 ⭐</option><option value="1">1 ⭐</option><option value="2">2 ⭐</option><option value="3">3 ⭐</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="modal-grid-inputs">
-            <div class="input-group">
-                <label class="input-label" for="profile-nation-select">Бойова Нація</label>
-                <select id="profile-nation-select" class="custom-select">
-                    <option value="UA">🇺🇦 Україна</option>
-                    <option value="US">🇺🇸 США</option>
-                    <option value="DE">🇩🇪 Німеччина</option>
-                    <option value="UK">🇬🇧 Велика Британія</option>
-                    <option value="FR">🇫🇷 Франція</option>
-                    <option value="SE">🇸🇪 Швеція</option>
-                    <option value="PL">🇵🇱 Польща</option>
-                </select>
+            <div id="tab-hardware" class="profile-tab-content">
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Процесор (CPU)</label>
+                        <input type="text" id="pc-cpu" class="custom-input" placeholder="Напр: Xeon E3-1240 / i5...">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Відеокарта (GPU)</label>
+                        <input type="text" id="pc-gpu" class="custom-input" placeholder="Напр: GTX 960 / RTX...">
+                    </div>
+                </div>
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Графіка в Танках</label>
+                        <select id="pc-graphics" class="custom-select">
+                            <option value="Ультра">Ультра 💎</option>
+                            <option value="Максимальні">Максимальні 🦾</option>
+                            <option value="Середні">Середні ⚖️</option>
+                            <option value="Низькі">Низькі / SD 📉</option>
+                            <option value="Твікер">Твікер (Стиснуті текстури)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Середній FPS в бою</label>
+                        <input type="number" id="pc-fps" class="custom-input" placeholder="Наприклад: 120">
+                    </div>
+                </div>
             </div>
-            <div class="input-group">
-                <label class="input-label" for="profile-fav-tank">Улюблена Машина</label>
-                <select id="profile-fav-tank" class="custom-select">
-                    <option value="BZ-176">BZ-176</option>
-                    <option value="UDES 03">UDES 03</option>
-                    <option value="BZT-70">BZT-70</option>
-                    <option value="Mauschen">Mauschen</option>
-                    <option value="Lowe">Löwe</option>
-                    <option value="IS-3">ІС-3</option>
-                    <option value="Inshiy">Інший танк</option>
-                </select>
+
+            <div id="tab-badges" class="profile-tab-content">
+                <label class="input-label" style="text-align:center; margin-bottom:10px;">Твої відкриті бойові медалі порталу:</label>
+                <div class="achievements-row">
+                    <div class="badge-item" id="badge-login" title="Активовано вхід через ТГ бот"><span class="badge-icon">🏁</span><span class="badge-name">Вхід</span></div>
+                    <div class="badge-item" id="badge-patriot" title="Обрано Націю: Україна 🇺🇦"><span class="badge-icon">🇺🇦</span><span class="badge-name">Патріот</span></div>
+                    <div class="badge-item" id="badge-tankist" title="Вказано нік у WoT та активовано квиток"><span class="badge-icon">🎖️</span><span class="badge-name">Танкіст</span></div>
+                    <div class="badge-item" id="badge-veteran" title="Зайдено на сайт більше 3 разів"><span class="badge-icon">👑</span><span class="badge-name">Ветеран</span></div>
+                </div>
             </div>
+
+        </form>
+
+        <div class="stats-footer-row" style="margin-top:15px;">
+            <span>Реєстрація: <strong id="stats-reg-date">--.--.--</strong></span>
+            <span>Візити (Бої): <strong id="stats-visit-count">1</strong></span>
         </div>
 
-        <div class="input-group">
-            <label class="input-label" for="profile-status-text">Бойовий девіз / Цитата</label>
-            <input type="text" id="profile-status-text" class="custom-input" placeholder="Напиши щось, наприклад: Фармлю відмітки...">
-        </div>
-
-        <div class="input-group" style="margin-bottom: 15px;">
-            <label class="input-label">Кастомізація Аватарки</label>
-            <div class="avatar-picker-grid" id="avatar-options-container"></div>
-        </div>
-
-        <div class="stats-footer-row">
-            <span>Картка створена: <strong id="stats-reg-date">--.--.--</strong></span>
-            <span>Кількість боїв (візитів): <strong id="stats-visit-count">1</strong></span>
-        </div>
-
-        <button class="btn-action-side btn-yellow" id="save-profile-btn">ЗБЕРЕГТИ ВСІ ОНОВЛЕННЯ</button>
+        <button class="btn-action-side btn-yellow" id="save-profile-btn">ЗБЕРЕГТИ ВСІ ЗМІНИ ТА ОНОВИТИ ДОСЬЄ</button>
     </div>
 </div>
 
@@ -607,27 +625,27 @@
         "US": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/us.svg",
         "DE": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/de.svg",
         "UK": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/gb.svg",
-        "FR": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/fr.svg",
-        "SE": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/se.svg",
-        "PL": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/pl.svg"
+        "FR": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/fr.svg"
     };
 
     const AVAILABLE_AVATARS = [
         "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80",
         "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&w=150&q=80",
         "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=150&q=80"
+        "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=150&q=80"
     ];
 
     let currentSelectedAvatarUrl = "";
 
+    function switchProfileTab(tabId, btnElement) {
+        document.querySelectorAll('.profile-tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.p-tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btnElement.classList.add('active');
+    }
+
     async function onTelegramAuth(user) {
         if (!user) return;
-
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
         let regDate = localStorage.getItem('site_registration_date') || new Date().toLocaleDateString('uk-UA');
         
@@ -639,54 +657,79 @@
         if (savedUser) {
             let parsed = JSON.parse(savedUser);
             if(parsed.id == user.id) {
-                user.custom_name = parsed.custom_name || user.first_name;
-                user.custom_photo = parsed.custom_photo || user.photo_url;
-                user.wot_nick = parsed.wot_nick || "";
-                user.nation = parsed.nation || "UA";
-                user.fav_tank = parsed.fav_tank || "BZ-176";
-                user.status_text = parsed.status_text || "";
+                user = Object.assign({}, user, parsed);
             }
         } else {
             user.custom_name = user.first_name;
             user.custom_photo = user.photo_url || AVAILABLE_AVATARS[0];
-            user.wot_nick = "";
-            user.nation = "UA";
-            user.fav_tank = "BZ-176";
-            user.status_text = "";
+            user.wot_nick = ""; user.nation = "UA"; user.squad_status = "Соло";
+            user.clan_tag = ""; user.status_text = "";
+            user.pc_cpu = ""; user.pc_gpu = ""; user.pc_graphics = "Середні"; user.pc_fps = "";
+            user.garage = { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0", maus: false, maus_m: "0", lowe: false, lowe_m: "0" };
         }
 
         localStorage.setItem('registered_site_user', JSON.stringify(user));
         unlockSite(user);
+    }
 
-        const ticketActive = user.wot_nick && user.wot_nick.length > 1;
-        const messageText = `👤 ВХІД НА ПОРТАЛ! 👤\n\n📝 Ім'я в ТГ: ${user.first_name}\n🎮 Нік на сайті: ${user.custom_name}\n🎖️ Нік у WoT: ${user.wot_nick || 'Не вказано'}\n🎫 Квиток: ${ticketActive ? 'АКТИВНИЙ (1 шт.)' : 'Не активовано'}\n📊 Візитів: ${visits}\n🆔 ID Telegram: ${user.id}`;
+    function calculateXP(user, visits) {
+        let xp = 50; // Базовий вхід
+        if (user.wot_nick && user.wot_nick.trim().length > 1) xp += 100;
+        if (user.clan_tag && user.clan_tag.trim().length > 0) xp += 30;
+        if (user.status_text && user.status_text.trim().length > 0) xp += 20;
+        if (user.pc_cpu || user.pc_gpu) xp += 50;
         
-        try {
-            await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: messageText })
-            });
-        } catch (e) {}
+        if (user.garage) {
+            if (user.garage.bz) xp += 30 + (parseInt(user.garage.bz_m) * 15);
+            if (user.garage.udes) xp += 30 + (parseInt(user.garage.udes_m) * 15);
+            if (user.garage.bzt) xp += 30 + (parseInt(user.garage.bzt_m) * 15);
+            if (user.garage.maus) xp += 30 + (parseInt(user.garage.maus_m) * 15);
+            if (user.garage.lowe) xp += 30 + (parseInt(user.garage.lowe_m) * 15);
+        }
+
+        xp += (visits - 1) * 15;
+        return xp;
+    }
+
+    function getLevelInfo(xp) {
+        if (xp < 150) return { lvl: 1, title: "Рівень 1: Рекрут", next: 150, prev: 0 };
+        if (xp < 350) return { lvl: 2, title: "Рівень 2: Рядовий", next: 350, prev: 150 };
+        if (xp < 650) return { lvl: 3, title: "Рівень 3: Стрібак", next: 650, prev: 350 };
+        if (xp < 1000) return { lvl: 4, title: "Рівень 4: Танкіст-Ас", next: 1000, prev: 650 };
+        return { lvl: 5, title: "Рівень 5: Майстер танка 👑", next: xp, prev: 1000 };
     }
 
     function unlockSite(user) {
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-content').classList.add('visible');
         
+        let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
+        let xp = calculateXP(user, visits);
+        let lvlInfo = getLevelInfo(xp);
+
         const displayPhoto = user.custom_photo ? user.custom_photo : (user.photo_url ? user.photo_url : AVAILABLE_AVATARS[0]);
-        const displayName = user.custom_name ? user.custom_name : user.first_name;
-        const displayNation = user.nation || "UA";
-        const displayTank = user.fav_tank || "BZ-176";
-        const flagUrl = FLAG_IMAGES[displayNation];
+        const displayName = user.custom_name || user.first_name;
+        const flagUrl = FLAG_IMAGES[user.nation || "UA"];
+        
+        let topTankStr = "";
+        if (user.garage) {
+            let activeTanks = [];
+            if(user.garage.bz) activeTanks.push(`BZ [${user.garage.bz_m}⭐]`);
+            if(user.garage.udes) activeTanks.push(`UDES [${user.garage.udes_m}⭐]`);
+            if(user.garage.bzt) activeTanks.push(`BZT [${user.garage.bzt_m}⭐]`);
+            if (activeTanks.length > 0) topTankStr = ` | ` + activeTanks[0];
+        }
+
+        let clanStr = user.clan_tag ? ` ${user.clan_tag}` : "";
 
         document.getElementById('user-display').innerHTML = `
             <div class="user-profile-badge">
                 <img src="${displayPhoto}" alt="avatar" class="avatar-main">
-                <img src="${flagUrl}" class="flag-icon" title="Нація: ${displayNation}">
-                <span>${displayName} [${displayTank}]</span>
-                <button class="edit-profile-btn" onclick="openProfileModal()" title="Досьє танкіста"><i class="fa-solid fa-user-gear"></i></button>
-                <button class="logout-btn" onclick="logout()" title="Вийти"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <img src="${flagUrl}" class="flag-icon">
+                <span>${displayName}${clanStr}${topTankStr}</span>
+                <span class="user-lvl-tag">ЛВЛ ${lvlInfo.lvl}</span>
+                <button class="edit-profile-btn" onclick="openProfileModal()"><i class="fa-solid fa-user-gear"></i></button>
+                <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         `;
     }
@@ -696,53 +739,58 @@
         if (!savedUser) return;
         const user = JSON.parse(savedUser);
 
-        // Статистика
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
-        let regDate = localStorage.getItem('site_registration_date') || new Date().toLocaleDateString('uk-UA');
-        document.getElementById('stats-reg-date').innerText = regDate;
+        document.getElementById('stats-reg-date').innerText = localStorage.getItem('site_registration_date') || "--.--.--";
         document.getElementById('stats-visit-count').innerText = visits;
 
-        // Поля
-        document.getElementById('profile-nickname-input').value = user.custom_name || user.first_name;
-        document.getElementById('profile-wot-nick').value = user.wot_nick || "";
-        document.getElementById('profile-nation-select').value = user.nation || "UA";
-        document.getElementById('profile-fav-tank').value = user.fav_tank || "BZ-176";
-        document.getElementById('profile-status-text').value = user.status_text || "";
-
-        // Розрахунок квитків та медалей
-        updateInteractiveElements(user, visits);
-
-        // Сітка аватарок
-        const container = document.getElementById('avatar-options-container');
-        container.innerHTML = "";
-        let listToRender = [...AVAILABLE_AVATARS];
-        if(user.photo_url && !listToRender.includes(user.photo_url)) {
-            listToRender.unshift(user.photo_url);
+        // Оновлення XP Бару
+        let xp = calculateXP(user, visits);
+        let lvlInfo = getLevelInfo(xp);
+        document.getElementById('profile-lvl-title').innerText = lvlInfo.title;
+        if(lvlInfo.lvl === 5) {
+            document.getElementById('profile-xp-counter').innerText = `${xp} XP (MAX)`;
+            document.getElementById('profile-xp-bar').style.width = "100%";
+        } else {
+            let currentProgress = xp - lvlInfo.prev;
+            let totalNeeded = lvlInfo.next - lvlInfo.prev;
+            let pct = (currentProgress / totalNeeded) * 100;
+            document.getElementById('profile-xp-counter').innerText = `${xp} / ${lvlInfo.next} XP`;
+            document.getElementById('profile-xp-bar').style.width = `${pct}%`;
         }
-        currentSelectedAvatarUrl = user.custom_photo || user.photo_url || AVAILABLE_AVATARS[0];
 
-        listToRender.forEach(url => {
-            const div = document.createElement('div');
-            div.className = `avatar-option ${url === currentSelectedAvatarUrl ? 'selected' : ''}`;
-            div.innerHTML = `<img src="${url}" alt="avatar">`;
-            div.onclick = () => {
-                document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
-                div.classList.add('selected');
-                currentSelectedAvatarUrl = url;
-            };
-            container.appendChild(div);
-        });
+        // Заповнення Головних полів
+        document.getElementById('p-custom-name').value = user.custom_name || user.first_name;
+        document.getElementById('p-wot-nick').value = user.wot_nick || "";
+        document.getElementById('p-nation').value = user.nation || "UA";
+        document.getElementById('p-squad-status').value = user.squad_status || "Соло";
+        document.getElementById('p-clan-tag').value = user.clan_tag || "";
+        document.getElementById('p-status-text').value = user.status_text || "";
 
-        document.getElementById('profile-modal').classList.add('active');
-    }
+        // Заповнення вкладки Ангару
+        if (user.garage) {
+            document.getElementById('chk-bz').checked = !!user.garage.bz;
+            document.getElementById('marks-bz').value = user.garage.bz_m || "0";
+            document.getElementById('chk-udes').checked = !!user.garage.udes;
+            document.getElementById('marks-udes').value = user.garage.udes_m || "0";
+            document.getElementById('chk-bzt').checked = !!user.garage.bzt;
+            document.getElementById('marks-bzt').value = user.garage.bzt_m || "0";
+            document.getElementById('chk-maus').checked = !!user.garage.maus;
+            document.getElementById('marks-maus').value = user.garage.maus_m || "0";
+            document.getElementById('chk-lowe').checked = !!user.garage.lowe;
+            document.getElementById('marks-lowe').value = user.garage.lowe_m || "0";
+        }
 
-    function updateInteractiveElements(user, visits) {
+        // Заповнення Характеристик ПК
+        document.getElementById('pc-cpu').value = user.pc_cpu || "";
+        document.getElementById('pc-gpu').value = user.pc_gpu || "";
+        document.getElementById('pc-graphics').value = user.pc_graphics || "Середні";
+        document.getElementById('pc-fps').value = user.pc_fps || "";
+
+        // Статус Квитка Розіграшу
         const tBox = document.getElementById('ticket-status-display');
-        const hasWot = user.wot_nick && user.wot_nick.trim().length > 1;
-
-        if (hasWot) {
+        if (user.wot_nick && user.wot_nick.trim().length > 1) {
             tBox.className = "ticket-status-box active";
-            tBox.innerHTML = `<i class="fa-solid fa-ticket-simple" style="color: #ffcc00;"></i> ТВІЙ КВИТОК НА РОЗІГРАШ: <span style="color:#ffcc00;">АКТИВНИЙ (1 шт.)</span>`;
+            tBox.innerHTML = `<i class="fa-solid fa-ticket-simple" style="color: #ffcc00;"></i> ЛОТЕРЕЙНИЙ КВИТОК: <span style="color:#ffcc00;">АКТИВНИЙ (1 шт.)</span>`;
         } else {
             tBox.className = "ticket-status-box";
             tBox.innerHTML = `<i class="fa-solid fa-ticket-simple" style="color: #64748b;"></i> КВИТОК НЕ АКТИВОВАНО (Вкажи нік у WoT)`;
@@ -752,15 +800,31 @@
         document.getElementById('badge-login').classList.add('unlocked');
         if (user.nation === "UA") document.getElementById('badge-patriot').classList.add('unlocked');
         else document.getElementById('badge-patriot').classList.remove('unlocked');
-
-        if (hasWot) document.getElementById('badge-tankist').classList.add('unlocked');
+        if (user.wot_nick && user.wot_nick.trim().length > 1) document.getElementById('badge-tankist').classList.add('unlocked');
         else document.getElementById('badge-tankist').classList.remove('unlocked');
-
-        if (user.custom_photo && AVAILABLE_AVATARS.includes(user.custom_photo)) document.getElementById('badge-style').classList.add('unlocked');
-        else document.getElementById('badge-style').classList.remove('unlocked');
-
         if (visits >= 3) document.getElementById('badge-veteran').classList.add('unlocked');
         else document.getElementById('badge-veteran').classList.remove('unlocked');
+
+        // Кастомізація Аватарок
+        const pickerZone = document.getElementById('avatar-picker-zone');
+        pickerZone.innerHTML = "";
+        let finalAvatars = [...AVAILABLE_AVATARS];
+        if(user.photo_url && !finalAvatars.includes(user.photo_url)) finalAvatars.unshift(user.photo_url);
+        currentSelectedAvatarUrl = user.custom_photo || user.photo_url || AVAILABLE_AVATARS[0];
+
+        finalAvatars.forEach(url => {
+            const div = document.createElement('div');
+            div.className = `avatar-option ${url === currentSelectedAvatarUrl ? 'selected' : ''}`;
+            div.innerHTML = `<img src="${url}">`;
+            div.onclick = () => {
+                document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+                div.classList.add('selected');
+                currentSelectedAvatarUrl = url;
+            };
+            pickerZone.appendChild(div);
+        });
+
+        document.getElementById('profile-modal').classList.add('active');
     }
 
     function logout() {
@@ -769,7 +833,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Лічильник візитів
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "0");
         visits++;
         localStorage.setItem('site_visit_counter', visits);
@@ -780,9 +843,7 @@
                 id: urlParams.get('id'),
                 first_name: urlParams.get('first_name'),
                 username: urlParams.get('username'),
-                photo_url: urlParams.get('photo_url'),
-                auth_date: urlParams.get('auth_date'),
-                hash: urlParams.get('hash')
+                photo_url: urlParams.get('photo_url')
             };
             window.history.replaceState({}, document.title, window.location.pathname);
             onTelegramAuth(user);
@@ -790,59 +851,74 @@
         }
 
         const savedUser = localStorage.getItem('registered_site_user');
-        if (savedUser) {
-            unlockSite(JSON.parse(savedUser));
-        }
+        if (savedUser) unlockSite(JSON.parse(savedUser));
 
         const profileModal = document.getElementById('profile-modal');
-        const closeProfileBtn = document.getElementById('close-profile-btn');
-        const saveProfileBtn = document.getElementById('save-profile-btn');
-
-        if(closeProfileBtn) closeProfileBtn.addEventListener('click', () => profileModal.classList.remove('active'));
+        document.getElementById('close-profile-btn').addEventListener('click', () => profileModal.classList.remove('active'));
         
-        if(saveProfileBtn) {
-            saveProfileBtn.addEventListener('click', async () => {
-                let savedUser = localStorage.getItem('registered_site_user');
-                if (!savedUser) return;
-                let user = JSON.parse(savedUser);
+        document.getElementById('save-profile-btn').addEventListener('click', async () => {
+            let uData = JSON.parse(localStorage.getItem('registered_site_user'));
+            if (!uData) return;
 
-                const newNick = document.getElementById('profile-nickname-input').value.trim();
-                const wotNick = document.getElementById('profile-wot-nick').value.trim();
-                const selectedNation = document.getElementById('profile-nation-select').value;
-                const selectedTank = document.getElementById('profile-fav-tank').value;
-                const newStatus = document.getElementById('profile-status-text').value.trim();
+            uData.custom_name = document.getElementById('p-custom-name').value.trim();
+            uData.wot_nick = document.getElementById('p-wot-nick').value.trim();
+            uData.nation = document.getElementById('p-nation').value;
+            uData.squad_status = document.getElementById('p-squad-status').value;
+            uData.clan_tag = document.getElementById('p-clan-tag').value.trim();
+            uData.status_text = document.getElementById('p-status-text').value.trim();
+            uData.custom_photo = currentSelectedAvatarUrl;
 
-                if(newNick.length < 2) {
-                    alert('Нікнейм занадто короткий!');
-                    return;
-                }
+            uData.garage = {
+                bz: document.getElementById('chk-bz').checked,
+                bz_m: document.getElementById('marks-bz').value,
+                udes: document.getElementById('chk-udes').checked,
+                udes_m: document.getElementById('marks-udes').value,
+                bzt: document.getElementById('chk-bzt').checked,
+                bzt_m: document.getElementById('marks-bzt').value,
+                maus: document.getElementById('chk-maus').checked,
+                maus_m: document.getElementById('marks-maus').value,
+                lowe: document.getElementById('chk-lowe').checked,
+                lowe_m: document.getElementById('marks-lowe').value
+            };
 
-                user.custom_name = newNick;
-                user.wot_nick = wotNick;
-                user.nation = selectedNation;
-                user.fav_tank = selectedTank;
-                user.custom_photo = currentSelectedAvatarUrl;
-                user.status_text = newStatus;
+            uData.pc_cpu = document.getElementById('pc-cpu').value.trim();
+            uData.pc_gpu = document.getElementById('pc-gpu').value.trim();
+            uData.pc_graphics = document.getElementById('pc-graphics').value;
+            uData.pc_fps = document.getElementById('pc-fps').value.trim();
 
-                localStorage.setItem('registered_site_user', JSON.stringify(user));
-                unlockSite(user);
-                profileModal.classList.remove('active');
+            localStorage.setItem('registered_site_user', JSON.stringify(uData));
+            unlockSite(uData);
+            profileModal.classList.remove('active');
 
-                const ticketActive = wotNick.length > 1;
-                const logMessage = `⚙️ ОНОВЛЕНО ДОСЬЄ ТАНКІСТА! ⚙️\n\n🆔 TG ID: ${user.id}\n📝 Ім'я в TG: ${user.first_name}\n🎮 Нік на сайті: ${user.custom_name}\n🎖️ Нік у WoT: ${wotNick || 'Не вказано'}\n🌍 Нація: ${selectedNation}\n🚀 Улюблений танк: ${selectedTank}\n💬 Девіз: ${newStatus || 'Немає'}\n🎫 Статус квитка: ${ticketActive ? 'АКТИВНИЙ' : 'Не активовано'}\n📊 Візитів на сайт: ${localStorage.getItem('site_visit_counter')}`;
-                
-                try {
-                    await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: logMessage })
-                    });
-                } catch(e){}
-            });
-        }
+            // Надсилаємо повний потужний звіт у Телеграм
+            let garageList = [];
+            if(uData.garage.bz) garageList.push(`BZ-176 (${uData.garage.bz_m}⭐)`);
+            if(uData.garage.udes) garageList.push(`UDES 03 (${uData.garage.udes_m}⭐)`);
+            if(uData.garage.bzt) garageList.push(`BZT-70 (${uData.garage.bzt_m}⭐)`);
+            if(uData.garage.maus) garageList.push(`Maus (${uData.garage.maus_m}⭐)`);
+            if(uData.garage.lowe) garageList.push(`Löwe (${uData.garage.lowe_m}⭐)`);
 
-        window.addEventListener('click', (e) => {
-            if (e.target === profileModal) profileModal.classList.remove('active');
+            let xp = calculateXP(uData, parseInt(localStorage.getItem('site_visit_counter')));
+            let lvl = getLevelInfo(xp).title;
+
+            let logMsg = `⚔️ ОНОВЛЕНО ПОВНЕ ДОСЬЄ ГРАВЦЯ! ⚔️\n\n` +
+                         `🆔 TG ID: ${uData.id}\n` +
+                         `🎮 Нік порталу: ${uData.custom_name}\n` +
+                         `🎖️ Нік у WoT: ${uData.wot_nick || 'Немає'}\n` +
+                         `📈 Рівень аккаунту: ${lvl} (${xp} XP)\n` +
+                         `🛡️ Клан-тег: ${uData.clan_tag || 'Немає'}\n` +
+                         `🤝 Статус взводу: ${uData.squad_status}\n` +
+                         `💬 Девіз: ${uData.status_text || 'Немає'}\n\n` +
+                         `🚜 АНГАР ТЕХНІКИ:\n${garageList.join(', ') || 'Ангар пустий'}\n\n` +
+                         `💻 СЛУЖБОВИЙ ПК:\n🖥️ CPU: ${uData.pc_cpu || 'Не вказано'}\n🎞️ GPU: ${uData.pc_gpu || 'Не вказано'}\n🎨 Графіка: ${uData.pc_graphics}\n📊 FPS в бою: ${uData.pc_fps || 'Невідомо'}`;
+
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: logMsg })
+                });
+            } catch(e){}
         });
     });
 </script>
@@ -850,23 +926,15 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const rulesModal = document.getElementById('rules-modal');
-        const openRulesBtn = document.getElementById('open-rules-btn');
-        const closeRulesBtn = document.getElementById('close-rules-btn');
-
-        if(openRulesBtn) openRulesBtn.addEventListener('click', () => rulesModal.classList.add('active'));
-        if(closeRulesBtn) closeRulesBtn.addEventListener('click', () => rulesModal.classList.remove('active'));
-
-        window.addEventListener('click', (e) => {
-            if (e.target === rulesModal) rulesModal.classList.remove('active');
-        });
+        document.getElementById('open-rules-btn').addEventListener('click', () => rulesModal.classList.add('active'));
+        document.getElementById('close-rules-btn').addEventListener('click', () => rulesModal.classList.remove('active'));
 
         const daysMap = ['id-sun', 'id-mon', 'id-tue', 'id-wed', 'id-thu', 'id-fri', 'id-sat'];
         const currentDayClass = daysMap[new Date().getDay()];
         const todayElement = document.querySelector('.' + currentDayClass);
         if (todayElement) {
             todayElement.classList.add('today');
-            const dayLabel = todayElement.querySelector('.sched-day');
-            if (dayLabel) dayLabel.innerHTML += '<span style="background: #00ff66; color: #05080e; font-family: \'Orbitron\'; font-weight: 900; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">СЬОГОДНІ</span>';
+            todayElement.querySelector('.sched-day').innerHTML += '<span style="background: #00ff66; color: #05080e; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; margin-left: 8px; font-family:\'Orbitron\'">СЬОГОДНІ</span>';
         }
     });
 
@@ -880,19 +948,11 @@
                 data.items.slice(0, count).forEach(v => {
                     let id = v.link.split('v=')[1] || v.link.split('/').pop();
                     if(id.includes('&')) id = id.split('&')[0];
-                    cards += `
-                    <div class="video-block">
-                        <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
-                        <div class="video-caption">${v.title}</div>
-                    </div>`;
+                    cards += `<div class="video-block"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="video-caption">${v.title}</div></div>`;
                 });
                 box.innerHTML = cards;
-            } else {
-                box.innerHTML = "<div style='text-align:center;color:#64748b;padding:10px;'>Немає контенту...</div>";
-            }
-        } catch (err) { 
-            box.innerHTML = "<div style='text-align:center;color:#ef4444;padding:10px;'>Помилка завантаження...</div>"; 
-        }
+            } else { box.innerHTML = "<div style='text-align:center;color:#64748b;padding:10px;'>Немає контенту...</div>"; }
+        } catch (err) { box.innerHTML = "<div style='text-align:center;color:#ef4444;padding:10px;'>Помилка...</div>"; }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
