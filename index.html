@@ -123,6 +123,10 @@
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
         .video-caption { font-size: 0.8rem; color: #94a3b8; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
+        /* ИНТЕРАКТИВНЫЙ БЛОК ВМЕСТО ПОСЛЕДНИХ ВИДЕО */
+        .tactics-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center; }
+        .tactic-output { font-size: 1.1rem; font-weight: bold; color: #fff; margin: 15px 0; min-height: 50px; display: flex; align-items: center; justify-content: center; border-left: 3px solid var(--gold); background: rgba(255,255,255,0.01); padding: 10px; border-radius: 4px; }
+
         .server-grid { display: flex; flex-direction: column; gap: 10px; }
         .server-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; font-size: 0.85rem; }
         .server-meta { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: bold; }
@@ -170,7 +174,7 @@
         .faq-question { padding: 12px 15px; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold; color: #fff; background: rgba(255,255,255,0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 10px; }
         .faq-answer { padding: 12px 15px; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.03); display: none; }
 
-        /* МОДАЛЬНЫЕ ОКНА И ТАБЫ (АДАПТИРОВАНО ПОД МОБИЛЬНЫЕ УСТРОЙСТВА) */
+        /* МОДАЛЬНЫЕ ОКНА */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
@@ -203,7 +207,6 @@
         .agreement-text-area { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 15px; max-height: 180px; overflow-y: auto; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; text-align: left; margin-bottom: 20px; }
         .agreement-text-area h4 { color: #fff; margin: 10px 0 5px 0; font-family: 'Orbitron'; font-size: 0.85rem; }
 
-        /* Табы скроллятся пальцем на мобилках */
         .profile-tabs-nav { display: flex; gap: 8px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .profile-tabs-nav::-webkit-scrollbar { display: none; }
         .p-tab-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #94a3b8; padding: 10px 16px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
@@ -240,7 +243,7 @@
         .ticket-status-box.active { border-color: var(--gold); color: #ffcc00; }
         .stats-footer-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 12px; }
 
-        /* МАКСИМАЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ (ОПТИМИЗАЦИЯ ПОД ЭКРАНЫ СМАРТФОНОВ) */
+        /* МАКСИМАЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 1024px) {
             .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
@@ -252,7 +255,6 @@
             .clean-mosaic { grid-template-columns: 1fr; }
             .modal-grid-inputs, .pc-spec-list, .quick-links-grid { grid-template-columns: 1fr; }
             
-            /* Модальные окна превращаются в удобные шторки снизу экрана как на iOS/Android */
             .modal-overlay { padding: 0; align-items: flex-end; }
             .modal-window { max-height: 88vh; border-radius: 20px 20px 0 0; border-bottom: none; padding: 20px; }
             .modal-close-btn { top: 12px; right: 12px; }
@@ -294,6 +296,15 @@
 
                 <div class="studio-player">
                     <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>🎲 Рандомайзер Тактик та Техніки</span></div>
+                    <div class="tactics-box">
+                        <div style="font-size:0.85rem; color:#94a3b8;">Не знаєш на чому поїхати або яку тактику обрати на наступний бій? Згенеруй випадкову пораду від BlackCellUA!</div>
+                        <div class="tactic-output" id="tactic-output-text">Натисни кнопку нижче, щоб отримати бойове завдання...</div>
+                        <button class="btn-action-side btn-yellow" onclick="generateRandomTactic()" style="max-width:280px; margin:0 auto; padding:10px;"><i class="fa-solid fa-dice"></i> ЗГЕНЕРУВАТИ ТАКТИКУ</button>
+                    </div>
                 </div>
 
                 <div class="stealth-card">
@@ -642,7 +653,7 @@
                     </div>
                 </div>
                 <div class="modal-grid-inputs">
-                    <div class="input-group" style="grid-column: span 2;"><label class="input-label">Девіз / Статус танкіста</label><input type="text" id="p-status-text" class="custom-input"></div>
+                    <div class="input-group" style="grid-column: span 2;"><label class="input-label">Девіз / Status</label><input type="text" id="p-status-text" class="custom-input"></div>
                 </div>
                 <div class="input-group"><label class="input-label">Обери Аватар</label><div class="avatar-picker-grid" id="avatar-picker-zone"></div></div>
             </div>
@@ -704,7 +715,26 @@
         "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&w=150&q=80"
     ];
 
+    const TACTICS_LIST = [
+        "🚜 Зіграй наступний бій на важкому BZ-176! Ціль: Продавити бананову лінію.",
+        "🎯 Бери UDES 03 та тримай дальню дистанцію. Твоє завдання — не світитися до кінця бою.",
+        "⚡ Агресивний врив! Зроби фраг за допомогою реактивного прискорення.",
+        "🔥 Зіграй у повному взводі з підписниками! Рівень техніки: 8 або 10.",
+        "🛡️ Завдання: Натанкувати більше 3,000 шкоди за один бій.",
+        "💣 Фугасний гнів! Грай виключно на осколково-фугасних снарядах весь бій."
+    ];
+
     let currentSelectedAvatarUrl = "";
+
+    function generateRandomTactic() {
+        const out = document.getElementById('tactic-output-text');
+        out.style.opacity = 0;
+        setTimeout(() => {
+            const rand = TACTICS_LIST[Math.floor(Math.random() * TACTICS_LIST.length)];
+            out.innerText = rand;
+            out.style.opacity = 1;
+        }, 150);
+    }
 
     function switchProfileTab(tabId, btnElement) {
         document.querySelectorAll('.profile-tab-content').forEach(el => el.classList.remove('active'));
@@ -925,7 +955,6 @@
             } catch(e){}
         });
 
-        /* ОБРАБОТКА ИДЕЙ В TELEGRAM ДЛЯ МОБИЛЬНОЙ ФОРМЫ */
         document.getElementById('idea-telegram-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('send-idea-btn');
