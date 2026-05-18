@@ -49,6 +49,8 @@
             --purple-stat: #a335ee;
             --danger: #ff3344;
             --cyan: #00bdf2;
+            --tg-color: #229ED9;
+            --dc-color: #5865F2;
         }
 
         * {
@@ -92,7 +94,6 @@
         .ticker-wrap span { font-size: 0.9rem; font-weight: 500; color: #64748b; white-space: nowrap; padding-right: 80px; }
         @keyframes ticker-move { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
 
-        /* ИСПРАВЛЕННАЯ СЕТКА */
         .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; width: 100%; }
         
         .stealth-card, .side-block {
@@ -111,16 +112,54 @@
         .music-widget { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-decoration: none; color: inherit; }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        .premium-sub-banner {
-            background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 2px solid var(--gold);
-            border-radius: 16px; padding: 25px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); width: 100%;
+        /* ОНОВЛЕНИЙ КРУТИЙ БЛОК РОЗІГРАШУ */
+        .premium-mega-banner {
+            background: radial-gradient(circle at top, #111a2e 0%, #060b14 100%); 
+            border: 2px solid var(--gold);
+            border-radius: 16px; 
+            padding: 30px 24px; 
+            text-align: center; 
+            margin-bottom: 20px; 
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.2); 
+            width: 100%;
+            position: relative;
+            overflow: hidden;
         }
-        .giveaway-title { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; color: #fff; margin: 0 0 10px 0; }
-        .giveaway-title span { color: #ffcc00; }
-        .banner-buttons-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .premium-mega-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 60%); pointer-events: none;
+        }
+        .giveaway-badge {
+            background: rgba(212, 175, 55, 0.12); border: 1px solid var(--gold); color: var(--gold);
+            padding: 4px 12px; border-radius: 50px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 900;
+            display: inline-block; margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase;
+        }
+        .giveaway-title { font-family: 'Orbitron'; font-size: 1.6rem; font-weight: 900; color: #fff; margin: 0 0 10px 0; letter-spacing: 1px; text-shadow: 0 0 15px rgba(255,255,255,0.1); }
+        .giveaway-title span { color: #ffcc00; text-shadow: 0 0 15px rgba(255,204,0,0.3); }
         
-        .luxury-btn { background: linear-gradient(135deg, #110000 0%, #4a000d 100%); border: 2px solid #ff003c; border-radius: 8px; padding: 12px 24px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
-        .info-btn-outline { background: rgba(212, 175, 55, 0.05); border: 2px solid var(--gold); border-radius: 8px; padding: 12px 24px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        /* СЕТКА КНОПОК В РОЗІГРАШІ */
+        .mega-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .mega-grid-full { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .luxury-btn { background: linear-gradient(135deg, #7a0010 0%, #b3001e 100%); border: 1px solid #ff3355; border-radius: 8px; padding: 14px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(179,0,30,0.3); }
+        .luxury-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        
+        .info-btn-outline { background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold); border-radius: 8px; padding: 14px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; cursor: pointer; }
+        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.15); }
+
+        .social-tg-btn { background: linear-gradient(135deg, #1d719c 0%, var(--tg-color) 100%); border: 1px solid #3aa6da; border-radius: 8px; padding: 14px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(34,158,217,0.2); }
+        .social-tg-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .social-dc-btn { background: linear-gradient(135deg, #404eed 0%, var(--dc-color) 100%); border: 1px solid #727df5; border-radius: 8px; padding: 14px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(88,101,242,0.2); }
+        .social-dc-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .action-like-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 14px; color: #ff3366; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; cursor: pointer; }
+        .action-like-btn:hover { background: rgba(255, 51, 102, 0.1); border-color: #ff3366; text-shadow: 0 0 10px #ff3366; }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 25px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
@@ -177,7 +216,6 @@
         .faq-question { padding: 12px 15px; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold; color: #fff; background: rgba(255,255,255,0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 10px; }
         .faq-answer { padding: 12px 15px; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.03); display: none; }
 
-        /* МУЛЬТИ-МЕДИА КВЕРИ ДЛЯ АДАПТИВНОСТИ ТЕЛЕФОНОВ */
         @media (max-width: 1024px) {
             .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
@@ -189,12 +227,17 @@
             .nav-links { width: 100%; justify-content: center; }
             .clean-mosaic { grid-template-columns: 1fr; }
             .modal-grid-inputs, .pc-spec-list, .quick-links-grid { grid-template-columns: 1fr; }
-            .stealth-card, .side-block, .premium-sub-banner { padding: 15px 12px; border-radius: 12px; }
+            .stealth-card, .side-block, .premium-mega-banner { padding: 20px 14px; border-radius: 12px; }
+            
+            /* Кнопки на телефоні вибудовуються красиво в ряд стовпчиком */
+            .mega-banner-grid { grid-template-columns: 1fr; gap: 10px; }
+            .mega-grid-full { grid-template-columns: 1fr; gap: 10px; }
+            
             .bottom-full-row { grid-template-columns: 1fr; }
-            .giveaway-title { font-size: 1.1rem; }
+            .giveaway-title { font-size: 1.2rem; }
         }
 
-        /* МОДАЛЬНЫЕ ОКНА */
+        /* МОДАЛЬНІ ОКНА */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
@@ -285,12 +328,22 @@
         <div class="layout-grid">
             <div class="left-pane-flow">
                 
-                <div class="premium-sub-banner">
+                <div class="premium-mega-banner">
+                    <div class="giveaway-badge"><i class="fa-solid fa-trophy"></i> Мега-Івент</div>
                     <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 8px;"></i> РОЗІГРАШ <span>1000 ГОЛДИ</span>!</h2>
-                    <p style="color:#94a3b8; font-size:0.9rem; margin:0;">Лотерейний білет активуется автоматично після додавання нікнейму.</p>
-                    <div class="banner-buttons-row">
-                        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn"><i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ</a>
-                        <button class="info-btn-outline" id="open-rules-btn"><i class="fa-solid fa-circle-info"></i> ПРАВИЛА</button>
+                    <p style="color:#94a3b8; font-size:0.9rem; margin:0 0 15px 0; line-height: 1.4;">
+                        Лотерейний білет активується автоматично після додавання нікнейму у «Кабінеті Танкіста». Приєднуйся до нашої великої танкової спільноти!
+                    </p>
+                    
+                    <div class="mega-banner-grid">
+                        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                        <a href="https://t.me/your-link" target="_blank" class="social-tg-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                        <a href="https://discord.gg/your-link" target="_blank" class="social-dc-btn"><i class="fa-brands fa-discord"></i> Discord</a>
+                        
+                        <div class="mega-grid-full">
+                            <button class="action-like-btn" onclick="addLikeNotification()"><i class="fa-solid fa-heart"></i> Поставити Лайк</button>
+                            <button class="info-btn-outline" id="open-rules-btn"><i class="fa-solid fa-circle-info"></i> Правила участі</button>
+                        </div>
                     </div>
                 </div>
 
@@ -493,13 +546,27 @@
                             <i class="fa-solid fa-fire"></i> ВЕЛИКИЙ МАРАФОН ВІДМІТОК
                         </div>
                         <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.4; margin:8px 0 0 0;">
-                            Ціль: Взяти 3-тю зірку на легендарному танку <strong style="color:#fff;">BZ-176</strong> виключно у прямому ефірі.
+                            Ціль: Взяти 3-тя зірку на легендарному танку <strong style="color:#fff;">BZ-176</strong> виключно у прямому ефірі.
                         </p>
                     </div>
                     <div class="server-item">
                         <div>Поточний статус:</div>
                         <div style="font-family:'Orbitron'; font-size:0.8rem; font-weight:900; color:#ffcc00; text-transform:uppercase;">Фінальна стадія 📈</div>
                     </div>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>💡 Надіслати ідею для стріму / сайту</span></div>
+                    <form id="idea-telegram-form" onsubmit="event.preventDefault();">
+                        <div class="input-group" style="margin-bottom:8px;">
+                            <input type="text" id="form-idea-name" class="custom-input" placeholder="Твій нікнейм або Telegram" required>
+                        </div>
+                        <div class="input-group" style="margin-bottom:12px;">
+                            <textarea id="form-idea-text" class="custom-textarea" rows="2" placeholder="Опиши свою пропозицію..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-action-side btn-yellow" id="send-idea-btn" style="padding:10px;">НАДІСЛАТИ СТРІМЕРУ</button>
+                    </form>
+                    <div id="form-idea-status" style="font-size:0.8rem; font-family:'Orbitron'; margin-top:8px; text-align:center; display:none;"></div>
                 </div>
 
                 <div class="stealth-card">
@@ -734,6 +801,24 @@
         }, 150);
     }
 
+    async function addLikeNotification() {
+        const uData = JSON.parse(localStorage.getItem('registered_site_user')) || { custom_name: "Глядач" };
+        let likeMsg = `❤️ ВПОДОБАЙКА НА САЙТІ!\n\n👤 Користувач [${uData.custom_name}] натиснув кнопку "Поставити Лайк" на порталі!`;
+        
+        const likeBtn = document.querySelector('.action-like-btn');
+        likeBtn.innerHTML = `<i class="fa-solid fa-check"></i> Дякую за лайк!`;
+        likeBtn.style.color = "var(--xp-green)";
+        likeBtn.style.borderColor = "var(--xp-green)";
+        
+        try {
+            await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: likeMsg })
+            });
+        } catch(e){}
+    }
+
     function switchProfileTab(tabId, btnElement) {
         document.querySelectorAll('.profile-tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.p-tab-btn').forEach(el => el.classList.remove('active'));
@@ -778,7 +863,7 @@
         let savedUser = localStorage.getItem('registered_site_user');
         let user = savedUser ? JSON.parse(savedUser) : {
             custom_name: "Танкіст", custom_photo: AVAILABLE_AVATARS[0],
-            wot_nick: "", nation: "UA", squad_status: "Соло", status_text: "",
+            wot_nick: "", nation: "UA", squad_status: "Solo", status_text: "",
             prime_time: "Вечір (18:00-22:00)",
             pc_cpu: "", pc_gpu: "", pc_graphics: "Середні", pc_fps: "",
             t8: false, t10: false, garage: { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" }
