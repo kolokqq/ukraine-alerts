@@ -233,13 +233,19 @@
         .ticket-status-box.active { border-color: var(--gold); color: #ffcc00; }
         .stats-footer-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 12px; }
 
-        /* ЗАЛІЗО */
+        /* ЗАЛІЗО ТА ДОДАТКОВІ ПАНЕЛІ */
         .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
         .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .pc-spec-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; display: flex; gap: 12px; align-items: center; }
         .pc-icon { font-size: 1.3rem; color: var(--gold); }
         .pc-text-name { font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; text-transform: uppercase; }
         .pc-text-val { font-size: 0.9rem; font-weight: bold; color: #fff; margin-top: 2px; }
+
+        /* Стилі для міні-барів цілей */
+        .mini-goal-row { margin-bottom: 12px; }
+        .mini-goal-row:last-child { margin-bottom: 0; }
+        .mini-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-top: 4px; }
+        .mini-bar-fill { height: 100%; background: linear-gradient(90deg, #00bdf2, #00ff66); }
 
         .guestbook-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
         .guest-meta { display: flex; justify-content: space-between; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; margin-bottom: 5px; }
@@ -268,7 +274,7 @@
             <div class="logo-area">BlackCell<span>UA</span></div>
             <div class="nav-links">
                 <div id="user-display" class="user-profile-wrapper"></div>
-                <a href="https://eu.wargaming.net/shop/bonus/" target="_blank" class="nav-item bonus-btn"><i class="fa-solid fa-gift"></i> &nbsp;Бонус-Код</a>
+                <a href="https://eu.wargaming.net/shop/bonus/" target="_blank" class="nav-item bonus-btn"><i class="fa-solid fa-gift"></i> &nbsp;Bonus-Код</a>
                 <a href="https://discord.gg/your-link" target="_blank" class="nav-item" style="color:var(--discord);"><i class="fa-brands fa-discord"></i> &nbsp;Discord</a>
                 <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="nav-item"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> &nbsp;YouTube</a>
             </div>
@@ -377,7 +383,7 @@
 
             <div class="bottom-full-row">
                 
-                <div class="stealth-card">
+                <div class="stealth-card" style="margin-bottom: 0;">
                     <div class="card-header"><span>💻 Стрім-Сетап BlackCellUA</span></div>
                     <div class="pc-spec-list">
                         <div class="pc-spec-item">
@@ -399,7 +405,7 @@
                     </div>
                 </div>
 
-                <div class="stealth-card">
+                <div class="stealth-card" style="margin-bottom: 0;">
                     <div class="card-header"><span>💬 Стіна Привітів чату</span></div>
                     <div class="guestbook-item">
                         <div class="guest-meta"><span>@WOT_Fan_UA</span><span>Сьогодні</span></div>
@@ -408,6 +414,55 @@
                     <div class="guestbook-item">
                         <div class="guest-meta"><span>@Stealth_Sniper</span><span>Учора</span></div>
                         Сайт вогонь, кабінет заповнив, чекаю розіграшу голди на трансляції!
+                    </div>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>🎮 Налаштування гри (WoT Settings)</span></div>
+                    <div class="pc-spec-list">
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-display"></i></div>
+                            <div><div class="pc-text-name">Роздільна здатність</div><div class="pc-text-val">1920x1080 Full HD</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-mouse"></i></div>
+                            <div><div class="pc-text-name">Чутливість миші</div><div class="pc-text-val">800 DPI (Снайп. 12%)</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                            <div><div class="pc-text-name">Тип Прицілу</div><div class="pc-text-val">Зелена точка / Спрощений</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-sliders"></i></div>
+                            <div><div class="pc-text-name">Серверний приціл</div><div class="pc-text-val">Увімкнено ✅</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>📈 Цільові відмітки на техніці</span></div>
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                        <div class="mini-goal-row">
+                            <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold;">
+                                <span>🚜 BZ-176 (3-тя відмітка)</span>
+                                <span style="color:#00ff66;">91.4% / 95%</span>
+                            </div>
+                            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width: 91.4%;"></div></div>
+                        </div>
+                        <div class="mini-goal-row" style="margin-top: 15px;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold;">
+                                <span>🚜 UDES 03 (3-тя відмітка)</span>
+                                <span style="color:#00ff66;">88.2% / 95%</span>
+                            </div>
+                            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width: 88.2%;"></div></div>
+                        </div>
+                        <div class="mini-goal-row" style="margin-top: 15px;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:bold;">
+                                <span>🚜 BZT-70 (2-га відмітка)</span>
+                                <span style="color:#00ff66;">78.5% / 85%</span>
+                            </div>
+                            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width: 78.5%;"></div></div>
+                        </div>
                     </div>
                 </div>
 
@@ -651,7 +706,6 @@
         if (savedUser) {
             user = JSON.parse(savedUser);
         } else {
-            // Створення дефолтного локального профілю для користувача
             user = {
                 custom_name: "Танкіст",
                 custom_photo: AVAILABLE_AVATARS[0],
@@ -763,10 +817,8 @@
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "0") + 1;
         localStorage.setItem('site_visit_counter', visits);
 
-        // Завантажуємо сайт одразу
         loadAndRenderUser();
 
-        // Вікно згоди (тільки перший вхід на сайт)
         if (!localStorage.getItem('user_agreement_accepted')) {
             document.getElementById('agreement-modal').classList.add('active');
         }
