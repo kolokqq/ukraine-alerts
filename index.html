@@ -40,7 +40,7 @@
         :root { 
             --gold: #d4af37;
             --gold-bright: #ffcc00;
-            --gold-glow: rgba(212, 175, 55, 0.2);
+            --gold-glow: rgba(212, 175, 55, 0.4);
             --steel-blue: #4682b4;
             --bg-dark: #05080e;
             --panel-bg: rgba(13, 22, 38, 0.85); 
@@ -51,6 +51,7 @@
             --cyan: #00bdf2;
             --discord: #5865F2;
             --telegram: #0088cc;
+            --neon-orange: #ff5500;
         }
 
         * {
@@ -97,18 +98,9 @@
             margin-top: 0; margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
         }
 
-        /* Мигающий кружок */
         .pulse-circle {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-color: var(--danger);
-            border-radius: 50%;
-            margin-right: 10px;
-            vertical-align: middle;
-            animation: blink-live 1.2s infinite ease-in-out;
+            display: inline-block; width: 10px; height: 10px; background-color: var(--danger); border-radius: 50%; margin-right: 10px; vertical-align: middle; animation: blink-live 1.2s infinite ease-in-out;
         }
-
         @keyframes blink-live {
             0% { opacity: 0.2; transform: scale(0.9); }
             50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 10px rgba(255, 51, 68, 0.6); }
@@ -122,48 +114,137 @@
         .music-widget { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-decoration: none; color: inherit; }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        /* БЛОК РОЗІГРАШУ */
+        /* ========================================================
+           🔥 КИБЕРСПОРТИВНЫЙ НЕОНОВЫЙ БЛОК РОЗЫГРЫША (В ШОКЕ)
+        =========================================================== */
         .premium-sub-banner {
-            background: radial-gradient(circle at top, #0f1c33 0%, #060a12 100%); 
-            border: 2px solid var(--gold);
-            border-radius: 16px; padding: 25px 20px; margin-bottom: 20px; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); width: 100%;
-            display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, #152238 0%, #060a12 100%); 
+            border: 2px solid transparent;
+            border-radius: 16px; padding: 30px 25px; margin-bottom: 25px; 
+            width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; align-items: center;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            overflow: hidden;
+            z-index: 1;
         }
+
+        /* Бегущая неоновая грань вокруг блока */
+        .premium-sub-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 20%, var(--gold-bright), var(--neon-orange), transparent 80%);
+            animation: neon-rotate 6s linear infinite; z-index: -2;
+        }
+        .premium-sub-banner::after {
+            content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: radial-gradient(circle at 50% 0%, #0d192e 0%, #05080d 100%);
+            border-radius: 14px; z-index: -1;
+        }
+        @keyframes neon-rotate {
+            100% { transform: rotate(360deg); }
+        }
+
         .giveaway-info-side { text-align: left; }
-        .giveaway-title { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0 0 8px 0; letter-spacing: 1px; }
-        .giveaway-title span { color: var(--gold-bright); text-shadow: 0 0 15px rgba(255,204,0,0.3); }
-        .giveaway-desc { font-size: 0.9rem; color: #94a3b8; margin: 0 0 15px 0; line-height: 1.4; }
         
-        .giveaway-meta-badges { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .g-badge { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-family: 'Orbitron'; font-weight: bold; display: flex; align-items: center; gap: 6px; }
-        .g-badge.prize { border-color: var(--gold); color: var(--gold-bright); background: rgba(212,175,55,0.05); }
-        .g-badge.live-users { border-color: var(--xp-green); color: var(--xp-green); background: rgba(0,255,102,0.03); }
+        /* Мощные неоновые надписи с эффектом мерцания */
+        .giveaway-title { 
+            font-family: 'Orbitron'; font-size: 1.6rem; font-weight: 900; color: #fff; margin: 0 0 10px 0; letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(255, 51, 68, 0.2);
+            animation: text-flicker 3s infinite alternate;
+        }
+        .giveaway-title span { 
+            color: var(--gold-bright); 
+            text-shadow: 0 0 10px var(--gold-bright), 0 0 25px var(--neon-orange);
+        }
+        @keyframes text-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.95; text-shadow: none; }
+        }
 
-        .giveaway-interactive-side { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; text-align: center; }
-        .timer-title { font-family: 'Orbitron'; font-size: 0.75rem; color: #64748b; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .giveaway-desc { font-size: 0.95rem; color: #cbd5e1; margin: 0 0 20px 0; line-height: 1.5; }
         
-        .countdown-timer-grid { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .timer-segment { background: #05080e; border: 1px solid rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px; min-width: 55px; }
-        .timer-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: #fff; display: block; }
-        .timer-label { font-size: 0.6rem; color: #64748b; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 2px; }
-
-        /* КНОПКИ В БАНЕРІ */
-        .banner-buttons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-bottom: 10px; }
-        .banner-social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
-
-        .luxury-btn { background: linear-gradient(135deg, #4a000d 0%, #80001c 100%); border: 1px solid #ff003c; border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,0,60,0.2); }
-        .luxury-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg, #610013 0%, #990024 100%); }
+        .giveaway-meta-badges { display: flex; gap: 12px; margin-bottom: 5px; flex-wrap: wrap; }
         
-        .info-btn-outline { background: rgba(212, 175, 55, 0.03); border: 1px solid var(--gold); border-radius: 8px; padding: 11px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; text-decoration: none; }
-        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.08); transform: translateY(-2px); }
+        /* Жирные анимированные плашки */
+        .g-badge { 
+            background: rgba(5, 8, 14, 0.8); border: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 8px; 
+            font-size: 0.8rem; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
+        }
+        .g-badge.prize { 
+            border-color: var(--gold-bright); color: #fff; 
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(5,8,14,0.8) 100%);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.25);
+            position: relative; overflow: hidden;
+        }
+        /* Эффект блика пролетающего по кнопке золота */
+        .g-badge.prize::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg); animation: light-sweep 3s infinite ease-in-out;
+        }
+        @keyframes light-sweep {
+            0% { left: -100%; }
+            50%, 100% { left: 150%; }
+        }
 
-        .discord-btn { background: var(--discord); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; transition: 0.2s; }
-        .discord-btn:hover { background: #4752c4; transform: translateY(-2px); }
+        .g-badge.live-users { 
+            border-color: var(--xp-green); color: var(--xp-green); 
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.15);
+        }
 
-        .telegram-btn { background: var(--telegram); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; transition: 0.2s; }
-        .telegram-btn:hover { background: #0077b3; transform: translateY(-2px); }
+        /* Интерактивная сторона */
+        .giveaway-interactive-side { 
+            background: rgba(4, 7, 13, 0.6); border: 1px solid rgba(255,255,255,0.04); padding: 20px; border-radius: 12px; text-align: center;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+        }
+        .timer-title { font-family: 'Orbitron'; font-size: 0.8rem; color: #94a3b8; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .timer-title i { color: var(--neon-orange); animation: pulse-neon-icon 1s infinite alternate; }
+        @keyframes pulse-neon-icon { 100% { transform: scale(1.1); text-shadow: 0 0 10px var(--neon-orange); } }
+        
+        /* Циферблат таймера в стиле кибер-прицелов */
+        .countdown-timer-grid { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
+        .timer-segment { 
+            background: #03050a; border: 1px solid rgba(212,175,55,0.2); padding: 10px 8px; border-radius: 8px; min-width: 65px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative;
+        }
+        .timer-segment::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 4px; border-top: 1px solid var(--gold-bright); border-left: 1px solid var(--gold-bright);
+        }
+        .timer-segment::after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 4px; height: 4px; border-bottom: 1px solid var(--gold-bright); border-right: 1px solid var(--gold-bright);
+        }
+        .timer-num { 
+            font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; display: block; 
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+        .timer-label { font-size: 0.65rem; color: #64748b; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 4px; font-weight: 700; }
 
+        /* Жирные агрессивные кнопки */
+        .banner-buttons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 12px; }
+        .banner-social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+
+        .luxury-btn { 
+            background: linear-gradient(135deg, #cc1100 0%, #ff3344 100%); border: 1px solid #ff6677; border-radius: 8px; 
+            padding: 14px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; 
+            box-shadow: 0 4px 20px rgba(255,51,68,0.4); text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .luxury-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg, #e61000 0%, #ff4455 100%); box-shadow: 0 6px 25px rgba(255,51,68,0.6); }
+        
+        .info-btn-outline { 
+            background: rgba(212, 175, 55, 0.02); border: 2px solid var(--gold-bright); border-radius: 8px; 
+            padding: 14px; color: var(--gold-bright); font-family: 'Orbitron'; font-weight: 900; 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; 
+            text-decoration: none; box-shadow: 0 4px 15px rgba(255,204,0,0.15); text-transform: uppercase;
+        }
+        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,204,0,0.3); }
+
+        .discord-btn { background: var(--discord); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; }
+        .discord-btn:hover { background: #4752c4; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(88,101,242,0.4); }
+
+        .telegram-btn { background: var(--telegram); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; }
+        .telegram-btn:hover { background: #0077b3; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,136,204,0.4); }
+
+        /* ОСТАЛЬНЫЕ БАЗОВЫЕ СТИЛИ */
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 25px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; display: block; }
@@ -174,7 +255,7 @@
 
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 8px; }
         .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); }
-        .sched-day { font-family: 'Orbitron'; font-size: 0.85rem; color: #cbd5e1; }
+        .sched-day { font-size: 0.85rem; color: #cbd5e1; }
         .sched-time { font-family: 'Orbitron'; font-weight: 900; color: var(--gold); }
 
         .top-squad-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.01); border-radius: 6px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.02); }
@@ -199,16 +280,15 @@
         .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
         .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); }
 
-        /* СТИЛИ ДЛЯ НОВЫХ БЛОКОВ */
         .streamer-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px; }
         .stat-card-mini { background: rgba(5, 8, 14, 0.6); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 10px; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
         .stat-card-mini.purple-tier { border-color: var(--purple-stat); background: linear-gradient(180deg, rgba(163,53,238,0.03) 0%, rgba(5,8,14,0.6) 100%); }
         .stat-card-mini.gold-tier { border-color: var(--gold); background: linear-gradient(180deg, rgba(212,175,55,0.03) 0%, rgba(5,8,14,0.6) 100%); }
-        .stat-mini-title { font-family: 'Orbitron'; font-size: 0.65rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-mini-title { font-family: 'Orbitron'; font-size: 0.65rem; color: #64748b; font-weight: 700; text-transform: uppercase; }
         .stat-mini-value { font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 900; color: #fff; margin-top: 4px; }
         
         .battlepass-track { display: flex; flex-direction: column; gap: 14px; position: relative; margin-top: 5px; }
-        .battlepass-step { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 10px; position: relative; transition: 0.2s; }
+        .battlepass-step { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 10px; transition: 0.2s; }
         .battlepass-step.unlocked { border-left: 3px solid var(--xp-green); background: rgba(0,255,102,0.02); }
         .battlepass-step.locked { border-left: 3px solid #334155; opacity: 0.65; }
         .bp-level-indicator { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 900; min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #05080e; border: 1px solid rgba(255,255,255,0.08); }
@@ -227,7 +307,7 @@
         @media (max-width: 1024px) {
             .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
-            .premium-sub-banner { grid-template-columns: 1fr; }
+            .premium-sub-banner { grid-template-columns: 1fr; padding: 25px 20px; }
             .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
         }
         
@@ -237,9 +317,9 @@
             .nav-links { width: 100%; justify-content: center; }
             .clean-mosaic { grid-template-columns: 1fr; }
             .pc-spec-list { grid-template-columns: 1fr; }
-            .stealth-card, .side-block, .premium-sub-banner { padding: 18px 14px; border-radius: 12px; }
-            .bottom-full-row { grid-template-columns: 1fr; }
-            .giveaway-title { font-size: 1.2rem; text-align: center; }
+            .stealth-card, .side-block { padding: 18px 14px; border-radius: 12px; }
+            .premium-sub-banner { padding: 20px 15px; }
+            .giveaway-title { font-size: 1.3rem; text-align: center; }
             .giveaway-desc { text-align: center; }
             .giveaway-meta-badges { justify-content: center; }
             .banner-buttons-row, .banner-social-row { grid-template-columns: 1fr; }
@@ -322,12 +402,12 @@
                     <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
                     <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
                     <div class="giveaway-meta-badges">
-                        <div class="g-badge prize"><i class="fas fa GEM"></i> Фонд: Ігрове Золото / Прем Танки</div>
-                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> Учасників в базі</div>
+                        <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО / ПРЕМ ТАНКИ</div>
+                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
                     </div>
                 </div>
                 <div class="giveaway-interactive-side">
-                    <div class="timer-title"><i class="fas fa-stopwatch"></i> До визначення переможців:</div>
+                    <div class="timer-title"><i class="fas fa-stopwatch"></i> ДО ВИЗНАЧЕННЯ ПЕРЕМОЖЦІВ:</div>
                     <div class="countdown-timer-grid">
                         <div class="timer-segment"><span class="timer-num" id="t-days">02</span><span class="timer-label">Дн</span></div>
                         <div class="timer-segment"><span class="timer-num" id="t-hours">05</span><span class="timer-label">Год</span></div>
@@ -341,16 +421,14 @@
                     </div>
                     
                     <div class="banner-social-row">
-                        <a href="#" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
-                        <a href="#" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
+                        <a href="https://discord.gg/CNYF4eEz" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
+                        <a href="https://t.me/blackcellua" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
                     </div>
                 </div>
             </div>
 
             <div class="layout-grid">
-                
                 <div class="main-left-column">
-                    
                     <div class="stealth-card">
                         <h3 class="card-header"><span class="pulse-circle"></span>ЖИВИЙ ЕФІР</h3>
                         <div class="studio-player">
@@ -358,7 +436,7 @@
                         </div>
                     </div>
 
-                    <div class="stealth-card">
+                     <div class="stealth-card">
                         <h3 class="card-header">📈 ПОТОЧНА СТАТИСТИКА СТРІМЕРА (АККАУНТ)</h3>
                         <div class="streamer-stats-grid">
                             <div class="stat-card-mini purple-tier">
@@ -613,14 +691,11 @@
             "Tiger II", "IS-3", "AMX 50 100", "Rhm.-Borsig"
         ];
 
-        // РУЛЕТКА ТАНКІВ
         document.getElementById('roll-tank-btn').addEventListener('click', () => {
             const display = document.getElementById('tank-result-display');
             const button = document.getElementById('roll-tank-btn');
-            
             button.disabled = true; 
             display.style.borderColor = '#ffcc00';
-            
             let counter = 0;
             const maxTicks = 10; 
             
@@ -638,7 +713,6 @@
             }, 120); 
         });
 
-        // ЖИВОЙ ТАЙМЕР ДЛЯ БЛОКА РОЗЫГРЫША
         function initGiveawayTimer() {
             function getNextStreamDate() {
                 const now = new Date();
@@ -685,7 +759,6 @@
             }, 40);
         }
 
-        // ЗАГРУЗКА YOUTUBE ФИДА
         async function loadYT(url, divId, count) {
             const box = document.getElementById(divId);
             const cacheKey = `yt_cache_${divId}`;
@@ -738,7 +811,7 @@
                     }
                 }
             } catch (err) { 
-                console.error("Помилка фіду YouTube:", err);
+                console.error(err);
                 if(localStorage.getItem(cacheKey)) {
                     box.innerHTML = localStorage.getItem(cacheKey);
                 } else {
@@ -772,14 +845,12 @@
             initGiveawayTimer();
         });
 
-        // МОДАЛКИ
         function initModals() {
             const rM = document.getElementById('rules-modal');
             const pM = document.getElementById('profile-modal');
             
             document.getElementById('open-rules-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); rM.classList.add('active'); });
             document.getElementById('close-rules-btn')?.addEventListener('click', ()=>{ rM.classList.remove('active'); });
-            
             document.getElementById('open-profile-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); pM.classList.add('active'); });
             document.getElementById('close-profile-btn')?.addEventListener('click', ()=>{ pM.classList.remove('active'); });
             
@@ -806,11 +877,9 @@
         function saveUserProfile() {
             const nick = document.getElementById('inp-wot-nick').value.trim() || "Танкіст";
             const flag = document.getElementById('inp-wot-flag').value;
-            
             localStorage.setItem('wot_nick', nick);
             localStorage.setItem('wot_flag', flag);
             localStorage.setItem('wot_avatar_class', selectedAvatarClass);
-            
             renderUserBadge(nick, flag, selectedAvatarClass);
             alert('Дані профілю збережено!');
         }
@@ -837,13 +906,10 @@
         function renderUserBadge(nick, flag, iconClass) {
             const display = document.getElementById('user-display');
             if(!display) return;
-            
             let flagIcon = flag === 'ua' ? '🇺🇦' : (flag === 'us' ? '🇺🇸' : '🇪🇺');
             display.innerHTML = `
                 <div class="user-profile-badge">
-                    <div class="avatar-svg-container">
-                        <i class="fas ${iconClass}"></i>
-                    </div>
+                    <div class="avatar-svg-container"><i class="fas ${iconClass}"></i></div>
                     <span>${nick} ${flagIcon}</span>
                     <span class="user-lvl-tag">LVL 1</span>
                 </div>
