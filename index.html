@@ -40,11 +40,12 @@
         
         :root { 
             --gold: #d4af37;
+            --gold-bright: #ffcc00;
             --gold-glow: rgba(212, 175, 55, 0.2);
             --steel-blue: #4682b4;
             --bg-dark: #05080e;
-            --panel-bg: rgba(13, 19, 33, 0.75);
-            --border-color: rgba(255, 255, 255, 0.04);
+            --panel-bg: rgba(13, 22, 38, 0.85); /* Оптимизировано без backdrop-filter для плавности */
+            --border-color: rgba(255, 255, 255, 0.05);
             --xp-green: #00ff66;
             --purple-stat: #a335ee;
             --danger: #ff3344;
@@ -77,21 +78,18 @@
 
         .user-profile-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .user-profile-badge {
-            display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03);
+            display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 20px;
             font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; color: #fff;
         }
-        .user-profile-badge img.avatar-main { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold); object-fit: cover; }
-        .user-profile-badge img.flag-icon { width: 18px; height: 12px; object-fit: cover; border-radius: 2px; }
+        .user-profile-badge .avatar-svg-container { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold); background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.8rem; }
         .user-lvl-tag { background: var(--gold); color: #05080e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; }
         
-        .action-icon-btn { background: transparent; border: none; color: var(--gold); cursor: pointer; font-size: 1rem; margin-left: 5px; padding: 6px; }
-
         .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; width: 100%; }
         
         .stealth-card, .side-block {
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); margin-bottom: 20px; width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 20px; width: 100%;
         }
         .card-header, .side-title {
             font-family: 'Orbitron'; font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: 1px;
@@ -105,16 +103,37 @@
         .music-widget { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; text-decoration: none; color: inherit; }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
+        /* УЛУЧШЕННЫЙ БЛОК РОЗЫГРЫША */
         .premium-sub-banner {
-            background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 2px solid var(--gold);
-            border-radius: 16px; padding: 25px 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); width: 100%;
+            background: radial-gradient(circle at top, #0f1c33 0%, #060a12 100%); 
+            border: 2px solid var(--gold);
+            border-radius: 16px; padding: 25px 20px; margin-bottom: 20px; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); width: 100%;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center;
         }
-        .giveaway-title { font-family: 'Orbitron'; font-size: 1.3rem; font-weight: 900; color: #fff; margin: 0 0 10px 0; }
-        .giveaway-title span { color: #ffcc00; }
-        .banner-buttons-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .giveaway-info-side { text-align: left; }
+        .giveaway-title { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0 0 8px 0; letter-spacing: 1px; }
+        .giveaway-title span { color: var(--gold-bright); text-shadow: 0 0 15px rgba(255,204,0,0.3); }
+        .giveaway-desc { font-size: 0.9rem; color: #94a3b8; margin: 0 0 15px 0; line-height: 1.4; }
         
-        .luxury-btn { background: linear-gradient(135deg, #110000 0%, #4a000d 100%); border: 2px solid #ff003c; border-radius: 8px; padding: 12px 24px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
-        .info-btn-outline { background: rgba(212, 175, 55, 0.05); border: 2px solid var(--gold); border-radius: 8px; padding: 12px 24px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .giveaway-meta-badges { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .g-badge { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-family: 'Orbitron'; font-weight: bold; display: flex; align-items: center; gap: 6px; }
+        .g-badge.prize { border-color: var(--gold); color: var(--gold-bright); background: rgba(212,175,55,0.05); }
+        .g-badge.live-users { border-color: var(--xp-green); color: var(--xp-green); background: rgba(0,255,102,0.03); }
+
+        .giveaway-interactive-side { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; text-align: center; }
+        .timer-title { font-family: 'Orbitron'; font-size: 0.75rem; color: #64748b; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        
+        .countdown-timer-grid { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+        .timer-segment { background: #05080e; border: 1px solid rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px; min-width: 55px; }
+        .timer-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: #fff; display: block; }
+        .timer-label { font-size: 0.6rem; color: #64748b; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 2px; }
+
+        .banner-buttons-row { display: flex; gap: 10px; width: 100%; }
+        .luxury-btn { flex: 1; justify-content: center; background: linear-gradient(135deg, #4a000d 0%, #80001c 100%); border: 1px solid #ff003c; border-radius: 8px; padding: 12px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,0,60,0.2); }
+        .luxury-btn:hover { transform: translateY(-2px); background: linear-gradient(135deg, #610013 0%, #990024 100%); }
+        .info-btn-outline { flex: 1; justify-content: center; background: rgba(212, 175, 55, 0.03); border: 1px solid var(--gold); border-radius: 8px; padding: 12px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; }
+        .info-btn-outline:hover { background: rgba(212, 175, 55, 0.08); }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 25px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
@@ -123,12 +142,6 @@
 
         .tactics-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center; }
         .tactic-output { font-size: 1.1rem; font-weight: bold; color: #fff; margin: 15px 0; min-height: 50px; display: flex; align-items: center; justify-content: center; border-left: 3px solid var(--gold); background: rgba(255,255,255,0.01); padding: 10px; border-radius: 4px; }
-
-        .server-grid { display: flex; flex-direction: column; gap: 10px; }
-        .server-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; font-size: 0.85rem; }
-        .server-meta { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: bold; }
-        .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; }
-        .server-ping { color: #00ff66; font-family: 'Orbitron'; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 6px; border-radius: 4px; }
 
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 8px; }
         .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); }
@@ -141,6 +154,7 @@
 
         .btn-action-side { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; border: none; }
         .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; cursor: pointer; }
+        .btn-yellow:disabled { background: #1e293b; color: #64748b; cursor: not-allowed; }
 
         .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
         .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -149,16 +163,6 @@
         .pc-text-name { font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; text-transform: uppercase; }
         .pc-text-val { font-size: 0.9rem; font-weight: bold; color: #fff; margin-top: 2px; }
 
-        .mini-goal-row { margin-bottom: 12px; }
-        .mini-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-top: 4px; }
-        .mini-bar-fill { height: 100%; background: linear-gradient(90deg, #00bdf2, #00ff66); }
-
-        .guestbook-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
-        .guest-meta { display: flex; justify-content: space-between; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; margin-bottom: 5px; }
-
-        .quick-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .quick-link-card { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; color: #cbd5e1; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: bold; }
-
         .quest-list-box { display: flex; flex-direction: column; gap: 10px; }
         .quest-item { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 12px 16px; border-radius: 8px; border-left: 3px solid var(--cyan); font-size: 0.9rem; gap: 10px; }
         .quest-item.done { border-left-color: var(--xp-green); background: rgba(0,255,102,0.02); }
@@ -166,14 +170,10 @@
         .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
         .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); }
 
-        .faq-accordion { display: flex; flex-direction: column; gap: 10px; }
-        .faq-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; overflow: hidden; }
-        .faq-question { padding: 12px 15px; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold; color: #fff; background: rgba(255,255,255,0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; gap: 10px; }
-        .faq-answer { padding: 12px 15px; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.03); display: none; }
-
         @media (max-width: 1024px) {
             .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
+            .premium-sub-banner { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 680px) {
@@ -181,21 +181,25 @@
             nav { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
             .nav-links { width: 100%; justify-content: center; }
             .clean-mosaic { grid-template-columns: 1fr; }
-            .modal-grid-inputs, .pc-spec-list, .quick-links-grid { grid-template-columns: 1fr; }
-            .stealth-card, .side-block, .premium-sub-banner { padding: 15px 12px; border-radius: 12px; }
+            .pc-spec-list { grid-template-columns: 1fr; }
+            .stealth-card, .side-block, .premium-sub-banner { padding: 18px 14px; border-radius: 12px; }
             .bottom-full-row { grid-template-columns: 1fr; }
-            .giveaway-title { font-size: 1.1rem; }
+            .giveaway-title { font-size: 1.2rem; text-align: center; }
+            .giveaway-desc { text-align: center; }
+            .giveaway-meta-badges { justify-content: center; }
+            .banner-buttons-row { flex-direction: column; }
         }
 
+        /* МОДАЛКИ БЕЗ BLUR ДЛЯ СКОРОСТИ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
+            background: rgba(2, 4, 8, 0.92); z-index: 9999;
             display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; padding: 10px;
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-window {
-            background: linear-gradient(180deg, #0b1220 0%, #060a12 100%); border: 2px solid #ffcc00; border-radius: 16px; width: 100%; max-width: 580px; padding: 20px;
+            background: linear-gradient(180deg, #0b1220 0%, #060a12 100%); border: 2px solid var(--gold-bright); border-radius: 16px; width: 100%; max-width: 580px; padding: 20px;
             position: relative; transform: scale(0.95); transition: 0.2s; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
         .modal-overlay.active .modal-window { transform: scale(1); }
@@ -215,10 +219,7 @@
         .warning-title { font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; color: var(--danger); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; text-transform: uppercase; }
         .warning-text { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin: 0; }
 
-        .agreement-text-area { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 15px; max-height: 180px; overflow-y: auto; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 20px; }
-        .agreement-text-area h4 { color: #fff; margin: 10px 0 5px 0; font-family: 'Orbitron'; font-size: 0.85rem; }
-
-        .profile-tabs-nav { display: flex; gap: 6px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .profile-tabs-nav { display: flex; gap: 6px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; overflow-x: auto; }
         .p-tab-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #94a3b8; padding: 8px 14px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .p-tab-btn.active { background: var(--gold); color: #05080e; border-color: var(--gold); }
         .profile-tab-content { display: none; }
@@ -230,6 +231,7 @@
         .xp-bar-fill { height: 100%; background: var(--xp-green); width: 0%; transition: width 0.4s; }
 
         .modal-grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+        @media (max-width: 480px) { .modal-grid-inputs { grid-template-columns: 1fr; } }
         .input-group { text-align: left; margin-bottom: 10px; }
         .input-label { display: block; font-family: 'Orbitron'; font-size: 0.7rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px; text-transform: uppercase; }
         .custom-input, .custom-select, .custom-textarea { width: 100%; background: #05080e; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; color: #fff; font-size: 0.9rem; font-family: inherit; }
@@ -238,16 +240,10 @@
         .garage-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 6px; }
         .garage-checkbox { width: 18px; height: 18px; accent-color: var(--gold); }
 
+        /* ЛЕГКИЙ И СТИЛЬНЫЙ ВЫБОР АВАТАРОК ЧЕРЕЗ ИКОНКИ БЕЗ ФОТО */
         .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-        .avatar-option { aspect-ratio: 1/1; border-radius: 6px; overflow: hidden; cursor: pointer; border: 2px solid transparent; }
-        .avatar-option img { width: 100%; height: 100%; object-fit: cover; }
-        .avatar-option.selected { border-color: #ffcc00; }
-
-        .achievements-row { display: flex; gap: 8px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; }
-        .badge-item { flex: 1; text-align: center; opacity: 0.2; filter: grayscale(100%); }
-        .badge-item.unlocked { opacity: 1; filter: grayscale(0%); }
-        .badge-icon { font-size: 1.2rem; display: block; }
-        .badge-name { font-size: 0.6rem; font-family: 'Orbitron'; color: var(--gold); display: block; margin-top: 4px; }
+        .avatar-option { aspect-ratio: 1/1; border-radius: 6px; cursor: pointer; border: 2px solid transparent; background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #64748b; transition: 0.2s; }
+        .avatar-option.selected { border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(212,175,55,0.08); }
 
         .ticket-status-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; text-align: center; font-size: 0.8rem; font-family: 'Orbitron'; margin-bottom: 15px; }
         .ticket-status-box.active { border-color: var(--gold); color: #ffcc00; }
@@ -267,10 +263,26 @@
             </nav>
 
             <div class="premium-sub-banner">
-                <h3 class="giveaway-title">ВЕЛИКИЙ РОЗІГРАШ СЕРЕД <span>ПІДПИСНИКІВ</span></h3>
-                <div class="banner-buttons-row">
-                    <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Брати участь</a>
-                    <a href="#" class="info-btn-outline" id="open-profile-btn"><i class="fas fa-user-cog"></i> Мій Ангар / Профіль</a>
+                <div class="giveaway-info-side">
+                    <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
+                    <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
+                    <div class="giveaway-meta-badges">
+                        <div class="g-badge prize"><i class="fas fa-gem"></i> Фонд: Ігрове Золото / Прем Танки</div>
+                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> Учасників в базі</div>
+                    </div>
+                </div>
+                <div class="giveaway-interactive-side">
+                    <div class="timer-title"><i class="fas fa-stopwatch"></i> До визначення переможців:</div>
+                    <div class="countdown-timer-grid">
+                        <div class="timer-segment"><span class="timer-num" id="t-days">02</span><span class="timer-label">Дн</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-hours">05</span><span class="timer-label">Год</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-mins">42</span><span class="timer-label">Хв</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-secs">19</span><span class="timer-label">Сек</span></div>
+                    </div>
+                    <div class="banner-buttons-row">
+                        <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Реєстрація</a>
+                        <a href="#" class="info-btn-outline" id="open-profile-btn"><i class="fas fa-user-cog"></i> Мій Ангар</a>
+                    </div>
                 </div>
             </div>
 
@@ -303,7 +315,7 @@
                     <div class="side-block">
                         <h3 class="side-title">📊 ЦІЛЬ НА РОЗВИТОК КАНАЛУ</h3>
                         <div class="goal-container">
-                            <div style="display:flex; justify-content:between; font-size:0.85rem; font-weight:bold; color:#cbd5e1; margin-bottom:5px;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:bold; color:#cbd5e1; margin-bottom:5px;">
                                 <span>Новий Стрім-ПК / Монітор</span>
                                 <span style="color:var(--gold)">3,800 / 10,000 ₴</span>
                             </div>
@@ -368,7 +380,7 @@
             </div>
             <div class="rules-step-list">
                 <div class="rules-step-item"><span class="rules-step-num">01</span><span class="rules-step-text">Бути підписаним на YouTube-канал BlackCellUA.</span></div>
-                <div class="rules-step-item"><span class="rules-step-num">02</span><span class="rules-step-text">Зареєструвати свій ігровий нікнейм у формі профілю на цьому сайті.</span></div>
+                <div class="rules-step-item"><span class="rules-step-num">02</span><span class="rules-step-text">Зареєструвати свій ігровий нікнейм у формі профілю на цьому сайті (вкладка "Мій Ангар").</span></div>
                 <div class="rules-step-item"><span class="rules-step-num">03</span><span class="rules-step-text">Бути присутнім на щотижневому стрімі, де за допомогою рулетки обираються переможці золота або преміум-техніки.</span></div>
             </div>
             <div class="warning-box">
@@ -417,12 +429,12 @@
                 </div>
 
                 <div class="input-group" style="margin-bottom: 20px;">
-                    <label class="input-label">Обери Аватарку</label>
+                    <label class="input-label">Обери Іконку Профілю</label>
                     <div class="avatar-picker-grid">
-                        <div class="avatar-option selected" onclick="selectAvatar('av1', this)"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop" alt="av1"></div>
-                        <div class="avatar-option" onclick="selectAvatar('av2', this)"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop" alt="av2"></div>
-                        <div class="avatar-option" onclick="selectAvatar('av3', this)"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop" alt="av3"></div>
-                        <div class="avatar-option" onclick="selectAvatar('av4', this)"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop" alt="av4"></div>
+                        <div class="avatar-option selected" onclick="selectAvatar('fa-crosshairs', this)"><i class="fas fa-crosshairs"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-shield-alt', this)"><i class="fas fa-shield-alt"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-trophy', this)"><i class="fas fa-trophy"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-skull-crossbones', this)"><i class="fas fa-skull-crossbones"></i></div>
                     </div>
                 </div>
 
@@ -468,28 +480,86 @@
             "Tiger II", "IS-3", "AMX 50 100", "Rhm.-Borsig"
         ];
 
+        // ОПТИМИЗИРОВАННАЯ РУЛЕТКА ТАНКІВ
         document.getElementById('roll-tank-btn').addEventListener('click', () => {
             const display = document.getElementById('tank-result-display');
+            const button = document.getElementById('roll-tank-btn');
+            
+            button.disabled = true; 
             display.style.borderColor = '#ffcc00';
+            
             let counter = 0;
+            const maxTicks = 10; 
+            
             const interval = setInterval(() => {
                 const randomTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
                 display.innerText = `🎲 Вибір техніки: ${randomTank}...`;
                 counter++;
-                if(counter > 12) {
+                
+                if(counter > maxTicks) {
                     clearInterval(interval);
                     const finalTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
                     display.innerHTML = `🔥 Наступний бій на: <span style="color:#ffcc00; font-size:1.2rem; font-weight:900;">${finalTank}</span>! У бій!`;
+                    button.disabled = false; 
                 }
-            }, 80);
+            }, 120); 
         });
 
-        // ОРИГИНАЛЬНАЯ НАДЁЖНАЯ ФУНКЦИЯ КЭШИРОВАНИЯ И ВЫВОДА СТРИМОВ
+        // ЖИВОЙ ТАЙМЕР ДЛЯ БЛОКА РОЗЫГРЫША
+        function initGiveawayTimer() {
+            // Установка дедлайна: например, каждую субботу в 19:00
+            function getNextStreamDate() {
+                const now = new Date();
+                const nextStream = new Date();
+                nextStream.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
+                nextStream.setHours(19, 0, 0, 0);
+                if (now > nextStream) {
+                    nextStream.setDate(nextStream.getDate() + 7);
+                }
+                return nextStream;
+            }
+
+            const deadline = getNextStreamDate();
+
+            function updateTimer() {
+                const diff = deadline - new Date();
+                if (diff <= 0) {
+                    document.getElementById('t-days').innerText = "00";
+                    document.getElementById('t-hours').innerText = "00";
+                    document.getElementById('t-mins').innerText = "00";
+                    document.getElementById('t-secs').innerText = "00";
+                    return;
+                }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('t-days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('t-hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('t-mins').innerText = mins.toString().padStart(2, '0');
+                document.getElementById('t-secs').innerText = secs.toString().padStart(2, '0');
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+
+            // Анимация накрутки счетчика пользователей для имитации "живого" портала
+            let startCount = 310;
+            const targetCount = 342;
+            const uCounter = document.getElementById('g-users-count');
+            const cInterval = setInterval(() => {
+                if(startCount >= targetCount) clearInterval(cInterval);
+                if(uCounter) uCounter.innerText = startCount;
+                startCount++;
+            }, 40);
+        }
+
+        // НАДЁЖНАЯ ФУНКЦИЯ КЭШИРОВАНИЯ И ВЫВОДА СТРИМОВ
         async function loadYT(url, divId, count) {
             const box = document.getElementById(divId);
             const cacheKey = `yt_cache_${divId}`;
             const cacheTimeKey = `${cacheKey}_time`;
-            const cacheDuration = 1000 * 60 * 10; // Кэш на 10 минут
+            const cacheDuration = 1000 * 60 * 10; 
 
             try {
                 const cachedData = localStorage.getItem(cacheKey);
@@ -547,7 +617,6 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Подключение твоего правильного, личного фида YouTube!
             loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 3);
             
             // Завантаження розкладу
@@ -570,6 +639,7 @@
             
             initModals();
             loadUserProfileLocal();
+            initGiveawayTimer();
         });
 
         // МОДАЛКИ
@@ -596,11 +666,11 @@
             btn.classList.add('active');
         }
 
-        let selectedAvatarUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
-        function selectAvatar(id, elem) {
+        let selectedAvatarClass = "fa-crosshairs";
+        function selectAvatar(iconClass, elem) {
             document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
             elem.classList.add('selected');
-            selectedAvatarUrl = elem.querySelector('img').src;
+            selectedAvatarClass = iconClass;
         }
 
         function saveUserProfile() {
@@ -609,32 +679,42 @@
             
             localStorage.setItem('wot_nick', nick);
             localStorage.setItem('wot_flag', flag);
-            localStorage.setItem('wot_avatar', selectedAvatarUrl);
+            localStorage.setItem('wot_avatar_class', selectedAvatarClass);
             
-            renderUserBadge(nick, flag, selectedAvatarUrl);
+            renderUserBadge(nick, flag, selectedAvatarClass);
             alert('Дані профілю збережено!');
         }
 
         function loadUserProfileLocal() {
             const nick = localStorage.getItem('wot_nick') || "Гість";
             const flag = localStorage.getItem('wot_flag') || "ua";
-            const av = localStorage.getItem('wot_avatar') || selectedAvatarUrl;
+            const avClass = localStorage.getItem('wot_avatar_class') || selectedAvatarClass;
             
             document.getElementById('inp-wot-nick').value = localStorage.getItem('wot_nick') || "";
             document.getElementById('inp-wot-flag').value = flag;
             
-            renderUserBadge(nick, flag, av);
+            // Восстановление выбранной иконки в интерфейсе настроек
+            document.querySelectorAll('.avatar-option').forEach(o => {
+                o.classList.remove('selected');
+                if(o.querySelector('i').classList.contains(avClass)) {
+                    o.classList.add('selected');
+                }
+            });
+            
+            renderUserBadge(nick, flag, avClass);
             updateGarageCount();
         }
 
-        function renderUserBadge(nick, flag, avatar) {
+        function renderUserBadge(nick, flag, iconClass) {
             const display = document.getElementById('user-display');
             if(!display) return;
             
             let flagIcon = flag === 'ua' ? '🇺🇦' : (flag === 'us' ? '🇺🇸' : '🇪🇺');
             display.innerHTML = `
                 <div class="user-profile-badge">
-                    <img src="${avatar}" class="avatar-main" alt="av">
+                    <div class="avatar-svg-container">
+                        <i class="fas ${iconClass}"></i>
+                    </div>
                     <span>${nick} ${flagIcon}</span>
                     <span class="user-lvl-tag">LVL 1</span>
                 </div>
