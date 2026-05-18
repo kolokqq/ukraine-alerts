@@ -9,6 +9,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'AW-17614916752');
     </script>
     
@@ -19,11 +20,24 @@
     
     <link rel="canonical" href="https://blackcellua.pp.ua/">
 
+    <meta property="og:url" content="https://blackcellua.pp.ua/">
+    <meta property="og:title" content="World of Tanks — Твій ігровий portal BlackCellUA">
+    <meta property="og:description" content="Прямі ефіри та трансляції World of Tanks українською мовою. Заходь на стрім!">
+    <meta property="og:image" content="https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg">
+    <meta property="og:video" content="https://www.youtube.com/embed/JcirRSU3iCY">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BlackCellUA">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
+    <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
+    <link rel="icon" href="favicon_48_v2.png" sizes="48x48">
+    <link rel="icon" href="favicon_96_v2.png" sizes="96x96">
+    <link rel="icon" href="favicon_144_v2.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="favicon_144_v2.png">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700;900&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700&display=swap'); 
         
         :root { 
             --gold: #d4af37;
@@ -117,12 +131,6 @@
         .music-widget:hover { background: rgba(255,255,255,0.05); border-color: var(--gold); }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        /* ЖИВІ ЛОГИ */
-        .log-feed { display: flex; flex-direction: column; gap: 10px; }
-        .log-feed-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; font-size: 0.8rem; line-height: 1.4; color: #94a3b8; }
-        .log-feed-item strong { color: #fff; font-family: 'Orbitron'; }
-        .log-feed-time { font-size: 0.7rem; color: #64748b; margin-top: 4px; display: block; font-family: 'Orbitron'; }
-
         /* РОЗІГРАШ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 1px solid rgba(212, 175, 55, 0.2);
@@ -149,7 +157,7 @@
         .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; }
         .server-ping { color: #00ff66; font-family: 'Orbitron'; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 6px; border-radius: 4px; }
 
-        /* ІНТЕРФЕЙС РОЗКЛАДУ */
+        /* ІНТЕРФЕЙС РОЗКЛАДУ СТРІМІВ */
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 8px; }
         .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.05); }
         .sched-day { font-family: 'Orbitron'; font-size: 0.85rem; color: #cbd5e1; }
@@ -220,7 +228,7 @@
         .ticket-status-box.active { border-color: var(--gold); color: #ffcc00; }
         .stats-footer-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 12px; }
 
-        /* ПАНЕЛЬ СЕ ТАПУ ПК ВНИЗУ */
+        /* ПАНЕЛЬ СЕТАПУ ПК ВНИЗУ */
         .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
         .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .pc-spec-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; display: flex; gap: 12px; align-items: center; }
@@ -570,6 +578,7 @@
         btnElement.classList.add('active');
     }
 
+    /* НОВА ФУНКЦІЯ: ПЕРЕНЕ СЕННЯ НА WOT-LIFE */
     function redirectToWotLife() {
         const savedUser = localStorage.getItem('registered_site_user');
         if (savedUser) {
@@ -598,237 +607,4 @@
             user.custom_name = user.first_name;
             user.custom_photo = user.photo_url || AVAILABLE_AVATARS[0];
             user.wot_nick = ""; user.nation = "UA"; user.squad_status = "Соло";
-            user.status_text = ""; user.wn8 = "Червоний (Початківець)"; user.prime_time = "Вечір (18:00-22:00)";
-            user.pc_cpu = ""; user.pc_gpu = ""; user.pc_graphics = "Середні"; user.pc_fps = "";
-            user.t8 = false; user.t10 = false;
-            user.garage = { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" };
-        }
-
-        localStorage.setItem('registered_site_user', JSON.stringify(user));
-        unlockSite(user);
-    }
-
-    function calculateXP(user, visits) {
-        let xp = 50;
-        if (user.wot_nick && user.wot_nick.trim().length > 1) xp += 100;
-        if (user.pc_cpu || user.pc_gpu) xp += 50;
-        if (user.garage) {
-            if (user.garage.bz) xp += 30 + (parseInt(user.garage.bz_m) * 15);
-            if (user.garage.udes) xp += 30 + (parseInt(user.garage.udes_m) * 15);
-        }
-        return xp + (visits - 1) * 15;
-    }
-
-    function getLevelInfo(xp) {
-        if (xp < 150) return { lvl: 1, title: "Рівень 1: Рекрут", next: 150, prev: 0 };
-        if (xp < 350) return { lvl: 2, title: "Рівень 2: Рядовий", next: 350, prev: 150 };
-        return { lvl: 3, title: "Рівень 3: Майстер танка 👑", next: xp, prev: 350 };
-    }
-
-    function unlockSite(user) {
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('main-content').classList.add('visible');
-        
-        let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
-        let xp = calculateXP(user, visits);
-        let lvlInfo = getLevelInfo(xp);
-
-        const displayPhoto = user.custom_photo || AVAILABLE_AVATARS[0];
-        const displayName = user.custom_name || user.first_name;
-        const flagUrl = FLAG_IMAGES[user.nation || "UA"];
-
-        document.getElementById('user-display').innerHTML = `
-            <div class="user-profile-badge">
-                <img src="${displayPhoto}" class="avatar-main">
-                <img src="${flagUrl}" class="flag-icon">
-                <span>${displayName}</span>
-                <span class="user-lvl-tag">ЛВЛ ${lvlInfo.lvl}</span>
-                
-                <button class="action-icon-btn" onclick="openProfileModal()" title="Налаштування профілю"><i class="fa-solid fa-user-gear"></i></button>
-                <button class="action-icon-btn" onclick="redirectToWotLife()" title="Моя Статистика КТТС" style="color:#00ff66;"><i class="fa-solid fa-crosshairs"></i> Стата</button>
-                <button class="action-icon-btn" onclick="logout()" title="Вихід" style="color:#ff4d4d;"><i class="fa-solid fa-right-from-bracket"></i></button>
-            </div>
-        `;
-    }
-
-    function openProfileModal() {
-        const savedUser = localStorage.getItem('registered_site_user');
-        if (!savedUser) return;
-        const user = JSON.parse(savedUser);
-        let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
-
-        document.getElementById('stats-reg-date').innerText = localStorage.getItem('site_registration_date') || "--.--.--";
-        document.getElementById('stats-visit-count').innerText = visits;
-
-        let xp = calculateXP(user, visits);
-        let lvlInfo = getLevelInfo(xp);
-        document.getElementById('profile-lvl-title').innerText = lvlInfo.title;
-        let currentProgress = xp - lvlInfo.prev;
-        let totalNeeded = lvlInfo.next - lvlInfo.prev;
-        document.getElementById('profile-xp-counter').innerText = `${xp} XP`;
-        document.getElementById('profile-xp-bar').style.width = totalNeeded > 0 ? `${(currentProgress / totalNeeded) * 100}%` : "100%";
-
-        document.getElementById('p-custom-name').value = user.custom_name || user.first_name;
-        document.getElementById('p-wot-nick').value = user.wot_nick || "";
-        document.getElementById('p-nation').value = user.nation || "UA";
-        document.getElementById('p-squad-status').value = user.squad_status || "Соло";
-        document.getElementById('p-status-text').value = user.status_text || "";
-        document.getElementById('p-wn8-rating').value = user.wn8 || "Червоний (Початківець)";
-        document.getElementById('p-prime-time').value = user.prime_time || "Вечір (18:00-22:00)";
-
-        document.getElementById('tier-8').checked = !!user.t8;
-        document.getElementById('tier-10').checked = !!user.t10;
-
-        if (user.garage) {
-            document.getElementById('chk-bz').checked = !!user.garage.bz;
-            document.getElementById('marks-bz').value = user.garage.bz_m || "0";
-            document.getElementById('chk-udes').checked = !!user.garage.udes;
-            document.getElementById('marks-udes').value = user.garage.udes_m || "0";
-            document.getElementById('chk-bzt').checked = !!user.garage.bzt;
-            document.getElementById('marks-bzt').value = user.garage.bzt_m || "0";
-        }
-
-        document.getElementById('pc-cpu').value = user.pc_cpu || "";
-        document.getElementById('pc-gpu').value = user.pc_gpu || "";
-        document.getElementById('pc-graphics').value = user.pc_graphics || "Середні";
-        document.getElementById('pc-fps').value = user.pc_fps || "";
-
-        const tBox = document.getElementById('ticket-status-display');
-        if (user.wot_nick && user.wot_nick.trim().length > 1) {
-            tBox.className = "ticket-status-box active";
-            tBox.innerHTML = `🎫 КВИТОК РОЗІГРАШУ: АКТИВНИЙ`;
-        } else {
-            tBox.className = "ticket-status-box";
-            tBox.innerHTML = `❌ КВИТОК НЕ АКТИВОВАНО (Введи нік)`;
-        }
-
-        document.getElementById('badge-login').className = "badge-item unlocked";
-        document.getElementById('badge-patriot').className = user.nation === "UA" ? "badge-item unlocked" : "badge-item";
-        document.getElementById('badge-tankist').className = (user.wot_nick && user.wot_nick.trim().length > 1) ? "badge-item unlocked" : "badge-item";
-
-        const pickerZone = document.getElementById('avatar-picker-zone');
-        pickerZone.innerHTML = "";
-        let finalAvatars = [...AVAILABLE_AVATARS];
-        if(user.photo_url && !finalAvatars.includes(user.photo_url)) finalAvatars.unshift(user.photo_url);
-        currentSelectedAvatarUrl = user.custom_photo || AVAILABLE_AVATARS[0];
-
-        finalAvatars.forEach(url => {
-            const div = document.createElement('div');
-            div.className = `avatar-option ${url === currentSelectedAvatarUrl ? 'selected' : ''}`;
-            div.innerHTML = `<img src="${url}">`;
-            div.onclick = () => {
-                document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
-                div.classList.add('selected');
-                currentSelectedAvatarUrl = url;
-            };
-            pickerZone.appendChild(div);
-        });
-
-        document.getElementById('profile-modal').classList.add('active');
-    }
-
-    function logout() { localStorage.removeItem('registered_site_user'); window.location.reload(); }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        let visits = parseInt(localStorage.getItem('site_visit_counter') || "0") + 1;
-        localStorage.setItem('site_visit_counter', visits);
-
-        const savedUser = localStorage.getItem('registered_site_user');
-        if (savedUser) unlockSite(JSON.parse(savedUser));
-
-        document.getElementById('close-profile-btn').addEventListener('click', () => document.getElementById('profile-modal').classList.remove('active'));
-        document.getElementById('open-rules-btn').addEventListener('click', () => document.getElementById('rules-modal').classList.add('active'));
-        document.getElementById('close-rules-btn').addEventListener('click', () => document.getElementById('rules-modal').classList.remove('active'));
-
-        document.getElementById('save-profile-btn').addEventListener('click', async () => {
-            let uData = JSON.parse(localStorage.getItem('registered_site_user'));
-            if (!uData) return;
-
-            uData.custom_name = document.getElementById('p-custom-name').value.trim();
-            uData.wot_nick = document.getElementById('p-wot-nick').value.trim();
-            uData.nation = document.getElementById('p-nation').value;
-            uData.squad_status = document.getElementById('p-squad-status').value;
-            uData.status_text = document.getElementById('p-status-text').value.trim();
-            uData.wn8 = document.getElementById('p-wn8-rating').value;
-            uData.prime_time = document.getElementById('p-prime-time').value;
-            uData.custom_photo = currentSelectedAvatarUrl;
-
-            uData.t8 = document.getElementById('tier-8').checked;
-            uData.t10 = document.getElementById('tier-10').checked;
-
-            uData.garage = {
-                bz: document.getElementById('chk-bz').checked,
-                bz_m: document.getElementById('marks-bz').value,
-                udes: document.getElementById('chk-udes').checked,
-                udes_m: document.getElementById('marks-udes').value,
-                bzt: document.getElementById('chk-bzt').checked,
-                bzt_m: document.getElementById('marks-bzt').value
-            };
-
-            uData.pc_cpu = document.getElementById('pc-cpu').value.trim();
-            uData.pc_gpu = document.getElementById('pc-gpu').value.trim();
-            uData.pc_graphics = document.getElementById('pc-graphics').value;
-            uData.pc_fps = document.getElementById('pc-fps').value.trim();
-
-            localStorage.setItem('registered_site_user', JSON.stringify(uData));
-            unlockSite(uData);
-            document.getElementById('profile-modal').classList.remove('active');
-
-            let garageList = [];
-            if(uData.garage.bz) garageList.push(`BZ-176 (${uData.garage.bz_m}⭐)`);
-            if(uData.garage.udes) garageList.push(`UDES 03 (${uData.garage.udes_m}⭐)`);
-            if(uData.garage.bzt) garageList.push(`BZT-70 (${uData.garage.bzt_m}⭐)`);
-
-            let tList = [];
-            if(uData.t8) tList.push("8-й");
-            if(uData.t10) tList.push("10-й");
-
-            let logMsg = `⚙️ ОНОВЛЕННЯ ПРОФІЛЮ!\n\n` +
-                         `👤 Гравець: ${uData.custom_name}\n` +
-                         `💥 Нік у WoT: ${uData.wot_nick || 'Не вказано'}\n` +
-                         `📊 WN8: ${uData.wn8}\n` +
-                         `⏱️ Прайм: ${uData.prime_time}\n` +
-                         `🤝 Взводні рівні: ${tList.join(' та ') || 'Не обрав'}\n` +
-                         `🚜 Техніка: ${garageList.join(', ') || 'Порожньо'}\n` +
-                         `💻 Залізо: CPU ${uData.pc_cpu} | GPU ${uData.pc_gpu} | FPS ${uData.pc_fps}`;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: logMsg })
-                });
-            } catch(e){}
-        });
-
-        const daysMap = ['id-sun', 'id-mon', 'id-tue', 'id-wed', 'id-thu', 'id-fri', 'id-sat'];
-        const currentDayClass = daysMap[new Date().getDay()];
-        const todayElement = document.querySelector('.' + currentDayClass);
-        if (todayElement) todayElement.classList.add('today');
-    });
-
-    async function loadYT(url, divId, count) {
-        const box = document.getElementById(divId);
-        try {
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-            const data = await res.json();
-            if (data.status === 'ok' && data.items) {
-                let cards = '';
-                data.items.slice(0, count).forEach(v => {
-                    let id = v.link.split('v=')[1] || v.link.split('/').pop();
-                    if(id.includes('&')) id = id.split('&')[0];
-                    cards += `<div class="video-block"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe><div class="video-caption">${v.title}</div></div>`;
-                });
-                box.innerHTML = cards;
-            } else { box.innerHTML = "<div style='color:#64748b; padding:10px;'>Контент відсутній...</div>"; }
-        } catch (err) { box.innerHTML = "<div style='color:#ef4444; padding:10px;'>Помилка з'єднання...</div>"; }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        loadYT('https://rss.app/feeds/h7valG7dUSvQGIAh.xml', 'latest-videos-block', 3);
-        loadYT('https://rss.app/feeds/2IWHE7GWK0ut65vc.xml', 'recent-videos', 3);
-    });
-</script>
-
-</body>
-</html>
+            user.status_text = ""; user
