@@ -384,7 +384,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        loadYT('https://rss.app/feeds/2Dq7coRuPeUJwCqS.xml', 'recent-videos', 3);
+        // Заменено на твою новую прокси-ссылку
+        loadYT('https://quietfold.com/tools/proxy.rss?url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUC29hev1ElIOHYG9oFm9dieQ', 'recent-videos', 3);
         
         const days = ['id-sun', 'id-mon', 'id-tue', 'id-wed', 'id-thu', 'id-fri', 'id-sat'];
         const currentDayClass = days[new Date().getDay()];
