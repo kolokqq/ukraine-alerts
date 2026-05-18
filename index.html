@@ -91,12 +91,13 @@
         .action-icon-btn { background: transparent; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; margin-left: 3px; transition: 0.2s; padding: 4px; }
         .action-icon-btn:hover { color: #fff; transform: scale(1.15); }
 
-        /* ГОЛОВНИЙ СЕТКА */
+        /* БЕГУЧИЙ РЯДОК */
         .ticker-bar { width: 100%; background: #080c14; border: 1px solid var(--border-color); padding: 12px 0; margin-bottom: 30px; border-radius: 8px; overflow: hidden; }
         .ticker-wrap { display: flex; width: max-content; animation: ticker-move 25s linear infinite; }
         .ticker-wrap span { font-size: 0.95rem; font-weight: 500; color: #64748b; white-space: nowrap; padding-right: 100px; }
         @keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* СЕТКА СТОРІНКИ */
         .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
         .stealth-card, .side-block {
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px;
@@ -107,7 +108,7 @@
             margin-top: 0; margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
         }
 
-        /* ЦІЛЬ ТА МУЗИКА В БОКОВІЙ ПАНЕЛІ */
+        /* ЦІЛЬ В БОКОВІЙ ПАНЕЛІ */
         .goal-container { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; }
         .goal-bar-bg { width: 100%; height: 12px; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden; margin-top: 8px; }
         .goal-bar-fill { height: 100%; width: 38%; background: linear-gradient(90deg, #ff9900, #ffcc00); box-shadow: 0 0 10px #ffaa00; }
@@ -116,7 +117,7 @@
         .music-widget:hover { background: rgba(255,255,255,0.05); border-color: var(--gold); }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        /* ОСТАННІ ОНОВЛЕННЯ (СТРІЧКА ЛОГІВ) */
+        /* ЖИВІ ЛОГИ */
         .log-feed { display: flex; flex-direction: column; gap: 10px; }
         .log-feed-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; font-size: 0.8rem; line-height: 1.4; color: #94a3b8; }
         .log-feed-item strong { color: #fff; font-family: 'Orbitron'; }
@@ -136,7 +137,7 @@
         .info-btn-outline { background: transparent; border: 2px solid var(--gold); border-radius: 8px; padding: 12px 24px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.2s; }
         .info-btn-outline:hover { background: var(--gold); color: #05080e; }
 
-        /* МЕДІА ТА ПЛЕЄР */
+        /* ПЛЕЄР ТА МЕДІА СЕТКА */
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 30px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
@@ -148,15 +149,21 @@
         .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; }
         .server-ping { color: #00ff66; font-family: 'Orbitron'; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 6px; border-radius: 4px; }
 
+        /* ІНТЕРФЕЙС РОЗКЛАДУ */
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 8px; }
-        .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); }
+        .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.05); }
         .sched-day { font-family: 'Orbitron'; font-size: 0.85rem; color: #cbd5e1; }
         .sched-time { font-family: 'Orbitron'; font-weight: 900; color: var(--gold); }
+
+        /* ТОП ВЗВОДНИХ БІЙЦІВ */
+        .top-squad-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.01); border-radius: 6px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.02); }
+        .top-squad-name { font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+        .top-squad-rank { font-family: 'Orbitron'; font-size: 0.75rem; color: var(--gold); font-weight: 900; }
 
         .btn-action-side { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; transition: 0.2s; border: none; }
         .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; cursor: pointer; }
 
-        /* МОДАЛКИ: ОПТИМІЗАЦІЯ ПІД ТЕЛЕФОНИ */
+        /* МОДАЛКИ ТА ТАБИ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999;
@@ -172,7 +179,6 @@
         
         .modal-close-btn { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); color: #94a3b8; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-        /* ПРОФІЛЬ ТАБИ */
         .profile-tabs-nav { display: flex; gap: 5px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; overflow-x: auto; }
         .p-tab-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #94a3b8; padding: 8px 14px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .p-tab-btn.active { background: var(--gold); color: #05080e; border-color: var(--gold); }
@@ -189,7 +195,7 @@
         .input-label { display: block; font-family: 'Orbitron'; font-size: 0.7rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px; text-transform: uppercase; }
         .custom-input, .custom-select { width: 100%; background: #05080e; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; color: #fff; font-size: 0.9rem; box-sizing: border-box; }
 
-        /* СТИЛІ КОЛЬОРІВ ДЛЯ WN8 */
+        /* ТЕКСТОВІ КОЛЬОРИ ДЛЯ РЕЙТИНГУ WN8 */
         .select-wn8-red { color: #fe0e00 !important; font-weight: bold; }
         .select-wn8-green { color: #00a040 !important; font-weight: bold; }
         .select-wn8-blue { color: #4099ff !important; font-weight: bold; }
@@ -214,9 +220,21 @@
         .ticket-status-box.active { border-color: var(--gold); color: #ffcc00; }
         .stats-footer-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b; font-family: 'Orbitron'; margin-bottom: 12px; }
 
+        /* ПАНЕЛЬ СЕ ТАПУ ПК ВНИЗУ */
+        .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
+        .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .pc-spec-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; display: flex; gap: 12px; align-items: center; }
+        .pc-icon { font-size: 1.3rem; color: var(--gold); }
+        .pc-text-name { font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; text-transform: uppercase; }
+        .pc-text-val { font-size: 0.9rem; font-weight: bold; color: #fff; margin-top: 2px; }
+
+        /* ВІДГУКИ */
+        .guestbook-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
+        .guest-meta { display: flex; justify-content: space-between; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; margin-bottom: 5px; }
+
         /* АДАПТИВНІСТЬ ДЛЯ СМАРТФОНІВ */
         @media (max-width: 1024px) {
-            .layout-grid { grid-template-columns: 1fr; }
+            .layout-grid, .bottom-full-row { grid-template-columns: 1fr; }
             .clean-mosaic { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 680px) {
@@ -224,7 +242,7 @@
             nav { flex-direction: column; align-items: flex-start; }
             .nav-links { width: 100%; justify-content: flex-start; }
             .clean-mosaic { grid-template-columns: 1fr; }
-            .modal-grid-inputs { grid-template-columns: 1fr; }
+            .modal-grid-inputs, .pc-spec-list { grid-template-columns: 1fr; }
             
             .modal-overlay { padding: 0; align-items: flex-end; }
             .modal-window { max-height: 95vh; border-radius: 16px 16px 0 0; border-bottom: none; }
@@ -298,13 +316,6 @@
 
             <div class="right-pane">
                 
-                <div class="side-block" style="border-left: 4px solid #ff003c;">
-                    <div class="side-title">📢 Важливе інфо</div>
-                    <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.5;">
-                        Катаємо взводами з підписниками! Заповнюй свій Кабінет (вкладка Ангар і Скіл), залишай заявку і чекай запрошення в грі на EU серверах.
-                    </p>
-                </div>
-
                 <div class="side-block" style="border-left: 4px solid var(--gold);">
                     <div class="side-title">🎯 Ціль Каналу <span>38%</span></div>
                     <div class="goal-container">
@@ -317,10 +328,31 @@
                 </div>
 
                 <div class="side-block">
-                    <div class="side-title">⚡ Активність бійців</div>
-                    <div class="log-feed">
-                        <div class="log-feed-item">🔥 Гравець <strong>WOT_Fan</strong> зайшов у кабінет і оновив свій ПК.<span class="log-feed-time">Щойно</span></div>
-                        <div class="log-feed-item">🚜 Танкіст <strong>Ua_Stalker</strong> додав у гараж <strong>BZ-176</strong> зі 2 ⭐.<span class="log-feed-time">5 хв тому</span></div>
+                    <div class="side-title">📅 Розклад Ефірів</div>
+                    <div class="sched-list">
+                        <div class="sched-item id-mon"><span class="sched-day">Понеділок</span><span class="sched-time">21:00</span></div>
+                        <div class="sched-item id-tue"><span class="sched-day">Вівторок</span><span class="sched-time">21:00</span></div>
+                        <div class="sched-item id-wed"><span class="sched-day">Середа</span><span class="sched-time">21:00</span></div>
+                        <div class="sched-item id-thu"><span class="sched-day">Четвер</span><span class="sched-time">Вихідний ❌</span></div>
+                        <div class="sched-item id-fri"><span class="sched-day">П'ятниця</span><span class="sched-time">21:00</span></div>
+                        <div class="sched-item id-sat"><span class="sched-day">Субота</span><span class="sched-time">20:00 🔥</span></div>
+                        <div class="sched-item id-sun"><span class="sched-day">Неділя</span><span class="sched-time">20:00 🔥</span></div>
+                    </div>
+                </div>
+
+                <div class="side-block">
+                    <div class="side-title">🏆 Топ взводу</div>
+                    <div class="top-squad-row">
+                        <div class="top-squad-name">🥇 👨‍✈️ En0T1k_UA</div>
+                        <div class="top-squad-rank">СТРІМЕР</div>
+                    </div>
+                    <div class="top-squad-row">
+                        <div class="top-squad-name">🥈 🎖️ WOT_Pro_UA</div>
+                        <div class="top-squad-rank">3 ⭐ BZ-176</div>
+                    </div>
+                    <div class="top-squad-row">
+                        <div class="top-squad-name">🥉 🚜 Tankist_2026</div>
+                        <div class="top-squad-rank">2 ⭐ UDES 03</div>
                     </div>
                 </div>
 
@@ -329,7 +361,7 @@
                     <a href="https://youtube.com/playlist?list=your-link" target="_blank" class="music-widget">
                         <div class="music-icon-box"><i class="fa-solid fa-music"></i></div>
                         <div>
-                            <div style="font-weight:bold; font-size:0.9rem; color:#fff;">Офіційний Плейлист</div>
+                            <div style="font-weight:bold; font-size:0.9rem; color:#fff;">Офічний Плейлист</div>
                             <div style="font-size:0.75rem; color:#64748b;">Слухати рок-збірку на YouTube</div>
                         </div>
                     </a>
@@ -347,6 +379,44 @@
                         <div class="server-item"><div class="server-meta"><div class="server-indicator"></div>EU-2 MAIN</div><div class="server-ping">42 ms</div></div>
                     </div>
                 </div>
+            </div>
+
+            <div class="bottom-full-row">
+                
+                <div class="stealth-card">
+                    <div class="card-header"><span>💻 Стрім-Сетап BlackCellUA</span></div>
+                    <div class="pc-spec-list">
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-microchip"></i></div>
+                            <div><div class="pc-text-name">Процесор</div><div class="pc-text-val">Intel Xeon E3-1240</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <div><div class="pc-text-name">Відеокарта</div><div class="pc-text-val">NVIDIA GTX 960 Series</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-server"></i></div>
+                            <div><div class="pc-text-name">Накопичувач</div><div class="pc-text-val">Somnambulist SSD</div></div>
+                        </div>
+                        <div class="pc-spec-item">
+                            <div class="pc-icon"><i class="fa-solid fa-headset"></i></div>
+                            <div><div class="pc-text-name">Трансляція</div><div class="pc-text-val">OBS Studio / 60 FPS</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stealth-card">
+                    <div class="card-header"><span>💬 Стіна Привітів чату</span></div>
+                    <div class="guestbook-item">
+                        <div class="guest-meta"><span>@WOT_Fan_UA</span><span>Сьогодні</span></div>
+                        Стріми топові, дякую за вилазки на BZ-176! Модпак став без проблем.
+                    </div>
+                    <div class="guestbook-item">
+                        <div class="guest-meta"><span>@Stealth_Sniper</span><span>Учора</span></div>
+                        Сайт вогонь, кабінет заповнив, чекаю розіграшу голди на трансляції!
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -419,9 +489,18 @@
                             <option value="Фіолетовий (Статист)" class="select-wn8-purple">🟪 Фіолетовий (Статист)</option>
                         </select>
                     </div>
-                    <div class="input-group"><label class="input-label">Тег Клану</label><input type="text" id="p-clan-tag" class="custom-input"></div>
+                    <div class="input-group">
+                        <label class="input-label">В іграх зазвичай (Час)</label>
+                        <select id="p-prime-time" class="custom-select">
+                            <option value="День (12:00-18:00)">День (12:00-18:00)</option>
+                            <option value="Вечір (18:00-22:00)">Вечір (18:00-22:00)</option>
+                            <option value="Ніч (22:00-02:00)">Ніч (22:00-02:00)</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="input-group"><label class="input-label">Девіз / Статус танкіста</label><input type="text" id="p-status-text" class="custom-input"></div>
+                <div class="modal-grid-inputs">
+                    <div class="input-group" style="grid-column: span 2;"><label class="input-label">Девіз / Статус танкіста</label><input type="text" id="p-status-text" class="custom-input"></div>
+                </div>
                 <div class="input-group"><label class="input-label">Обери Аватар</label><div class="avatar-picker-grid" id="avatar-picker-zone"></div></div>
             </div>
 
@@ -519,7 +598,7 @@
             user.custom_name = user.first_name;
             user.custom_photo = user.photo_url || AVAILABLE_AVATARS[0];
             user.wot_nick = ""; user.nation = "UA"; user.squad_status = "Соло";
-            user.clan_tag = ""; user.status_text = ""; user.wn8 = "Червоний (Початківець)";
+            user.status_text = ""; user.wn8 = "Червоний (Початківець)"; user.prime_time = "Вечір (18:00-22:00)";
             user.pc_cpu = ""; user.pc_gpu = ""; user.pc_graphics = "Середні"; user.pc_fps = "";
             user.t8 = false; user.t10 = false;
             user.garage = { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" };
@@ -532,7 +611,6 @@
     function calculateXP(user, visits) {
         let xp = 50;
         if (user.wot_nick && user.wot_nick.trim().length > 1) xp += 100;
-        if (user.clan_tag && user.clan_tag.trim().length > 0) xp += 30;
         if (user.pc_cpu || user.pc_gpu) xp += 50;
         if (user.garage) {
             if (user.garage.bz) xp += 30 + (parseInt(user.garage.bz_m) * 15);
@@ -558,13 +636,12 @@
         const displayPhoto = user.custom_photo || AVAILABLE_AVATARS[0];
         const displayName = user.custom_name || user.first_name;
         const flagUrl = FLAG_IMAGES[user.nation || "UA"];
-        let clanStr = user.clan_tag ? ` [${user.clan_tag}]` : "";
 
         document.getElementById('user-display').innerHTML = `
             <div class="user-profile-badge">
                 <img src="${displayPhoto}" class="avatar-main">
                 <img src="${flagUrl}" class="flag-icon">
-                <span>${displayName}${clanStr}</span>
+                <span>${displayName}</span>
                 <span class="user-lvl-tag">ЛВЛ ${lvlInfo.lvl}</span>
                 
                 <button class="action-icon-btn" onclick="openProfileModal()" title="Налаштування профілю"><i class="fa-solid fa-user-gear"></i></button>
@@ -595,9 +672,9 @@
         document.getElementById('p-wot-nick').value = user.wot_nick || "";
         document.getElementById('p-nation').value = user.nation || "UA";
         document.getElementById('p-squad-status').value = user.squad_status || "Соло";
-        document.getElementById('p-clan-tag').value = user.clan_tag || "";
         document.getElementById('p-status-text').value = user.status_text || "";
         document.getElementById('p-wn8-rating').value = user.wn8 || "Червоний (Початківець)";
+        document.getElementById('p-prime-time').value = user.prime_time || "Вечір (18:00-22:00)";
 
         document.getElementById('tier-8').checked = !!user.t8;
         document.getElementById('tier-10').checked = !!user.t10;
@@ -671,9 +748,9 @@
             uData.wot_nick = document.getElementById('p-wot-nick').value.trim();
             uData.nation = document.getElementById('p-nation').value;
             uData.squad_status = document.getElementById('p-squad-status').value;
-            uData.clan_tag = document.getElementById('p-clan-tag').value.trim();
             uData.status_text = document.getElementById('p-status-text').value.trim();
             uData.wn8 = document.getElementById('p-wn8-rating').value;
+            uData.prime_time = document.getElementById('p-prime-time').value;
             uData.custom_photo = currentSelectedAvatarUrl;
 
             uData.t8 = document.getElementById('tier-8').checked;
@@ -706,10 +783,11 @@
             if(uData.t8) tList.push("8-й");
             if(uData.t10) tList.push("10-й");
 
-            let logMsg = `⚙️ НОВІ ДАНІ З КАБІНЕТУ!\n\n` +
+            let logMsg = `⚙️ ОНОВЛЕННЯ ПРОФІЛЮ!\n\n` +
                          `👤 Гравець: ${uData.custom_name}\n` +
                          `💥 Нік у WoT: ${uData.wot_nick || 'Не вказано'}\n` +
-                         `📈 Рівень WN8: ${uData.wn8}\n` +
+                         `📊 WN8: ${uData.wn8}\n` +
+                         `⏱️ Прайм: ${uData.prime_time}\n` +
                          `🤝 Взводні рівні: ${tList.join(' та ') || 'Не обрав'}\n` +
                          `🚜 Техніка: ${garageList.join(', ') || 'Порожньо'}\n` +
                          `💻 Залізо: CPU ${uData.pc_cpu} | GPU ${uData.pc_gpu} | FPS ${uData.pc_fps}`;
