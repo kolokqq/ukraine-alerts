@@ -101,7 +101,8 @@
             border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px;
             font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700; color: #fff;
         }
-        .user-profile-badge img { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--gold); object-fit: cover; }
+        .user-profile-badge img.avatar-main { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--gold); object-fit: cover; }
+        .user-profile-badge img.flag-icon { width: 18px; height: 12px; object-fit: cover; border-radius: 2px; }
         .edit-profile-btn { background: transparent; border: none; color: var(--gold); cursor: pointer; font-size: 0.85rem; margin-left: 5px; transition: 0.2s; }
         .edit-profile-btn:hover { color: #fff; transform: scale(1.1); }
         .logout-btn { background: transparent; border: none; color: #ff4d4d; cursor: pointer; font-size: 0.85rem; margin-left: 3px; transition: 0.2s; }
@@ -229,17 +230,19 @@
             font-size: 0.8rem; color: #94a3b8; line-height: 1.4; font-weight: 500;
         }
 
-        /* НОВІ СТИЛІ ДЛЯ МОДАЛКИ ПРОФІЛЮ */
-        .input-group { margin-bottom: 25px; text-align: left; }
-        .input-label { display: block; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; }
-        .custom-input { 
+        /* МОДЕРНІЗОВАНІ СТИЛІ ДЛЯ ЗБІЛЬШЕНОЇ МОДАЛКИ ПРОФІЛЮ */
+        .modal-grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .input-group { text-align: left; }
+        .input-label { display: block; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+        .custom-input, .custom-select { 
             width: 100%; background: rgba(5, 8, 14, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; 
-            padding: 14px; font-family: 'Exo 2'; color: #fff; font-size: 1rem; box-sizing: border-box; transition: 0.2s;
+            padding: 12px; font-family: 'Exo 2'; color: #fff; font-size: 0.95rem; box-sizing: border-box; transition: 0.2s;
         }
-        .custom-input:focus { border-color: #ffcc00; outline: none; box-shadow: 0 0 12px rgba(255,204,0,0.15); }
+        .custom-input:focus, .custom-select:focus { border-color: #ffcc00; outline: none; box-shadow: 0 0 12px rgba(255,204,0,0.15); }
+        .custom-select option { background-color: #0b1220; color: #fff; }
 
         /* Сітка з вибором аватарок */
-        .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; max-height: 200px; overflow-y: auto; padding-right: 5px; }
+        .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 25px; max-height: 150px; overflow-y: auto; padding-right: 5px; }
         .avatar-option { 
             aspect-ratio: 1/1; border-radius: 12px; overflow: hidden; cursor: pointer; border: 2px solid transparent; 
             position: relative; transition: 0.2s; background: rgba(255,255,255,0.02);
@@ -249,7 +252,7 @@
         .avatar-option.selected { border-color: #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
         .avatar-option.selected::after {
             content: "\f058"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute;
-            bottom: 5px; right: 5px; color: #ffcc00; font-size: 1.1rem; background: #05080e; border-radius: 50%; line-height: 1;
+            bottom: 5px; right: 5px; color: #ffcc00; font-size: 1rem; background: #05080e; border-radius: 50%; line-height: 1;
         }
 
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 40px; }
@@ -296,7 +299,7 @@
         .side-block { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
         .side-title { font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
         .btn-action-side { display: flex; align-items: center; justify-content: center; width: 100%; padding: 16px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; transition: 0.2s; }
-        .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.15); }
+        .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; box-shadow: 0 6px 15px rgba(255, 204, 0, 0.15); border: none; cursor: pointer; }
         .btn-yellow:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 10px; }
@@ -307,6 +310,7 @@
         @media (max-width: 1200px) {
             .layout-grid { grid-template-columns: 1fr; }
             .clean-mosaic { grid-template-columns: repeat(2, 1fr); }
+            .modal-grid-inputs { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
@@ -315,6 +319,7 @@
             .banner-buttons-row { flex-direction: column; }
             .luxury-btn, .info-btn-outline { width: 100%; box-sizing: border-box; }
             .shorts-flex-container { grid-template-columns: 1fr; }
+            .modal-grid-inputs { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -488,26 +493,59 @@
 </div>
 
 <div class="modal-overlay" id="profile-modal">
-    <div class="modal-window">
+    <div class="modal-window" style="max-width: 620px;">
         <button class="modal-close-btn" id="close-profile-btn"><i class="fa-solid fa-xmark"></i></button>
         
         <div class="modal-title-block">
-            <h3 class="modal-title"><i class="fa-solid fa-user-gear" style="color: #ffcc00; margin-right: 8px;"></i> Налаштування <span>Профілю</span></h3>
-            <p class="modal-subtitle">Змінюй свій нікнейм та аватарку на сайті</p>
+            <h3 class="modal-title"><i class="fa-solid fa-user-gear" style="color: #ffcc00; margin-right: 8px;"></i> Досьє <span>Танкіста</span></h3>
+            <p class="modal-subtitle">Налаштуй свій ігровий статус для сайту та розіграшів</p>
+        </div>
+
+        <div class="modal-grid-inputs">
+            <div class="input-group">
+                <label class="input-label" for="profile-nickname-input">Ім'я на сайті</label>
+                <input type="text" id="profile-nickname-input" class="custom-input" placeholder="Твій нік на сайті...">
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="profile-wot-nick">Нік у World of Tanks</label>
+                <input type="text" id="profile-wot-nick" class="custom-input" placeholder="Твій ігровий нік (для голди)...">
+            </div>
+        </div>
+
+        <div class="modal-grid-inputs">
+            <div class="input-group">
+                <label class="input-label" for="profile-nation-select">Ігрова Нація</label>
+                <select id="profile-nation-select" class="custom-select">
+                    <option value="UA">🇺🇦 Україна</option>
+                    <option value="US">🇺🇸 США</option>
+                    <option value="DE">🇩🇪 Німеччина</option>
+                    <option value="UK">🇬🇧 Велика Британія</option>
+                    <option value="FR">🇫🇷 Франція</option>
+                    <option value="SE">🇸🇪 Швеція</option>
+                    <option value="PL">🇵🇱 Польща</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="profile-fav-tank">Улюблений танк</label>
+                <select id="profile-fav-tank" class="custom-select">
+                    <option value="BZ-176">BZ-176</option>
+                    <option value="UDES 03">UDES 03</option>
+                    <option value="BZT-70">BZT-70</option>
+                    <option value="Mauschen">Mauschen</option>
+                    <option value="Lowe">Löwe</option>
+                    <option value="IS-3">ІС-3</option>
+                    <option value="Inshiy">Інший танк</option>
+                </select>
+            </div>
         </div>
 
         <div class="input-group">
-            <label class="input-label" for="profile-nickname-input">Твій ігровий Нікнейм / Ім'я</label>
-            <input type="text" id="profile-nickname-input" class="custom-input" placeholder="Введіть новий нікнейм...">
-        </div>
-
-        <div class="input-group">
-            <label class="input-label">Вибери ігрову Аватарку</label>
+            <label class="input-label">Вибери нову аватарку</label>
             <div class="avatar-picker-grid" id="avatar-options-container">
                 </div>
         </div>
 
-        <button class="btn-action-side btn-yellow" id="save-profile-btn">ЗБЕРЕГТИ ЗМІНИ</button>
+        <button class="btn-action-side btn-yellow" id="save-profile-btn">ЗБЕРЕГТИ ІГРОВІ ЗМІНИ</button>
     </div>
 </div>
 
@@ -515,16 +553,27 @@
     const TELEGRAM_TOKEN = '8231040496:AAFz5sjGDKeMOgPXxmi-ZtmTQqtihskterk';
     const TELEGRAM_CHAT_ID = '5223885410';
 
-    // ОНОВЛЕНІ НАДІЙНІ СТАБІЛЬНІ КАРТИНКИ (ТАНКИ ТА ГЕЙМЕРСЬКІ СТИЛЬНІ ІКОНКИ)
+    // Картинки-прапори для націй
+    const FLAG_IMAGES = {
+        "UA": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/ua.svg",
+        "US": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/us.svg",
+        "DE": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/de.svg",
+        "UK": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/gb.svg",
+        "FR": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/fr.svg",
+        "SE": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/se.svg",
+        "PL": "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/pl.svg"
+    };
+
+    // Надійні геймерські іконки танків та артів для аватарок
     const AVAILABLE_AVATARS = [
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80", // Геймерський монітор/лого
-        "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&w=150&q=80", // Геймпад червоний
-        "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80", // Кіберспорт лого
-        "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=150&q=80", // Ретро ігри
-        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80", // Джойстик неон
-        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=150&q=80", // Абстрактний геймінг
-        "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=150&q=80", // Шолом воїна
-        "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=150&q=80"  // Механічний арт
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1612287230202-1bf1d85d1bdf?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=150&q=80"
     ];
 
     let currentSelectedAvatarUrl = "";
@@ -538,16 +587,22 @@
             if(parsed.id == user.id) {
                 user.custom_name = parsed.custom_name || user.first_name;
                 user.custom_photo = parsed.custom_photo || user.photo_url;
+                user.wot_nick = parsed.wot_nick || "";
+                user.nation = parsed.nation || "UA";
+                user.fav_tank = parsed.fav_tank || "BZ-176";
             }
         } else {
             user.custom_name = user.first_name;
             user.custom_photo = user.photo_url || AVAILABLE_AVATARS[0];
+            user.wot_nick = "";
+            user.nation = "UA";
+            user.fav_tank = "BZ-176";
         }
 
         localStorage.setItem('registered_site_user', JSON.stringify(user));
         unlockSite(user);
 
-        const messageText = `👤 НОВИЙ ВХІД НА САЙТ! 👤\n\n📝 Ім'я в ТГ: ${user.first_name}\n🎮 Нік на сайті: ${user.custom_name}\n🔗 Юзернейм: ${user.username ? '@' + user.username : 'немає'}\n🆔 ID Telegram: ${user.id}`;
+        const messageText = `👤 ВХІД НА САЙТ! 👤\n\n📝 Ім'я в ТГ: ${user.first_name}\n🎮 Нік на сайті: ${user.custom_name}\n🔗 Юзернейм: ${user.username ? '@' + user.username : 'немає'}\n🆔 ID Telegram: ${user.id}`;
         
         try {
             await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
@@ -566,13 +621,19 @@
         
         const displayPhoto = user.custom_photo ? user.custom_photo : (user.photo_url ? user.photo_url : AVAILABLE_AVATARS[0]);
         const displayName = user.custom_name ? user.custom_name : user.first_name;
+        const displayNation = user.nation || "UA";
+        const displayTank = user.fav_tank || "BZ-176";
+        const flagUrl = FLAG_IMAGES[displayNation];
 
-        const photoHtml = `<img src="${displayPhoto}" alt="avatar" id="nav-avatar-img">`;
+        const photoHtml = `<img src="${displayPhoto}" alt="avatar" class="avatar-main">`;
+        const flagHtml = `<img src="${flagUrl}" class="flag-icon" title="Нація: ${displayNation}">`;
+
         document.getElementById('user-display').innerHTML = `
             <div class="user-profile-badge">
                 ${photoHtml}
-                <span id="nav-username-span">${displayName}</span>
-                <button class="edit-profile-btn" onclick="openProfileModal()" title="Редагувати профіль"><i class="fa-solid fa-user-pen"></i></button>
+                ${flagHtml}
+                <span id="nav-username-span">${displayName} [${displayTank}]</span>
+                <button class="edit-profile-btn" onclick="openProfileModal()" title="Досьє танкіста"><i class="fa-solid fa-user-gear"></i></button>
                 <button class="logout-btn" onclick="logout()" title="Вийти"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         `;
@@ -583,8 +644,10 @@
         if (!savedUser) return;
         const user = JSON.parse(savedUser);
 
-        const nickInput = document.getElementById('profile-nickname-input');
-        nickInput.value = user.custom_name || user.first_name;
+        document.getElementById('profile-nickname-input').value = user.custom_name || user.first_name;
+        document.getElementById('profile-wot-nick').value = user.wot_nick || "";
+        document.getElementById('profile-nation-select').value = user.nation || "UA";
+        document.getElementById('profile-fav-tank').value = user.fav_tank || "BZ-176";
 
         const container = document.getElementById('avatar-options-container');
         container.innerHTML = "";
@@ -650,19 +713,27 @@
                 let user = JSON.parse(savedUser);
 
                 const newNick = document.getElementById('profile-nickname-input').value.trim();
+                const wotNick = document.getElementById('profile-wot-nick').value.trim();
+                const selectedNation = document.getElementById('profile-nation-select').value;
+                const selectedTank = document.getElementById('profile-fav-tank').value;
+
                 if(newNick.length < 2) {
                     alert('Нікнейм занадто короткий!');
                     return;
                 }
 
                 user.custom_name = newNick;
+                user.wot_nick = wotNick;
+                user.nation = selectedNation;
+                user.fav_tank = selectedTank;
                 user.custom_photo = currentSelectedAvatarUrl;
 
                 localStorage.setItem('registered_site_user', JSON.stringify(user));
                 unlockSite(user);
                 profileModal.classList.remove('active');
 
-                const logMessage = `⚙️ КОРИСТУВАЧ ЗМІНИВ ПРОФІЛЬ! ⚙️\n\n🆔 TG ID: ${user.id}\n📝 Старе ім'я: ${user.first_name}\n🎮 НОВИЙ НІКНЕЙМ: ${user.custom_name}`;
+                // ПОВНИЙ ГЕЙМЕРСЬКИЙ ЗВІТ ДЛЯ СТРІМЕРА В ТЕЛЕГРАМ
+                const logMessage = `⚙️ НОВЕ ДОСЬЄ ТАНКІСТА! ⚙️\n\n🆔 TG ID: ${user.id}\n📝 Ім'я в TG: ${user.first_name}\n🎮 Нік на сайті: ${user.custom_name}\n🎖️ Нік у WoT: ${wotNick || 'Не вказано'}\n🌍 Нація: ${selectedNation}\n🚀 Улюблений танк: ${selectedTank}`;
                 try {
                     await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
                         method: 'POST',
