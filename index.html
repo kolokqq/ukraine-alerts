@@ -46,9 +46,9 @@
             --panel-bg: rgba(13, 19, 33, 0.75);
             --border-color: rgba(255, 255, 255, 0.04);
             --xp-green: #00ff66;
-            --discord: #5865F2;
             --purple-stat: #a335ee;
             --danger: #ff3344;
+            --cyan: #00bdf2;
         }
 
         body { 
@@ -70,7 +70,6 @@
         }
         .nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.25); }
 
-        /* ЮЗЕР-БЕЙДЖ ПРОФІЛЮ */
         .user-profile-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .user-profile-badge {
             display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03);
@@ -85,16 +84,13 @@
         .action-icon-btn { background: transparent; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; margin-left: 3px; transition: 0.2s; padding: 4px; }
         .action-icon-btn:hover { color: #fff; transform: scale(1.15); }
 
-        /* ОПТИМІЗОВАНИЙ БЕГУЧИЙ РЯДОК (АПАРАТНЕ ПРИСКОРЕННЯ) */
         .ticker-bar { width: 100%; background: #080c14; border: 1px solid var(--border-color); padding: 12px 0; margin-bottom: 30px; border-radius: 8px; overflow: hidden; }
         .ticker-wrap { display: flex; width: max-content; transform: translate3d(0, 0, 0); will-change: transform; animation: ticker-move 25s linear infinite; }
         .ticker-wrap span { font-size: 0.95rem; font-weight: 500; color: #64748b; white-space: nowrap; padding-right: 100px; }
         @keyframes ticker-move { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
 
-        /* СЕТКА СТОРІНКИ */
         .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
         
-        /* Оптимізація рендерингу блоків за допомогою content-visibility */
         .stealth-card, .side-block {
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-sizing: border-box; margin-bottom: 25px;
@@ -105,7 +101,6 @@
             margin-top: 0; margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
         }
 
-        /* ЦІЛЬ В БОКОВІЙ ПАНЕЛІ */
         .goal-container { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; }
         .goal-bar-bg { width: 100%; height: 12px; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden; margin-top: 8px; }
         .goal-bar-fill { height: 100%; width: 38%; background: linear-gradient(90deg, #ff9900, #ffcc00); box-shadow: 0 0 10px #ffaa00; }
@@ -114,7 +109,6 @@
         .music-widget:hover { background: rgba(255,255,255,0.05); border-color: var(--gold); }
         .music-icon-box { width: 40px; height: 40px; background: rgba(212,175,55,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; }
 
-        /* БЛОК РОЗІГРАШУ */
         .premium-sub-banner {
             background: radial-gradient(circle at top, #0f192b 0%, #060a12 100%); border: 2px solid var(--gold);
             border-radius: 16px; padding: 35px 25px; text-align: center; margin-bottom: 30px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
@@ -128,7 +122,6 @@
         .info-btn-outline { background: rgba(212, 175, 55, 0.05); border: 2px solid var(--gold); border-radius: 8px; padding: 14px 28px; color: var(--gold); font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 1px; }
         .info-btn-outline:hover { background: var(--gold); color: #05080e; transform: translateY(-2px); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
 
-        /* ПЛЕЄР ТА ВІДЕО */
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #000; margin-bottom: 30px; }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; }
@@ -140,13 +133,11 @@
         .server-indicator { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; }
         .server-ping { color: #00ff66; font-family: 'Orbitron'; font-size: 0.8rem; background: rgba(0,255,102,0.08); padding: 2px 6px; border-radius: 4px; }
 
-        /* РОЗКЛАД */
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; background: rgba(8, 12, 20, 0.5); border-left: 3px solid #64748b; margin-bottom: 8px; }
         .sched-item.today { border-left-color: #00ff66; background: rgba(0, 255, 102, 0.03); box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.05); }
         .sched-day { font-family: 'Orbitron'; font-size: 0.85rem; color: #cbd5e1; }
         .sched-time { font-family: 'Orbitron'; font-weight: 900; color: var(--gold); }
 
-        /* ЛІДЕРБОРД */
         .top-squad-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.01); border-radius: 6px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.02); }
         .top-squad-name { font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
         .top-squad-rank { font-family: 'Orbitron'; font-size: 0.75rem; color: var(--gold); font-weight: 900; }
@@ -155,7 +146,7 @@
         .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; cursor: pointer; }
         .btn-yellow:hover { box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); transform: translateY(-1px); }
 
-        /* НИЖНЯ СЕКЦІЯ ТА ДОДАТКОВІ ПАНЕЛІ */
+        /* НИЖНЯ РОЗШИРЕНА СЕКЦІЯ */
         .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .pc-spec-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; display: flex; gap: 12px; align-items: center; }
@@ -163,7 +154,6 @@
         .pc-text-name { font-size: 0.75rem; color: #64748b; font-family: 'Orbitron'; text-transform: uppercase; }
         .pc-text-val { font-size: 0.9rem; font-weight: bold; color: #fff; margin-top: 2px; }
 
-        /* Міні-барі цілей */
         .mini-goal-row { margin-bottom: 12px; }
         .mini-goal-row:last-child { margin-bottom: 0; }
         .mini-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-top: 4px; }
@@ -172,10 +162,23 @@
         .guestbook-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
         .guest-meta { display: flex; justify-content: space-between; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; margin-bottom: 5px; }
 
-        /* Стилі для панелі посилань */
         .quick-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .quick-link-card { display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; color: #cbd5e1; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: bold; transition: 0.2s; }
         .quick-link-card:hover { border-color: var(--gold); background: rgba(212,175,55,0.05); color: #fff; }
+
+        /* Стилі для Квестів та FAQ */
+        .quest-list-box { display: flex; flex-direction: column; gap: 10px; }
+        .quest-item { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 12px 16px; border-radius: 8px; border-left: 3px solid var(--cyan); font-size: 0.9rem; }
+        .quest-item.done { border-left-color: var(--xp-green); background: rgba(0,255,102,0.02); }
+        .quest-badge { font-family: 'Orbitron'; font-size: 0.7rem; font-weight: 900; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+        .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
+        .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); }
+
+        .faq-accordion { display: flex; flex-direction: column; gap: 10px; }
+        .faq-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; overflow: hidden; }
+        .faq-question { padding: 12px 15px; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold; color: #fff; background: rgba(255,255,255,0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-question:hover { background: rgba(255,255,255,0.04); }
+        .faq-answer { padding: 12px 15px; font-size: 0.85rem; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.03); display: none; }
 
         /* МОДАЛЬНІ ВІКНА ТА ТАБИ */
         .modal-overlay {
@@ -199,7 +202,6 @@
         .modal-title span { color: var(--gold); }
         .modal-subtitle { font-size: 0.85rem; color: #64748b; margin: 5px 0 0 0; font-family: 'Orbitron'; }
 
-        /* ПРАВИЛА В МОДАЛЦІ */
         .rules-step-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; text-align: left; }
         .rules-step-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 12px 16px; display: flex; gap: 15px; align-items: center; }
         .rules-step-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: var(--gold); min-width: 25px; }
@@ -227,11 +229,6 @@
         .input-group { text-align: left; margin-bottom: 10px; }
         .input-label { display: block; font-family: 'Orbitron'; font-size: 0.7rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px; text-transform: uppercase; }
         .custom-input, .custom-select { width: 100%; background: #05080e; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px; color: #fff; font-size: 0.9rem; box-sizing: border-box; }
-
-        .select-wn8-red { color: #fe0e00 !important; font-weight: bold; }
-        .select-wn8-green { color: #00a040 !important; font-weight: bold; }
-        .select-wn8-blue { color: #4099ff !important; font-weight: bold; }
-        .select-wn8-purple { color: #a335ee !important; font-weight: bold; }
 
         .garage-scroller { max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px; }
         .garage-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 6px; }
@@ -467,28 +464,60 @@
                 </div>
 
                 <div class="stealth-card">
-                    <div class="card-header"><span>📊 Статистика акаунту BlackCellUA</span></div>
-                    <div class="pc-spec-list">
-                        <div class="pc-spec-item" style="border-left: 3px solid #a335ee;">
-                            <div class="pc-icon"><i class="fa-solid fa-star" style="color: #a335ee;"></i></div>
-                            <div><div class="pc-text-name">Поточний WN8</div><div class="pc-text-val">2450+ (Фіолетовий)</div></div>
+                    <div class="card-header"><span>🎯 Поточні Стрім-Квести</span></div>
+                    <div class="quest-list-box">
+                        <div class="quest-item">
+                            <div>⚔️ Набити 6,500+ шкоди за один бій на BZ-176</div>
+                            <span class="quest-badge in-progress">У процесі</span>
                         </div>
-                        <div class="pc-spec-item" style="border-left: 3px solid #00ff66;">
-                            <div class="pc-icon"><i class="fa-solid fa-percent" style="color: #00ff66;"></i></div>
-                            <div><div class="pc-text-name">Відсоток перемог</div><div class="pc-text-val">56.8%</div></div>
+                        <div class="quest-item done">
+                            <div>💥 Зробити фраг за допомогою тарану на важкому танку</div>
+                            <span class="quest-badge complete">Виконано 👍</span>
                         </div>
-                        <div class="pc-spec-item">
-                            <div class="pc-icon"><i class="fa-solid fa-gun"></i></div>
-                            <div><div class="pc-text-name">Середня шкода (Топ 10)</div><div class="pc-text-val">2800+ СУ</div></div>
-                        </div>
-                        <div class="pc-spec-item">
-                            <div class="pc-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div><div class="pc-text-name">Боїв проведено</div><div class="pc-text-val">~25,000</div></div>
+                        <div class="quest-item">
+                            <div>🛡️ Заблокувати більше 5,000 шкоди за бій</div>
+                            <span class="quest-badge in-progress">У процесі</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="stealth-card">
+                    <div class="card-header"><span>🏆 Зал Слави Танкістів (Зрители)</span></div>
+                    <div class="server-grid">
+                        <div class="server-item">
+                            <div>🥇 <strong>@Stealth_Sniper</strong> — 8,100 шкоди</div>
+                            <div style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold);">UDES 03</div>
+                        </div>
+                        <div class="server-item">
+                            <div>🥈 <strong>@WOT_Fan_UA</strong> — 7,400 шкоди</div>
+                            <div style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold);">BZ-176</div>
+                        </div>
+                        <div class="server-item">
+                            <div>🥉 <strong>@Cyber_Tank</strong> — 9 фрагів за бій</div>
+                            <div style="font-family:'Orbitron'; font-size:0.8rem; color:var(--gold);">BZT-70</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stealth-card" style="grid-column: span 2;">
+                    <div class="card-header"><span>📖 База знань каналу (FAQ)</span></div>
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">Як потрапити до тебе у взвод на стрімі? <i class="fa-solid fa-chevron-down"></i></div>
+                            <div class="faq-answer">Для цього потрібно відкрити «Кабінет Танкіста» вгорі сторінки, заповнити свій ігровий нікнейм, обрати рівень техніки та змінити статус на «Шукаю взвод». Стрімер регулярно переглядає заявки під час ефіру!</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">Яке обладнання ти використовуєш на BZ-176? <i class="fa-solid fa-chevron-down"></i></div>
+                            <div class="faq-answer">Основна збірка: Стабілізатор вертикального наведення, Вентиляція (або Загартування у першому слоті на ХП) та Досилач. Це дає максимальний комфорт стрільби при реалізації фугасів.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question" onclick="toggleFaq(this)">Як дізнатися, що мій лотерейний квиток активний? <i class="fa-solid fa-chevron-down"></i></div>
+                            <div class="faq-answer">Як тільки ви вводите коректний нікнейм у кабінеті та зберігаєте профіль, статус вашого квитка автоматично змінюється на «АКТИВНИЙ». Ви стаєте повноправним учасником усіх розіграшів золота.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stealth-card" style="grid-column: span 2;">
                     <div class="card-header"><span>🔔 Анонси та корисні лінки</span></div>
                     <div style="margin-bottom: 15px; font-size: 0.85rem; color: #94a3b8; background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
                         <strong style="color:#fff;">Увага:</strong> Скоро на каналі великий марафон по відмітках на <span style="color:var(--gold);">BZ-176</span>! Готуйте каву та вмикайте сповіщення на YouTube.
@@ -605,16 +634,7 @@
                     </div>
                 </div>
                 <div class="modal-grid-inputs">
-                    <div class="input-group">
-                        <label class="input-label">Мій приблизний WN8</label>
-                        <select id="p-wn8-rating" class="custom-select">
-                            <option value="Червоний (Початківець)" class="select-wn8-red">🟥 Червоний (Початківець)</option>
-                            <option value="Зелений (Середній)" class="select-wn8-green">🟩 Зелений (Середній)</option>
-                            <option value="Бірюзовий (Умілий)" class="select-wn8-blue">🟦 Бірюзовий (Умілий)</option>
-                            <option value="Фіолетовий (Статист)" class="select-wn8-purple">🟪 Фіолетовий (Статист)</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
+                    <div class="input-group" style="grid-column: span 2;">
                         <label class="input-label">В іграх зазвичай (Час)</label>
                         <select id="p-prime-time" class="custom-select">
                             <option value="День (12:00-18:00)">День (12:00-18:00)</option>
@@ -695,17 +715,17 @@
         btnElement.classList.add('active');
     }
 
-    function redirectToWotLife() {
-        const savedUser = localStorage.getItem('registered_site_user');
-        if (savedUser) {
-            const user = JSON.parse(savedUser);
-            if (user.wot_nick && user.wot_nick.trim().length > 1) {
-                window.open(`https://wot-life.com/eu/player/${encodeURIComponent(user.wot_nick)}/`, '_blank');
-                return;
-            }
+    /* FAQ ACCORDION TOGGLE */
+    function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('i');
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+            icon.className = "fa-solid fa-chevron-down";
+        } else {
+            answer.style.display = "block";
+            icon.className = "fa-solid fa-chevron-up";
         }
-        alert("Спочатку вкажи свій ігровий нікнейм у Бойовому Кабінеті!");
-        openProfileModal();
     }
 
     function calculateXP(user, visits) {
@@ -725,7 +745,6 @@
         return { lvl: 3, title: "Рівень 3: Майстер танка 👑", next: xp, prev: 350 };
     }
 
-    /* ОПТИМІЗОВАНО: Точкове оновлення елементів інтерфейсу профілю без повного перерендеру всього блоку */
     function loadAndRenderUser() {
         let visits = parseInt(localStorage.getItem('site_visit_counter') || "1");
         let regDate = localStorage.getItem('site_registration_date') || new Date().toLocaleDateString('uk-UA');
@@ -735,7 +754,7 @@
         let user = savedUser ? JSON.parse(savedUser) : {
             custom_name: "Танкіст", custom_photo: AVAILABLE_AVATARS[0],
             wot_nick: "", nation: "UA", squad_status: "Соло", status_text: "",
-            wn8: "Червоний (Початківець)", prime_time: "Вечір (18:00-22:00)",
+            prime_time: "Вечір (18:00-22:00)",
             pc_cpu: "", pc_gpu: "", pc_graphics: "Середні", pc_fps: "",
             t8: false, t10: false, garage: { bz: false, bz_m: "0", udes: false, udes_m: "0", bzt: false, bzt_m: "0" }
         };
@@ -755,7 +774,6 @@
                 <span>${displayName}</span>
                 <span class="user-lvl-tag">ЛВЛ ${lvlInfo.lvl}</span>
                 <button class="action-icon-btn" onclick="openProfileModal()" title="Налаштування профілю"><i class="fa-solid fa-user-gear"></i></button>
-                <button class="action-icon-btn" onclick="redirectToWotLife()" title="Моя Статистика" style="color:#00ff66;"><i class="fa-solid fa-crosshairs"></i> Стата</button>
             </div>
         `;
     }
@@ -782,7 +800,6 @@
         document.getElementById('p-nation').value = user.nation || "UA";
         document.getElementById('p-squad-status').value = user.squad_status || "Соло";
         document.getElementById('p-status-text').value = user.status_text || "";
-        document.getElementById('p-wn8-rating').value = user.wn8 || "Червоний (Початківець)";
         document.getElementById('p-prime-time').value = user.prime_time || "Вечір (18:00-22:00)";
 
         document.getElementById('tier-8').checked = !!user.t8;
@@ -862,7 +879,6 @@
             uData.nation = document.getElementById('p-nation').value;
             uData.squad_status = document.getElementById('p-squad-status').value;
             uData.status_text = document.getElementById('p-status-text').value.trim();
-            uData.wn8 = document.getElementById('p-wn8-rating').value;
             uData.prime_time = document.getElementById('p-prime-time').value;
             uData.custom_photo = currentSelectedAvatarUrl;
             uData.t8 = document.getElementById('tier-8').checked;
@@ -898,7 +914,6 @@
             let logMsg = `⚙️ ОНОВЛЕННЯ ПРОФІЛЮ ЛОКАЛЬНО!\n\n` +
                          `👤 Гравець: ${uData.custom_name}\n` +
                          `💥 Нік у WoT: ${uData.wot_nick || 'Не вказано'}\n` +
-                         `📊 WN8: ${uData.wn8}\n` +
                          `⏱️ Прайм: ${uData.prime_time}\n` +
                          `🤝 Взводні рівні: ${tList.join(' та ') || 'Не обрав'}\n` +
                          `🚜 Техніка: ${garageList.join(', ') || 'Порожньо'}\n` +
@@ -919,7 +934,6 @@
         if (todayElement) todayElement.classList.add('today');
     });
 
-    /* КЕШУВАННЯ ТА ОПТИМІЗАЦІЯ ЗАПИТІВ ДО YOUTUBE API (Прибирає зависання) */
     async function loadYT(url, divId, count) {
         const box = document.getElementById(divId);
         try {
@@ -927,7 +941,6 @@
             const cachedData = localStorage.getItem(cacheKey);
             const cacheTime = localStorage.getItem(`${cacheKey}_time`);
             
-            // Якщо є кеш менше ніж 10 хвилин — використовуємо його без запиту в мережу
             if (cachedData && cacheTime && (Date.now() - cacheTime < 600000)) {
                 box.innerHTML = cachedData;
                 return;
