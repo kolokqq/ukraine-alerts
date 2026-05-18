@@ -13,7 +13,7 @@
     </script>
     
     <title>World of Tanks — Твій ігровий портал BlackCellUA</title>
-    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на каналі BlackCellUA. Приєднуйся!">
+    <meta name="description" content="Дивись прямі转换ляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на каналі BlackCellUA. Приєднуйся!">
     <meta name="keywords" content="World of Tanks, стрім українською, World of Tanks UA, WOT стрім, танки українською, BlackCellUA, світ танків стрім">
     <meta name="author" content="BlackCellUA">
     
@@ -260,154 +260,408 @@
     </style>
 </head>
 <body>
-
-<div class="main-site-content" id="main-content">
-    <div class="stealth-wrapper">
-
-        <nav>
-            <div class="logo-area">BlackCell<span>UA</span></div>
-            <div class="nav-links">
-                <div id="user-display" class="user-profile-wrapper"></div>
-                <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="nav-item"><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> &nbsp;YouTube</a>
-            </div>
-        </nav>
-
-        <div class="ticker-bar">
-            <div class="ticker-wrap">
-                <span>🔥 <strong>СТРІМИ ЩОДНЯ:</strong> 🔥 О 21:00 стартуємо на YouTube!</span>
-            </div>
-        </div>
-
-        <div class="layout-grid">
-            <div class="left-pane-flow">
-                
-                <div class="premium-sub-banner">
-                    <h2 class="giveaway-title"><i class="fa-solid fa-coins" style="color: #ffcc00; margin-right: 8px;"></i> РОЗІГРАШ <span>1000 ГОЛДИ</span>!</h2>
-                    <p style="color:#94a3b8; font-size:0.9rem; margin:0;">Лотерейний білет активуется автоматично після додавання нікнейму.</p>
-                    <div class="banner-buttons-row">
-                        <a href="https://www.youtube.com/@BlackCellUA?sub_confirmation=1" target="_blank" class="luxury-btn"><i class="fa-brands fa-youtube"></i> ПІДПИСАТИСЬ</a>
-                        <button class="info-btn-outline" id="open-rules-btn"><i class="fa-solid fa-circle-info"></i> ПРАВИЛА</button>
-                    </div>
+    <div class="main-site-content" id="main-content">
+        <div class="stealth-wrapper">
+            <nav>
+                <div class="logo-area">BlackCell<span>UA</span></div>
+                <div class="nav-links">
+                    <div id="user-display" class="user-profile-wrapper"></div>
+                    <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" target="_blank" class="nav-item"><i class="fab fa-youtube" style="color:#ef4444"></i> YouTube</a>
+                    <a href="https://donatello.to/krakenua" target="_blank" class="nav-item"><i class="fas fa-wallet" style="color:#eab308"></i> Донат</a>
                 </div>
+            </nav>
 
-                <div class="studio-player">
-                    <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=UC29hev1ElIOHYG9oFm9dieQ&autoplay=1&mute=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>
+            <div class="ticker-bar">
+                <div class="ticker-wrap">
+                    <span>🔥 Ласкаво просимо на BlackCellUA Portal! Свіжі трансляції, аналітика та запеклі бої World of Tanks українською мовою! Приєднуйся до спільноти!</span>
+                    <span>🔥 Ласкаво просимо на BlackCellUA Portal! Свіжі трансляції, аналітика та запеклі бої World of Tanks українською мовою! Приєднуйся до спільноти!</span>
                 </div>
-
-                <div class="stealth-card">
-                    <div class="card-header"><span>🎲 Рандомайзер Тактик та Техніки</span></div>
-                    <div class="tactics-box">
-                        <div style="font-size:0.85rem; color:#94a3b8;">Не знаєш на чому поїхати? Згенеруй випадкову пораду від BlackCellUA!</div>
-                        <div class="tactic-output" id="tactic-output-text">Натисни кнопку нижче, щоб отримати завдання...</div>
-                        <button class="btn-action-side btn-yellow" onclick="generateRandomTactic()" style="max-width:280px; margin:0 auto; padding:10px;"><i class="fa-solid fa-dice"></i> ЗГЕНЕРУВАТИ ТАКТИКУ</button>
-                    </div>
-                </div>
-
-                <div class="stealth-card">
-                    <div class="card-header"><span>ОСТАННІ ТРАНСЛЯЦІЇ КАНАЛУ</span></div>
-                    <div id="recent-videos" class="clean-mosaic">Завантаження...</div>
-                </div>
-
             </div>
 
-            <div class="right-pane">
-                
-                <div class="side-block" style="border-left: 4px solid var(--gold);">
-                    <div class="side-title">🎯 Ціль Каналу <span>38%</span></div>
-                    <div class="goal-container">
-                        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:bold;">
-                            <span>Нове Обладнання для WoT</span>
-                            <span style="color:var(--gold);">1 900 / 5 000 грн</span>
+            <div class="premium-sub-banner">
+                <h3 class="giveaway-title">ВЕЛИКИЙ РОЗІГРАШ СЕРЕД <span>ПІДПИСНИКІВ</span></h3>
+                <div class="banner-buttons-row">
+                    <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Брати участь</a>
+                    <a href="#" class="info-btn-outline" id="open-profile-btn"><i class="fas fa-user-cog"></i> Мій Ангар / Профіль</a>
+                </div>
+            </div>
+
+            <div class="layout-grid">
+                <div class="main-left-column">
+                    <div class="stealth-card">
+                        <h3 class="card-header">🔴 ОСТАННЯ ТРАНСЛЯЦІЯ / ЖИВИЙ ЕФІР</h3>
+                        <div class="studio-player">
+                            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
                         </div>
-                        <div class="goal-bar-bg"><div class="goal-bar-fill"></div></div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">🎬 ОСТАННІ ВІДЕО ТА СТРІМИ</h3>
+                        <div class="clean-mosaic" id="latest-videos-box">
+                            <div style="color:#64748b; padding:10px; text-align:center;">Завантаження медіа...</div>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">💎 РУЛЕТКА ТАНКІВ: ВИБЕРИ СВІЙ СТАЛЕВИЙ МОНСТР</h3>
+                        <div class="tactics-box">
+                            <button class="btn-action-side btn-yellow" id="roll-tank-btn" style="max-width:250px; margin:0 auto;"><i class="fas fa-dice"></i> КРУТИТИ РУЛЕТКУ</button>
+                            <div class="tactic-output" id="tank-result-display">Натисни кнопку, щоб обрати танк для наступного бою!</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="side-block">
-                    <div class="side-title">📅 Розклад Ефірів</div>
-                    <div class="sched-list">
-                        <div class="sched-item id-mon"><span class="sched-day">Понеділок</span><span class="sched-time">16:30</span></div>
-                        <div class="sched-item id-tue"><span class="sched-day">Вівторок</span><span class="sched-time">21:00</span></div>
-                        <div class="sched-item id-wed"><span class="sched-day">Середа</span><span class="sched-time">21:00</span></div>
-                        <div class="sched-item id-thu"><span class="sched-day">Четвер</span><span class="sched-time">Вихідний ❌</span></div>
-                        <div class="sched-item id-fri"><span class="sched-day">П'ятниця</span><span class="sched-time">21:00</span></div>
-                        <div class="sched-item id-sat"><span class="sched-day">Субота</span><span class="sched-time">21:00</span></div>
-                        <div class="sched-item id-sun"><span class="sched-day">Неділя</span><span class="sched-time">21:00</span></div>
+                <div class="sidebar-right-column">
+                    <div class="side-block">
+                        <h3 class="side-title">📊 ЦІЛЬ НА РОЗВИТОК КАНАЛУ</h3>
+                        <div class="goal-container">
+                            <div style="display:flex; justify-content:between; font-size:0.85rem; font-weight:bold; color:#cbd5e1; margin-bottom:5px;">
+                                <span>Новий Стрім-ПК / Монітор</span>
+                                <span style="color:var(--gold)">3,800 / 10,000 ₴</span>
+                            </div>
+                            <div class="goal-bar-bg"><div class="goal-bar-fill"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
+                        <a href="https://music.youtube.com" target="_blank" class="music-widget">
+                            <div class="music-icon-box"><i class="fas fa-music"></i></div>
+                            <div>
+                                <div style="font-size:0.85rem; font-weight:bold; color:#fff;">BlackCellUA Stream Vibes</div>
+                                <div style="font-size:0.75rem; color:#64748b; margin-top:2px;">Плейлист підписників</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">🟢 СТАТУС СЕРВЕРІВ WOT</h3>
+                        <div class="server-grid">
+                            <div class="server-item">
+                                <div class="server-meta"><div class="server-indicator"></div> Сервер EU1</div>
+                                <div class="server-ping">24 ms</div>
+                            </div>
+                            <div class="server-item">
+                                <div class="server-meta"><div class="server-indicator"></div> Сервер EU2</div>
+                                <div class="server-ping">35 ms</div>
+                            </div>
+                            <div class="server-item">
+                                <div class="server-meta"><div class="server-indicator" style="background:#ffaa00"></div> Сервер EU3</div>
+                                <div class="server-ping" style="color:#ffaa00; background:rgba(255,170,0,0.08)">62 ms</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">📅 РОЗКЛАД СТРІМІВ</h3>
+                        <div id="schedule-box"></div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">🏆 ТОП ДОНАТОРИ МІСЯЦЯ</h3>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-crown" style="color:#ffcc00"></i> Скіф_WOT</div><div class="top-squad-rank">1,500 ₴</div></div>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-medal" style="color:#cbd5e1"></i> Ghost_UA</div><div class="top-squad-rank">850 ₴</div></div>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-medal" style="color:#b45309"></i> Танкіст3000</div><div class="top-squad-rank">500 ₴</div></div>
                     </div>
                 </div>
 
+                <div class="bottom-full-row">
+                    <div class="stealth-card">
+                        <h3 class="card-header">🖥️ ЗАЛІЗО ТА КОНФІГУРАЦІЯ СТРІМ-ПК</h3>
+                        <div class="pc-spec-list">
+                            <div class="pc-spec-item"><i class="fas fa-microchip pc-icon"></i><div><div class="pc-text-name">Процесор</div><div class="pc-text-val">Intel Xeon E3-1240</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-bolt pc-icon"></i><div><div class="pc-text-name">Відеокарта</div><div class="pc-text-val">NVIDIA GTX 960 (2 GB)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-hdd pc-icon"></i><div><div class="pc-text-name">Накопичувач</div><div class="pc-text-val">SSD 128GB (Система)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-tv pc-icon"></i><div><div class="pc-text-name">Трансляція</div><div class="pc-text-val">1440p (VP9 Кодек)</div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
+                        <div class="quest-list-box">
+                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
+                            <div class="quest-item"><span>Пройти NFS Underground 2 за один стрім</span><span class="quest-badge in-progress">В процесі</span></div>
+                            <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
 
-<script>
-    async function loadYT(url, divId, count) {
-        const box = document.getElementById(divId);
-        const cacheKey = `yt_cache_${divId}`;
-        const cacheTimeKey = `${cacheKey}_time`;
-        const cacheTTL = 10 * 60 * 1000; // 10 минут
+    <div class="modal-overlay" id="rules-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" id="close-rules-btn"><i class="fas fa-times"></i></button>
+            <div class="modal-title-block">
+                <h3 class="modal-title">Правила <span>Розіграшу</span></h3>
+                <p class="modal-subtitle">Стань учасником проекту BlackCellUA</p>
+            </div>
+            <div class="rules-step-list">
+                <div class="rules-step-item"><span class="rules-step-num">01</span><span class="rules-step-text">Бути підписаним на YouTube-канал BlackCellUA.</span></div>
+                <div class="rules-step-item"><span class="rules-step-num">02</span><span class="rules-step-text">Зареєструвати свій ігровий нікнейм у формі профілю на цьому сайті.</span></div>
+                <div class="rules-step-item"><span class="rules-step-num">03</span><span class="rules-step-text">Бути присутнім на щотижневому стрімі, де за допомогою рулетки обираються переможці золота або преміум-техніки.</span></div>
+            </div>
+            <div class="warning-box">
+                <div class="warning-title"><i class="fas fa-exclamation-triangle"></i> Увага!</div>
+                <p class="warning-text">Один танкіст може брати участь лише з одного зареєстрованого аккаунта. Спроби накрутки призведуть до повного бану в ком'юніті.</p>
+            </div>
+        </div>
+    </div>
 
-        try {
-            const cachedData = localStorage.getItem(cacheKey);
-            const cachedTime = localStorage.getItem(cacheTimeKey);
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" id="close-profile-btn"><i class="fas fa-times"></i></button>
+            <div class="modal-title-block">
+                <h3 class="modal-title">Кабінет <span>Танкіста</span></h3>
+                <p class="modal-subtitle">Керування профілем та твоїм ангаром</p>
+            </div>
+            
+            <div class="profile-tabs-nav">
+                <button class="p-tab-btn active" onclick="switchProfileTab('tab-main', this)">Основне</button>
+                <button class="p-tab-btn" onclick="switchProfileTab('tab-garage', this)">Мій Ангар</button>
+                <button class="p-tab-btn" onclick="switchProfileTab('tab-tickets', this)">Підтримка</button>
+            </div>
 
-            if (cachedData && cachedTime && (Date.now() - parseInt(cachedTime) < cacheTTL)) {
-                box.innerHTML = cachedData;
-                return;
-            }
+            <div class="profile-tab-content active" id="tab-main">
+                <div class="xp-level-container">
+                    <div class="xp-header-row">
+                        <span>Рівень Бойового Братерства: <span id="profile-level-val" style="color:var(--gold)">1</span></span>
+                        <span id="profile-xp-text" style="color:#64748b">0 / 500 XP</span>
+                    </div>
+                    <div class="xp-bar-bg"><div class="xp-bar-fill" id="profile-xp-fill"></div></div>
+                </div>
 
-            const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
-            const data = await res.json();
-            if (data.status === 'ok' && data.items) {
-                let cards = '';
-                data.items.slice(0, count).forEach(v => {
-                    let id = v.link.split('v=')[1] || v.link.split('/').pop();
-                    if(id.includes('&')) id = id.split('&')[0];
-                    cards += `<div class=\"video-block\"><iframe src=\"https://www.youtube.com/embed/${id}\" allowfullscreen loading=\"lazy\"></iframe><div class=\"video-caption\">${v.title}</div></div>`;
-                });
-                box.innerHTML = cards;
-                localStorage.setItem(cacheKey, cards);
-                localStorage.setItem(`${cacheKey}_time`, Date.now().toString());
-            } else { 
-                box.innerHTML = "<div style='color:#64748b; padding:10px;'>Контент відсутній...</div>"; 
-            }
-        } catch (err) { 
-            if(localStorage.getItem(cacheKey)) {
-                box.innerHTML = localStorage.getItem(cacheKey);
-            } else {
-                box.innerHTML = "<div style='color:#ef4444; padding:10px;'>Помилка з'єднання...</div>"; 
-            }
-        }
-    }
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Ігровий нікнейм WOT</label>
+                        <input type="text" class="custom-input" id="inp-wot-nick" placeholder="Введи нік...">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Прапор профілю</label>
+                        <select class="custom-select" id="inp-wot-flag">
+                            <option value="ua">🇺🇦 Україна</option>
+                            <option value="eu">🇪🇺 Європа</option>
+                            <option value="us">🇺🇸 США</option>
+                        </select>
+                    </div>
+                </div>
 
-    window.addEventListener('DOMContentLoaded', () => {
-        // Заменено на твою новую прокси-ссылку
-        loadYT('https://quietfold.com/tools/proxy.rss?url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUC29hev1ElIOHYG9oFm9dieQ', 'recent-videos', 6);
-        
-        const days = ['id-sun', 'id-mon', 'id-tue', 'id-wed', 'id-thu', 'id-fri', 'id-sat'];
-        const currentDayClass = days[new Date().getDay()];
-        const todayRow = document.querySelector(`.${currentDayClass}`);
-        if(todayRow) {
-            todayRow.classList.add('today');
-            todayRow.innerHTML += ' <span style="background: #00ff66; color: #05080e; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; margin-left: 8px; font-family:\'Orbitron\'">СЬОГОДНІ</span>';
-        }
-    });
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <label class="input-label">Обери Аватарку</label>
+                    <div class="avatar-picker-grid">
+                        <div class="avatar-option selected" onclick="selectAvatar('av1', this)"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop" alt="av1"></div>
+                        <div class="avatar-option" onclick="selectAvatar('av2', this)"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop" alt="av2"></div>
+                        <div class="avatar-option" onclick="selectAvatar('av3', this)"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop" alt="av3"></div>
+                        <div class="avatar-option" onclick="selectAvatar('av4', this)"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop" alt="av4"></div>
+                    </div>
+                </div>
 
-    function generateRandomTactic() {
-        const tactics = [
-            "Їдь на СТ фланг на важкому танку та продавлюй його разом із середніми танками!",
-            "Спробуй зіграти цей бій виключно від рельєфу та вежі. Чи не підставляй НЛД.",
-            "Повний раш по центру всією командою! Підтримай першу лінію.",
-            "Займи позицію для пасивного світла і не стріляй до середини бою.",
-            "Грай акуратно на другій лінії, бережи кожне очко міцності для кінцівки."
+                <button class="btn-action-side btn-yellow" onclick="saveUserProfile()"><i class="fas fa-save"></i> Зберегти дані</button>
+            </div>
+
+            <div class="profile-tab-content" id="tab-garage">
+                <div class="stats-footer-row">
+                    <span>Познач техніку, яка є у тебе в ангарі:</span>
+                    <span style="color:var(--cyan)" id="garage-count-status">Обрано: 0</span>
+                </div>
+                <div class="garage-scroller">
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">BZT-70</span><input type="checkbox" class="garage-checkbox" value="BZT-70" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Bourrasque</span><input type="checkbox" class="garage-checkbox" value="Bourrasque" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Progetto M35 mod. 46</span><input type="checkbox" class="garage-checkbox" value="Progetto 46" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Skoda T 56</span><input type="checkbox" class="garage-checkbox" value="Skoda T 56" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Object 703 Version II</span><input type="checkbox" class="garage-checkbox" value="Obj 703" onchange="updateGarageCount()"></div>
+                </div>
+                <button class="btn-action-side btn-yellow" style="margin-top:20px;" onclick="saveGarageData()"><i class="fas fa-shield-alt"></i> Оновити ангар</button>
+            </div>
+
+            <div class="profile-tab-content" id="tab-tickets">
+                <div class="ticket-status-box active">
+                    <i class="fas fa-info-circle"></i> Статус останньої заявки: <span style="font-weight:900;">НЕМАЄ АКТИВНИХ ТІКЕТІВ</span>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Тема звернення</label>
+                    <input type="text" class="custom-input" placeholder="Наприклад: Проблема з донатом / Ідея для стріму">
+                </div>
+                <div class="input-group" style="margin-bottom:15px;">
+                    <label class="input-label">Повідомлення</label>
+                    <textarea class="custom-textarea" rows="3" placeholder="Опиши детально суть..."></textarea>
+                </div>
+                <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tanksPool = [
+            "BZT-70", "Bourrasque", "Progetto 46", "Skoda T 56", 
+            "Object 703 II", "M-IV-Y", "Elc Even 90", "Caliban", 
+            "Tiger II", "IS-3", "AMX 50 100", "Rhm.-Borsig"
         ];
-        const output = document.getElementById('tactic-output-text');
-        const randomTactic = tactics[Math.floor(Math.random() * tactics.length)];
-        output.innerText = randomTactic;
-    }
-</script>
 
+        document.getElementById('roll-tank-btn').addEventListener('click', () => {
+            const display = document.getElementById('tank-result-display');
+            display.style.borderColor = '#ffcc00';
+            let counter = 0;
+            const interval = setInterval(() => {
+                const randomTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
+                display.innerText = `🎲 Вибір техніки: ${randomTank}...`;
+                counter++;
+                if(counter > 12) {
+                    clearInterval(interval);
+                    const finalTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
+                    display.innerHTML = `🔥 Наступний бій на: <span style="color:#ffcc00; font-size:1.2rem; font-weight:900;">${finalTank}</span>! У бій!`;
+                }
+            }, 80);
+        });
+
+        // БЕЗПЕЧНА ТА СТАБІЛЬНА ФУНКЦІЯ ЗАВАНТАЖЕННЯ ВІДЕО
+        async function loadYT(url, divId, count) {
+            const box = document.getElementById(divId);
+            try {
+                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+                
+                if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    let cards = '';
+                    let displayedIds = new Set(); // Захист від однакових стрімів / дублікатів
+                    let addedCount = 0;
+
+                    for (let i = 0; i < data.items.length; i++) {
+                        if (addedCount >= count) break;
+                        
+                        let v = data.items[i];
+                        let id = v.link.split('v=')[1] || v.link.split('/').pop();
+                        if (id.includes('&')) id = id.split('&')[0];
+
+                        // Перевіряємо чи це відео вже було додане
+                        if (displayedIds.has(id)) continue;
+                        displayedIds.add(id);
+
+                        cards += `<div class="video-block"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen loading="lazy"></iframe><div class="video-caption">${v.title}</div></div>`;
+                        addedCount++;
+                    }
+
+                    if (cards !== '') {
+                        box.innerHTML = cards;
+                    } else {
+                        box.innerHTML = "<div style='color:#64748b; padding:10px; text-align:center;'>Контент відсутній...</div>";
+                    }
+                } else { 
+                    box.innerHTML = "<div style='color:#64748b; padding:10px; text-align:center;'>Трансляції тимчасово недоступні...</div>"; 
+                }
+            } catch (err) { 
+                console.error("Помилка фіду YouTube:", err);
+                box.innerHTML = "<div style='color:#ef4444; padding:10px; text-align:center;'>Не вдалося завантажити останні відео.</div>";
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Безпечний виклик завантаження відео — помилка всередині функції нічого не зламає ззовні!
+            loadYT('https://rss.app/feeds/Vp6scX36uOqA6Zf7.xml', 'latest-videos-box', 3);
+            
+            // Завантаження розкладу
+            const schedBox = document.getElementById('schedule-box');
+            const days = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
+            const todayIndex = new Date().getDay();
+            let schedHtml = '';
+            
+            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
+                let isToday = (days[todayIndex] === d);
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '19:00' : 'Вихідний';
+                if(tStr==='Вихідний' && isToday) tStr = 'Стрім по можливості';
+                
+                schedHtml += `<div class="sched-item ${isToday?'today':''}">
+                    <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\'">СЬОГОДНІ</span>':''}</span>
+                    <span class="sched-time" style="${tStr==='Вихідний'?'color:#64748b':''}">${tStr}</span>
+                </div>`;
+            });
+            if(schedBox) schedBox.innerHTML = schedHtml;
+            
+            initModals();
+            loadUserProfileLocal();
+        });
+
+        // МОДАЛКИ
+        function initModals() {
+            const rM = document.getElementById('rules-modal');
+            const pM = document.getElementById('profile-modal');
+            
+            document.getElementById('open-rules-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); rM.classList.add('active'); });
+            document.getElementById('close-rules-btn')?.addEventListener('click', ()=>{ rM.classList.remove('active'); });
+            
+            document.getElementById('open-profile-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); pM.classList.add('active'); });
+            document.getElementById('close-profile-btn')?.addEventListener('click', ()=>{ pM.classList.remove('active'); });
+            
+            window.addEventListener('click', (e) => {
+                if(e.target === rM) rM.classList.remove('active');
+                if(e.target === pM) pM.classList.remove('active');
+            });
+        }
+
+        function switchProfileTab(tabId, btn) {
+            document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        let selectedAvatarUrl = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop";
+        function selectAvatar(id, elem) {
+            document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
+            elem.classList.add('selected');
+            selectedAvatarUrl = elem.querySelector('img').src;
+        }
+
+        function saveUserProfile() {
+            const nick = document.getElementById('inp-wot-nick').value.trim() || "Танкіст";
+            const flag = document.getElementById('inp-wot-flag').value;
+            
+            localStorage.setItem('wot_nick', nick);
+            localStorage.setItem('wot_flag', flag);
+            localStorage.setItem('wot_avatar', selectedAvatarUrl);
+            
+            renderUserBadge(nick, flag, selectedAvatarUrl);
+            alert('Дані профілю збережено!');
+        }
+
+        function loadUserProfileLocal() {
+            const nick = localStorage.getItem('wot_nick') || "Гість";
+            const flag = localStorage.getItem('wot_flag') || "ua";
+            const av = localStorage.getItem('wot_avatar') || selectedAvatarUrl;
+            
+            document.getElementById('inp-wot-nick').value = localStorage.getItem('wot_nick') || "";
+            document.getElementById('inp-wot-flag').value = flag;
+            
+            renderUserBadge(nick, flag, av);
+            updateGarageCount();
+        }
+
+        function renderUserBadge(nick, flag, avatar) {
+            const display = document.getElementById('user-display');
+            if(!display) return;
+            
+            let flagIcon = flag === 'ua' ? '🇺🇦' : (flag === 'us' ? '🇺🇸' : '🇪🇺');
+            display.innerHTML = `
+                <div class="user-profile-badge">
+                    <img src="${avatar}" class="avatar-main" alt="av">
+                    <span>${nick} ${flagIcon}</span>
+                    <span class="user-lvl-tag">LVL 1</span>
+                </div>
+            `;
+        }
+
+        function updateGarageCount() {
+            const checked = document.querySelectorAll('.garage-checkbox:checked').length;
+            const status = document.getElementById('garage-count-status');
+            if(status) status.innerText = `Обрано: ${checked}`;
+        }
+
+        function saveGarageData() {
+            const activeTanks = [];
+            document.querySelectorAll('.garage-checkbox:checked').forEach(c => activeTanks.push(c.value));
+            localStorage.setItem('wot_garage', JSON.stringify(activeTanks));
+            alert('Твій Ангар успішно оновлено на сайті!');
+        }
+    </script>
 </body>
 </html>
