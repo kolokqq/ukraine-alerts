@@ -3,75 +3,989 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackCellUA — WOT Portal</title>
-    <style>
-        :root {
-            --dark-bg: #0a0a0c;
-            --neon-blue: #00d4ff;
-            --neon-gold: #ffcc00;
-            --text: #e0e0e0;
-        }
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .header-panel {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 20px;
-            border-bottom: 2px solid #222;
-        }
-        .btn-ui {
-            padding: 12px 25px;
-            border: 2px solid var(--neon-blue);
-            background: transparent;
-            color: var(--neon-blue);
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-ui.gold { border-color: var(--neon-gold); color: var(--neon-gold); }
-        .btn-ui:hover { box-shadow: 0 0 15px var(--neon-blue); }
-        .btn-ui.gold:hover { box-shadow: 0 0 15px var(--neon-gold); }
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17614916752"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17614916752');
+    </script>
+    
+    <title>World of Tanks — Твій ігровий портал BlackCellUA</title>
+    <meta name="description" content="Дивись прямі трансляції World of Tanks (WOT) українською мовою! Фарм, відмітки, круті бої, стріми та Shorts на каналі BlackCellUA. Приєднуйся!">
+    <meta name="keywords" content="World of Tanks, стрім українською, World of Tanks UA, WOT стрім, танки українською, BlackCellUA, світ танків стрім">
+    <meta name="author" content="BlackCellUA">
+    
+    <link rel="canonical" href="https://blackcellua.pp.ua/">
 
-        .section-card {
-            background: #151518;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            margin-bottom: 20px;
+    <meta property="og:url" content="https://blackcellua.pp.ua/">
+    <meta property="og:title" content="World of Tanks — Твій ігровий portal BlackCellUA">
+    <meta property="og:description" content="Прямі ефіри та трансляції World of Tanks українською мовою. Заходь на стрім!">
+    <meta property="og:image" content="https://img.youtube.com/vi/JcirRSU3iCY/maxresdefault.jpg">
+    <meta property="og:video" content="https://www.youtube.com/embed/JcirRSU3iCY">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BlackCellUA">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon_v2.ico" type="image/x-icon">
+    <link rel="icon" href="favicon_32_v2.png" sizes="32x32">
+    <link rel="icon" href="favicon_48_v2.png" sizes="48x48">
+    <link rel="icon" href="favicon_96_v2.png" sizes="96x96">
+    <link rel="icon" href="favicon_144_v2.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="favicon_144_v2.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;500;700;900&display=swap'); 
+        
+        :root { 
+            --gold: #d4af37;
+            --gold-bright: #ffcc00;
+            --gold-glow: rgba(212, 175, 55, 0.5);
+            --steel-blue: #4682b4;
+            --bg-dark: #03060a;
+            --panel-bg: rgba(6, 11, 20, 0.9); 
+            --border-color: rgba(255, 255, 204, 0.08);
+            --xp-green: #00ff66;
+            --purple-stat: #a335ee;
+            --danger: #ff3344;
+            --cyan: #00bdf2;
+            --cyan-glow: rgba(0, 189, 242, 0.4);
+            --discord: #5865F2;
+            --telegram: #0088cc;
+            --neon-orange: #ff5500;
+            --neon-orange-glow: rgba(255, 85, 0, 0.4);
         }
-        .tank-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            margin: 0; background-color: var(--bg-dark);
+            background-image: radial-gradient(at 50% 0%, #09121f 0%, var(--bg-dark) 80%);
+            color: #f1f5f9; font-family: 'Exo 2', sans-serif; overflow-x: hidden; padding: 20px 10px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .stealth-wrapper { max-width: 1400px; margin: 0 auto; width: 100%; }
+        
+        /* НАВИГАЦИЯ В СТИЛЕ НЕОНОВОГО ИНТЕРФЕЙСА */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 15px 20px; 
+            background: rgba(4, 8, 15, 0.85); border: 1px solid var(--border-color); border-bottom: 2px solid var(--cyan);
+            border-radius: 12px; box-shadow: 0 0 20px rgba(0, 189, 242, 0.15); flex-wrap: wrap; gap: 15px; 
+        }
+        .logo-area { 
+            font-family: 'Orbitron'; font-size: 1.6rem; font-weight: 900; letter-spacing: 4px; color: #fff; text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px var(--cyan);
+        }
+        .logo-area span { color: var(--gold-bright); text-shadow: 0 0 10px var(--gold-bright); }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        
+        .nav-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px;
+            color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700;
+            background: rgba(13, 22, 38, 0.8); border: 1px solid var(--cyan); transition: 0.2s;
+            box-shadow: 0 0 10px rgba(0, 189, 242, 0.2);
+        }
+        .nav-item:hover {
+            transform: translateY(-2px); background: var(--cyan); color: #000; box-shadow: 0 0 20px var(--cyan);
+        }
+
+        .user-profile-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .user-profile-badge {
+            display: inline-flex; align-items: center; gap: 10px; background: rgba(5, 8, 14, 0.9);
+            border: 1px solid var(--gold-bright); padding: 8px 16px; border-radius: 20px;
+            font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; color: #fff;
+            box-shadow: 0 0 12px var(--gold-glow);
+        }
+        .user-profile-badge .avatar-svg-container { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold-bright); background: rgba(212,175,55,0.2); display: flex; align-items: center; justify-content: center; color: var(--gold-bright); font-size: 0.8rem; }
+        .user-lvl-tag { background: var(--gold-bright); color: #05080e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; box-shadow: 0 0 5px var(--gold-bright); }
+        
+        /* СЕТКА СВЕРХСВЕТЯЩИХСЯ КАРТОЧЕК */
+        .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 25px; width: 100%; }
+        
+        /* БАЗОВАЯ КИБЕР-КАРТОЧКА С НЕОНОВЫМ СВЕЧЕНИЕМ */
+        .stealth-card, .side-block {
+            position: relative;
+            background: var(--panel-bg); 
+            border: 2px solid rgba(255, 255, 255, 0.03); 
+            border-radius: 16px; padding: 22px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,255,255,0.02); 
+            margin-bottom: 25px; width: 100%;
+            overflow: hidden;
+        }
+
+        /* Статичный неоновый контур нижней грани для обычных блоков */
+        .stealth-card::after, .side-block::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            opacity: 0.8;
+        }
+
+        /* МОЩНЫЕ ЗАГОЛОВКИ С ЭФФЕКТОМ МЕРЦАНИЯ НЕОНА */
+        .card-header, .side-title {
+            font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 900; color: #fff; letter-spacing: 1.5px;
+            margin-top: 0; margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
+            text-shadow: 0 0 8px rgba(255,255,255,0.2), 0 0 15px var(--cyan);
+            animation: text-flicker 4s infinite alternate;
+        }
+
+        /* Переопределяем цвет свечения некоторых заголовков для разнообразия */
+        .side-block .side-title {
+            text-shadow: 0 0 8px rgba(255,255,255,0.2), 0 0 15px var(--gold-bright);
+        }
+
+        .pulse-circle {
+            display: inline-block; width: 12px; height: 12px; background-color: var(--danger); border-radius: 50%; margin-right: 10px; vertical-align: middle; animation: blink-live 1.2s infinite ease-in-out;
+        }
+        @keyframes blink-live {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 15px var(--danger); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        /* ЦЕЛЬ КАНАЛА В НЕОНЕ */
+        .goal-container { background: #03050a; border: 1px solid rgba(212,175,55,0.3); padding: 18px; border-radius: 10px; box-shadow: inset 0 0 15px rgba(0,0,0,0.6); }
+        .goal-bar-bg { width: 100%; height: 14px; background: rgba(255,255,255,0.05); border-radius: 7px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        .goal-bar-fill { height: 100%; width: 38%; background: linear-gradient(90deg, var(--neon-orange), var(--gold-bright)); box-shadow: 0 0 15px var(--gold-bright); }
+        
+        /* ПЛЕЕР С ВИДЖЕТОМ */
+        .music-widget { display: flex; align-items: center; gap: 15px; background: #04070d; border: 1px solid var(--gold-bright); padding: 14px; border-radius: 10px; text-decoration: none; color: inherit; box-shadow: 0 0 15px rgba(255,204,0,0.1); transition: 0.2s; }
+        .music-widget:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--gold-glow); }
+        .music-icon-box { width: 42px; height: 42px; background: rgba(212,175,55,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold-bright); font-size: 1.3rem; text-shadow: 0 0 8px var(--gold-bright); }
+
+        /* ========================================================
+           🔥 КИБЕРСПОРТИВНЫЙ НЕОНОВЫЙ БЛОК РОЗЫГРЫША С БЕГУЩЕЙ РАМКОЙ
+        =========================================================== */
+        .premium-sub-banner {
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, #152238 0%, #060a12 100%); 
+            border: 2px solid transparent;
+            border-radius: 16px; padding: 30px 25px; margin-bottom: 25px; 
+            width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; align-items: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            z-index: 1;
+        }
+        /* Бегущая неоновая грань */
+        .premium-sub-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 20%, var(--gold-bright), var(--neon-orange), transparent 80%);
+            animation: neon-rotate 6s linear infinite; z-index: -2;
+        }
+        .premium-sub-banner::after {
+            content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: radial-gradient(circle at 50% 0%, #0d192e 0%, #05080d 100%);
+            border-radius: 14px; z-index: -1;
+        }
+        @keyframes neon-rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Бегущая рамка для блока РУЛЕТКИ ТАНКИСТОВ */
+        .roulette-neon-card {
+            position: relative; z-index: 1; overflow: hidden;
+        }
+        .roulette-neon-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 25%, var(--cyan), var(--xp-green), transparent 75%);
+            animation: neon-rotate 8s linear infinite; z-index: -2;
+        }
+        .roulette-neon-card::after {
+            content: ''; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: var(--panel-bg); border-radius: 14px; z-index: -1;
+        }
+
+        .giveaway-info-side { text-align: left; }
+        
+        .giveaway-title { 
+            font-family: 'Orbitron'; font-size: 1.6rem; font-weight: 900; color: #fff; margin: 0 0 10px 0; letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 20px var(--neon-orange);
+            animation: text-flicker 3s infinite alternate;
+        }
+        .giveaway-title span { 
+            color: var(--gold-bright); 
+            text-shadow: 0 0 10px var(--gold-bright), 0 0 25px var(--neon-orange);
+        }
+        @keyframes text-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.95; text-shadow: none; }
+        }
+
+        .giveaway-desc { font-size: 0.95rem; color: #cbd5e1; margin: 0 0 20px 0; line-height: 1.5; }
+        .giveaway-meta-badges { display: flex; gap: 12px; margin-bottom: 5px; flex-wrap: wrap; }
+        
+        /* БЛЯХИ С ПОДСВЕТКОЙ */
+        .g-badge { 
+            background: rgba(5, 8, 14, 0.85); border: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 8px; 
+            font-size: 0.8rem; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
+        }
+        .g-badge.prize { 
+            border-color: var(--gold-bright); color: #fff; 
+            background: linear-gradient(135deg, rgba(212,175,55,0.25) 0%, rgba(5,8,14,0.85) 100%);
+            box-shadow: 0 0 15px var(--gold-glow);
+            position: relative; overflow: hidden;
+        }
+        .g-badge.prize::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg); animation: light-sweep 3s infinite ease-in-out;
+        }
+        @keyframes light-sweep {
+            0% { left: -100%; }
+            50%, 100% { left: 150%; }
+        }
+
+        .g-badge.live-users { 
+            border-color: var(--xp-green); color: var(--xp-green); 
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+
+        .giveaway-interactive-side { 
+            background: rgba(4, 7, 13, 0.7); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .timer-title { font-family: 'Orbitron'; font-size: 0.8rem; color: #94a3b8; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .timer-title i { color: var(--neon-orange); animation: pulse-neon-icon 1s infinite alternate; }
+        @keyframes pulse-neon-icon { 100% { transform: scale(1.15); text-shadow: 0 0 12px var(--neon-orange); } }
+        
+        /* ЦИФЕРБЛАТ КИБЕР-ТАЙМЕРА */
+        .countdown-timer-grid { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
+        .timer-segment { 
+            background: #020408; border: 1px solid var(--gold-bright); padding: 10px 8px; border-radius: 8px; min-width: 65px; 
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.15); position: relative;
+        }
+        .timer-segment::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 5px; border-top: 2px solid var(--gold-bright); border-left: 2px solid var(--gold-bright); }
+        .timer-segment::after { content: ''; position: absolute; bottom: 0; right: 0; width: 5px; height: 5px; border-bottom: 2px solid var(--gold-bright); border-right: 2px solid var(--gold-bright); }
+        
+        .timer-num { 
+            font-family: 'Orbitron'; font-size: 1.4rem; font-weight: 900; color: #fff; display: block; 
+            text-shadow: 0 0 10px var(--gold-bright);
+        }
+        .timer-label { font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 4px; font-weight: 700; }
+
+        /* АГРЕССИВНЫЕ НЕОНОВЫЕ КНОПКИ */
+        .banner-buttons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 12px; }
+        .banner-social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+
+        .luxury-btn { 
+            background: linear-gradient(135deg, #cc1100 0%, #ff3344 100%); border: 1px solid #ff6677; border-radius: 8px; 
+            padding: 14px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 900; 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; 
+            box-shadow: 0 0 15px var(--danger); text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .luxury-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--danger); }
+        
+        .info-btn-outline { 
+            background: rgba(4, 7, 13, 0.8); border: 2px solid var(--gold-bright); border-radius: 8px; 
+            padding: 14px; color: var(--gold-bright); font-family: 'Orbitron'; font-weight: 900; 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; transition: 0.2s; 
+            text-decoration: none; box-shadow: 0 0 15px rgba(255,204,0,0.2); text-transform: uppercase;
+        }
+        .info-btn-outline:hover { background: var(--gold-bright); color: #000; transform: translateY(-2px); box-shadow: 0 0 25px var(--gold-bright); }
+
+        .discord-btn { background: #04070d; border: 1px solid var(--discord); border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 0 10px rgba(88,101,242,0.2); }
+        .discord-btn:hover { background: var(--discord); transform: translateY(-2px); box-shadow: 0 0 20px var(--discord); }
+
+        .telegram-btn { background: #04070d; border: 1px solid var(--telegram); border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 0 10px rgba(0,136,204,0.2); }
+        .telegram-btn:hover { background: var(--telegram); transform: translateY(-2px); box-shadow: 0 0 20px var(--telegram); }
+
+        /* ПЛЕЕР И МОЗАИКА ВИДЕО */
+        .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 2px solid var(--cyan); background: #000; margin-bottom: 10px; box-shadow: 0 0 20px var(--cyan-glow); }
+        .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
+        .video-block { background: #04070e; border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border-bottom: 2px solid var(--cyan); }
+        .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; display: block; }
+        .video-caption { font-size: 0.8rem; color: #e2e8f0; margin-top: 8px; font-weight: bold; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* РУЛЕТКА ТАНКОВ */
+        .tactics-box { background: #03050a; border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; text-align: center; box-shadow: inset 0 0 20px #000; }
+        .tactic-output { font-size: 1.15rem; font-weight: 900; color: #fff; margin: 20px 0; min-height: 55px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--xp-green); background: rgba(0,255,102,0.03); padding: 12px; border-radius: 6px; box-shadow: 0 0 15px rgba(0,255,102,0.05); }
+
+        /* СЕТКА СТАТИСТИКИ И РАСПИСАНИЕ */
+        .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 8px; background: #030509; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #475569; margin-bottom: 10px; }
+        .sched-item.today { border-left-color: var(--xp-green); background: rgba(0, 255, 102, 0.04); border-right: 1px solid var(--xp-green); box-shadow: 0 0 10px rgba(0,255,102,0.1); }
+        .sched-day { font-size: 0.85rem; color: #fff; font-weight: bold; }
+        .sched-time { font-family: 'Orbitron'; font-weight: 900; color: var(--gold-bright); text-shadow: 0 0 5px var(--gold-bright); }
+
+        .top-squad-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #03050a; border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.03); border-right: 3px solid var(--gold-bright); }
+        .top-squad-name { font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+        .top-squad-rank { font-family: 'Orbitron'; font-size: 0.85rem; color: var(--gold-bright); font-weight: 900; text-shadow: 0 0 5px var(--gold-bright); }
+
+        .btn-action-side { display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px; border-radius: 8px; text-decoration: none; font-family: 'Orbitron'; font-size: 0.9rem; font-weight: 900; border: none; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-yellow { background: linear-gradient(135deg, #cc9900 0%, #ffcc00 100%); color: #05080e; cursor: pointer; box-shadow: 0 0 15px var(--gold-bright); transition: 0.2s; }
+        .btn-yellow:hover:not(:disabled) { transform: scale(1.03); box-shadow: 0 0 25px var(--gold-bright); }
+        .btn-yellow:disabled { background: #1e293b; color: #64748b; cursor: not-allowed; box-shadow: none; border: 1px solid rgba(255,255,255,0.05); }
+
+        /* ЖЕЛЕЗО И КВЕСТЫ */
+        .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; width: 100%; }
+        .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .pc-spec-item { background: #03050a; border: 1px solid rgba(255,255,255,0.03); border-left: 3px solid var(--cyan); padding: 14px; border-radius: 8px; display: flex; gap: 12px; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .pc-icon { font-size: 1.4rem; color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+        .pc-text-name { font-size: 0.75rem; color: #94a3b8; font-family: 'Orbitron'; text-transform: uppercase; font-weight: 700; }
+        .pc-text-val { font-size: 0.95rem; font-weight: 900; color: #fff; margin-top: 3px; }
+
+        .quest-list-box { display: flex; flex-direction: column; gap: 12px; }
+        .quest-item { display: flex; justify-content: space-between; align-items: center; background: #03050a; padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); border-left: 4px solid var(--cyan); font-size: 0.9rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .quest-item.done { border-left-color: var(--xp-green); background: rgba(0,255,102,0.02); border-right: 1px solid rgba(0,255,102,0.2); }
+        .quest-badge { font-family: 'Orbitron'; font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
+        .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); box-shadow: 0 0 8px var(--cyan-glow); }
+        .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); box-shadow: 0 0 8px rgba(0,255,102,0.3); }
+
+        /* МИНИ КАРТОЧКИ СТАТИСТИКИ */
+        .streamer-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px; }
+        .stat-card-mini { background: #020408; border: 1px solid rgba(255,255,255,0.05); border-bottom: 3px solid var(--cyan); padding: 14px 10px; border-radius: 10px; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
+        .stat-card-mini.purple-tier { border-bottom-color: var(--purple-stat); background: linear-gradient(180deg, rgba(163,53,238,0.06) 0%, #020408 100%); box-shadow: 0 0 12px rgba(163,53,238,0.2); }
+        .stat-card-mini.gold-tier { border-bottom-color: var(--gold-bright); background: linear-gradient(180deg, rgba(212,175,55,0.06) 0%, #020408 100%); box-shadow: 0 0 12px var(--gold-glow); }
+        .stat-mini-title { font-family: 'Orbitron'; font-size: 0.65rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-mini-value { font-family: 'Orbitron'; font-size: 1.15rem; font-weight: 900; color: #fff; margin-top: 5px; }
+        
+        /* БАТТЛ-ПАСС */
+        .battlepass-track { display: flex; flex-direction: column; gap: 14px; position: relative; }
+        .battlepass-step { display: flex; align-items: center; gap: 15px; background: #03050a; border: 1px solid rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+        .battlepass-step.unlocked { border-left: 4px solid var(--xp-green); background: rgba(0,255,102,0.02); }
+        .battlepass-step.locked { border-left: 4px solid #334155; opacity: 0.6; }
+        .bp-level-indicator { font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 900; min-width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #000; border: 1px solid rgba(255,255,255,0.1); }
+        .unlocked .bp-level-indicator { border-color: var(--xp-green); color: var(--xp-green); box-shadow: 0 0 10px rgba(0,255,102,0.3); }
+        .bp-reward-name { font-size: 0.85rem; font-weight: 900; color: #fff; }
+        .bp-reward-desc { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+        .bp-status-icon { margin-left: auto; font-size: 1rem; }
+        .unlocked .bp-status-icon { color: var(--xp-green); text-shadow: 0 0 5px var(--xp-green); }
+        .locked .bp-status-icon { color: #475569; }
+
+        /* КОМАНДЫ ЧАТА */
+        .commands-list { display: flex; flex-direction: column; gap: 10px; }
+        .command-row { display: flex; align-items: center; justify-content: space-between; background: #020407; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); border-right: 3px solid var(--cyan); }
+        .command-trigger { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 900; color: var(--cyan); background: rgba(0,189,242,0.12); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(0,189,242,0.25); box-shadow: 0 0 8px var(--cyan-glow); }
+        .command-effect { font-size: 0.8rem; color: #e2e8f0; font-weight: bold; text-align: right; }
+
+        @media (max-width: 1024px) {
+            .layout-grid, .bottom-full-row { grid-template-columns: 1fr; gap: 20px; }
+            .clean-mosaic { grid-template-columns: 1fr 1fr; }
+            .premium-sub-banner { grid-template-columns: 1fr; padding: 25px 20px; }
+            .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 680px) {
+            body { padding: 15px 8px; }
+            nav { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+            .nav-links { width: 100%; justify-content: center; }
+            .clean-mosaic { grid-template-columns: 1fr; }
+            .pc-spec-list { grid-template-columns: 1fr; }
+            .stealth-card, .side-block { padding: 18px 14px; border-radius: 12px; }
+            .premium-sub-banner { padding: 20px 15px; }
+            .giveaway-title { font-size: 1.3rem; text-align: center; }
+            .giveaway-desc { text-align: center; }
+            .giveaway-meta-badges { justify-content: center; }
+            .banner-buttons-row, .banner-social-row { grid-template-columns: 1fr; }
+            .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* МОДАЛЬНЫЕ ОКНА И КАБИНЕТ */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(1, 3, 6, 0.95); z-index: 9999;
+            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; padding: 10px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-window {
+            background: linear-gradient(180deg, #070d19 0%, #03050a 100%); border: 2px solid var(--gold-bright); border-radius: 16px; width: 100%; max-width: 580px; padding: 25px;
+            position: relative; transform: scale(0.95); transition: 0.2s; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 40px var(--gold-glow);
+        }
+        .modal-overlay.active .modal-window { transform: scale(1); }
+        
+        .modal-close-btn { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .modal-close-btn:hover { color: #fff; background: var(--danger); border-color: var(--danger); box-shadow: 0 0 10px var(--danger); }
+        .modal-title-block { border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 15px; margin-bottom: 25px; }
+        .modal-title { font-family: 'Orbitron'; font-size: 1.3rem; color: #fff; margin: 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px var(--gold-bright); }
+        .modal-title span { color: var(--gold-bright); }
+        .modal-subtitle { font-size: 0.8rem; color: #94a3b8; margin: 6px 0 0 0; font-family: 'Orbitron'; font-weight: 700; text-transform: uppercase; }
+
+        .rules-step-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+        .rules-step-item { background: #020408; border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 14px; display: flex; gap: 14px; align-items: center; border-left: 3px solid var(--gold-bright); }
+        .rules-step-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: var(--gold-bright); min-width: 25px; text-shadow: 0 0 5px var(--gold-bright); }
+        .rules-step-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.4; font-weight: 500; }
+
+        .warning-box { background: rgba(255, 51, 68, 0.04); border: 1px solid var(--danger); border-radius: 8px; padding: 14px; margin-top: 20px; box-shadow: 0 0 15px rgba(255,51,68,0.1); }
+        .warning-title { font-family: 'Orbitron'; font-size: 0.9rem; font-weight: 900; color: var(--danger); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; text-transform: uppercase; text-shadow: 0 0 8px var(--danger); }
+        .warning-text { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin: 0; }
+
+        .profile-tabs-nav { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px; overflow-x: auto; }
+        .p-tab-btn { background: #020408; border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; padding: 10px 16px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+        .p-tab-btn:hover { border-color: var(--cyan); color: #fff; }
+        .p-tab-btn.active { background: var(--gold-bright); color: #05080e; border-color: var(--gold-bright); box-shadow: 0 0 12px var(--gold-bright); }
+        .profile-tab-content { display: none; }
+        .profile-tab-content.active { display: block; }
+
+        .xp-level-container { background: #020408; border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px; margin-bottom: 20px; box-shadow: inset 0 0 10px #000; }
+        .xp-header-row { display: flex; justify-content: space-between; font-family: 'Orbitron'; font-size: 0.85rem; font-weight: bold; margin-bottom: 8px; }
+        .xp-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .xp-bar-fill { height: 100%; background: var(--xp-green); width: 0%; transition: width 0.4s; box-shadow: 0 0 8px var(--xp-green); }
+
+        .modal-grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        @media (max-width: 480px) { .modal-grid-inputs { grid-template-columns: 1fr; } }
+        .input-group { text-align: left; margin-bottom: 14px; }
+        .input-label { display: block; font-family: 'Orbitron'; font-size: 0.75rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .custom-input, .custom-select, .custom-textarea { width: 100%; background: #020408; border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 12px; color: #fff; font-size: 0.9rem; font-family: inherit; font-weight: bold; }
+        .custom-input:focus, .custom-select:focus, .custom-textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan-glow); }
+
+        .garage-scroller { max-height: 220px; overflow-y: auto; background: #020408; padding: 10px; border-radius: 6px; box-shadow: inset 0 0 15px #000; border: 1px solid rgba(255,255,255,0.05); }
+        .garage-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; margin-bottom: 8px; transition: 0.1s; }
+        .garage-item-row:hover { background: rgba(255,255,255,0.03); border-color: var(--cyan); }
+        .garage-checkbox { width: 20px; height: 20px; accent-color: var(--gold-bright); cursor: pointer; }
+
+        .avatar-picker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .avatar-option { aspect-ratio: 1/1; border-radius: 8px; cursor: pointer; border: 2px solid transparent; background: #020408; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #475569; transition: 0.2s; }
+        .avatar-option.selected { border-color: var(--gold-bright); color: var(--gold-bright); background: rgba(212,175,55,0.15); box-shadow: 0 0 12px var(--gold-glow); }
+
+        .ticket-status-box { background: #020408; border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 6px; text-align: center; font-size: 0.85rem; font-family: 'Orbitron'; margin-bottom: 20px; font-weight: bold; border-left: 3px solid var(--gold-bright); }
+        .ticket-status-box.active { border-color: var(--gold-bright); color: #ffcc00; box-shadow: 0 0 10px rgba(255,204,0,0.1); }
+        .stats-footer-row { display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; font-family: 'Orbitron'; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
     </style>
 </head>
 <body>
+    <div class="main-site-content" id="main-content">
+        <div class="stealth-wrapper">
+            <nav>
+                <div class="logo-area">BlackCell<span>UA</span></div>
+                <div class="nav-links">
+                    <div id="user-display" class="user-profile-wrapper"></div>
+                    <a href="https://www.youtube.com/channel/UC29hev1ElIOHYG9oFm9dieQ?sub_confirmation=1" target="_blank" class="nav-item"><i class="fab fa-youtube" style="color:#ef4444"></i> YouTube</a>
+                    <a href="https://donatello.to/krakenua" target="_blank" class="nav-item"><i class="fas fa-wallet" style="color:#eab308"></i> Донат</a>
+                </div>
+            </nav>
 
-    <div class="header-panel">
-        <button class="btn-ui">Правила сайту</button>
-        <button class="btn-ui gold">Тех підтримка</button>
-    </div>
+            <div class="premium-sub-banner">
+                <div class="giveaway-info-side">
+                    <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
+                    <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
+                    <div class="giveaway-meta-badges">
+                        <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО / ПРЕМ ТАНКИ</div>
+                        <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
+                    </div>
+                </div>
+                <div class="giveaway-interactive-side">
+                    <div class="timer-title"><i class="fas fa-stopwatch"></i> ДО ВИЗНАЧЕННЯ ПЕРЕМОЖЦІВ:</div>
+                    <div class="countdown-timer-grid">
+                        <div class="timer-segment"><span class="timer-num" id="t-days">02</span><span class="timer-label">Дн</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-hours">05</span><span class="timer-label">Год</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-mins">42</span><span class="timer-label">Хв</span></div>
+                        <div class="timer-segment"><span class="timer-num" id="t-secs">19</span><span class="timer-label">Сек</span></div>
+                    </div>
+                    
+                    <div class="banner-buttons-row">
+                        <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Реєстрація</a>
+                        <a href="#" class="info-btn-outline" id="open-profile-btn"><i class="fas fa-user-cog"></i> Мій Ангар</a>
+                    </div>
+                    
+                    <div class="banner-social-row">
+                        <a href="https://discord.gg/CNYF4eEz" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
+                        <a href="https://t.me/blackcellua" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
+                    </div>
+                </div>
+            </div>
 
-    <div class="section-card">
-        <h3>ОБЛАДНАННЯ ДЛЯ ТАНКІВ</h3>
-        <div class="tank-grid">
-            <div><strong>Object 277:</strong> Закалка, Досилач, Турбіна</div>
-            <div><strong>Kranvagn:</strong> Стабілізатор, Досилач, Турбіна</div>
-            <div><strong>CS-63:</strong> Турбіна, Стабілізатор, Вентиль</div>
+            <div class="layout-grid">
+                <div class="main-left-column">
+                    <div class="stealth-card">
+                        <h3 class="card-header"><span class="pulse-circle"></span>ЖИВИЙ ЕФІР</h3>
+                        <div class="studio-player">
+                            <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">📈 ПОТОЧНА СТАТИСТИКА СТРІМЕРА (АККАУНТ)</h3>
+                        <div class="streamer-stats-grid">
+                            <div class="stat-card-mini purple-tier">
+                                <div class="stat-mini-title">Рейтинг WN8</div>
+                                <div class="stat-mini-value" style="color:var(--purple-stat);">3,545+</div>
+                            </div>
+                            <div class="stat-card-mini">
+                                <div class="stat-mini-title">Перемоги</div>
+                                <div class="stat-mini-value" style="color:var(--xp-green); text-shadow: 0 0 5px var(--xp-green);">46,36%</div>
+                            </div>
+                            <div class="stat-card-mini gold-tier">
+                                <div class="stat-mini-title">Макс. Урон</div>
+                                <div class="stat-mini-value" style="color:var(--gold-bright);">6,955</div>
+                            </div>
+                            <div class="stat-card-mini">
+                                <div class="stat-mini-title">Топ техніка</div>
+                                <div class="stat-mini-value" style="color:var(--cyan); text-shadow: 0 0 5px var(--cyan);">Lorraine 120 Alby</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header">🎬 ОСТАННІ ВІДЕО ТА СТРІМИ</h3>
+                        <div class="clean-mosaic" id="latest-videos-box">
+                            <div style="color:#64748b; padding:10px; text-align:center;">Завантаження медіа...</div>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card roulette-neon-card">
+                        <h3 class="card-header" style="text-shadow: 0 0 15px var(--xp-green);">💎 РУЛЕТКА ТАНКІВ: ВИБЕРИ СВІЙ СТАЛЕВИЙ МОНСТР</h3>
+                        <div class="tactics-box">
+                            <button class="btn-action-side btn-yellow" id="roll-tank-btn" style="max-width:280px; margin:0 auto;"><i class="fas fa-dice"></i> КРУТИТИ РУЛЕТКУ</button>
+                            <div class="tactic-output" id="tank-result-display">Натисни кнопку, щоб обрати танк для наступного бою!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-right-column">
+                    <div class="side-block">
+                        <h3 class="side-title">📊 ЦІЛЬ НА РОЗВИТОК КАНАЛУ</h3>
+                        <div class="goal-container">
+                            <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:bold; color:#fff; margin-bottom:5px;">
+                                <span>Новий Стрім-ПК / Монітор</span>
+                                <span style="color:var(--gold-bright); text-shadow: 0 0 5px var(--gold-bright);">3,800 / 10,000 ₴</span>
+                            </div>
+                            <div class="goal-bar-bg"><div class="goal-bar-fill"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title" style="text-shadow: 0 0 15px var(--xp-green);">🔥 БАТТЛ-ПАСС ГЛЯДАЧА</h3>
+                        <div class="battlepass-track">
+                            <div class="battlepass-step unlocked">
+                                <div class="bp-level-indicator">01</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Новачок»</div>
+                                    <div class="bp-reward-desc">Доступ до реєстрації в розіграшах</div>
+                                </div>
+                                <i class="fas fa-check-circle bp-status-icon"></i>
+                            </div>
+                            <div class="battlepass-step unlocked">
+                                <div class="bp-level-indicator">05</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Танкіст»</div>
+                                    <div class="bp-reward-desc">Пріоритет при зборі Взводу з глядачами</div>
+                                </div>
+                                <i class="fas fa-check-circle bp-status-icon"></i>
+                            </div>
+                            <div class="battlepass-step locked">
+                                <div class="bp-level-indicator">10</div>
+                                <div>
+                                    <div class="bp-reward-name">Ранг «Ветеран»</div>
+                                    <div class="bp-reward-desc">Унікальна роль в нашому Discord</div>
+                                </div>
+                                <i class="fas fa-check-circle bp-status-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
+                        <a href="https://www.youtube.com/watch?v=vHg-xJm2LaQ" target="_blank" class="music-widget">
+                            <div class="music-icon-box"><i class="fas fa-music"></i></div>
+                            <div>
+                                <div style="font-size:0.85rem; font-weight:bold; color:#fff;">BlackCellUA Stream Vibes</div>
+                                <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">Плейлист підписників</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">💬 КОМАНДИ СТРІМУ ДЛЯ ЧАТУ</h3>
+                        <div class="commands-list">
+                            <div class="command-row">
+                                <span class="command-trigger">!donate</span>
+                                <span class="command-effect">Посилання на донат</span>
+                            </div>
+                            <div class="command-row">
+                                <span class="command-trigger">!stat</span>
+                                <span class="command-effect">Поточна статистика аккаунта</span>
+                            </div>
+                            <div class="command-row">
+                                <span class="command-trigger">!discord</span>
+                                <span class="command-effect">Запрошення у спільноту</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">📅 РОЗКЛАД СТРІМІВ</h3>
+                        <div id="schedule-box"></div>
+                    </div>
+
+                    <div class="side-block">
+                        <h3 class="side-title">🏆 ТОП ДОНАТОРИ МІСЯЦЯ</h3>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-crown" style="color:#ffcc00; text-shadow:0 0 5px #ffcc00;"></i> Скіф_WOT</div><div class="top-squad-rank">1,500 ₴</div></div>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-medal" style="color:#cbd5e1"></i> Ghost_UA</div><div class="top-squad-rank">850 ₴</div></div>
+                        <div class="top-squad-row"><div class="top-squad-name"><i class="fas fa-medal" style="color:#b45309"></i> Танкіст3000</div><div class="top-squad-rank">500 ₴</div></div>
+                    </div>
+                </div>
+
+                <div class="bottom-full-row">
+                    <div class="stealth-card">
+                        <h3 class="card-header">🖥️ ЗАЛІЗО ТА КОНФІГУРАЦІЯ СТРІМ-ПК</h3>
+                        <div class="pc-spec-list">
+                            <div class="pc-spec-item"><i class="fas fa-microchip pc-icon"></i><div><div class="pc-text-name">Процесор</div><div class="pc-text-val">Intel Xeon E3-1240</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-bolt pc-icon"></i><div><div class="pc-text-name">Відеокарта</div><div class="pc-text-val">NVIDIA GTX 1050 Ti (4 GB)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-hdd pc-icon"></i><div><div class="pc-text-name">Накопичувач</div><div class="pc-text-val">SSD 128GB (Система)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-tv pc-icon"></i><div><div class="pc-text-name">Трансляція</div><div class="pc-text-val">1440p (VP9 Кодек)</div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="stealth-card">
+                        <h3 class="card-header" style="text-shadow: 0 0 15px var(--neon-orange);">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
+                        <div class="quest-list-box">
+                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
+                            <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="user-display"></div>
+    <div class="modal-overlay" id="rules-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" id="close-rules-btn"><i class="fas fa-times"></i></button>
+            <div class="modal-title-block">
+                <h3 class="modal-title">Правила <span>Розіграшу</span></h3>
+                <p class="modal-subtitle">Стань учасником проекту BlackCellUA</p>
+            </div>
+            <div class="rules-step-list">
+                <div class="rules-step-item"><span class="rules-step-num">01</span><span class="rules-step-text">Бути підписаним на YouTube-канал BlackCellUA.</span></div>
+                <div class="rules-step-item"><span class="rules-step-num">02</span><span class="rules-step-text">Зареєструвати свій ігровий нікнейм у формі профілю на цьому сайті (вкладка "Мій Ангар").</span></div>
+                <div class="rules-step-item"><span class="rules-step-num">03</span><span class="rules-step-text">Бути присутнім на щотижневому стрімі, де за допомогою рулетки обираються переможці золота або преміум-техніки.</span></div>
+            </div>
+            <div class="warning-box">
+                <div class="warning-title"><i class="fas fa-exclamation-triangle"></i> Увага!</div>
+                <p class="warning-text">Один танкіст може брати участь лише з одного зареєстрованого аккаунта. Спроби накрутки призведуть до повного бану в ком'юніті.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-window">
+            <button class="modal-close-btn" id="close-profile-btn"><i class="fas fa-times"></i></button>
+            <div class="modal-title-block">
+                <h3 class="modal-title">Кабінет <span>Танкіста</span></h3>
+                <p class="modal-subtitle">Керування профілем та твоїм ангаром</p>
+            </div>
+            
+            <div class="profile-tabs-nav">
+                <button class="p-tab-btn active" onclick="switchProfileTab('tab-main', this)">Основне</button>
+                <button class="p-tab-btn" onclick="switchProfileTab('tab-garage', this)">Мій Ангар</button>
+                <button class="p-tab-btn" onclick="switchProfileTab('tab-tickets', this)">Підтримка</button>
+            </div>
+
+            <div class="profile-tab-content active" id="tab-main">
+                <div class="xp-level-container">
+                    <div class="xp-header-row">
+                        <span>Рівень Бойового Братерства: <span id="profile-level-val" style="color:var(--gold-bright)">1</span></span>
+                        <span id="profile-xp-text" style="color:#94a3b8">0 / 500 XP</span>
+                    </div>
+                    <div class="xp-bar-bg"><div class="xp-bar-fill" id="profile-xp-fill"></div></div>
+                </div>
+
+                <div class="modal-grid-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Ігровий нікнейм WOT</label>
+                        <input type="text" class="custom-input" id="inp-wot-nick" placeholder="Введи нік...">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Прапор профілю</label>
+                        <select class="custom-select" id="inp-wot-flag">
+                            <option value="ua">Україна</option>
+                            <option value="eu">Європа</option>
+                            <option value="us">США</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <label class="input-label">Обери Іконку Профілю</label>
+                    <div class="avatar-picker-grid">
+                        <div class="avatar-option selected" onclick="selectAvatar('fa-crosshairs', this)"><i class="fas fa-crosshairs"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-shield-alt', this)"><i class="fas fa-shield-alt"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-trophy', this)"><i class="fas fa-trophy"></i></div>
+                        <div class="avatar-option" onclick="selectAvatar('fa-skull-crossbones', this)"><i class="fas fa-skull-crossbones"></i></div>
+                    </div>
+                </div>
+
+                <button class="btn-action-side btn-yellow" onclick="saveUserProfile()"><i class="fas fa-save"></i> Зберегти дані</button>
+            </div>
+
+            <div class="profile-tab-content" id="tab-garage">
+                <div class="stats-footer-row">
+                    <span>Познач техніку, яка є у тебе в ангарі:</span>
+                    <span style="color:var(--cyan); text-shadow:0 0 5px var(--cyan);" id="garage-count-status">Обрано: 0</span>
+                </div>
+                <div class="garage-scroller">
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">BZT-70</span><input type="checkbox" class="garage-checkbox" value="BZT-70" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Bourrasque</span><input type="checkbox" class="garage-checkbox" value="Bourrasque" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Progetto M35 mod. 46</span><input type="checkbox" class="garage-checkbox" value="Progetto 46" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Skoda T 56</span><input type="checkbox" class="garage-checkbox" value="Skoda T 56" onchange="updateGarageCount()"></div>
+                    <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Object 703 Version II</span><input type="checkbox" class="garage-checkbox" value="Obj 703" onchange="updateGarageCount()"></div>
+                </div>
+                <button class="btn-action-side btn-yellow" style="margin-top:20px;" onclick="saveGarageData()"><i class="fas fa-shield-alt"></i> Оновити ангар</button>
+            </div>
+
+            <div class="profile-tab-content" id="tab-tickets">
+                <div class="ticket-status-box active">
+                    <i class="fas fa-info-circle"></i> Статус останньої заявки: <span style="font-weight:900;">НЕМАЄ АКТИВНИХ ТІКЕТІВ</span>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Тема звернення</label>
+                    <input type="text" class="custom-input" placeholder="Наприклад: Проблема з донатом / Ідея для стріму">
+                </div>
+                <div class="input-group" style="margin-bottom:15px;">
+                    <label class="input-label">Повідомлення</label>
+                    <textarea class="custom-textarea" rows="3" placeholder="Опиши детально суть..."></textarea>
+                </div>
+                <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Ваші скрипти залишаються без змін
+        const tanksPool = [
+            "BZT-70", "Bourrasque", "Progetto 46", "Skoda T 56", 
+            "Object 703 II", "M-IV-Y", "Elc Even 90", "Caliban", 
+            "Tiger II", "IS-3", "AMX 50 100", "Rhm.-Borsig"
+        ];
+
+        document.getElementById('roll-tank-btn').addEventListener('click', () => {
+            const display = document.getElementById('tank-result-display');
+            const button = document.getElementById('roll-tank-btn');
+            button.disabled = true; 
+            display.style.borderColor = '#00ff66';
+            let counter = 0;
+            const maxTicks = 10; 
+            
+            const interval = setInterval(() => {
+                const randomTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
+                display.innerText = `🎲 Вибір техніки: ${randomTank}...`;
+                counter++;
+                
+                if(counter > maxTicks) {
+                    clearInterval(interval);
+                    const finalTank = tanksPool[Math.floor(Math.random() * tanksPool.length)];
+                    display.innerHTML = `🔥 Наступний бій на: <span style="color:#ffcc00; font-size:1.2rem; font-weight:900; text-shadow:0 0 10px #ffcc00;">${finalTank}</span>! У бій!`;
+                    button.disabled = false; 
+                }
+            }, 120); 
+        });
+
+        function initGiveawayTimer() {
+            function getNextStreamDate() {
+                const now = new Date();
+                const nextStream = new Date();
+                nextStream.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
+                nextStream.setHours(19, 0, 0, 0);
+                if (now > nextStream) {
+                    nextStream.setDate(nextStream.getDate() + 7);
+                }
+                return nextStream;
+            }
+
+            const deadline = getNextStreamDate();
+
+            function updateTimer() {
+                const diff = deadline - new Date();
+                if (diff <= 0) {
+                    document.getElementById('t-days').innerText = "00";
+                    document.getElementById('t-hours').innerText = "00";
+                    document.getElementById('t-mins').innerText = "00";
+                    document.getElementById('t-secs').innerText = "00";
+                    return;
+                }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('t-days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('t-hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('t-mins').innerText = mins.toString().padStart(2, '0');
+                document.getElementById('t-secs').innerText = secs.toString().padStart(2, '0');
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+
+            let startCount = 310;
+            const targetCount = 342;
+            const uCounter = document.getElementById('g-users-count');
+            const cInterval = setInterval(() => {
+                if(startCount >= targetCount) clearInterval(cInterval);
+                if(uCounter) uCounter.innerText = startCount;
+                startCount++;
+            }, 40);
+        }
+
+        async function loadYT(url, divId, count) {
+            const box = document.getElementById(divId);
+            const cacheKey = `yt_cache_${divId}`;
+            const cacheTimeKey = `${cacheKey}_time`;
+            const cacheDuration = 1000 * 60 * 10; 
+
+            try {
+                const cachedData = localStorage.getItem(cacheKey);
+                const cachedTime = localStorage.getItem(cacheTimeKey);
+
+                if (cachedData && cachedTime && (Date.now() - parseInt(cachedTime) < cacheDuration)) {
+                    box.innerHTML = cachedData;
+                    return;
+                }
+
+                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+                
+                if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    let cards = '';
+                    let displayedIds = new Set();
+                    let addedCount = 0;
+
+                    for (let i = 0; i < data.items.length; i++) {
+                        if (addedCount >= count) break;
+                        
+                        let v = data.items[i];
+                        let id = v.link.split('v=')[1] || v.link.split('/').pop();
+                        if (id.includes('&')) id = id.split('&')[0];
+
+                        if (displayedIds.has(id)) continue;
+                        displayedIds.add(id);
+
+                        cards += `<div class="video-block"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen loading="lazy"></iframe><div class="video-caption">${v.title}</div></div>`;
+                        addedCount++;
+                    }
+
+                    if (cards !== '') {
+                        box.innerHTML = cards;
+                        localStorage.setItem(cacheKey, cards);
+                        localStorage.setItem(cacheTimeKey, Date.now().toString());
+                    } else {
+                        box.innerHTML = "<div style='color:#64748b; padding:10px; text-align:center;'>Контент відсутній...</div>";
+                    }
+                } else { 
+                    if(localStorage.getItem(cacheKey)) {
+                        box.innerHTML = localStorage.getItem(cacheKey);
+                    } else {
+                        box.innerHTML = "<div style='color:#64748b; padding:10px; text-align:center;'>Трансляції тимчасово недоступні...</div>"; 
+                    }
+                }
+            } catch (err) { 
+                console.error(err);
+                if(localStorage.getItem(cacheKey)) {
+                    box.innerHTML = localStorage.getItem(cacheKey);
+                } else {
+                    box.innerHTML = "<div style='color:#ef4444; padding:10px; text-align:center;'>Помилка з'єднання...</div>";
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 6);
+            
+            const schedBox = document.getElementById('schedule-box');
+            const days = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
+            const todayIndex = new Date().getDay();
+            let schedHtml = '';
+            
+           ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
+                let isToday = (days[todayIndex] === d);
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '7:00' : 'Вихідний';
+                if(tStr==='Вихідний' && isToday) tStr = 'Стрім';
+                
+                schedHtml += `<div class="sched-item ${isToday?'today':''}">
+                    <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>':''}</span>
+                    <span class="sched-time" style="${tStr==='Вихідний'?'color:#64748b':''}">${tStr}</span>
+                </div>`;
+            });
+            if(schedBox) schedBox.innerHTML = schedHtml;
+            
+            initModals();
+            loadUserProfileLocal();
+            initGiveawayTimer();
+        });
+
+        function initModals() {
+            const rM = document.getElementById('rules-modal');
+            const pM = document.getElementById('profile-modal');
+            
+            document.getElementById('open-rules-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); rM.classList.add('active'); });
+            document.getElementById('close-rules-btn')?.addEventListener('click', ()=>{ rM.classList.remove('active'); });
+            document.getElementById('open-profile-btn')?.addEventListener('click', (e)=>{ e.preventDefault(); pM.classList.add('active'); });
+            document.getElementById('close-profile-btn')?.addEventListener('click', ()=>{ pM.classList.remove('active'); });
+            
+            window.addEventListener('click', (e) => {
+                if(e.target === rM) rM.classList.remove('active');
+                if(e.target === pM) pM.classList.remove('active');
+            });
+        }
+
+        function switchProfileTab(tabId, btn) {
+            document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        let selectedAvatarClass = "fa-crosshairs";
+        function selectAvatar(iconClass, elem) {
+            document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
+            elem.classList.add('selected');
+            selectedAvatarClass = iconClass;
+        }
+
+        function saveUserProfile() {
+            const nick = document.getElementById('inp-wot-nick').value.trim() || "Танкіст";
+            const flag = document.getElementById('inp-wot-flag').value;
+            localStorage.setItem('wot_nick', nick);
+            localStorage.setItem('wot_flag', flag);
+            localStorage.setItem('wot_avatar_class', selectedAvatarClass);
+            renderUserBadge(nick, flag, selectedAvatarClass);
+            alert('Дані профілю збережено!');
+        }
+
+        function loadUserProfileLocal() {
+            const nick = localStorage.getItem('wot_nick') || "Гість";
+            const flag = localStorage.getItem('wot_flag') || "ua";
+            const avClass = localStorage.getItem('wot_avatar_class') || selectedAvatarClass;
+            
+            document.getElementById('inp-wot-nick').value = localStorage.getItem('wot_nick') || "";
+            document.getElementById('inp-wot-flag').value = flag;
+            
+            document.querySelectorAll('.avatar-option').forEach(o => {
+                o.classList.remove('selected');
+                if(o.querySelector('i').classList.contains(avClass)) {
+                    o.classList.add('selected');
+                }
+            });
+            
+            renderUserBadge(nick, flag, avClass);
+            updateGarageCount();
+        }
+
+        function renderUserBadge(nick, flag, iconClass) {
+            const display = document.getElementById('user-display');
+            if(!display) return;
+            let flagIcon = flag === 'ua' ? '🇺🇦' : (flag === 'us' ? '🇺🇸' : '🇪🇺');
+            display.innerHTML = `
+                <div class="user-profile-badge">
+                    <div class="avatar-svg-container"><i class="fas ${iconClass}"></i></div>
+                    <span>${nick} ${flagIcon}</span>
+                    <span class="user-lvl-tag">LVL 1</span>
+                </div>
+            `;
+        }
+
         function updateGarageCount() {
             const checked = document.querySelectorAll('.garage-checkbox:checked').length;
-            console.log('Обрано: ' + checked);
+            const status = document.getElementById('garage-count-status');
+            if(status) status.innerText = `Обрано: ${checked}`;
+        }
+
+        function saveGarageData() {
+            const activeTanks = [];
+            document.querySelectorAll('.garage-checkbox:checked').forEach(c => activeTanks.push(c.value));
+            localStorage.setItem('wot_garage', JSON.stringify(activeTanks));
+            alert('Твій Ангар успішно оновлено на сайті!');
         }
     </script>
 </body>
