@@ -70,7 +70,6 @@
 
         .stealth-wrapper { max-width: 1400px; margin: 0 auto; width: 100%; }
         
-        /* НАВИГАЦИЯ В СТИЛЕ НЕОНОВОГО ИНТЕРФЕЙСА */
         nav { 
             display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 15px 20px; 
             background: rgba(4, 8, 15, 0.85); border: 1px solid var(--border-color); border-bottom: 2px solid var(--cyan);
@@ -103,10 +102,8 @@
         .user-profile-badge .avatar-svg-container { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold-bright); background: rgba(212,175,55,0.2); display: flex; align-items: center; justify-content: center; color: var(--gold-bright); font-size: 0.8rem; }
         .user-lvl-tag { background: var(--gold-bright); color: #05080e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; box-shadow: 0 0 5px var(--gold-bright); }
         
-        /* СЕТКА СВЕРХСВЕТЯЩИХСЯ КАРТОЧЕК */
         .layout-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 25px; width: 100%; }
         
-        /* БАЗОВАЯ КИБЕР-КАРТОЧКА С НЕОНОВЫМ СВЕЧЕНИЕМ */
         .stealth-card, .side-block {
             position: relative;
             background: var(--panel-bg); 
@@ -117,14 +114,12 @@
             overflow: hidden;
         }
 
-        /* Статичный неоновый контур нижней грани для обычных блоков */
         .stealth-card::after, .side-block::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
             background: linear-gradient(90deg, transparent, var(--cyan), transparent);
             opacity: 0.8;
         }
 
-        /* МОЩНЫЕ ЗАГОЛОВКИ С ЭФФЕКТОМ МЕРЦАНИЯ НЕОНА */
         .card-header, .side-title {
             font-family: 'Orbitron'; font-size: 1.1rem; font-weight: 900; color: #fff; letter-spacing: 1.5px;
             margin-top: 0; margin-bottom: 20px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
@@ -132,7 +127,6 @@
             animation: text-flicker 4s infinite alternate;
         }
 
-        /* Переопределяем цвет свечения некоторых заголовков для разнообразия */
         .side-block .side-title {
             text-shadow: 0 0 8px rgba(255,255,255,0.2), 0 0 15px var(--gold-bright);
         }
@@ -146,19 +140,14 @@
             100% { opacity: 0.2; transform: scale(0.8); }
         }
 
-        /* ЦЕЛЬ КАНАЛА В НЕОНЕ */
         .goal-container { background: #03050a; border: 1px solid rgba(212,175,55,0.3); padding: 18px; border-radius: 10px; box-shadow: inset 0 0 15px rgba(0,0,0,0.6); }
         .goal-bar-bg { width: 100%; height: 14px; background: rgba(255,255,255,0.05); border-radius: 7px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
         .goal-bar-fill { height: 100%; width: 38%; background: linear-gradient(90deg, var(--neon-orange), var(--gold-bright)); box-shadow: 0 0 15px var(--gold-bright); }
         
-        /* ПЛЕЕР С ВИДЖЕТОМ */
         .music-widget { display: flex; align-items: center; gap: 15px; background: #04070d; border: 1px solid var(--gold-bright); padding: 14px; border-radius: 10px; text-decoration: none; color: inherit; box-shadow: 0 0 15px rgba(255,204,0,0.1); transition: 0.2s; }
         .music-widget:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--gold-glow); }
         .music-icon-box { width: 42px; height: 42px; background: rgba(212,175,55,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold-bright); font-size: 1.3rem; text-shadow: 0 0 8px var(--gold-bright); }
 
-        /* ========================================================
-           🔥 КИБЕРСПОРТИВНЫЙ НЕОНОВЫЙ БЛОК РОЗЫГРЫША С БЕГУЩЕЙ РАМКОЙ
-        =========================================================== */
         .premium-sub-banner {
             position: relative;
             background: radial-gradient(circle at 50% 0%, #152238 0%, #060a12 100%); 
@@ -169,7 +158,6 @@
             overflow: hidden;
             z-index: 1;
         }
-        /* Бегущая неоновая грань */
         .premium-sub-banner::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(from 0deg, transparent 20%, var(--gold-bright), var(--neon-orange), transparent 80%);
@@ -184,7 +172,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Бегущая рамка для блока РУЛЕТКИ ТАНКИСТОВ */
         .roulette-neon-card {
             position: relative; z-index: 1; overflow: hidden;
         }
@@ -217,7 +204,6 @@
         .giveaway-desc { font-size: 0.95rem; color: #cbd5e1; margin: 0 0 20px 0; line-height: 1.5; }
         .giveaway-meta-badges { display: flex; gap: 12px; margin-bottom: 5px; flex-wrap: wrap; }
         
-        /* БЛЯХИ С ПОДСВЕТКОЙ */
         .g-badge { 
             background: rgba(5, 8, 14, 0.85); border: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 8px; 
             font-size: 0.8rem; font-family: 'Orbitron'; font-weight: 900; display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.5px;
@@ -251,7 +237,6 @@
         .timer-title i { color: var(--neon-orange); animation: pulse-neon-icon 1s infinite alternate; }
         @keyframes pulse-neon-icon { 100% { transform: scale(1.15); text-shadow: 0 0 12px var(--neon-orange); } }
         
-        /* ЦИФЕРБЛАТ КИБЕР-ТАЙМЕРА */
         .countdown-timer-grid { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
         .timer-segment { 
             background: #020408; border: 1px solid var(--gold-bright); padding: 10px 8px; border-radius: 8px; min-width: 65px; 
@@ -266,7 +251,6 @@
         }
         .timer-label { font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-family: 'Orbitron'; margin-top: 4px; font-weight: 700; }
 
-        /* АГРЕССИВНЫЕ НЕОНОВЫЕ КНОПКИ */
         .banner-buttons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 12px; }
         .banner-social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
 
@@ -292,18 +276,15 @@
         .telegram-btn { background: #04070d; border: 1px solid var(--telegram); border-radius: 8px; padding: 11px; color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.8rem; transition: 0.2s; box-shadow: 0 0 10px rgba(0,136,204,0.2); }
         .telegram-btn:hover { background: var(--telegram); transform: translateY(-2px); box-shadow: 0 0 20px var(--telegram); }
 
-        /* ПЛЕЕР И МОЗАИКА ВИДЕО */
         .studio-player { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 2px solid var(--cyan); background: #000; margin-bottom: 10px; box-shadow: 0 0 20px var(--cyan-glow); }
         .clean-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
         .video-block { background: #04070e; border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border-bottom: 2px solid var(--cyan); }
         .video-block iframe { width: 100%; aspect-ratio: 16/9; border-radius: 6px; border: none; display: block; }
         .video-caption { font-size: 0.8rem; color: #e2e8f0; margin-top: 8px; font-weight: bold; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* РУЛЕТКА ТАНКОВ */
         .tactics-box { background: #03050a; border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; text-align: center; box-shadow: inset 0 0 20px #000; }
         .tactic-output { font-size: 1.15rem; font-weight: 900; color: #fff; margin: 20px 0; min-height: 55px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--xp-green); background: rgba(0,255,102,0.03); padding: 12px; border-radius: 6px; box-shadow: 0 0 15px rgba(0,255,102,0.05); }
 
-        /* СЕТКА СТАТИСТИКИ И РАСПИСАНИЕ */
         .sched-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 8px; background: #030509; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #475569; margin-bottom: 10px; }
         .sched-item.today { border-left-color: var(--xp-green); background: rgba(0, 255, 102, 0.04); border-right: 1px solid var(--xp-green); box-shadow: 0 0 10px rgba(0,255,102,0.1); }
         .sched-day { font-size: 0.85rem; color: #fff; font-weight: bold; }
@@ -318,7 +299,6 @@
         .btn-yellow:hover:not(:disabled) { transform: scale(1.03); box-shadow: 0 0 25px var(--gold-bright); }
         .btn-yellow:disabled { background: #1e293b; color: #64748b; cursor: not-allowed; box-shadow: none; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* ЖЕЛЕЗО И КВЕСТЫ */
         .bottom-full-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; width: 100%; }
         .pc-spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .pc-spec-item { background: #03050a; border: 1px solid rgba(255,255,255,0.03); border-left: 3px solid var(--cyan); padding: 14px; border-radius: 8px; display: flex; gap: 12px; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
@@ -333,7 +313,6 @@
         .quest-badge.in-progress { background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); box-shadow: 0 0 8px var(--cyan-glow); }
         .quest-badge.complete { background: rgba(0, 255, 102, 0.15); color: var(--xp-green); border: 1px solid var(--xp-green); box-shadow: 0 0 8px rgba(0,255,102,0.3); }
 
-        /* МИНИ КАРТОЧКИ СТАТИСТИКИ */
         .streamer-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px; }
         .stat-card-mini { background: #020408; border: 1px solid rgba(255,255,255,0.05); border-bottom: 3px solid var(--cyan); padding: 14px 10px; border-radius: 10px; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
         .stat-card-mini.purple-tier { border-bottom-color: var(--purple-stat); background: linear-gradient(180deg, rgba(163,53,238,0.06) 0%, #020408 100%); box-shadow: 0 0 12px rgba(163,53,238,0.2); }
@@ -341,7 +320,6 @@
         .stat-mini-title { font-family: 'Orbitron'; font-size: 0.65rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .stat-mini-value { font-family: 'Orbitron'; font-size: 1.15rem; font-weight: 900; color: #fff; margin-top: 5px; }
         
-        /* БАТТЛ-ПАСС */
         .battlepass-track { display: flex; flex-direction: column; gap: 14px; position: relative; }
         .battlepass-step { display: flex; align-items: center; gap: 15px; background: #03050a; border: 1px solid rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
         .battlepass-step.unlocked { border-left: 4px solid var(--xp-green); background: rgba(0,255,102,0.02); }
@@ -354,7 +332,6 @@
         .unlocked .bp-status-icon { color: var(--xp-green); text-shadow: 0 0 5px var(--xp-green); }
         .locked .bp-status-icon { color: #475569; }
 
-        /* КОМАНДЫ ЧАТА */
         .commands-list { display: flex; flex-direction: column; gap: 10px; }
         .command-row { display: flex; align-items: center; justify-content: space-between; background: #020407; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); border-right: 3px solid var(--cyan); }
         .command-trigger { font-family: 'Orbitron'; font-size: 0.8rem; font-weight: 900; color: var(--cyan); background: rgba(0,189,242,0.12); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(0,189,242,0.25); box-shadow: 0 0 8px var(--cyan-glow); }
@@ -382,7 +359,6 @@
             .streamer-stats-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        /* МОДАЛЬНЫЕ ОКНА И КАБИНЕТ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(1, 3, 6, 0.95); z-index: 9999;
@@ -462,8 +438,56 @@
                     <h3 class="giveaway-title">👑 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
                     <p class="giveaway-desc">Бери участь абсолютно безкоштовно! Ми розігруємо золото та преміум техніку серед відданих глядачів каналу BlackCellUA на прямих трансляціях.</p>
                     <div class="giveaway-meta-badges">
-                        <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО</div>
+                        <div class="g-badge prize">🪙 ФОНД: ІГРОВЕ ЗОЛОТО</div>
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
+                    </div>
+
+                    <div class="giveaway-actions" style="margin-top: 22px; display: flex; gap: 14px; flex-wrap: wrap;">
+                        <button class="btn-rules" style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 10px;
+                            background: rgba(0, 189, 242, 0.05);
+                            color: #00bdf2;
+                            border: 2px solid #00bdf2;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            font-size: 0.85rem;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            font-family: 'Orbitron', sans-serif;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 0 15px rgba(0, 189, 242, 0.2), inset 0 0 10px rgba(0, 189, 242, 0.1);
+                            cursor: pointer;
+                        " onmouseover="this.style.background='rgba(0, 189, 242, 0.2)'; this.style.boxShadow='0 0 25px #00bdf2, inset 0 0 15px rgba(0, 189, 242, 0.3)'; this.style.transform='translateY(-2px)';" 
+                           onmouseout="this.style.background='rgba(0, 189, 242, 0.05)'; this.style.boxShadow='0 0 15px rgba(0, 189, 242, 0.2), inset 0 0 10px rgba(0, 189, 242, 0.1)'; this.style.transform='translateY(0)';"
+                           onclick="document.getElementById('rules-modal').classList.add('active')">
+                            <i class="fas fa-scroll"></i> ПРАВИЛА САЙТУ
+                        </button>
+
+                        <button class="btn-support" style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 10px;
+                            background: rgba(255, 204, 0, 0.05);
+                            color: #ffcc00;
+                            border: 2px solid #ffcc00;
+                            padding: 12px 24px;
+                            border-radius: 8px;
+                            font-size: 0.85rem;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            font-family: 'Orbitron', sans-serif;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2), inset 0 0 10px rgba(255, 204, 0, 0.1);
+                            cursor: pointer;
+                        " onmouseover="this.style.background='rgba(255, 204, 0, 0.2)'; this.style.boxShadow='0 0 25px #ffcc00, inset 0 0 15px rgba(255, 204, 0, 0.3)'; this.style.transform='translateY(-2px)';" 
+                           onmouseout="this.style.background='rgba(255, 204, 0, 0.05)'; this.style.boxShadow='0 0 15px rgba(255, 204, 0, 0.2), inset 0 0 10px rgba(255, 204, 0, 0.1)'; this.style.transform='translateY(0)';"
+                           onclick="document.getElementById('profile-modal').classList.add('active'); switchProfileTab('tab-tickets', document.querySelectorAll('.p-tab-btn')[2])">
+                            <i class="fas fa-tools"></i> ТЕХ ПІДТРИМКА
+                        </button>
                     </div>
                 </div>
                 <div class="giveaway-interactive-side">
@@ -484,6 +508,103 @@
                         <a href="https://discord.gg/CNYF4eEz" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> Наш Discord</a>
                         <a href="https://t.me/blackcellua" target="_blank" class="telegram-btn"><i class="fab fa-telegram-plane"></i> Наш Telegram</a>
                     </div>
+                </div>
+            </div>
+
+            <div class="stealth-card" style="border: 1px solid rgba(0, 189, 242, 0.2); box-shadow: 0 0 25px rgba(0, 189, 242, 0.05);">
+                <h3 class="card-header" style="text-shadow: 0 0 15px var(--cyan); display: flex; align-items: center; gap: 10px;">
+                    <span style="background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); padding: 2px 10px; border-radius: 6px; font-size: 0.8rem; font-family: 'Orbitron'; box-shadow: 0 0 10px var(--cyan-glow);">FAQ</span> 
+                    ВІДПОВІДІ НА ВАПРОСИ: НА КАЖДИ ТАНК ЯКА ОБОРУТКА НУЖНА
+                </h3>
+                
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-top: -10px; margin-bottom: 20px;">Перевірені, топові збірки обладнання від <b>BlackCellUA</b> для максимальної ефективності в бою:</p>
+
+                <div class="tanks-equipment-table" style="display: flex; flex-direction: column; gap: 12px;">
+                    
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #cd1c1c;">
+                        <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
+                            <span class="tank-flag" style="font-size: 1.4rem; color: #b80000; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3));">☭</span>
+                            <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">Object 277</span>
+                        </div>
+                        <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Поліпшена закалка">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/hardened.png" alt="Закалка" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Гарматний досилач (Трофейний/Боновий)">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/rammer.png" alt="Досилач" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Стабілізатор вертикального наведення">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/stabilizer.png" alt="Стабілізатор" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #005b99;">
+                        <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
+                            <span class="tank-flag" style="font-size: 1.1rem;">🇸🇪</span>
+                            <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">Kranvagn</span>
+                        </div>
+                        <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Поліпшена вентиляція">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/ventilation.png" alt="Вентиляція" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Стабілізатор вертикального наведення (Трофейний)">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/stabilizer.png" alt="Стабілізатор" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Турбонагнітач">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/turbocharger.png" alt="Турбіна" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #94a3b8;">
+                        <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
+                            <span class="tank-flag" style="font-size: 1.1rem;">🇵🇱</span>
+                            <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">CS-63</span>
+                        </div>
+                        <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Максимальна мобільність)">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/turbocharger.png" alt="Турбіна" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Гарматний досилач">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/rammer.png" alt="Досилач" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Стабілізатор вертикального наведення">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/stabilizer.png" alt="Стабілізатор" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #b80000;">
+                        <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
+                            <span class="tank-flag" style="font-size: 1.4rem; color: #b80000; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3));">☭</span>
+                            <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">IS-7 (ІС-7)</span>
+                        </div>
+                        <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Для швидкого штурму)">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/turbocharger.png" alt="Турбіна" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Поліпшена закалка">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/hardened.png" alt="Закалка" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
+                            <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Гарматний досилач">
+                                <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/rammer.png" alt="Досилач" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -606,7 +727,7 @@
                     </div>
 
                     <div class="side-block">
-                        <h3 class="side-title">💎 РОЗКЛАД СТРІМІВ</h3>
+                        <h3 class="side-title">📅 РОЗКЛАД СТРІМІВ</h3>
                         <div id="schedule-box"></div>
                     </div>
 
@@ -738,7 +859,9 @@
                     <label class="input-label">Повідомлення</label>
                     <textarea class="custom-textarea" rows="3" placeholder="Опиши детально суть..."></textarea>
                 </div>
-                <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
+                <div class="input-group">
+                    <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
+                </div>
             </div>
         </div>
     </div>
@@ -777,7 +900,7 @@
                 const now = new Date();
                 const nextStream = new Date();
                 nextStream.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
-                nextStream.setHours(19, 0, 0, 0);
+                nextStream.setHours(7, 0, 0, 0); // 7:00 Утра по расписанию
                 if (now > nextStream) {
                     nextStream.setDate(nextStream.getDate() + 7);
                 }
@@ -889,8 +1012,11 @@
             
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
-                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '7:00' : 'Вихідний';
-                if(tStr==='Вихідний' && isToday) tStr = 'Початок 7:00';
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '07:00' : 'Вихідний';
+                
+                if(tStr==='Вихідний' && isToday && d !== 'Неділя') {
+                    tStr = 'Стрім по можливості';
+                }
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
                     <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>':''}</span>
@@ -923,7 +1049,7 @@
             document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.p-tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
+            if(btn) btn.classList.add('active');
         }
 
         let selectedAvatarClass = "fa-crosshairs";
