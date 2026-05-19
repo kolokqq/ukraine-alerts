@@ -354,15 +354,6 @@
         .unlocked .bp-status-icon { color: var(--xp-green); text-shadow: 0 0 5px var(--xp-green); }
         .locked .bp-status-icon { color: #475569; }
 
-        /* FAQ MODAL STYLES */
-.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-.modal-content { background: #0a0e14; margin: 5% auto; padding: 25px; width: 90%; max-width: 800px; border: 2px solid #00bdf2; border-radius: 16px; color: #fff; max-height: 80vh; overflow-y: auto; position: relative; }
-.close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #00bdf2; }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-.tank-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 0; font-size: 0.9rem; }
-.tank-item strong { color: #ffcc00; }
-.faq-trigger { cursor: pointer; padding: 10px 20px; background: transparent; border: 1px solid #00bdf2; color: #00bdf2; text-transform: uppercase; margin: 10px 0; }
-
         /* КОМАНДЫ ЧАТА */
         .commands-list { display: flex; flex-direction: column; gap: 10px; }
         .command-row { display: flex; align-items: center; justify-content: space-between; background: #020407; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); border-right: 3px solid var(--cyan); }
@@ -411,19 +402,6 @@
         .modal-title { font-family: 'Orbitron'; font-size: 1.3rem; color: #fff; margin: 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px var(--gold-bright); }
         .modal-title span { color: var(--gold-bright); }
         .modal-subtitle { font-size: 0.8rem; color: #94a3b8; margin: 6px 0 0 0; font-family: 'Orbitron'; font-weight: 700; text-transform: uppercase; }
-
-.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-.modal-content { background: #0a0e14; margin: 5% auto; padding: 25px; width: 90%; max-width: 800px; border: 2px solid #00bdf2; border-radius: 16px; color: #fff; max-height: 80vh; overflow-y: auto; position: relative; }
-.close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #00bdf2; }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-.tank-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 0; font-size: 0.9rem; }
-.tank-item strong { color: #ffcc00; }
-.faq-trigger { cursor: pointer; padding: 10px 20px; background: transparent; border: 1px solid #00bdf2; color: #00bdf2; text-transform: uppercase; margin: 10px 0; }
-
-.shorts-container::-webkit-scrollbar { height: 6px; }
-.shorts-container::-webkit-scrollbar-thumb { background: #00bdf2; border-radius: 10px; }
-.shorts-container iframe { transition: 0.3s; }
-.shorts-container iframe:hover { transform: scale(1.02); border: 1px solid #00bdf2; }        
 
         .rules-step-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
         .rules-step-item { background: #020408; border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 14px; display: flex; gap: 14px; align-items: center; border-left: 3px solid var(--gold-bright); }
@@ -478,6 +456,7 @@
                     <a href="https://donatello.to/krakenua" target="_blank" class="nav-item"><i class="fas fa-wallet" style="color:#eab308"></i> Донат</a>
                 </div>
             </nav>
+
             <div class="premium-sub-banner">
                 <div class="giveaway-info-side">
                     <h3 class="giveaway-title">🎁 ЩОТИЖНЕВИЙ РОЗІГРАШ ДЛЯ <span>ПІДПИСНИКІВ</span></h3>
@@ -485,10 +464,8 @@
                     <div class="giveaway-meta-badges">
                         <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО / ПРЕМ ТАНКИ</div>
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
-                        <button class="faq-trigger" onclick="document.getElementById('faq-modal').style.display='block'">FAQ: ОБЛАДНАННЯ (ВСІ ТАНКИ)</button>
                     </div>
                 </div>
-                
                 <div class="giveaway-interactive-side">
                     <div class="timer-title"><i class="fas fa-stopwatch"></i> ДО ВИЗНАЧЕННЯ ПЕРЕМОЖЦІВ:</div>
                     <div class="countdown-timer-grid">
@@ -541,69 +518,12 @@
                         </div>
                     </div>
 
-   <div id="faq-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="document.getElementById('faq-modal').style.display='none'">&times;</span>
-        <h2 style="color: #00bdf2;">ОБЛАДНАННЯ (8-10 РІВНІ)</h2>
-        <div class="faq-grid">
-            <div class="tank-item"><strong>Obj 277 (10):</strong> Закалка, Досилач, Турбіна</div>
-            <div class="tank-item"><strong>Kranvagn (10):</strong> Стаб, Досилач, Турбіна</div>
-            <div class="tank-item"><strong>CS-63 (10):</strong> Турбіна, Стаб, Вентиль</div>
-            <div class="tank-item"><strong>IS-7 (10):</strong> Турбіна, Стаб, Закалка</div>
-            <div class="tank-item"><strong>Super Conq (10):</strong> Стаб, Досилач, Вентиль</div>
-            <div class="tank-item"><strong>T110E5 (10):</strong> Стаб, Досилач, Закалка</div>
-            <div class="tank-item"><strong>VZ.55 (10):</strong> Турбіна, Стаб, Досилач</div>
-            <div class="tank-item"><strong>Leopard 1 (10):</strong> Вентиль, Стаб, Оптика</div>
-            <div class="tank-item"><strong>TVP T 50/51 (10):</strong> Стаб, Вентиль, Досилач</div>
-            <div class="tank-item"><strong>STB-1 (10):</strong> Турбіна, Стаб, Вентиль</div>
-            <div class="tank-item"><strong>Obj 257 (9):</strong> Закалка, Досилач, Стаб</div>
-            <div class="tank-item"><strong>Conqueror (9):</strong> Стаб, Досилач, Вентиль</div>
-            <div class="tank-item"><strong>Char Futur 4 (9):</strong> Стаб, Оптика, Вентиль</div>
-            <div class="tank-item"><strong>Obj 430 (9):</strong> Вентиль, Досилач, Стаб</div>
-            <div class="tank-item"><strong>AE Phase I (9):</strong> Стаб, Досилач, Вентиль</div>
-            <div class="tank-item"><strong>IS-3 (8):</strong> Досилач, Стаб, Турбіна</div>
-            <div class="tank-item"><strong>Progetto 46 (8):</strong> Досилач, Стаб, Вентиль</div>
-            <div class="tank-item"><strong>Skoda T 56 (8):</strong> Досилач, Стаб, Вентиль</div>
-            <div class="tank-item"><strong>Bourrasque (8):</strong> Стаб, Оптика, Вентиль</div>
-            <div class="tank-item"><strong>Defender (8):</strong> Стаб, Досилач, Вентиль</div>
-            <div class="tank-item"><strong>Lorr. 40t (8):</strong> Стаб, Вентиль, Оптика</div>
-            <div class="tank-item"><strong>ELC EVEN 90 (8):</strong> Оптика, Вентиль, Маск. мережа</div>
-        </div>
-    </div>
-</div>
-
-
                     <div class="stealth-card">
                         <h3 class="card-header">🎬 ОСТАННІ ВІДЕО ТА СТРІМИ</h3>
                         <div class="clean-mosaic" id="latest-videos-box">
                             <div style="color:#64748b; padding:10px; text-align:center;">Завантаження медіа...</div>
                         </div>
                     </div>
-
-                      <div class="bottom-full-row">
-                    <div class="stealth-card">
-                        <h3 class="card-header">🖥️ ЗАЛІЗО ТА КОНФІГУРАЦІЯ СТРІМ-ПК</h3>
-                        <div class="pc-spec-list">
-                            <div class="pc-spec-item"><i class="fas fa-microchip pc-icon"></i><div><div class="pc-text-name">Процесор</div><div class="pc-text-val">Intel Xeon E3-1240</div></div></div>
-                            <div class="pc-spec-item"><i class="fas fa-bolt pc-icon"></i><div><div class="pc-text-name">Відеокарта</div><div class="pc-text-val">NVIDIA GTX 1050 Ti (4 GB)</div></div></div>
-                            <div class="pc-spec-item"><i class="fas fa-hdd pc-icon"></i><div><div class="pc-text-name">Накопичувач</div><div class="pc-text-val">SSD 128GB (Система)</div></div></div>
-                            <div class="pc-spec-item"><i class="fas fa-tv pc-icon"></i><div><div class="pc-text-name">Трансляція</div><div class="pc-text-val">1440p (VP9 Кодек)</div></div></div>
-                        </div>
-                    </div>
-
-                     <div class="stealth-card">
-                        <h3 class="card-header" style="text-shadow: 0 0 15px var(--neon-orange);">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
-                        <div class="quest-list-box">
-                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
-                            <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                          
 
                     <div class="stealth-card roulette-neon-card">
                         <h3 class="card-header" style="text-shadow: 0 0 15px var(--xp-green);">💎 РУЛЕТКА ТАНКІВ: ВИБЕРИ СВІЙ СТАЛЕВИЙ МОНСТР</h3>
@@ -656,14 +576,6 @@
                         </div>
                     </div>
 
-                    <div class="stealth-card">
-    <h3 class="card-header">SHORTS</h3>
-    <div class="shorts-container" style="display: flex; gap: 10px; overflow-x: auto; padding: 10px;">
-        <iframe width="200" height="350" src="https://www.youtube.com/embed/xC29GvadLBs" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-        <iframe width="200" height="350" src="https://www.youtube.com/embed/cZDbheFn8hw" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-    </div>
-</div>
-
                     <div class="side-block">
                         <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
                         <a href="https://www.youtube.com/watch?v=vHg-xJm2LaQ" target="_blank" class="music-widget">
@@ -706,9 +618,29 @@
                     </div>
                 </div>
 
-              
+                <div class="bottom-full-row">
+                    <div class="stealth-card">
+                        <h3 class="card-header">🖥️ ЗАЛІЗО ТА КОНФІГУРАЦІЯ СТРІМ-ПК</h3>
+                        <div class="pc-spec-list">
+                            <div class="pc-spec-item"><i class="fas fa-microchip pc-icon"></i><div><div class="pc-text-name">Процесор</div><div class="pc-text-val">Intel Xeon E3-1240</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-bolt pc-icon"></i><div><div class="pc-text-name">Відеокарта</div><div class="pc-text-val">NVIDIA GTX 1050 Ti (4 GB)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-hdd pc-icon"></i><div><div class="pc-text-name">Накопичувач</div><div class="pc-text-val">SSD 128GB (Система)</div></div></div>
+                            <div class="pc-spec-item"><i class="fas fa-tv pc-icon"></i><div><div class="pc-text-name">Трансляція</div><div class="pc-text-val">1440p (VP9 Кодек)</div></div></div>
+                        </div>
+                    </div>
 
-        
+                    <div class="stealth-card">
+                        <h3 class="card-header" style="text-shadow: 0 0 15px var(--neon-orange);">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
+                        <div class="quest-list-box">
+                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
+                            <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="rules-modal">
         <div class="modal-window">
             <button class="modal-close-btn" id="close-rules-btn"><i class="fas fa-times"></i></button>
@@ -810,47 +742,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-    // 1. Функция запуска: фиксирует текущее время в памяти браузера и перезагружает страницу
-    function startStreamNow() {
-        const now = new Date().getTime();
-        localStorage.setItem('streamStartTime', now);
-        location.reload();
-    }
-
-    // 2. Функция обновления таймера
-    function updateTimer() {
-        const savedTime = localStorage.getItem('streamStartTime');
-        
-        // Если время не задано, показываем нули
-        if (!savedTime) {
-            document.getElementById("timer").innerText = "00:00:00";
-            return;
-        }
-
-        const startTime = parseInt(savedTime);
-        const now = new Date().getTime();
-        const diff = now - startTime;
-
-        // Расчет времени
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        // Отображение с ведущими нулями
-        document.getElementById("timer").innerText = 
-            (hours < 10 ? "0" + hours : hours) + ":" + 
-            (minutes < 10 ? "0" + minutes : minutes) + ":" + 
-            (seconds < 10 ? "0" + seconds : seconds);
-    }
-
-    // Запуск интервала: обновляем каждую секунду
-    setInterval(updateTimer, 1000);
-    
-    // Вызов функции при загрузке страницы
-    updateTimer();
-</script>
 
     <script>
         const tanksPool = [
@@ -989,7 +880,7 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 6);
+            loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 3);
             
             const schedBox = document.getElementById('schedule-box');
             const days = ['Неділя','Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота'];
@@ -1027,13 +918,6 @@
                 if(e.target === pM) pM.classList.remove('active');
             });
         }
-
-        // Закрытие модалки при клике вне окна
-window.onclick = function(event) {
-    if (event.target == document.getElementById('faq-modal')) {
-        document.getElementById('faq-modal').style.display = 'none';
-    }
-}
 
         function switchProfileTab(tabId, btn) {
             document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
@@ -1077,13 +961,6 @@ window.onclick = function(event) {
             renderUserBadge(nick, flag, avClass);
             updateGarageCount();
         }
-
-        // Закрытие при клике на фон
-window.onclick = function(event) {
-    if (event.target == document.getElementById('faq-modal')) {
-        document.getElementById('faq-modal').style.display = 'none';
-    }
-}
 
         function renderUserBadge(nick, flag, iconClass) {
             const display = document.getElementById('user-display');
