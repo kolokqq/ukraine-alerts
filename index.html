@@ -146,6 +146,16 @@
             100% { opacity: 0.2; transform: scale(0.8); }
         }
 
+        .rules-list p {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    line-height: 1.5;
+}
+.rules-list strong {
+    color: #ffcc00;
+}
+
         /* ЦЕЛЬ КАНАЛА В НЕОНЕ */
         .goal-container { background: #03050a; border: 1px solid rgba(212,175,55,0.3); padding: 18px; border-radius: 10px; box-shadow: inset 0 0 15px rgba(0,0,0,0.6); }
         .goal-bar-bg { width: 100%; height: 14px; background: rgba(255,255,255,0.05); border-radius: 7px; overflow: hidden; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
@@ -472,6 +482,7 @@
                     <div class="giveaway-meta-badges">
                         <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО</div>
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
+                        <button class="faq-trigger" onclick="document.getElementById('rules-modal').style.display='block'">ПРАВИЛА САЙТУ</button>
                     </div>
                 </div>
                 <div class="giveaway-interactive-side">
@@ -482,6 +493,25 @@
                         <div class="timer-segment"><span class="timer-num" id="t-mins">42</span><span class="timer-label">Хв</span></div>
                         <div class="timer-segment"><span class="timer-num" id="t-secs">19</span><span class="timer-label">Сек</span></div>
                     </div>
+
+
+
+<div id="rules-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="document.getElementById('rules-modal').style.display='none'">&times;</span>
+        <h2 style="color: #00bdf2;">ПРАВИЛА САЙТУ BLACKCELLUA</h2>
+        <div class="rules-list" style="text-align: left; margin-top: 20px;">
+            <p>1. <strong>Повага:</strong> Заборонено образи, нецензурну лексику та будь-який прояв агресії до стрімера або інших глядачів.</p>
+            <p>2. <strong>Спам:</strong> Заборонено спам, флуд та рекламу сторонніх ресурсів у чаті без дозволу.</p>
+            <p>3. <strong>Конфіденційність:</strong> Заборонено поширення особистої інформації (доксинг) інших учасників спільноти.</p>
+            <p>4. <strong>Чесна гра:</strong> Заборонено обговорення чи розповсюдження заборонених модифікацій (чітів) до гри World of Tanks.</p>
+            <p>5. <strong>Мова:</strong> На сайті та в чаті підтримується українська мова. Поважай мову спільноти.</p>
+            <p>6. <strong>Політика:</strong> На сайті заборонено розпалювання міжнаціональної ворожнечі та політичні дискусії.</p>
+            <p>7. <strong>Адміністрація:</strong> Рішення модераторів є остаточними. Порушення правил веде до обмеження доступу до чату.</p>
+        </div>
+    </div>
+</div>
+                    
                     
                     <div class="banner-buttons-row">
                         <a href="#" class="luxury-btn" id="open-rules-btn"><i class="fas fa-trophy"></i> Реєстрація</a>
@@ -972,6 +1002,11 @@ window.onclick = function(event) {
             document.getElementById(tabId).classList.add('active');
             btn.classList.add('active');
         }
+
+        // Додайте це до вашого блоку <script>, щоб відкривати вікно правил
+function openRules() {
+    document.getElementById('rules-modal').style.display = 'block';
+}
 
         let selectedAvatarClass = "fa-crosshairs";
         function selectAvatar(iconClass, elem) {
