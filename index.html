@@ -1010,7 +1010,7 @@ window.onclick = function(event) {
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
                 let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '7:00' : 'Вихідний';
-                if(tStr==='Вихідний' && isToday) tStr = 'Стрім';
+                if(tStr==='Вихідний' && isToday) tStr = '7:00';
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
                     <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>':''}</span>
