@@ -420,6 +420,11 @@
 .tank-item strong { color: #ffcc00; }
 .faq-trigger { cursor: pointer; padding: 10px 20px; background: transparent; border: 1px solid #00bdf2; color: #00bdf2; text-transform: uppercase; margin: 10px 0; }
 
+.shorts-container::-webkit-scrollbar { height: 6px; }
+.shorts-container::-webkit-scrollbar-thumb { background: #00bdf2; border-radius: 10px; }
+.shorts-container iframe { transition: 0.3s; }
+.shorts-container iframe:hover { transform: scale(1.02); border: 1px solid #00bdf2; }        
+
         .rules-step-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
         .rules-step-item { background: #020408; border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 14px; display: flex; gap: 14px; align-items: center; border-left: 3px solid var(--gold-bright); }
         .rules-step-num { font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900; color: var(--gold-bright); min-width: 25px; text-shadow: 0 0 5px var(--gold-bright); }
@@ -625,6 +630,14 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="stealth-card">
+    <h3 class="card-header">SHORTS (ВІДЕО)</h3>
+    <div class="shorts-container" style="display: flex; gap: 10px; overflow-x: auto; padding: 10px;">
+        <iframe width="200" height="350" src="https://www.youtube.com/embed/xC29GvadLBs" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
+        <iframe width="200" height="350" src="https://www.youtube.com/embed/cZDbheFn8hw" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
+    </div>
+</div>
 
                     <div class="side-block">
                         <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
