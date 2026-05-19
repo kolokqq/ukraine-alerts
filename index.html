@@ -821,23 +821,28 @@
         window.addEventListener('DOMContentLoaded', () => {
             loadYT('https://www.youtube.com/feeds/videos.xml?channel_id=UC29hev1ElIOHYG9oFm9dieQ', 'latest-videos-box', 6);
             
-            const schedBox = document.getElementById('schedule-box');
-            // Массив дней недели начиная с Понедельника (1) до Воскресенья (0)
-            const days = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота'];
-            const todayIndex = new Date().getDay(); // 0 = Неділя, 1 = Понеділок...
-            let schedHtml = '';
-            
-            ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота', 'Неділя'].forEach(d => {
-                let isToday = (days[todayIndex] === d);
-                let tStr = (d === 'Вівторок' || d === 'Четвер' || d === 'Субота') ? '07:00' : 'Вихідний';
-                if(tStr === 'Вихідний' && isToday) tStr = 'Стрім';
-                
-                schedHtml += `<div class="sched-item ${isToday ? 'today' : ''}">
-                    <span class="sched-day">${d}${isToday ? ' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>' : ''}</span>
-                    <span class="sched-time" style="${tStr === 'Вихідний' ? 'color:#64748b' : ''}">${tStr}</span>
-                </div>`;
-            });
-            if(schedBox) schedBox.innerHTML = schedHtml;
+         const schedBox = document.getElementById('schedule-box');
+// Масив днів тижня починаючи з Неділі (0) до Суботи (6)
+const days = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота'];
+const todayIndex = new Date().getDay(); // 0 = Неділя, 1 = Понеділок...
+let schedHtml = '';
+
+['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота', 'Неділя'].forEach(d => {
+    let isToday = (days[todayIndex] === d);
+    let tStr = (d === 'Вівторок' || d === 'Четвер' || d === 'Субота') ? '07:00' : 'Вихідний';
+    
+    // Зміна: якщо сьогодні вихідний за розкладом (Пн, Ср, Пт) і це поточний день, 
+    // пишемо плаваючий статус. Неділю примусово залишаємо чисто вихідним днем.
+    if(tStr === 'Вихідний' && isToday && d !== 'Неділя') {
+        tStr = 'Стрім';
+    }
+    
+    schedHtml += `<div class="sched-item ${isToday ? 'today' : ''}">
+        <span class="sched-day">${d}${isToday ? ' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>' : ''}</span>
+        <span class="sched-time" style="${tStr === 'Вихідний' ? 'color:#64748b' : ''}">${tStr}</span>
+    </div>`;
+});
+if(schedBox) schedBox.innerHTML = schedHtml;
             
             initModals();
             loadUserProfileLocal();
