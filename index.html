@@ -219,10 +219,6 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transform: skewX(-25deg); animation: light-sweep 3s infinite ease-in-out;
         }
-        @keyframes light-sweep {
-            0% { left: -100%; }
-            50%, 100% { left: 150%; }
-        }
 
         .g-badge.live-users { 
             border-color: var(--xp-green); color: var(--xp-green); 
@@ -442,7 +438,7 @@
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
                     </div>
 
-                    <div class="giveaway-actions" style="margin-top: 22px; display: flex; gap: 14px; flex-wrap: wrap;">
+                    <div class="giveaway-actions" style="margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <button class="btn-rules" style="
                             display: inline-flex;
                             align-items: center;
@@ -511,28 +507,27 @@
                 </div>
             </div>
 
-            <div class="stealth-card" style="border: 1px solid rgba(0, 189, 242, 0.2); box-shadow: 0 0 25px rgba(0, 189, 242, 0.05);">
-                <h3 class="card-header" style="text-shadow: 0 0 15px var(--cyan); display: flex; align-items: center; gap: 10px;">
+            <div class="stealth-card" style="border: 1px solid rgba(0, 189, 242, 0.2); box-shadow: 0 0 25px rgba(0, 189, 242, 0.05); margin-bottom: 25px;">
+                <h3 class="card-header" style="text-shadow: 0 0 15px var(--cyan); display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                     <span style="background: rgba(0, 189, 242, 0.15); color: var(--cyan); border: 1px solid var(--cyan); padding: 2px 10px; border-radius: 6px; font-size: 0.8rem; font-family: 'Orbitron'; box-shadow: 0 0 10px var(--cyan-glow);">FAQ</span> 
-                    ВІДПОВІДІ НА ВАПРОСИ: НА КАЖДИ ТАНК ЯКА ОБОРУТКА НУЖНА
+                    ВІДПОВІДІ НА ВАПРОСИ: НА КАЖДИЙ ТАНК КАКАЯ ОБОРУТКА НУЖНА
                 </h3>
-                
-                <p style="font-size: 0.9rem; color: #94a3b8; margin-top: -10px; margin-bottom: 20px;">Перевірені, топові збірки обладнання від <b>BlackCellUA</b> для максимальної ефективності в бою:</p>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 0; margin-bottom: 20px;">Перевірені, найефективніші збірки та сетапи обладнання від <b>BlackCellUA</b> для штурму рандому та взяття максимальних відміток:</p>
 
                 <div class="tanks-equipment-table" style="display: flex; flex-direction: column; gap: 12px;">
                     
-                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #cd1c1c;">
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 15px; align-items: center; background: #020408; padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #cd1c1c;">
                         <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
-                            <span class="tank-flag" style="font-size: 1.4rem; color: #b80000; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3));">☭</span>
+                            <span class="tank-flag" style="font-size: 1.4rem; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3)); line-height: 1;">☭</span>
                             <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">Object 277</span>
                         </div>
                         <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Оптимально:</span>
                             <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Поліпшена закалка">
                                 <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/hardened.png" alt="Закалка" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
-                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Гарматний досилач (Трофейний/Боновий)">
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Гарматний досилач (Боновий / Трофейний)">
                                 <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/rammer.png" alt="Досилач" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
@@ -542,13 +537,13 @@
                         </div>
                     </div>
 
-                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #005b99;">
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 15px; align-items: center; background: #020408; padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #005b99;">
                         <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
-                            <span class="tank-flag" style="font-size: 1.1rem;">🇸🇪</span>
+                            <span class="tank-flag" style="font-size: 1.1rem; line-height: 1;">🇸🇪</span>
                             <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">Kranvagn</span>
                         </div>
                         <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Оптимально:</span>
                             <div style="background: #060b14; border: 1px solid #475569; padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);" title="Поліпшена вентиляція">
                                 <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/ventilation.png" alt="Вентиляція" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
@@ -563,14 +558,14 @@
                         </div>
                     </div>
 
-                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #94a3b8;">
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 15px; align-items: center; background: #020408; padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #fff;">
                         <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
-                            <span class="tank-flag" style="font-size: 1.1rem;">🇵🇱</span>
+                            <span class="tank-flag" style="font-size: 1.1rem; line-height: 1;">🇵🇱</span>
                             <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">CS-63</span>
                         </div>
                         <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
-                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Максимальна мобільність)">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Оптимально:</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Максимальна швидкість)">
                                 <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/turbocharger.png" alt="Турбіна" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
@@ -584,14 +579,14 @@
                         </div>
                     </div>
 
-                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 15px; align-items: center; background: #020408; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #b80000;">
+                    <div class="tank-eq-row" style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 15px; align-items: center; background: #020408; padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); border-left: 4px solid #b80000;">
                         <div class="tank-info" style="display: flex; align-items: center; gap: 12px;">
-                            <span class="tank-flag" style="font-size: 1.4rem; color: #b80000; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3));">☭</span>
+                            <span class="tank-flag" style="font-size: 1.4rem; filter: drop-shadow(0 0 4px rgba(255,0,0,0.3)); line-height: 1;">☭</span>
                             <span class="tank-name" style="font-family: 'Orbitron'; font-weight: 900; font-size: 1rem; color: #fff; letter-spacing: 0.5px;">IS-7 (ІС-7)</span>
                         </div>
                         <div class="eq-images-container" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Збірка:</span>
-                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Для швидкого штурму)">
+                            <span style="font-size: 0.75rem; font-family: 'Orbitron'; color: #64748b; margin-right: 5px; font-weight: bold; text-transform: uppercase;">Оптимально:</span>
+                            <div style="background: #060b14; border: 1px solid var(--gold-bright); padding: 4px; border-radius: 6px; width: 52px; height: 38px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(255,204,0,0.15);" title="Турбонагнітач (Для агресивного штурму)">
                                 <img src="https://raw.githubusercontent.com/IgorTechUA/wot-equipment-icons/main/turbocharger.png" alt="Турбіна" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <span style="color: #475569; font-weight: 900; font-size: 0.8rem;">+</span>
@@ -727,7 +722,7 @@
                     </div>
 
                     <div class="side-block">
-                        <h3 class="side-title">📅 РОЗКЛАД СТРІМІВ</h3>
+                        <h3 class="side-title">💎 РОЗКЛАД СТРІМІВ</h3>
                         <div id="schedule-box"></div>
                     </div>
 
@@ -844,7 +839,10 @@
                     <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Skoda T 56</span><input type="checkbox" class="garage-checkbox" value="Skoda T 56" onchange="updateGarageCount()"></div>
                     <div class="garage-item-row"><span style="font-size:0.85rem; font-weight:bold;">Object 703 Version II</span><input type="checkbox" class="garage-checkbox" value="Obj 703" onchange="updateGarageCount()"></div>
                 </div>
-                <button class="btn-action-side btn-yellow" style="margin-top:20px;" onclick="saveGarageData()"><i class="fas fa-shield-alt"></i> Оновити ангар</button>
+                <div class="stats-footer-row" style="margin-top: 15px;">
+                    <span style="color: var(--cyan); text-transform: none; font-size: 0.8rem;">*Обладнання для цієї техніки дивись у верхньому FAQ-блоці сайту.</span>
+                </div>
+                <button class="btn-action-side btn-yellow" style="margin-top:10px;" onclick="saveGarageData()"><i class="fas fa-shield-alt"></i> Оновити ангар</button>
             </div>
 
             <div class="profile-tab-content" id="tab-tickets">
@@ -859,9 +857,7 @@
                     <label class="input-label">Повідомлення</label>
                     <textarea class="custom-textarea" rows="3" placeholder="Опиши детально суть..."></textarea>
                 </div>
-                <div class="input-group">
-                    <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
-                </div>
+                <button class="btn-action-side btn-yellow" onclick="alert('Тікет успішно надіслано модерації!')"><i class="fas fa-paper-plane"></i> Надіслати тікет</button>
             </div>
         </div>
     </div>
@@ -900,7 +896,7 @@
                 const now = new Date();
                 const nextStream = new Date();
                 nextStream.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
-                nextStream.setHours(7, 0, 0, 0); // 7:00 Утра по расписанию
+                nextStream.setHours(19, 0, 0, 0);
                 if (now > nextStream) {
                     nextStream.setDate(nextStream.getDate() + 7);
                 }
@@ -1012,10 +1008,11 @@
             
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
-                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '07:00' : 'Вихідний';
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '7:00' : 'Вихідний';
                 
+                // Исправленная логика плавающих стримов: Неделя жестко выходной, в Пн, Ср, Пт пишется статус-напоминание
                 if(tStr==='Вихідний' && isToday && d !== 'Неділя') {
-                    tStr = 'Стрім по можливості';
+                    tStr = 'Початок 7:00';
                 }
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
