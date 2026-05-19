@@ -513,6 +513,12 @@
                             <iframe src="https://www.youtube.com/embed/live_stream?channel=UC29hev1ElIOHYG9oFm9dieQ" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
                         </div>
                     </div>
+                    <button onclick="localStorage.removeItem('streamStartTime'); location.reload();" style="background:#ff4444; border:none; padding:10px; color:white; cursor:pointer;">Скинути</button>
+                    <button onclick="startStreamNow()" style="background:#00bdf2; border:none; padding:10px; cursor:pointer;">Запустити таймер стріму</button>
+
+                   <div id="stream-timer" style="color: #00bdf2; font-family: 'Orbitron', sans-serif; font-size: 1.2rem; text-align: center; margin-top: 10px; background: rgba(0,0,0,0.5); padding: 5px;">
+                       Час стріму: <span id="timer">00:00:00</span>
+                  </div>
 
                     <div class="stealth-card">
                         <h3 class="card-header">📈 ПОТОЧНА СТАТИСТИКА СТРІМЕРА (АККАУНТ)</h3>
@@ -792,6 +798,47 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // 1. Функция запуска: фиксирует текущее время в памяти браузера и перезагружает страницу
+    function startStreamNow() {
+        const now = new Date().getTime();
+        localStorage.setItem('streamStartTime', now);
+        location.reload();
+    }
+
+    // 2. Функция обновления таймера
+    function updateTimer() {
+        const savedTime = localStorage.getItem('streamStartTime');
+        
+        // Если время не задано, показываем нули
+        if (!savedTime) {
+            document.getElementById("timer").innerText = "00:00:00";
+            return;
+        }
+
+        const startTime = parseInt(savedTime);
+        const now = new Date().getTime();
+        const diff = now - startTime;
+
+        // Расчет времени
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // Отображение с ведущими нулями
+        document.getElementById("timer").innerText = 
+            (hours < 10 ? "0" + hours : hours) + ":" + 
+            (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+            (seconds < 10 ? "0" + seconds : seconds);
+    }
+
+    // Запуск интервала: обновляем каждую секунду
+    setInterval(updateTimer, 1000);
+    
+    // Вызов функции при загрузке страницы
+    updateTimer();
+</script>
 
     <script>
         const tanksPool = [
