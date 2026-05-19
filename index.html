@@ -93,6 +93,28 @@
             transform: translateY(-2px); background: var(--cyan); color: #000; box-shadow: 0 0 20px var(--cyan);
         }
 
+        .faq-trigger {
+    background: transparent;
+    color: #00bdf2;
+    border: 2px solid #00bdf2;
+    padding: 12px 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(0, 189, 242, 0.2);
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.faq-trigger:hover {
+    background: #00bdf2;
+    color: #03060a;
+    box-shadow: 0 0 20px #00bdf2, 0 0 40px #00bdf2;
+    transform: scale(1.05);
+}
+
         .user-profile-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .user-profile-badge {
             display: inline-flex; align-items: center; gap: 10px; background: rgba(5, 8, 14, 0.9);
@@ -482,6 +504,7 @@
                     <div class="giveaway-meta-badges">
                         <div class="g-badge prize"><i class="fas fa-gem" style="color:var(--gold-bright);"></i> ФОНД: ІГРОВЕ ЗОЛОТО</div>
                         <div class="g-badge live-users"><i class="fas fa-users"></i> <span id="g-users-count">342</span> УЧАСНИКІВ В БАЗІ</div>
+                        <button class="faq-trigger" onclick="document.getElementById('rules-modal').style.display='block'">ПРАВИЛА САЙТУ</button>
                     </div>
                 </div>
                 <div class="giveaway-interactive-side">
