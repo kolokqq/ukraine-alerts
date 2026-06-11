@@ -671,10 +671,10 @@
 
                     <div class="side-block">
                         <h3 class="side-title">🎵 ЗАРАЗ ГРАЄ НА СТРІМІ</h3>
-                        <a href="https://www.youtube.com/watch?v=vHg-xJm2LaQ" target="_blank" class="music-widget">
+                        <a href="https://sefon.pro/artist/383530-kiber-balabol/" target="_blank" class="music-widget">
                             <div class="music-icon-box"><i class="fas fa-music"></i></div>
                             <div>
-                                <div style="font-size:0.85rem; font-weight:bold; color:#fff;">BlackCellUA Stream Vibes</div>
+                                <div style="font-size:0.85rem; font-weight:bold; color:#fff;">BlackCellUA Stream </div>
                                 <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">Плейлист підписників</div>
                             </div>
                         </a>
@@ -725,7 +725,6 @@
                     <div class="stealth-card">
                         <h3 class="card-header" style="text-shadow: 0 0 15px var(--neon-orange);">⚔️ АКТИВНІ КВЕСТИ ТА ЦІЛІ КАНАЛУ</h3>
                         <div class="quest-list-box">
-                            <div class="quest-item done"><span>Взяти 3 відмітки на BZT-70</span><span class="quest-badge complete">Виконано</span></div>
                             <div class="quest-item"><span>Зібрати взвод повністю з підписників</span><span class="quest-badge in-progress">Сьогодні</span></div>
                         </div>
                     </div>
@@ -1020,8 +1019,8 @@ window.onclick = function(event) {
             
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
-                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '7:00' : '7:00';
-                if(tStr==='7:00' && isToday) tStr = '7:00';
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '23:00' : '23:00';
+                if(tStr==='7:00' && isToday) tStr = '23:00';
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
                     <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>':''}</span>
