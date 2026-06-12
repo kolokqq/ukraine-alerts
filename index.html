@@ -6,7 +6,7 @@
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17614916752"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || []; 
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-17614916752');
@@ -1019,7 +1019,7 @@ window.onclick = function(event) {
             
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
-                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? 'Вихідний' : '15:00';
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '15:00' : '15:00';
                 if(tStr==='15:00' && isToday) tStr = '15:00';
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
