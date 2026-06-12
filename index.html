@@ -454,6 +454,20 @@
     transform: scale(1.05);
 }
 
+// Отримання поточного часу
+const now = new Date();
+const currentHour = now.getHours();
+
+// Якщо година >= 15, змінюємо статус на "ЗАВТРА"
+if (currentHour >= 15) {
+    statusLabel = "ЗАВТРА";
+    statusClass = "tomorrow-class"; // ваш стиль для жовтого кольору
+} else {
+    statusLabel = "СЬОГОДНІ";
+    statusClass = "today-class";
+}
+        
+
         /* МОДАЛЬНЫЕ ОКНА И КАБИНЕТ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
