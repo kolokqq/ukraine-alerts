@@ -1019,8 +1019,8 @@ window.onclick = function(event) {
             
            ['Понеділок','Вівторок','Середа','Четвер','П’ятниця','Субота','Неділя'].forEach(d => {
                 let isToday = (days[todayIndex] === d);
-                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '23:00' : '23:00';
-                if(tStr==='7:00' && isToday) tStr = '23:00';
+                let tStr = (d==='Вівторок'||d==='Четвер'||d==='Субота') ? '19:00' : '20:00';
+                if(tStr==='15:00' && isToday) tStr = '19:00';
                 
                 schedHtml += `<div class="sched-item ${isToday?'today':''}">
                     <span class="sched-day">${d}${isToday?' <span style="background:#00ff66;color:#05080e;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:8px;font-family:\'Orbitron\';box-shadow:0 0 5px #00ff66;">СЬОГОДНІ</span>':''}</span>
